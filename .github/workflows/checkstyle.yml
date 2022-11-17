@@ -3,6 +3,16 @@ on:
   push:
     branches: [ main ]
 jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy JavaDoc 🚀
+        uses: MathieuSoysal/Javadoc-publisher.yml@v2.0.4
+        with:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          javadoc-branch: javadoc
+          java-version: 17
+          target-folder: javadoc 
   checkstyle:
     name: runner / checkstyle
     runs-on: ubuntu-latest
