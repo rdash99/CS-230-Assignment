@@ -16,12 +16,12 @@ public class Player extends Character {
     }
 
     // changed to just interact to overwrite from character
-    private void interact(interactedItem){
+    private void interact(Item interactedItem){
 
     }
 
     // changed to take the item in as different items will add different scores
-    private void addScore(interactedItem){
+    private void addScore(Item interactedItem){
 
     }
 

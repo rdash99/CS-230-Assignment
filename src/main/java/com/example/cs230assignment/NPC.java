@@ -12,11 +12,11 @@ public class NPC extends Character {
         this.currentBoard = boardPass;
     }
 
-    protected int[] ShortestPath(coordTo){
+    protected int[] ShortestPath(int[] coordTo){
 
     }
 
-    protected void validMove(coordCheck){
+    protected void validMove(int[] coordCheck){
 
     }
 

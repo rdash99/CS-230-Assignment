@@ -3,7 +3,7 @@ package com.example.cs230assignment;
 public class FloorFollowingThief extends NPC {
     private char allocatedColour;
 
-    public void FloorFollowingThief(allocatedColourPass){
+    public void FloorFollowingThief(Char allocatedColourPass){
         this.allocatedColour = allocatedColourPass;
     }
 
