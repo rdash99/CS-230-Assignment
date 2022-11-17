@@ -1,14 +1,18 @@
-public class Character extends Entity{
-    public void Character(){
+package com.example.cs230assignment;
+
+public class Character extends Entity {
+    public void Character() {
 
     }
-    protected void move(){
+
+    protected void move() {
 
     }
 
-    protected void savePosition(){
+    protected void savePosition() {
 
     }
+
     protected void interact(Item interactedItem){
 
     }

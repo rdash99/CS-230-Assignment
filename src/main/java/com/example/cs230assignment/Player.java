@@ -1,19 +1,21 @@
-import java.util.Arraylist;
+package com.example.cs230assignment;
 
-public class Player extends Character{
+import java.util.ArrayList;
+
+public class Player extends Character {
     private String name;
-    private Int score;
-    private Arraylist<string> levelComp;
+    private int score;
+    private ArrayList<String> levelComp;
 
-
-    public void Player(){
-
-    }
-    public void die(){
+    public void Player() {
 
     }
 
-    //changed to just interact to overwrite from character
+    public void die() {
+
+    }
+
+    // changed to just interact to overwrite from character
     private void interact(Item interactedItem){
 
     }
@@ -22,8 +24,9 @@ public class Player extends Character{
     private void addScore(Item interactedItem){
 
     }
+
     // added to remove from character code that is only needed for player
-    public void move(){
+    public void move() {
 
     }
 

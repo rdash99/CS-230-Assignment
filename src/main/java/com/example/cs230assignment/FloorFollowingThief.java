@@ -1,11 +1,10 @@
-public class FloorFollowingThief extends NPC{
-    private Char allocatedColour;
+package com.example.cs230assignment;
 
     public void FloorFollowingThief(Char allocatedColourPass){
         this.allocatedColour = allocatedColourPass;
     }
 
-    private void interact(){
+    private void interact() {
 
     }
     private void validMove(){

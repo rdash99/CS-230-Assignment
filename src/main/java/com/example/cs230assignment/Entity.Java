@@ -1,3 +1,4 @@
+package com.example.cs230assignment;
 public class Entity extends DrawShape{
     private String entityName;
     protected Int[Null,Null] coord;
