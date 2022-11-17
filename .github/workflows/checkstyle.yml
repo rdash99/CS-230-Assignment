@@ -13,14 +13,3 @@ jobs:
           javadoc-branch: javadoc
           java-version: 17
           target-folder: javadoc 
-  checkstyle:
-    name: runner / checkstyle
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: nikitasavinov/checkstyle-action@master
-        with:
-          github_token: ${{ secrets.TOKEN }}
-          reporter: github-check
-          level: warning
-          checkstyle_config: checkstyle.xml
