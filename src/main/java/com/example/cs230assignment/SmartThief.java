@@ -1,15 +1,20 @@
-public class SmartThief extends NPC{
-    public void SmartThief(){
-        
-    }
-    //changed to move to overwrite move in character
-    public void move(){
+package com.example.cs230assignment;
+
+public class SmartThief extends NPC {
+    public void SmartThief() {
 
     }
-    private void interact(){
+
+    // changed to move to overwrite move in character
+    public void move() {
 
     }
-    private void validMove(){
-        
+
+    private void interact() {
+
+    }
+
+    private void validMove() {
+
     }
 }
