@@ -13,6 +13,7 @@ public class NPC extends Character {
     }
 
     protected int[] ShortestPath(int[] coordTo) {
+        return coordTo;
 
     }
 
@@ -21,6 +22,7 @@ public class NPC extends Character {
     }
 
     protected double getMovementTimer() {
+        return movementTimer;
 
     }
 }
