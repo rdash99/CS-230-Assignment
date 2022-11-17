@@ -13,10 +13,10 @@ public class Character extends Entity {
 
     }
 
-    protected void interact(interactedItem){
+    private void interact(Item interactedItem) {
 
     }
-    //protected void drawMove(){
-    //}
-    //not needed as this will be covered by board update
-    }
+    // protected void drawMove(){
+    // }
+    // not needed as this will be covered by board update
+}

@@ -1,9 +1,9 @@
 package com.example.cs230assignment;
 
-public class FloorFollowingThief extends NPC {
+class FloorFollowingThief {
     private char allocatedColour;
 
-    public void FloorFollowingThief(allocatedColourPass){
+    public void FloorFollowingThief(char allocatedColourPass) {
         this.allocatedColour = allocatedColourPass;
     }
 
