@@ -1,7 +1,7 @@
 public class FloorFollowingThief extends NPC{
     private Char allocatedColour;
 
-    public void FloorFollowingThief(allocatedColourPass){
+    public void FloorFollowingThief(Char allocatedColourPass){
         this.allocatedColour = allocatedColourPass;
     }
 
@@ -9,6 +9,6 @@ public class FloorFollowingThief extends NPC{
 
     }
     private void validMove(){
-        
+
     }
 }

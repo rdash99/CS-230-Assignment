@@ -1,6 +1,6 @@
 public class FlyingAssassin extends NPC{
-    
-    public void FlyingAssassin(coordChangePass){
+
+    public void FlyingAssassin(Int[] coordChangePass){
         this.coordChange = coordChangePass
     }
 

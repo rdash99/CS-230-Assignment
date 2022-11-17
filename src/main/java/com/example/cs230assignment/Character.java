@@ -9,7 +9,7 @@ public class Character extends Entity{
     protected void savePosition(){
 
     }
-    protected void interact(interactedItem){
+    protected void interact(Item interactedItem){
 
     }
     //protected void drawMove(){
