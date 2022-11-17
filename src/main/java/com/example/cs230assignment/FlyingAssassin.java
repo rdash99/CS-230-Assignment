@@ -2,7 +2,7 @@ package com.example.cs230assignment;
 
 public class FlyingAssassin extends NPC {
 
-    public void FlyingAssassin(Int[] coordChangePass){
+    public void FlyingAssassin(int[] coordChangePass) {
         this.coordChange = coordChangePass;
     }
 
