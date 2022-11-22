@@ -1,5 +1,7 @@
 package com.example.cs230assignment;
 
+import javafx.scene.canvas.GraphicsContext;
+
 /**
  * This class is used to force all classes below it to implement the draw
  * method.
@@ -9,5 +11,5 @@ package com.example.cs230assignment;
  */
 
 public abstract class DrawShape {
-    public abstract void draw();
+    public abstract void draw(GraphicsContext g);
 }

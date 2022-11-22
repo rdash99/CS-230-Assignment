@@ -1,5 +1,7 @@
 package com.example.cs230assignment;
 
+import javafx.scene.canvas.GraphicsContext;
+
 public class Entity extends DrawShape{
     private String entityName;
     private int[][] coords;
@@ -12,7 +14,7 @@ public class Entity extends DrawShape{
         //Entity's start position
     }
 
-    @Override public void draw() {
+    @Override public void draw(GraphicsContext g) {
         //Draw item on the board
     }
 

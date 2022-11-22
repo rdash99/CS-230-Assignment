@@ -20,6 +20,6 @@ public class Board extends DrawShape{
     }
 
     @Override
-    public void draw() {
+    public void draw(GraphicsContext g) {
     }
 }
