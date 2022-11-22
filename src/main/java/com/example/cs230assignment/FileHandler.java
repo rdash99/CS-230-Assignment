@@ -1,5 +1,13 @@
 package com.example.cs230assignment;
 
+/**
+ * This class defines the FileHandler methods. This is used to read and write
+ * files, saving and instantiating the game.
+ * 
+ * @author Rowan Dash
+ * @version 1.0
+ */
+
 public class FileHandler {
     private static Board loadBoard(String fileName) {
         return null;
