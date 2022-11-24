@@ -32,7 +32,10 @@ public class FileHandler {
     }
 
     private static Item loadItem(String item) {
-        return null;
+        String[] itemData = item.split(",");
+        String itemName;
+        int[] itemCoord;
+        return new Item(itemName, new int[] { 0, 0 }, 0);
     }
 
     public static Board readLevelFile(String fileName) {
