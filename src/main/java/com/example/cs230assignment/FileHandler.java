@@ -1,5 +1,7 @@
 package com.example.cs230assignment;
 
+import java.io.File;
+
 /**
  * This class defines the FileHandler methods. This is used to read and write
  * files, saving and instantiating the game.
@@ -34,9 +36,11 @@ public class FileHandler {
     }
 
     public static Board readLevelFile(String fileName) {
-        return null;
+        File file = new File(fileName);
+        return loadBoard(fileName);
     }
 
     public static void saveGame(Board board, String fileName) {
+        File saveFile = new File(fileName);
     }
 }
