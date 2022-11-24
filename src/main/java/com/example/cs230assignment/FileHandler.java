@@ -33,7 +33,7 @@ public class FileHandler {
 
     private static Item loadItem(String item) {
         String[] itemData = item.split(",");
-        String itemName;
+        String itemName = "";
         int[] itemCoord;
         return new Item(itemName, new int[] { 0, 0 }, 0);
     }
