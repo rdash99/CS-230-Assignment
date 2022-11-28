@@ -1,6 +1,8 @@
 package com.example.cs230assignment;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  * This class defines the FileHandler methods. This is used to read and write
@@ -11,7 +13,14 @@ import java.io.File;
  */
 
 public class FileHandler {
-    private static Board loadBoard(String fileName) {
+    private static Board loadBoard(File fileName) {
+        Scanner in = null;
+        try {
+            in = new Scanner(fileName);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find" + fileName);
+            System.exit(0);
+        }
         return null;
     }
 
@@ -40,7 +49,7 @@ public class FileHandler {
 
     public static Board readLevelFile(String fileName) {
         File file = new File(fileName);
-        return loadBoard(fileName);
+        return loadBoard(file);
     }
 
     public static void saveGame(Board board, String fileName) {
