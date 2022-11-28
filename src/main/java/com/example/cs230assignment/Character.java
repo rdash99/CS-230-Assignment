@@ -1,8 +1,8 @@
 package com.example.cs230assignment;
 
 public class Character extends Entity {
-    public void Character() {
-
+    public Character() {
+        super(null, null);
     }
 
     protected void move() {
