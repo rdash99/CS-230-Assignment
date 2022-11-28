@@ -15,8 +15,8 @@ public class FileHandler {
         return null;
     }
 
-    private static String saveBoard(Board board, String fileName) {
-        return null;
+    private static void saveBoard(Board board, String fileName) {
+        // characters = board.getCharacters();
     }
 
     private static String saveCharacter(Character character) {
@@ -45,5 +45,6 @@ public class FileHandler {
 
     public static void saveGame(Board board, String fileName) {
         File saveFile = new File(fileName);
+        saveBoard(board, fileName);
     }
 }
