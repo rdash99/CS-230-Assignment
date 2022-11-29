@@ -9,7 +9,7 @@ package com.example.cs230assignment;
  */
 public class Entity extends DrawShape {
     private String entityName;
-    protected int[] coord;
+    private int[] coord;
 
     public Entity(String entityNamePass, int x, int y) {
         this.coord[1] = x;
