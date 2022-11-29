@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 public class Tile {
     private char[] squares;
-    private ArrayList <Entity> entityList; //Need to implement Entity class
+    private ArrayList<Entity> entityList; // Need to implement Entity class
+
+    public Tile(char charAt, char charAt2, char charAt3, char charAt4) {
+    }
 
     public char[] getColours() {
         return this.squares;
