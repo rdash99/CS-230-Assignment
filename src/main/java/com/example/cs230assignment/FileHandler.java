@@ -84,11 +84,8 @@ public class FileHandler {
         return null;
     }
 
-    private static Item loadItem(String item) {
-        String[] itemData = item.split(",");
-        String itemName = "";
-        int[] itemCoord;
-        return new Item(itemName, new int[] { 0, 0 }, 0);
+    private static Item loadItem(String itemName, int x, int y, int value) {
+        return new Item(itemName, x, y, value);
     }
 
     public static Board readLevelFile(String fileName) {

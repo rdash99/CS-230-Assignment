@@ -10,8 +10,8 @@ package com.example.cs230assignment;
 public class Item extends Entity {
     private int itemValue;
 
-    public Item(String itemNamePass, int[] coordPass, int itemValuePass) {
-        super(itemNamePass, coordPass);
+    public Item(String itemNamePass, int x, int y, int itemValuePass) {
+        super(itemNamePass, x, y);
         this.itemValue = itemValuePass;
     }
 
