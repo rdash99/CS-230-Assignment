@@ -40,16 +40,20 @@ public class FileHandler {
             int xNum = x * (-1);
             yNum = yNum + 1;
             for (int i = 0; i < lineArray.length; i++) {
+                // read in tile colours
                 if (lineArray[i].length() == 4) {
                     tiles[xNum][yNum] = new Tile(lineArray[i].charAt(0),
                             lineArray[i].charAt(1), lineArray[i].charAt(2),
                             lineArray[i].charAt(3));
                 }
                 ;
+                // read in entities - todo fix this for coordinate read in
                 if (lineArray[i].length() == 3) {
                     String[] coords = lineArray[i - 1].split(",");
                     int xCoord = Integer.parseInt(coords[0]);
                     int yCoord = Integer.parseInt(coords[1]);
+
+                    // read in player
                     if (lineArray[i].equals("PLR")) {
                         Player player1 = new Player(xCoord, yCoord);
                         player = player1;
