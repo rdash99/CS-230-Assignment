@@ -3,12 +3,13 @@ package com.example.cs230assignment;
 import java.util.ArrayList;
 
 public class Player extends Character {
-    private String name;
     private int score;
     private ArrayList<String> levelComp;
 
-    public void Player() {
-
+    public Player(int x, int y) {
+        super("Player", x, y);
+        this.score = 0;
+        this.levelComp = new ArrayList<String>();
     }
 
     public void die() {
