@@ -6,10 +6,9 @@ public class NPC extends Character {
 
     // thinking about adding move into here aswell as character for the basic
     // movement of the NPCS
-    public NPC(Board boardPass, double movementTimerPass, int x, int y) {
-        super("NPC", x, y);
+    public NPC(String name, double movementTimerPass, int x, int y) {
+        super(name, x, y);
         this.movementTimer = movementTimerPass;
-        this.currentBoard = boardPass;
     }
 
     protected int[] ShortestPath(int[] coordTo) {
