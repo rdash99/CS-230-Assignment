@@ -19,6 +19,7 @@ public class NPC extends Character {
     protected void validMove(int[] coordCheck) {
 
     }
+
     public void move(){
       validMove(this.coord);
       this.coord[0] = this.coord[0] + this.coordChange[0]
