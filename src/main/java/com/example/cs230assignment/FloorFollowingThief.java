@@ -3,8 +3,9 @@ package com.example.cs230assignment;
 class FloorFollowingThief {
     private char allocatedColour;
 
-    public void FloorFollowingThief(char allocatedColourPass) {
+    public void FloorFollowingThief(char allocatedColourPass, int[] coordChangePass) {
         this.allocatedColour = allocatedColourPass;
+        this.coordChange = coordChangePass;
     }
 
     private void interact() {
