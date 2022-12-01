@@ -63,6 +63,13 @@ public class FileHandler {
                         Player player1 = new Player(xCoord, yCoord);
                         player = player1;
                     }
+                    // read in a floor following thief
+                    if (lineArray[i].equals("fft")) {
+                        char colour = lineArray[i + 3].charAt(0);
+                        FloorFollowingThief fft = new FloorFollowingThief(
+                                colour, xCoord, yCoord);
+                        entities.add(fft);
+                    }
                 }
                 ;
                 xNum = xNum + 1;
