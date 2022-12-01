@@ -14,6 +14,11 @@ import java.util.Scanner;
  */
 
 public class FileHandler {
+
+    /**
+     * @param fileName The level file to process
+     * @return The instance of board for that level
+     */
     private static Board loadBoard(File fileName) {
         Scanner in = null;
         try {
@@ -47,7 +52,8 @@ public class FileHandler {
                             lineArray[i].charAt(3));
                 }
                 ;
-                // read in entities - todo fix this for coordinate read in
+                // read in entities - todo fix this for coordinate read in -
+                // this will require level file modification
                 if (lineArray[i].length() == 3) {
                     String[] coords = lineArray[i - 1].split(",");
                     int xCoord = Integer.parseInt(coords[0]);
