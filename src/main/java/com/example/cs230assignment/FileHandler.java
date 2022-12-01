@@ -55,15 +55,13 @@ public class FileHandler {
                 // read in entities - todo fix this for coordinate read in -
                 // this will require level file modification
                 if (lineArray[i].length() == 3) {
-                    String[] coords = lineArray[i - 1].split(",");
-                    int xCoord = Integer.parseInt(coords[0]);
-                    int yCoord = Integer.parseInt(coords[1]);
+                    int xCoord = Integer.parseInt(lineArray[i - 2]);
+                    int yCoord = Integer.parseInt(lineArray[i - 1]);
 
                     // read in player
-                    if (lineArray[i].equals("PLR")) {
+                    if (lineArray[i].equals("ply")) {
                         Player player1 = new Player(xCoord, yCoord);
                         player = player1;
-                        break;
                     }
                 }
                 ;
