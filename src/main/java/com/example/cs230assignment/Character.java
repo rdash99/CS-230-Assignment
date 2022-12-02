@@ -1,8 +1,8 @@
 package com.example.cs230assignment;
 
 public class Character extends Entity {
-    public void Character() {
-
+    public Character(String name, int x, int y) {
+        super(name, x, y);
     }
 
     protected void move() {
