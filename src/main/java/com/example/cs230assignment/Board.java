@@ -3,8 +3,8 @@ package com.example.cs230assignment;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Board extends DrawShape {
-    private static final int DEFAULT_TILE_WIDTH = 50;
-    private static final int DEFAULT_TILE_HEIGHT = 50;
+    private static final int DEFAULT_TILE_WIDTH = 100;
+    private static final int DEFAULT_TILE_HEIGHT = 100;
     private Tile[][] tiles;
     private Player player;
 
@@ -31,9 +31,12 @@ public class Board extends DrawShape {
     public void draw(GraphicsContext gc) {
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[0].length; j++) {
-                int xPos = j * 50;
-                int yPos = i * 50;
-                gc.strokeRect(xPos, yPos, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT);
+                double xPos = j * 50;
+                double yPos = i * 50;
+                gc.strokeRect(xPos, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                gc.strokeRect(xPos + 25, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                gc.strokeRect(xPos, yPos + 25, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                gc.strokeRect(xPos + 25, yPos + 25, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
             }
         }
 
