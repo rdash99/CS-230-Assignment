@@ -29,11 +29,11 @@ public class Board extends DrawShape {
 
     @Override
     public void draw(GraphicsContext gc) {
-        for (int i = 0; i < tiles[0].length; i++) {
-            for (int j = 0; j < tiles.length; i++) {
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[0].length; j++) {
                 int xPos = j * 50;
                 int yPos = i * 50;
-                gc.strokeRect(j, i, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT);
+                gc.strokeRect(xPos, yPos, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT);
             }
         }
 
