@@ -41,6 +41,7 @@ public class GameGUI extends Stage {
     // (in this setup) as we need to access it in different methods.
     // We could use FXML to place code in the controller instead.
     private Canvas canvas;
+    private GraphicsContext gc;
 
     // Loaded images
     private Image playerImage;
@@ -111,8 +112,25 @@ public class GameGUI extends Stage {
      * Draw the game on the canvas.
      */
     public void drawGame() {
+        //Hard coded test values - Thom
+        Tile tile1 = new Tile('r', 'g', 'b', 'y');
+        Tile tile2 = new Tile('r', 'g', 'b', 'y');
+        Tile tile3 = new Tile('r', 'g', 'b', 'y');
+        Tile tile4 = new Tile('r', 'g', 'b', 'y');
+        Tile tile5 = new Tile('r', 'g', 'b', 'y');
+        Tile tile6 = new Tile('r', 'g', 'b', 'y');
+        Tile tile7 = new Tile('r', 'g', 'b', 'y');
+        Tile tile8 = new Tile('r', 'g', 'b', 'y');
+        Tile tile9 = new Tile('r', 'g', 'b', 'y');
+        Tile tile10 = new Tile('r', 'g', 'b', 'y');
+        Tile[] tiles = new Tile[] {tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10};
+        Board board = new Board(5, 2, tiles);
+
         // Get the Graphic Context of the canvas. This is what we draw on.
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc = canvas.getGraphicsContext2D();
+
+        // Draw the board on screen (Currently hidden behind the example)- Thom
+        board.draw(gc);
 
         // Clear canvas
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -200,6 +218,8 @@ public class GameGUI extends Stage {
         // We store this as a gloabl variable so other methods can access it.
         canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
         root.setCenter(canvas);
+
+
 
         // Create a toolbar with some nice padding and spacing
         HBox toolbar = new HBox();

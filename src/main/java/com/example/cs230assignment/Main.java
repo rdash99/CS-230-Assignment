@@ -1,6 +1,11 @@
 package com.example.cs230assignment;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -29,10 +34,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		new MainMenu();
 
-		Pane root = buildCanvas();
-		Scene scene = new Scene(root, DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+
 	}
 
 	public Pane buildCanvas() {
