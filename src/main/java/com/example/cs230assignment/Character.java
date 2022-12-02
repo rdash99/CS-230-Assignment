@@ -1,17 +1,19 @@
 package com.example.cs230assignment;
 
 public class Character extends Entity {
-<<<<<<< Updated upstream
-    public void Character() {
+    <<<<<<<
+    Updated upstream
 
+    public Character(String name, int x, int y) {
+        super(name, x, y);
 =======
     //moved up from NPC as the player will also need board
     protected Board currentBoard;
+
     public Character() {
         super(null, null);
 >>>>>>> Stashed changes
     }
-
 
     protected void move() {
 

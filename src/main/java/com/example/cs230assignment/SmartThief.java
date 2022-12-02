@@ -1,7 +1,8 @@
 package com.example.cs230assignment;
 
 public class SmartThief extends NPC {
-    public void SmartThief() {
+    public SmartThief(int x, int y, double movementTimerPass) {
+        super("Smart Thief", movementTimerPass, x, y);
 
     }
 
