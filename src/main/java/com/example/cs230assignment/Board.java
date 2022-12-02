@@ -2,17 +2,25 @@ package com.example.cs230assignment;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public class Board extends DrawShape{
+public class Board extends DrawShape {
+    private static final int DEFAULT_TILE_WIDTH = 50;
+    private static final int DEFAULT_TILE_HEIGHT = 50;
     private Tile[][] tiles;
-    private int[][] dimensions;
     private Player player;
+
+    public Board(int width, int height, Tile[] tiles) {
+        this.tiles = new Tile[height][width];
+        int index = 0;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                this.tiles[i][j] = tiles[index];
+                index++;
+            }
+        }
+    }
 
     public Tile getTile(int x, int y) {
         return this.tiles[x][y];
-    }
-
-    public int[][] getDimensions() {
-        return this.dimensions;
     }
 
     public Player getPlayer() {
@@ -20,6 +28,14 @@ public class Board extends DrawShape{
     }
 
     @Override
-    public void draw(GraphicsContext g) {
+    public void draw(GraphicsContext gc) {
+        for (int i = 0; i < tiles[0].length; i++) {
+            for (int j = 0; j < tiles.length; i++) {
+                int xPos = j * 50;
+                int yPos = i * 50;
+                gc.strokeRect(j, i, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT);
+            }
+        }
+
     }
 }

@@ -36,7 +36,6 @@ import javafx.util.Duration;
  * @author Liam O'Reilly
  */
 public class Main extends Application {
-
 	
 	/**
 	 * Setup the new application.
@@ -44,9 +43,21 @@ public class Main extends Application {
 	 */
 	public void start(Stage primaryStage) {
 		new MainMenu();
-	}
-	
 
+		//Hard coded test values
+		Tile tile1 = new Tile('r', 'g', 'b', 'y');
+		Tile tile2 = new Tile('r', 'g', 'b', 'y');
+		Tile tile3 = new Tile('r', 'g', 'b', 'y');
+		Tile tile4 = new Tile('r', 'g', 'b', 'y');
+		Tile tile5 = new Tile('r', 'g', 'b', 'y');
+		Tile tile6 = new Tile('r', 'g', 'b', 'y');
+		Tile tile7 = new Tile('r', 'g', 'b', 'y');
+		Tile tile8 = new Tile('r', 'g', 'b', 'y');
+		Tile tile9 = new Tile('r', 'g', 'b', 'y');
+		Tile tile10 = new Tile('r', 'g', 'b', 'y');
+		Tile[] tiles = new Tile[] {tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10};
+		Board board = new Board(5, 2, tiles);
+	}
 	        	
 	public static void main(String[] args) {
 		launch(args);
