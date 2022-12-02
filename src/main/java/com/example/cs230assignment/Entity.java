@@ -1,5 +1,7 @@
 package com.example.cs230assignment;
 
+import javafx.scene.canvas.GraphicsContext;
+
 /**
  * Defines the Entity class. This class is the parent class for several other
  * classes.
@@ -7,6 +9,7 @@ package com.example.cs230assignment;
  * @author Rowan Dash
  * @version 1.0
  */
+
 public class Entity extends DrawShape {
     private String entityName;
     protected int[] coord;
@@ -26,7 +29,7 @@ public class Entity extends DrawShape {
     }
 
     @Override
-    public void draw() {
+    public void draw(GraphicsContext g) {
         // TODO Auto-generated method stub
 
     }

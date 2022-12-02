@@ -1,8 +1,10 @@
 package com.example.cs230assignment;
 
+import javafx.scene.canvas.GraphicsContext;
+
 import java.util.ArrayList;
 
-public class Tile {
+public class Tile{
     private char[] squares;
     private ArrayList<Entity> entityList; // Need to implement Entity class
 
