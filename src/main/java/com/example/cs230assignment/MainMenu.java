@@ -32,11 +32,15 @@ public class MainMenu extends Stage {
         root.setTop(hbox);
         root.setCenter(launchGameBtn);
 
-        this.setScene(new Scene(root, 300, 300));
+        this.setScene(new Scene(root, 400, 300));
         this.setTitle("The game menu");
         this.show();
 
         //end action
-        launchGameBtn.setOnAction(t -> new GameGUI());
+        launchGameBtn.setOnAction(e -> {
+            new GameGUI();
+            this.close();
+        } );
+
     }
 }
