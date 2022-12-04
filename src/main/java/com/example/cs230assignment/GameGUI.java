@@ -113,12 +113,12 @@ public class GameGUI extends Stage {
      */
     public void drawGame() {
         //Hard coded test values - Thom
-        Tile tile1 = new Tile('r', 'g', 'b', 'y');
+        Tile tile1 = new Tile('r', 'r', 'r', 'r');
         Tile tile2 = new Tile('r', 'g', 'b', 'y');
-        Tile tile3 = new Tile('r', 'g', 'b', 'y');
+        Tile tile3 = new Tile('r', 'g', 'b', 'b');
         Tile tile4 = new Tile('r', 'g', 'b', 'y');
-        Tile tile5 = new Tile('r', 'g', 'b', 'y');
-        Tile tile6 = new Tile('r', 'g', 'b', 'y');
+        Tile tile5 = new Tile('r', 'r', 'y', 'y');
+        Tile tile6 = new Tile('g', 'g', 'g', 'y');
         Tile tile7 = new Tile('r', 'g', 'b', 'y');
         Tile tile8 = new Tile('r', 'g', 'b', 'y');
         Tile tile9 = new Tile('r', 'g', 'b', 'y');
@@ -130,7 +130,7 @@ public class GameGUI extends Stage {
         // Get the Graphic Context of the canvas. This is what we draw on.
         gc = canvas.getGraphicsContext2D();
 
-        // Draw the board on screen (Currently hidden behind the example)- Thom
+        // Draw the board on screen - Thom
         board.draw(gc);
 
 //        // Clear canvas
