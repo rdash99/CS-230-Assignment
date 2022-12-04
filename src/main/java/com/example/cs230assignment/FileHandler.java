@@ -120,7 +120,7 @@ public class FileHandler {
             throw new IllegalArgumentException("No level time found in file");
         }
         Timer timer = new Timer(levelTime);
-        // flip the tiles array 180 degrees
+        // flip the tiles array along x axis
         Tile[][] tiles2 = new Tile[tiles.length][tiles[0].length];
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[0].length; j++) {
