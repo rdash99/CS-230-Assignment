@@ -297,6 +297,7 @@ public class GameGUI extends Stage {
         toolbar.getChildren().addAll(pauseBtn);
 
         pauseBtn.setOnAction(e -> {
+            //add code to stop ticks
             new PauseMenu();
         });
         // Setup a draggable image.
