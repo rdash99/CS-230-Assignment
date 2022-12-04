@@ -1,5 +1,6 @@
 package com.example.cs230assignment;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,23 +15,26 @@ import javafx.stage.Stage;
 
 public class MainMenu extends Stage {
 
-    BorderPane root = new BorderPane();
-    Button launchGameBtn = new Button("Start the game");
-    Text titleText = new Text ("Welcome to the game!");
-    VBox vbox = new VBox();
-    HBox hbox = new HBox();
+    private BorderPane root = new BorderPane();
+    private Button launchGameBtn = new Button("Start the game");
+    private Text titleText = new Text ("Welcome to the game!");
+    private VBox vbox = new VBox();
+    private HBox hbox = new HBox();
 
     public MainMenu() {
         titleText.setFont(Font.font ("Arial", FontWeight.BOLD, 20));
         titleText.setFill(Color.GRAY);
 
         vbox.getChildren().add(launchGameBtn);
-        hbox.getChildren().add(titleText);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setSpacing(20);
 
+        hbox.getChildren().add(titleText);
         hbox.setAlignment(Pos.CENTER);
+        hbox.setPadding(new Insets(20,10,10,10));
 
         root.setTop(hbox);
-        root.setCenter(launchGameBtn);
+        root.setCenter(vbox);
 
         this.setScene(new Scene(root, 400, 300));
         this.setTitle("The game menu");
