@@ -42,29 +42,29 @@ class FloorFollowingThief extends NPC {
       //loops in all directions to check for a valid move
       for (int i = 0; i < 4; i++){
         if (i != 4){
-          if (super.coordChange[0] == 1 && super.coordChange[1] == 0){
-            if (this.board.getTile(this.coord[0],this.coord[1]+1).checkColour(this.allocatedColour) == true){
+          if ((super.coordChange[0] == 1 && super.coordChange[1] == 0) && super.coordX != super.board.getWidth()){
+            if (super.board.getTile(super.coordX,super.coordY+1).checkColour(this.allocatedColour) == true){
               i = 5;
             }else{
               super.coordChange[0] = 0;
               super.coordChange[1] = -1;
             }
-          }else if(super.coordChange[0] == 0 && super.coordChange[1] == 1){
-            if (this.board.getTile(this.coord[0],this.coord[1]+1).checkColour(this.allocatedColour) == true){
+          }else if((super.coordChange[0] == 0 && super.coordChange[1] == 1) && super.coordY != super.board.getHeight()){
+            if (super.board.getTile(super.coordX,super.coordY+1).checkColour(this.allocatedColour) == true){
               i = 5;
             }else{
               super.coordChange[0] = 1;
               super.coordChange[1] = 0;
             }
-          }else if(super.coordChange[0] == -1 && super.coordChange[1] == 0){
-            if (this.board.getTile(this.coord[0],this.coord[1]-1).checkColour(this.allocatedColour) == true){
+          }else if((super.coordChange[0] == -1 && super.coordChange[1] == 0) && super.coordX != 0){
+            if (super.board.getTile(super.coordX,super.coordY-1).checkColour(this.allocatedColour) == true){
               i = 5;
             }else{
               super.coordChange[0] = 0;
               super.coordChange[1] = 1;
             }
-          }else if(super.coordChange[0] == 0 && super.coordChange[1] == -1){
-            if (this.board.getTile(this.coord[0],this.coord[1]-1).checkColour(this.allocatedColour) == true){
+          }else if((super.coordChange[0] == 0 && super.coordChange[1] == -1) && super.coordY != 0){
+            if (super.board.getTile(super.coordX,super.coordY-1).checkColour(this.allocatedColour) == true){
               i = 5;
             }else{
               super.coordChange[0] = -1;
