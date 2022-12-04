@@ -128,4 +128,23 @@ public class FileHandler {
         File saveFile = new File(fileName);
         saveBoard(board, fileName);
     }
+
+    public static String[] readLevelNameStrings() {
+        File file = new File("levels.txt");
+        Scanner in = null;
+        try {
+            in = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find levels.txt");
+            System.exit(0);
+        }
+        ArrayList<String> levelNames = new ArrayList<String>();
+        while (in.hasNextLine()) {
+            levelNames.add(in.nextLine());
+        }
+        in.close();
+        String[] levelNamesArray = new String[levelNames.size()];
+        levelNamesArray = levelNames.toArray(levelNamesArray);
+        return levelNamesArray;
+    }
 }
