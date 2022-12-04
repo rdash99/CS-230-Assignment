@@ -128,13 +128,15 @@ public class GameGUI extends Stage {
 //        Entity[] entities = new Entity[] {entity1};
 //        Player player = new Player(0, 0);
 //        Board board = new Board(5, 2, tiles, player, entities);
+        FileHandler filehandler = new FileHandler();
+        filehandler.readLevelFile("testLevel.txt").draw(gc);
 //
-//        // Get the Graphic Context of the canvas. This is what we draw on.
-//        gc = canvas.getGraphicsContext2D();
+        // Get the Graphic Context of the canvas. This is what we draw on.
+        gc = canvas.getGraphicsContext2D();
 //
 //        // Draw the board on screen - Thom
 //        board.draw(gc);
-
+//
 //        // Clear canvas
 //        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 //
