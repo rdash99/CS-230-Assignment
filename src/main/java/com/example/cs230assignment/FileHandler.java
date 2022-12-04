@@ -29,7 +29,7 @@ public class FileHandler {
         }
         int x;
         int y;
-        int levelTime;
+        int levelTime = 0;
         String sizeLine = in.nextLine();
         String[] size = sizeLine.split(" ");
         Tile[][] tiles = new Tile[Integer.parseInt(size[0])][Integer
@@ -41,7 +41,7 @@ public class FileHandler {
 
         int yNum = y * (-1);
         while (in.hasNextLine()) {
-            String line = in.nextLine();
+            String line = in.nextLine().toLowerCase();
             String[] lineArray = line.split(" ");
             int xNum = x * (-1);
             yNum = yNum + 1;
@@ -95,6 +95,12 @@ public class FileHandler {
             }
         }
         in.close();
+        if (player == null) {
+            throw new IllegalArgumentException("No player found in file");
+        }
+        if (levelTime == 0) {
+            throw new IllegalArgumentException("No level time found in file");
+        }
         return new Board(x, y, tiles, entities, player, levelTime);
     }
 
