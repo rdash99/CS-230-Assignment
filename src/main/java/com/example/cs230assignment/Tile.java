@@ -4,20 +4,22 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 
-public class Tile{
+public class Tile {
     private char[] squares;
     private ArrayList<Entity> entityList; // Need to implement Entity class
 
     public Tile(char charAt, char charAt2, char charAt3, char charAt4) {
-        this.squares = new char[] {charAt, charAt2, charAt3, charAt4};
+        this.squares = new char[] { charAt, charAt2, charAt3, charAt4 };
     }
 
     public char[] getColours() {
         return this.squares;
     }
 
-    public ArrayList<Entity> getEntityList() {
-        return this.entityList;
+    public Entity[] getEntities() {
+        Entity[] entities = new Entity[entityList.size()];
+        entities = entityList.toArray(entities);
+        return entities;
     }
 
     public boolean checkColour(char colour) {

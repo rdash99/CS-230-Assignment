@@ -24,7 +24,7 @@ public class Board extends DrawShape {
     private Player player;
     private int width;
     private int height;
-    private int levelTime;
+    private Timer timer;
 
     /**
      * Construct the board with to be played on.
@@ -34,13 +34,13 @@ public class Board extends DrawShape {
      * @param tiles the arraylist of tiles to be drawn on the board
      * @param player the player to be drawn on the board
      */
-    public Board(int width, int height, Tile[][] tiles, ArrayList<Entity> entities, Player player, int levelTime) {
+    public Board(int width, int height, Tile[][] tiles, ArrayList<Entity> entities, Player player, Timer timer) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
         this.player = player;
         this.entities = entities;
-        this.levelTime = levelTime;
+        this.timer = timer;
     }
 
     /**
@@ -61,6 +61,15 @@ public class Board extends DrawShape {
      */
     public Player getPlayer() {
         return this.player;
+    }
+
+    /**
+     * Retrieve the player
+     *
+     * @return the player
+     */
+    public Timer getTimer() {
+        return this.timer;
     }
 
     /**
