@@ -13,7 +13,7 @@ class FloorFollowingThief extends NPC {
         // Allocated a timer of 0.5 seconds for the thief
         super("Floor Following Thief", 0.5, x, y);
         this.allocatedColour = allocatedColourPass;
-        super.coordChange = {x,y};
+        super.coordChange = new int[]{x,y};
     }
 
     private void interact() {
@@ -24,59 +24,55 @@ class FloorFollowingThief extends NPC {
     //needs to check to the left of the previous coord change
     private void validMove() {
       //changes the coordChange to the coord to the left
-      switch(this.coordChange){
-        case {1,0}:
-          this.coordChange = {0,1};
-          break;
-        case {0,1}:
-          this.coordChange = {-1,0};
-          break;
-        case {-1,0}:
-          this.coordChange = {0,-1};
-          break;
-        case {0,-1}:
-          this.coordChange = {1,0};
-          break;
+
+      if (super.coordChange[0] == 1 && super.coordChange[1] == 0){
+      super.coordChange[0] = 0;
+      super.coordChange[1] = 1;
+      }else if(super.coordChange[0] == 0 && super.coordChange[1] == 1){
+        super.coordChange[0] = -1;
+        super.coordChange[1] = 0;
+      }else if(super.coordChange[0] == -1 && super.coordChange[1] == 0){
+        super.coordChange[0] = 0;
+        super.coordChange[1] = -1;
+      }else if(super.coordChange[0] == 0 && super.coordChange[1] == -1){
+        super.coordChange[0] = 1;
+        super.coordChange[1] = 0;
       }
       //loops in all directions to check for a valid move
       for (int i = 0; i < 4; i++){
         if (i != 4){
-          switch(this.coordChange){
-            case [1,0]:
-              if (this.board.getTile([this.coord[0]+1,this.coord[1]]).checkColour(this.allocatedColour) == true){
-                i = 5;
-                break;
-              }else{
-                this.coordChange = {0,-1};
-                break;
-              }
-            case [0,1]:
-              if (this.board.getTile([this.coord[0],this.coord[1]+1]).checkColour(this.allocatedColour) == true){
-                i = 5;
-                break;
-              }else{
-                this.coordChange = {1,0};
-                break;
-              }
-            case [0,-1]:
-              if (this.board.getTile([this.coord[0],this.coord[1]-1]).checkColour(this.allocatedColour) == true){
-                i = 5;
-                break;
-              }else{
-                this.coordChange = {-1,0};
-                break;
-              }
-            case [-1,0];
-              if (this.board.getTile([this.coord[0],this.coord[1]-1]).checkColour(this.allocatedColour) == true){
-                i = 5;
-                break;
-              }else{
-                this.coordChange = {0,1};
-                break;
-              }
+          if (super.coordChange[0] == 1 && super.coordChange[1] == 0){
+            if (this.board.getTile(this.coord[0],this.coord[1]+1).checkColour(this.allocatedColour) == true){
+              i = 5;
+            }else{
+              super.coordChange[0] = 0;
+              super.coordChange[1] = -1;
+            }
+          }else if(super.coordChange[0] == 0 && super.coordChange[1] == 1){
+            if (this.board.getTile(this.coord[0],this.coord[1]+1).checkColour(this.allocatedColour) == true){
+              i = 5;
+            }else{
+              super.coordChange[0] = 1;
+              super.coordChange[1] = 0;
+            }
+          }else if(super.coordChange[0] == -1 && super.coordChange[1] == 0){
+            if (this.board.getTile(this.coord[0],this.coord[1]-1).checkColour(this.allocatedColour) == true){
+              i = 5;
+            }else{
+              super.coordChange[0] = 0;
+              super.coordChange[1] = 1;
+            }
+          }else if(super.coordChange[0] == 0 && super.coordChange[1] == -1){
+            if (this.board.getTile(this.coord[0],this.coord[1]-1).checkColour(this.allocatedColour) == true){
+              i = 5;
+            }else{
+              super.coordChange[0] = -1;
+              super.coordChange[1] = 0;
+            }
           }
         }else{
-          this.coordChange = {0,0};
+          super.coordChange[0] = 0;
+          super.coordChange[1] = 0;;
         }
       }
     }
