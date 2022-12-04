@@ -1,5 +1,5 @@
 package com.example.cs230assignment;
 
-public class Bomb {
+public class Clock {
 
 }
