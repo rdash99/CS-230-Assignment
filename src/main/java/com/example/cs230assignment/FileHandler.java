@@ -55,9 +55,13 @@ public class FileHandler {
                 }
                 // read in entities, players and items
                 if (lineArray[i].length() == 3) {
-                    int xCoord = Integer.parseInt(lineArray[i - 2]);
-                    int yCoord = Integer.parseInt(lineArray[i - 1]);
-
+                    int xCoord = 0;
+                    int yCoord = 0;
+                    try {
+                        xCoord = Integer.parseInt(lineArray[i - 2]);
+                        yCoord = Integer.parseInt(lineArray[i - 1]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                    }
                     // read in player
                     if (lineArray[i].equals("ply")) {
                         Player player1 = new Player(xCoord, yCoord);
@@ -69,6 +73,14 @@ public class FileHandler {
                         FloorFollowingThief fft = new FloorFollowingThief(
                                 colour, xCoord, yCoord);
                         entities.add(fft);
+                    }
+                    // read in a flying assassin
+                    if (lineArray[i].equals("fla")) {
+                        int xdir = Integer.parseInt(lineArray[i + 1]);
+                        int ydir = Integer.parseInt(lineArray[i + 2]);
+                        FlyingAssassin fly = new FlyingAssassin(0.5, xCoord,
+                                yCoord, xdir, ydir);
+                        entities.add(fly);
                     }
                     // read in a smart thief
                     if (lineArray[i].equals("smt")) {
@@ -87,11 +99,14 @@ public class FileHandler {
                     // read in doors
                     if (lineArray[i].equals("dor")) {
                         entities.add(new Door(xCoord, yCoord));
+                    } // read in level time
+                    else {
+                        try {
+                            levelTime = Integer.parseInt(lineArray[i]);
+                        } catch (NumberFormatException e) {
+                        }
                     }
-                }
-                // read in level time
-                if (lineArray[i].length() == 1) {
-                    levelTime = Integer.parseInt(lineArray[i]);
+                    ;
                 }
 
             }
@@ -106,7 +121,34 @@ public class FileHandler {
         }
         Timer timer = new Timer(levelTime);
         // flip the tiles array 180 degrees
-        return new Board(x, y, tiles, entities, player, timer);
+        Tile[][] tiles2 = new Tile[tiles.length][tiles[0].length];
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[0].length; j++) {
+                tiles2[i][j] = tiles[tiles.length - 1 - i][tiles[0].length - 1 - j];
+            }
+        }
+        // flip the tiles array 90 degrees again
+        Tile[][] tiles3 = new Tile[tiles2.length][tiles2[0].length];
+        for (int i = 0; i < tiles2.length; i++) {
+            for (int j = 0; j < tiles2[0].length; j++) {
+                tiles3[i][j] = tiles2[tiles2.length - 1 - j][i];
+            }
+        }
+        Tile[][] tiles4 = new Tile[tiles3.length][tiles3[0].length];
+        for (int i = 0; i < tiles3.length; i++) {
+            for (int j = 0; j < tiles3[0].length; j++) {
+                tiles4[i][j] = tiles3[j][i];
+            }
+        }
+        // flip the tiles array 90 degrees yet again
+
+        Tile[][] tiles5 = new Tile[tiles4.length][tiles4[0].length];
+        for (int i = 0; i < tiles4.length; i++) {
+            for (int j = 0; j < tiles4[0].length; j++) {
+                tiles5[i][j] = tiles4[tiles4.length - 1 - j][i];
+            }
+        }
+        return new Board(x, y, tiles5, entities, player, timer);
     }
 
     private static void saveBoard(Board board, String fileName) {
