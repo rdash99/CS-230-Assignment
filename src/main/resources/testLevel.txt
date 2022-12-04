@@ -8,5 +8,5 @@ YYYY RRRG RRRR GGGG
 1 2 smt
 0 0 ply
 3 2 gte R
-3 3 key
+3 3 key R
 320
