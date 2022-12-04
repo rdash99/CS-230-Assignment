@@ -29,6 +29,7 @@ public class FileHandler {
         }
         int x;
         int y;
+        int levelTime;
         String sizeLine = in.nextLine();
         String[] size = sizeLine.split(" ");
         Tile[][] tiles = new Tile[Integer.parseInt(size[0])][Integer
@@ -52,8 +53,7 @@ public class FileHandler {
                             lineArray[i].charAt(3));
                 }
                 ;
-                // read in entities - todo fix this for coordinate read in -
-                // this will require level file modification
+                // read in entities, players and items
                 if (lineArray[i].length() == 3) {
                     int xCoord = Integer.parseInt(lineArray[i - 2]);
                     int yCoord = Integer.parseInt(lineArray[i - 1]);
@@ -70,13 +70,32 @@ public class FileHandler {
                                 colour, xCoord, yCoord);
                         entities.add(fft);
                     }
+
+                    if (lineArray[i].equals("smt")) {
+                        entities.add(new SmartThief(xCoord, yCoord, 0.5));
+                    }
+
+                    if (lineArray[i].equals("gte")) {
+                        char colour = lineArray[i + 1].charAt(0);
+                        entities.add(new Gate(colour, xCoord, yCoord));
+                    }
+                    if (lineArray[i].equals("key")) {
+                        char colour = lineArray[i + 1].charAt(0);
+                        entities.add(new Key(colour, xCoord, yCoord));
+                    }
+                    if (lineArray[i].equals("dor")) {
+                        entities.add(new Door(xCoord, yCoord));
+                    }
                 }
                 ;
+                if (lineArray[i].length() == 1) {
+                    levelTime = Integer.parseInt(lineArray[i]);
+                }
                 xNum = xNum + 1;
             }
         }
         in.close();
-        return null;
+        return new Board(x, y, tiles, entities, player, levelTime);
     }
 
     private static void saveBoard(Board board, String fileName) {

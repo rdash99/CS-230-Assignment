@@ -1,12 +1,18 @@
 package com.example.cs230assignment;
 
-public class Key {
-    private int keyID;
-    private int keyColour;
+public class Key extends Entity {
+    private char keyColour;
 
-    public Key(int keyIDPass, int keyColourPass) {
-        this.keyID = keyIDPass;
+    public Key(char keyColourPass, int x, int y) {
+        super("Key", x, y);
         this.keyColour = keyColourPass;
+    }
+
+    public char getKeyColour() {
+        return keyColour;
+    }
+
+    public void interact() {
     }
 
 }
