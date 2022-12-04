@@ -39,12 +39,12 @@ public class FileHandler {
         x = Integer.parseInt(size[0]);
         y = Integer.parseInt(size[1]);
 
-        int yNum = y * (-1);
+        int yNum = y;
         while (in.hasNextLine()) {
             String line = in.nextLine().toLowerCase();
             String[] lineArray = line.split(" ");
-            int xNum = x * (-1);
-            yNum = yNum + 1;
+            int xNum = x;
+            yNum = yNum - 1;
             for (int i = 0; i < lineArray.length; i++) {
                 // read in tile colours
                 if (lineArray[i].length() == 4) {
@@ -87,7 +87,7 @@ public class FileHandler {
                 if (lineArray[i].length() == 1) {
                     levelTime = Integer.parseInt(lineArray[i]);
                 }
-                xNum = xNum + 1;
+                xNum = xNum - 1;
             }
         }
         in.close();
@@ -97,6 +97,7 @@ public class FileHandler {
         if (levelTime == 0) {
             throw new IllegalArgumentException("No level time found in file");
         }
+        // flip the tiles array 180 degrees
         return new Board(x, y, tiles, entities, player, levelTime);
     }
 
