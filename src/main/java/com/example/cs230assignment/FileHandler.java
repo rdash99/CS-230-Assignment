@@ -29,6 +29,7 @@ public class FileHandler {
         }
         int x;
         int y;
+        int levelTime = 0;
         String sizeLine = in.nextLine();
         String[] size = sizeLine.split(" ");
         Tile[][] tiles = new Tile[Integer.parseInt(size[0])][Integer
@@ -40,7 +41,7 @@ public class FileHandler {
 
         int yNum = y * (-1);
         while (in.hasNextLine()) {
-            String line = in.nextLine();
+            String line = in.nextLine().toLowerCase();
             String[] lineArray = line.split(" ");
             int xNum = x * (-1);
             yNum = yNum + 1;
@@ -51,7 +52,6 @@ public class FileHandler {
                             lineArray[i].charAt(1), lineArray[i].charAt(2),
                             lineArray[i].charAt(3));
                 }
-                ;
                 // read in entities, players and items
                 if (lineArray[i].length() == 3) {
                     int xCoord = Integer.parseInt(lineArray[i - 2]);
@@ -69,11 +69,9 @@ public class FileHandler {
                                 colour, xCoord, yCoord);
                         entities.add(fft);
                     }
-
                     if (lineArray[i].equals("smt")) {
                         entities.add(new SmartThief(xCoord, yCoord, 0.5));
                     }
-
                     if (lineArray[i].equals("gte")) {
                         char colour = lineArray[i + 1].charAt(0);
                         entities.add(new Gate(colour, xCoord, yCoord));
@@ -82,24 +80,34 @@ public class FileHandler {
                         char colour = lineArray[i + 1].charAt(0);
                         entities.add(new Key(colour, xCoord, yCoord));
                     }
+                    if (lineArray[i].equals("dor")) {
+                        entities.add(new Door(xCoord, yCoord));
+                    }
                 }
-                ;
+                if (lineArray[i].length() == 1) {
+                    levelTime = Integer.parseInt(lineArray[i]);
+                }
                 xNum = xNum + 1;
             }
         }
         in.close();
-        return null;
+        if (player == null) {
+            throw new IllegalArgumentException("No player found in file");
+        }
+        if (levelTime == 0) {
+            throw new IllegalArgumentException("No level time found in file");
+        }
+        return new Board(x, y, tiles, entities, player, levelTime);
     }
 
     private static void saveBoard(Board board, String fileName) {
         // characters = board.getCharacters();
     }
 
-    private static String saveCharacter(Character character) {
-        return null;
+    private static void savePlayerData(String playerID, int score, int level) {
     }
 
-    private static Character loadCharacter(String charData) {
+    private static Character loadPlayerData(String charData) {
         return null;
     }
 
