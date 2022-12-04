@@ -98,8 +98,9 @@ public class FileHandler {
         if (levelTime == 0) {
             throw new IllegalArgumentException("No level time found in file");
         }
+        Timer timer = new Timer(levelTime);
         // flip the tiles array 180 degrees
-        return new Board(x, y, tiles, entities, player, levelTime);
+        return new Board(x, y, tiles, entities, player, timer);
     }
 
     private static void saveBoard(Board board, String fileName) {

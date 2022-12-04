@@ -12,8 +12,9 @@ public class Timer extends DrawShape {
     private int levelTime;
     private int initTime;
 
-    public Timer() {
-
+    public Timer(int levelTime) {
+        this.levelTime = levelTime;
+        this.initTime = levelTime;
     }
 
     public void boardUpdate() {
