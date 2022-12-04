@@ -70,6 +70,13 @@ public class FileHandler {
                                 colour, xCoord, yCoord);
                         entities.add(fft);
                     }
+                    if (lineArray[i].equals("smt")) {
+                        entities.add(new SmartThief(xCoord, yCoord, 0.5));
+                    }
+                    if (lineArray[i].equals("gte")) {
+                        char colour = lineArray[i + 1].charAt(0);
+                        entities.add(new Gate(colour, xCoord, yCoord));
+                    }
                 }
                 ;
                 xNum = xNum + 1;
