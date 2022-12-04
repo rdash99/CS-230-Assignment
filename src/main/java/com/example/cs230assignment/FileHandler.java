@@ -120,7 +120,7 @@ public class FileHandler {
     }
 
     public static Board readLevelFile(String fileName) {
-        File file = new File(fileName);
+        File file = new File(fileName + ".txt");
         return loadBoard(file);
     }
 
