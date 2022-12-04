@@ -68,12 +68,16 @@ public class GameGUI extends Stage {
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 
         // Register an event handler for key presses.
-        // This causes the processKeyEvent method to be called each time a key is pressed.
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
+        // This causes the processKeyEvent method to be called each time a key
+        // is pressed.
+        scene.addEventFilter(KeyEvent.KEY_PRESSED,
+                event -> processKeyEvent(event));
 
         // Register a tick method to be called periodically.
-        // Make a new timeline with one keyframe that triggers the tick method every half a second.
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(500), event -> tick()));
+        // Make a new timeline with one keyframe that triggers the tick method
+        // every half a second.
+        tickTimeline = new Timeline(
+                new KeyFrame(Duration.millis(500), event -> tick()));
         // Loop the timeline forever
         tickTimeline.setCycleCount(Animation.INDEFINITE);
         // We start the timeline upon a button press.
@@ -84,27 +88,28 @@ public class GameGUI extends Stage {
         this.show();
     }
 
-
     /**
      * Process a key event due to a key being pressed, e.g., to move the player.
+     * 
      * @param event The key event that was pressed.
      */
     public void processKeyEvent(KeyEvent event) {
         // We change the behaviour depending on the actual key that was pressed.
         switch (event.getCode()) {
-            case RIGHT:
-                // Right key was pressed. So move the player right by one cell.
-                playerX = playerX + 1;
-                break;
-            default:
-                // Do nothing for all other keys.
-                break;
+        case RIGHT:
+            // Right key was pressed. So move the player right by one cell.
+            playerX = playerX + 1;
+            break;
+        default:
+            // Do nothing for all other keys.
+            break;
         }
 
         // Redraw game as the player may have moved.
         drawGame();
 
-        // Consume the event. This means we mark it as dealt with. This stops other GUI nodes (buttons etc) responding to it.
+        // Consume the event. This means we mark it as dealt with. This stops
+        // other GUI nodes (buttons etc) responding to it.
         event.consume();
     }
 
@@ -112,46 +117,48 @@ public class GameGUI extends Stage {
      * Draw the game on the canvas.
      */
     public void drawGame() {
-//        //Hard coded test values - Thom
-//        Tile tile1 = new Tile('r', 'r', 'r', 'r');
-//        Tile tile2 = new Tile('r', 'g', 'b', 'y');
-//        Tile tile3 = new Tile('r', 'g', 'b', 'b');
-//        Tile tile4 = new Tile('r', 'g', 'b', 'y');
-//        Tile tile5 = new Tile('r', 'r', 'y', 'y');
-//        Tile tile6 = new Tile('g', 'g', 'g', 'y');
-//        Tile tile7 = new Tile('r', 'g', 'b', 'y');
-//        Tile tile8 = new Tile('r', 'g', 'b', 'y');
-//        Tile tile9 = new Tile('r', 'g', 'b', 'y');
-//        Tile tile10 = new Tile('r', 'g', 'b', 'y');
-//        Tile[][] tiles = new Tile[][] ;
-//        FlyingAssassin entity1 = new FlyingAssassin(1, 0, 1);
-//        Entity[] entities = new Entity[] {entity1};
-//        Player player = new Player(0, 0);
-//        Board board = new Board(5, 2, tiles, player, entities);
-          FileHandler.readLevelFile("H:\\Year 2 Computer Science\\CS-230\\A2\\CS-230-Assignment\\src\\main\\resources\\testLevel").draw(gc);
-//
+        // //Hard coded test values - Thom
+        // Tile tile1 = new Tile('r', 'r', 'r', 'r');
+        // Tile tile2 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile3 = new Tile('r', 'g', 'b', 'b');
+        // Tile tile4 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile5 = new Tile('r', 'r', 'y', 'y');
+        // Tile tile6 = new Tile('g', 'g', 'g', 'y');
+        // Tile tile7 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile8 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile9 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile10 = new Tile('r', 'g', 'b', 'y');
+        // Tile[][] tiles = new Tile[][] ;
+        // FlyingAssassin entity1 = new FlyingAssassin(1, 0, 1);
+        // Entity[] entities = new Entity[] {entity1};
+        // Player player = new Player(0, 0);
+        // Board board = new Board(5, 2, tiles, player, entities);
+        FileHandler.readLevelFile("src/main/resources/testLevel").draw(gc);
+        //
         // Get the Graphic Context of the canvas. This is what we draw on.
         gc = canvas.getGraphicsContext2D();
-//
-//        // Draw the board on screen - Thom
-//        board.draw(gc);
-//
-//        // Clear canvas
-//        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-//
-//        // Set the background to gray.
-//        gc.setFill(Color.GRAY);
-//        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-//
-//        // Draw row of dirt images
-//        // We multiply by the cell width and height to turn a coordinate in our grid into a pixel coordinate.
-//        // We draw the row at y value 2.
-//        for (int x = 0; x < GRID_WIDTH; x++) {
-//            gc.drawImage(dirtImage, x * GRID_CELL_WIDTH, 2 * GRID_CELL_HEIGHT);
-//        }
-//
-//        // Draw player at current location
-//        gc.drawImage(playerImage, playerX * GRID_CELL_WIDTH, playerY * GRID_CELL_HEIGHT);
+        //
+        // // Draw the board on screen - Thom
+        // board.draw(gc);
+        //
+        // // Clear canvas
+        // gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        //
+        // // Set the background to gray.
+        // gc.setFill(Color.GRAY);
+        // gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        //
+        // // Draw row of dirt images
+        // // We multiply by the cell width and height to turn a coordinate in
+        // our grid into a pixel coordinate.
+        // // We draw the row at y value 2.
+        // for (int x = 0; x < GRID_WIDTH; x++) {
+        // gc.drawImage(dirtImage, x * GRID_CELL_WIDTH, 2 * GRID_CELL_HEIGHT);
+        // }
+        //
+        // // Draw player at current location
+        // gc.drawImage(playerImage, playerX * GRID_CELL_WIDTH, playerY *
+        // GRID_CELL_HEIGHT);
     }
 
     /**
@@ -174,10 +181,9 @@ public class GameGUI extends Stage {
     }
 
     /**
-     * This method is called periodically by the tick timeline
-     * and would for, example move, perform logic in the game,
-     * this might cause the bad guys to move (by e.g., looping
-     * over them all and calling their own tick method).
+     * This method is called periodically by the tick timeline and would for,
+     * example move, perform logic in the game, this might cause the bad guys to
+     * move (by e.g., looping over them all and calling their own tick method).
      */
     public void tick() {
         // Here we move the player right one cell and teleport
@@ -192,14 +198,17 @@ public class GameGUI extends Stage {
 
     /**
      * React when an object is dragged onto the canvas.
-     * @param event The drag event itself which contains data about the drag that occurred.
+     * 
+     * @param event The drag event itself which contains data about the drag
+     *              that occurred.
      */
     public void canvasDragDroppedOccured(DragEvent event) {
         double x = event.getX();
         double y = event.getY();
 
         // Print a string showing the location.
-        String s = String.format("You dropped at (%f, %f) relative to the canvas.", x, y);
+        String s = String.format(
+                "You dropped at (%f, %f) relative to the canvas.", x, y);
         System.out.println(s);
 
         // Draw an icon at the dropped location.
@@ -207,11 +216,13 @@ public class GameGUI extends Stage {
         // Draw the the image so the top-left corner is where we dropped.
         gc.drawImage(iconImage, x, y);
         // Draw the the image so the center is where we dropped.
-        // gc.drawImage(iconImage, x - iconImage.getWidth() / 2.0, y - iconImage.getHeight() / 2.0);
+        // gc.drawImage(iconImage, x - iconImage.getWidth() / 2.0, y -
+        // iconImage.getHeight() / 2.0);
     }
 
     /**
      * Create the GUI.
+     * 
      * @return The panel that contains the created GUI.
      */
     private Pane buildGUI() {
@@ -222,8 +233,6 @@ public class GameGUI extends Stage {
         // We store this as a gloabl variable so other methods can access it.
         canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
         root.setCenter(canvas);
-
-
 
         // Create a toolbar with some nice padding and spacing
         HBox toolbar = new HBox();
@@ -239,7 +248,8 @@ public class GameGUI extends Stage {
 
         // Setup the behaviour of the button.
         resetPlayerLocationButton.setOnAction(e -> {
-            // We keep this method short and use a method for the bulk of the work.
+            // We keep this method short and use a method for the bulk of the
+            // work.
             resetPlayerLocation();
         });
 
@@ -249,21 +259,25 @@ public class GameGUI extends Stage {
 
         // Setup the behaviour of the button.
         centerPlayerLocationButton.setOnAction(e -> {
-            // We keep this method short and use a method for the bulk of the work.
+            // We keep this method short and use a method for the bulk of the
+            // work.
             movePlayerToCenter();
         });
 
         // Tick Timeline buttons
         Button startTickTimelineButton = new Button("Start Ticks");
         Button stopTickTimelineButton = new Button("Stop Ticks");
-        // We add both buttons at the same time to the timeline (we could have done this in two steps).
-        toolbar.getChildren().addAll(startTickTimelineButton, stopTickTimelineButton);
+        // We add both buttons at the same time to the timeline (we could have
+        // done this in two steps).
+        toolbar.getChildren().addAll(startTickTimelineButton,
+                stopTickTimelineButton);
         // Stop button is disabled by default
         stopTickTimelineButton.setDisable(true);
 
         // Setup the behaviour of the buttons.
         startTickTimelineButton.setOnAction(e -> {
-            // Start the tick timeline and enable/disable buttons as appropriate.
+            // Start the tick timeline and enable/disable buttons as
+            // appropriate.
             startTickTimelineButton.setDisable(true);
             tickTimeline.play();
             stopTickTimelineButton.setDisable(false);
@@ -282,16 +296,22 @@ public class GameGUI extends Stage {
         toolbar.getChildren().add(draggableImage);
 
         // This code setup what happens when the dragging starts on the image.
-        // You probably don't need to change this (unless you wish to do more advanced things).
+        // You probably don't need to change this (unless you wish to do more
+        // advanced things).
         draggableImage.setOnDragDetected(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 // Mark the drag as started.
-                // We do not use the transfer mode (this can be used to indicate different forms
-                // of drags operations, for example, moving files or copying files).
-                Dragboard db = draggableImage.startDragAndDrop(TransferMode.ANY);
+                // We do not use the transfer mode (this can be used to indicate
+                // different forms
+                // of drags operations, for example, moving files or copying
+                // files).
+                Dragboard db = draggableImage
+                        .startDragAndDrop(TransferMode.ANY);
 
-                // We have to put some content in the clipboard of the drag event.
-                // We do not use this, but we could use it to store extra data if we wished.
+                // We have to put some content in the clipboard of the drag
+                // event.
+                // We do not use this, but we could use it to store extra data
+                // if we wished.
                 ClipboardContent content = new ClipboardContent();
                 content.putString("Hello");
                 db.setContent(content);
@@ -301,12 +321,16 @@ public class GameGUI extends Stage {
             }
         });
 
-        // This code allows the canvas to receive a dragged object within its bounds.
-        // You probably don't need to change this (unless you wish to do more advanced things).
+        // This code allows the canvas to receive a dragged object within its
+        // bounds.
+        // You probably don't need to change this (unless you wish to do more
+        // advanced things).
         canvas.setOnDragOver(new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
-                // Mark the drag as acceptable if the source was the draggable image.
-                // (for example, we don't want to allow the user to drag things or files into our application)
+                // Mark the drag as acceptable if the source was the draggable
+                // image.
+                // (for example, we don't want to allow the user to drag things
+                // or files into our application)
                 if (event.getGestureSource() == draggableImage) {
                     // Mark the drag event as acceptable by the canvas.
                     event.acceptTransferModes(TransferMode.ANY);
@@ -316,11 +340,14 @@ public class GameGUI extends Stage {
             }
         });
 
-        // This code allows the canvas to react to a dragged object when it is finally dropped.
-        // You probably don't need to change this (unless you wish to do more advanced things).
+        // This code allows the canvas to react to a dragged object when it is
+        // finally dropped.
+        // You probably don't need to change this (unless you wish to do more
+        // advanced things).
         canvas.setOnDragDropped(new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
-                // We call this method which is where the bulk of the behaviour takes place.
+                // We call this method which is where the bulk of the behaviour
+                // takes place.
                 canvasDragDroppedOccured(event);
                 // Consume the event. This means we mark it as dealt with.
                 event.consume();
@@ -331,4 +358,3 @@ public class GameGUI extends Stage {
         return root;
     }
 }
-
