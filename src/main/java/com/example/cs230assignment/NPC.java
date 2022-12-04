@@ -27,11 +27,6 @@ public class NPC extends Character {
       this. coord[1] = this.coord[1] + this.coordChange[1]
     }
 
-    public void move() {
-        validMove(this.coord);
-        this.coord[0] = this.coord[0] + this.coordChange[0];
-        this.coord[1] = this.coord[1] + this.coordChange[1];
-    }
 
     protected double getMovementTimer() {
         return movementTimer;
