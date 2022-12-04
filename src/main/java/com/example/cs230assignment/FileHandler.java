@@ -44,12 +44,13 @@ public class FileHandler {
             String line = in.nextLine().toLowerCase();
             String[] lineArray = line.split(" ");
             int xNum = x - 1;
-            for (int i = 0; i < lineArray.length - 1; i++) {
+            for (int i = 0; i < lineArray.length; i++) {
                 // read in tile colours
                 if (lineArray[i].length() == 4) {
                     tiles[xNum][yNum] = new Tile(lineArray[i].charAt(0),
                             lineArray[i].charAt(1), lineArray[i].charAt(2),
                             lineArray[i].charAt(3));
+                    xNum = xNum - 1;
                 }
                 // read in entities, players and items
                 if (lineArray[i].length() == 3) {
@@ -86,7 +87,7 @@ public class FileHandler {
                 if (lineArray[i].length() == 1) {
                     levelTime = Integer.parseInt(lineArray[i]);
                 }
-                xNum = xNum - 1;
+
                 yNum = yNum - 1;
             }
         }
