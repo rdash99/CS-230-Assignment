@@ -69,21 +69,26 @@ public class FileHandler {
                                 colour, xCoord, yCoord);
                         entities.add(fft);
                     }
+                    // read in a smart thief
                     if (lineArray[i].equals("smt")) {
                         entities.add(new SmartThief(xCoord, yCoord, 0.5));
                     }
+                    // read in a gate
                     if (lineArray[i].equals("gte")) {
                         char colour = lineArray[i + 1].charAt(0);
                         entities.add(new Gate(colour, xCoord, yCoord));
                     }
+                    // read in a key
                     if (lineArray[i].equals("key")) {
                         char colour = lineArray[i + 1].charAt(0);
                         entities.add(new Key(colour, xCoord, yCoord));
                     }
+                    // read in doors
                     if (lineArray[i].equals("dor")) {
                         entities.add(new Door(xCoord, yCoord));
                     }
                 }
+                // read in level time
                 if (lineArray[i].length() == 1) {
                     levelTime = Integer.parseInt(lineArray[i]);
                 }
@@ -122,6 +127,10 @@ public class FileHandler {
         return new Item(itemName, x, y, value);
     }
 
+    /**
+     * @param fileName
+     * @return Board
+     */
     public static Board readLevelFile(String fileName) {
         File file = new File(fileName + ".txt");
         return loadBoard(file);
@@ -132,6 +141,9 @@ public class FileHandler {
         saveBoard(board, fileName);
     }
 
+    /**
+     * @return String[]
+     */
     public static String[] readLevelNameStrings() {
         File file = new File("levels.txt");
         Scanner in = null;
