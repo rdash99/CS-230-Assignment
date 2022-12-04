@@ -19,13 +19,7 @@ import javafx.stage.Stage;
  * @author Liam O'Reilly
  */
 public class Main extends Application {
-	private static final int DEFAULT_WINDOW_WIDTH = 700;
-	private static final int DEFAULT_WINDOW_HEIGHT = 700;
-	private static final int DEFAULT_CANVAS_WIDTH = 600;
-	private static final int DEFAULT_CANVAS_HEIGHT = 600;
 
-	private Canvas canvas;
-	private GraphicsContext gc;
 
 	/**
 	 * Setup the new application.

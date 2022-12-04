@@ -55,6 +55,9 @@ public class GameGUI extends Stage {
     // Timeline which will cause tick method to be called periodically.
     private Timeline tickTimeline;
 
+
+
+
     public GameGUI() {
         // Load images. Note we use png images with a transparent background.
         playerImage = new Image("player.png");
@@ -290,6 +293,12 @@ public class GameGUI extends Stage {
             startTickTimelineButton.setDisable(false);
         });
 
+        Button pauseBtn = new Button("Pause");
+        toolbar.getChildren().addAll(pauseBtn);
+
+        pauseBtn.setOnAction(e -> {
+            new PauseMenu();
+        });
         // Setup a draggable image.
         ImageView draggableImage = new ImageView();
         draggableImage.setImage(iconImage);
