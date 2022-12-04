@@ -24,7 +24,7 @@ public class FileHandler {
         try {
             in = new Scanner(fileName);
         } catch (FileNotFoundException e) {
-            System.out.println("Could not find" + fileName);
+            System.out.println("Could not find " + fileName);
             System.exit(0);
         }
         int x;
@@ -120,7 +120,7 @@ public class FileHandler {
     }
 
     public static Board readLevelFile(String fileName) {
-        File file = new File("levels" + fileName + ".txt");
+        File file = new File("levels/" + fileName + ".txt");
         return loadBoard(file);
     }
 
