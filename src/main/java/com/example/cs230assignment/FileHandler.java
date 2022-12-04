@@ -24,11 +24,12 @@ public class FileHandler {
         try {
             in = new Scanner(fileName);
         } catch (FileNotFoundException e) {
-            System.out.println("Could not find" + fileName);
+            System.out.println("Could not find " + fileName);
             System.exit(0);
         }
         int x;
         int y;
+        int levelTime = 0;
         String sizeLine = in.nextLine();
         String[] size = sizeLine.split(" ");
         Tile[][] tiles = new Tile[Integer.parseInt(size[0])][Integer
@@ -38,22 +39,21 @@ public class FileHandler {
         x = Integer.parseInt(size[0]);
         y = Integer.parseInt(size[1]);
 
-        int yNum = y * (-1);
+        int yNum = y - 1;
         while (in.hasNextLine()) {
-            String line = in.nextLine();
+            String line = in.nextLine().toLowerCase();
             String[] lineArray = line.split(" ");
-            int xNum = x * (-1);
-            yNum = yNum + 1;
+            int xNum = x - 1;
+
             for (int i = 0; i < lineArray.length; i++) {
                 // read in tile colours
                 if (lineArray[i].length() == 4) {
                     tiles[xNum][yNum] = new Tile(lineArray[i].charAt(0),
                             lineArray[i].charAt(1), lineArray[i].charAt(2),
                             lineArray[i].charAt(3));
+                    xNum = xNum - 1;
                 }
-                ;
-                // read in entities - todo fix this for coordinate read in -
-                // this will require level file modification
+                // read in entities, players and items
                 if (lineArray[i].length() == 3) {
                     int xCoord = Integer.parseInt(lineArray[i - 2]);
                     int yCoord = Integer.parseInt(lineArray[i - 1]);
@@ -70,24 +70,53 @@ public class FileHandler {
                                 colour, xCoord, yCoord);
                         entities.add(fft);
                     }
+                    // read in a smart thief
+                    if (lineArray[i].equals("smt")) {
+                        entities.add(new SmartThief(xCoord, yCoord, 0.5));
+                    }
+                    // read in a gate
+                    if (lineArray[i].equals("gte")) {
+                        char colour = lineArray[i + 1].charAt(0);
+                        entities.add(new Gate(colour, xCoord, yCoord));
+                    }
+                    // read in a key
+                    if (lineArray[i].equals("key")) {
+                        char colour = lineArray[i + 1].charAt(0);
+                        entities.add(new Key(colour, xCoord, yCoord));
+                    }
+                    // read in doors
+                    if (lineArray[i].equals("dor")) {
+                        entities.add(new Door(xCoord, yCoord));
+                    }
                 }
-                ;
-                xNum = xNum + 1;
+                // read in level time
+                if (lineArray[i].length() == 1) {
+                    levelTime = Integer.parseInt(lineArray[i]);
+                }
+
             }
+            yNum = yNum - 1;
         }
         in.close();
-        return null;
+        if (player == null) {
+            throw new IllegalArgumentException("No player found in file");
+        }
+        if (levelTime == 0) {
+            throw new IllegalArgumentException("No level time found in file");
+        }
+        Timer timer = new Timer(levelTime);
+        // flip the tiles array 180 degrees
+        return new Board(x, y, tiles, entities, player, timer);
     }
 
     private static void saveBoard(Board board, String fileName) {
         // characters = board.getCharacters();
     }
 
-    private static String saveCharacter(Character character) {
-        return null;
+    private static void savePlayerData(String playerID, int score, int level) {
     }
 
-    private static Character loadCharacter(String charData) {
+    private static Character loadPlayerData(String charData) {
         return null;
     }
 
@@ -99,13 +128,39 @@ public class FileHandler {
         return new Item(itemName, x, y, value);
     }
 
+    /**
+     * @param fileName
+     * @return Board
+     */
     public static Board readLevelFile(String fileName) {
-        File file = new File(fileName);
+        File file = new File(fileName + ".txt");
         return loadBoard(file);
     }
 
     public static void saveGame(Board board, String fileName) {
         File saveFile = new File(fileName);
         saveBoard(board, fileName);
+    }
+
+    /**
+     * @return String[]
+     */
+    public static String[] readLevelNameStrings() {
+        File file = new File("levels.txt");
+        Scanner in = null;
+        try {
+            in = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find levels.txt");
+            System.exit(0);
+        }
+        ArrayList<String> levelNames = new ArrayList<String>();
+        while (in.hasNextLine()) {
+            levelNames.add(in.nextLine());
+        }
+        in.close();
+        String[] levelNamesArray = new String[levelNames.size()];
+        levelNamesArray = levelNames.toArray(levelNamesArray);
+        return levelNamesArray;
     }
 }
