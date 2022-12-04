@@ -3,6 +3,8 @@ package com.example.cs230assignment;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+
 /**
  * Class that models the board which is drawn on the canvas for the user to play on.
  *
@@ -18,10 +20,11 @@ public class Board extends DrawShape {
     private static final int DEFAULT_PLAYER_WIDTH = 50;
     private static final int DEFAULT_PLAYER_HEIGHT = 50;
     private Tile[][] tiles;
-    private Entity[] entities;
+    private ArrayList<Entity> entities;
     private Player player;
     private int width;
     private int height;
+    private int levelTime;
 
     /**
      * Construct the board with to be played on.
@@ -31,12 +34,13 @@ public class Board extends DrawShape {
      * @param tiles the arraylist of tiles to be drawn on the board
      * @param player the player to be drawn on the board
      */
-    public Board(int width, int height, Tile[][] tiles, Entity[] entities, Player player, int levelTime) {
+    public Board(int width, int height, Tile[][] tiles, ArrayList<Entity> entities, Player player, int levelTime) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
         this.player = player;
         this.entities = entities;
+        this.levelTime = levelTime;
     }
 
     /**
