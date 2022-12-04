@@ -44,6 +44,7 @@ public class FileHandler {
             String line = in.nextLine().toLowerCase();
             String[] lineArray = line.split(" ");
             int xNum = x - 1;
+
             for (int i = 0; i < lineArray.length; i++) {
                 // read in tile colours
                 if (lineArray[i].length() == 4) {
@@ -93,8 +94,8 @@ public class FileHandler {
                     levelTime = Integer.parseInt(lineArray[i]);
                 }
 
-                yNum = yNum - 1;
             }
+            yNum = yNum - 1;
         }
         in.close();
         if (player == null) {
