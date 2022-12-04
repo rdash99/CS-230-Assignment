@@ -9,6 +9,7 @@ public class Tile{
     private ArrayList<Entity> entityList; // Need to implement Entity class
 
     public Tile(char charAt, char charAt2, char charAt3, char charAt4) {
+        this.squares = new char[] {charAt, charAt2, charAt3, charAt4};
     }
 
     public char[] getColours() {

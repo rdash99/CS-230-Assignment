@@ -67,22 +67,81 @@ public class Board extends DrawShape {
      */
     @Override
     public void draw(GraphicsContext gc) {
+        Color red = Color.RED;
+        Color green = Color.GREEN;
+        Color blue = Color.BLUE;
+        Color yellow = Color.YELLOW;
+        Color purple = Color.PURPLE;
+
         //Draw all tiles on screen to make up the board
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[0].length; j++) {
+        for (int i = 0; i < this.tiles.length; i++) {
+            for (int j = 0; j < this.tiles[0].length; j++) {
                 double xPos = j * 50;
                 double yPos = i * 50;
-                gc.strokeRect(xPos, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
-                gc.strokeRect(xPos + DEFAULT_X_OFFSET, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
-                gc.strokeRect(xPos, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
-                gc.strokeRect(xPos + DEFAULT_X_OFFSET, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                char[] colourArray = this.tiles[i][j].getColours();
+                System.out.println(colourArray[0]);
+
+                if (colourArray[0] == 'r') {
+                    gc.setFill(red);
+                    gc.fillRect(xPos, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[0] == 'g') {
+                    gc.setFill(green);
+                    gc.fillRect(xPos, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[0] == 'b') {
+                    gc.setFill(blue);
+                    gc.fillRect(xPos, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[0] == 'y') {
+                    gc.setFill(yellow);
+                    gc.fillRect(xPos, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                }
+
+                if (colourArray[1] == 'r') {
+                    gc.setFill(red);
+                    gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[1] == 'g') {
+                    gc.setFill(green);
+                    gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[1] == 'b') {
+                    gc.setFill(blue);
+                    gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[1] == 'y') {
+                    gc.setFill(yellow);
+                    gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                }
+
+                if (colourArray[2] == 'r') {
+                    gc.setFill(red);
+                    gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[2] == 'g') {
+                    gc.setFill(green);
+                    gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[2] == 'b') {
+                    gc.setFill(blue);
+                    gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[2] == 'y') {
+                    gc.setFill(yellow);
+                    gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                }
+
+                if (colourArray[3] == 'r') {
+                    gc.setFill(red);
+                    gc.fillRect(xPos, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[3] == 'g') {
+                    gc.setFill(green);
+                    gc.fillRect(xPos, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[3] == 'b') {
+                    gc.setFill(blue);
+                    gc.fillRect(xPos, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                } else if (colourArray[3] == 'y') {
+                    gc.setFill(yellow);
+                    gc.fillRect(xPos, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
+                }
             }
         }
-        //Draw player on board filled in green
+        //Draw player on board filled in purple
         int playerXCoord = this.player.getCoord()[0];
         int playerYCoord = this.player.getCoord()[1];
-        Color green = Color.GREEN;
-        gc.setFill(green);
+        gc.setFill(purple);
         gc.fillOval(playerXCoord, playerYCoord, DEFAULT_PLAYER_WIDTH, DEFAULT_PLAYER_HEIGHT);
     }
 }

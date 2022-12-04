@@ -15,9 +15,7 @@ public class Entity extends DrawShape {
     protected int[] coord;
 
     public Entity(String entityNamePass, int x, int y) {
-        this.coord = new int[2];
-        this.coord[0] = x;
-        this.coord[1] = y;
+        this.coord = new int[] {x, y};
         this.entityName = entityNamePass;
     }
 
