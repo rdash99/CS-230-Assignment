@@ -71,6 +71,25 @@ public class Board extends DrawShape {
     public Timer getTimer() {
         return this.timer;
     }
+    
+    /**
+     * Retrieve the height of the board
+     * 
+     * @return the height
+     */
+    public int getHeight() {
+        return this.height;
+    } 
+
+    /**
+     * Retrieve the width of the board
+     * 
+     * @return the width
+     */
+    public int getWidth() {
+        return this.width;
+    } 
+
 
     /**
      * Draw the tiles and player on the board
