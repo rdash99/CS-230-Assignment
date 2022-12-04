@@ -124,7 +124,8 @@ public class GameGUI extends Stage {
         Tile tile9 = new Tile('r', 'g', 'b', 'y');
         Tile tile10 = new Tile('r', 'g', 'b', 'y');
         Tile[] tiles = new Tile[] {tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10};
-        Board board = new Board(5, 2, tiles);
+        Player player = new Player(0, 0);
+        Board board = new Board(5, 2, tiles, player);
 
         // Get the Graphic Context of the canvas. This is what we draw on.
         gc = canvas.getGraphicsContext2D();
@@ -132,22 +133,22 @@ public class GameGUI extends Stage {
         // Draw the board on screen (Currently hidden behind the example)- Thom
         board.draw(gc);
 
-        // Clear canvas
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
-        // Set the background to gray.
-        gc.setFill(Color.GRAY);
-        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
-        // Draw row of dirt images
-        // We multiply by the cell width and height to turn a coordinate in our grid into a pixel coordinate.
-        // We draw the row at y value 2.
-        for (int x = 0; x < GRID_WIDTH; x++) {
-            gc.drawImage(dirtImage, x * GRID_CELL_WIDTH, 2 * GRID_CELL_HEIGHT);
-        }
-
-        // Draw player at current location
-        gc.drawImage(playerImage, playerX * GRID_CELL_WIDTH, playerY * GRID_CELL_HEIGHT);
+//        // Clear canvas
+//        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+//
+//        // Set the background to gray.
+//        gc.setFill(Color.GRAY);
+//        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+//
+//        // Draw row of dirt images
+//        // We multiply by the cell width and height to turn a coordinate in our grid into a pixel coordinate.
+//        // We draw the row at y value 2.
+//        for (int x = 0; x < GRID_WIDTH; x++) {
+//            gc.drawImage(dirtImage, x * GRID_CELL_WIDTH, 2 * GRID_CELL_HEIGHT);
+//        }
+//
+//        // Draw player at current location
+//        gc.drawImage(playerImage, playerX * GRID_CELL_WIDTH, playerY * GRID_CELL_HEIGHT);
     }
 
     /**
