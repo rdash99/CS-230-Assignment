@@ -129,7 +129,7 @@ public class GameGUI extends Stage {
 //        Player player = new Player(0, 0);
 //        Board board = new Board(5, 2, tiles, player, entities);
         FileHandler filehandler = new FileHandler();
-        filehandler.readLevelFile("testLevel.txt").draw(gc);
+        filehandler.readLevelFile("H:\\Year 2 Computer Science\\CS-230\\A2\\CS-230-Assignment\\src\\main\\resources\\testLevel").draw(gc);
 //
         // Get the Graphic Context of the canvas. This is what we draw on.
         gc = canvas.getGraphicsContext2D();
