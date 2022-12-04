@@ -112,26 +112,28 @@ public class GameGUI extends Stage {
      * Draw the game on the canvas.
      */
     public void drawGame() {
-        //Hard coded test values - Thom
-        Tile tile1 = new Tile('r', 'r', 'r', 'r');
-        Tile tile2 = new Tile('r', 'g', 'b', 'y');
-        Tile tile3 = new Tile('r', 'g', 'b', 'b');
-        Tile tile4 = new Tile('r', 'g', 'b', 'y');
-        Tile tile5 = new Tile('r', 'r', 'y', 'y');
-        Tile tile6 = new Tile('g', 'g', 'g', 'y');
-        Tile tile7 = new Tile('r', 'g', 'b', 'y');
-        Tile tile8 = new Tile('r', 'g', 'b', 'y');
-        Tile tile9 = new Tile('r', 'g', 'b', 'y');
-        Tile tile10 = new Tile('r', 'g', 'b', 'y');
-        Tile[] tiles = new Tile[] {tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10};
-        Player player = new Player(0, 0);
-        Board board = new Board(5, 2, tiles, player);
-
-        // Get the Graphic Context of the canvas. This is what we draw on.
-        gc = canvas.getGraphicsContext2D();
-
-        // Draw the board on screen - Thom
-        board.draw(gc);
+//        //Hard coded test values - Thom
+//        Tile tile1 = new Tile('r', 'r', 'r', 'r');
+//        Tile tile2 = new Tile('r', 'g', 'b', 'y');
+//        Tile tile3 = new Tile('r', 'g', 'b', 'b');
+//        Tile tile4 = new Tile('r', 'g', 'b', 'y');
+//        Tile tile5 = new Tile('r', 'r', 'y', 'y');
+//        Tile tile6 = new Tile('g', 'g', 'g', 'y');
+//        Tile tile7 = new Tile('r', 'g', 'b', 'y');
+//        Tile tile8 = new Tile('r', 'g', 'b', 'y');
+//        Tile tile9 = new Tile('r', 'g', 'b', 'y');
+//        Tile tile10 = new Tile('r', 'g', 'b', 'y');
+//        Tile[][] tiles = new Tile[][] ;
+//        FlyingAssassin entity1 = new FlyingAssassin(1, 0, 1);
+//        Entity[] entities = new Entity[] {entity1};
+//        Player player = new Player(0, 0);
+//        Board board = new Board(5, 2, tiles, player, entities);
+//
+//        // Get the Graphic Context of the canvas. This is what we draw on.
+//        gc = canvas.getGraphicsContext2D();
+//
+//        // Draw the board on screen - Thom
+//        board.draw(gc);
 
 //        // Clear canvas
 //        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());

@@ -18,7 +18,10 @@ public class Board extends DrawShape {
     private static final int DEFAULT_PLAYER_WIDTH = 50;
     private static final int DEFAULT_PLAYER_HEIGHT = 50;
     private Tile[][] tiles;
+    private Entity[] entities;
     private Player player;
+    private int width;
+    private int height;
 
     /**
      * Construct the board with to be played on.
@@ -28,16 +31,12 @@ public class Board extends DrawShape {
      * @param tiles the arraylist of tiles to be drawn on the board
      * @param player the player to be drawn on the board
      */
-    public Board(int width, int height, Tile[] tiles, Player player) {
+    public Board(int width, int height, Tile[][] tiles, Entity[] entities, Player player, int levelTime) {
+        this.width = width;
+        this.height = height;
+        this.tiles = tiles;
         this.player = player;
-        this.tiles = new Tile[height][width];
-        int index = 0;
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                this.tiles[i][j] = tiles[index];
-                index++;
-            }
-        }
+        this.entities = entities;
     }
 
     /**
@@ -81,6 +80,7 @@ public class Board extends DrawShape {
                 char[] colourArray = this.tiles[i][j].getColours();
                 System.out.println(colourArray[0]);
 
+                //Colour for top left square in a tile
                 if (colourArray[0] == 'r') {
                     gc.setFill(red);
                     gc.fillRect(xPos, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
@@ -95,6 +95,7 @@ public class Board extends DrawShape {
                     gc.fillRect(xPos, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
                 }
 
+                //Colour for top right square in a tile
                 if (colourArray[1] == 'r') {
                     gc.setFill(red);
                     gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
@@ -109,6 +110,7 @@ public class Board extends DrawShape {
                     gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
                 }
 
+                //Colour for bottom right square in a tile
                 if (colourArray[2] == 'r') {
                     gc.setFill(red);
                     gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
@@ -123,6 +125,7 @@ public class Board extends DrawShape {
                     gc.fillRect(xPos + DEFAULT_X_OFFSET, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
                 }
 
+                //Colour for bottom left square in a tile
                 if (colourArray[3] == 'r') {
                     gc.setFill(red);
                     gc.fillRect(xPos, yPos + DEFAULT_Y_OFFSET, DEFAULT_TILE_WIDTH/4, DEFAULT_TILE_HEIGHT/4);
@@ -138,6 +141,7 @@ public class Board extends DrawShape {
                 }
             }
         }
+
         //Draw player on board filled in purple
         int playerXCoord = this.player.getCoord()[0];
         int playerYCoord = this.player.getCoord()[1];
