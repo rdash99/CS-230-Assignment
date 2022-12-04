@@ -52,7 +52,6 @@ public class FileHandler {
                             lineArray[i].charAt(1), lineArray[i].charAt(2),
                             lineArray[i].charAt(3));
                 }
-                ;
                 // read in entities, players and items
                 if (lineArray[i].length() == 3) {
                     int xCoord = Integer.parseInt(lineArray[i - 2]);
@@ -87,7 +86,6 @@ public class FileHandler {
                         entities.add(new Door(xCoord, yCoord));
                     }
                 }
-                ;
                 if (lineArray[i].length() == 1) {
                     levelTime = Integer.parseInt(lineArray[i]);
                 }

@@ -31,7 +31,7 @@ public class Board extends DrawShape {
      * @param tiles the arraylist of tiles to be drawn on the board
      * @param player the player to be drawn on the board
      */
-    public Board(int width, int height, Tile[][] tiles, Player player, Entity[] entities) {
+    public Board(int width, int height, Tile[][] tiles, Entity[] entities, Player player, int levelTime) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
