@@ -45,7 +45,7 @@ public class FileHandler {
             String[] lineArray = line.split(" ");
             int xNum = x;
             yNum = yNum - 1;
-            for (int i = 0; i < lineArray.length; i++) {
+            for (int i = 0; i < lineArray.length - 1; i++) {
                 // read in tile colours
                 if (lineArray[i].length() == 4) {
                     tiles[xNum][yNum] = new Tile(lineArray[i].charAt(0),
