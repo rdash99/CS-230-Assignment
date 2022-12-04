@@ -29,6 +29,7 @@ public class FileHandler {
         }
         int x;
         int y;
+        int levelTime;
         String sizeLine = in.nextLine();
         String[] size = sizeLine.split(" ");
         Tile[][] tiles = new Tile[Integer.parseInt(size[0])][Integer
@@ -82,13 +83,19 @@ public class FileHandler {
                         char colour = lineArray[i + 1].charAt(0);
                         entities.add(new Key(colour, xCoord, yCoord));
                     }
+                    if (lineArray[i].equals("dor")) {
+                        entities.add(new Door(xCoord, yCoord));
+                    }
                 }
                 ;
+                if (lineArray[i].length() == 1) {
+                    levelTime = Integer.parseInt(lineArray[i]);
+                }
                 xNum = xNum + 1;
             }
         }
         in.close();
-        return null;
+        return new Board(x, y, tiles, entities, player, levelTime);
     }
 
     private static void saveBoard(Board board, String fileName) {
