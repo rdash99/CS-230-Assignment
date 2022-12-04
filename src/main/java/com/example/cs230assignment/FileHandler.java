@@ -39,12 +39,11 @@ public class FileHandler {
         x = Integer.parseInt(size[0]);
         y = Integer.parseInt(size[1]);
 
-        int yNum = y;
+        int yNum = y - 1;
         while (in.hasNextLine()) {
             String line = in.nextLine().toLowerCase();
             String[] lineArray = line.split(" ");
-            int xNum = x;
-            yNum = yNum - 1;
+            int xNum = x - 1;
             for (int i = 0; i < lineArray.length - 1; i++) {
                 // read in tile colours
                 if (lineArray[i].length() == 4) {
@@ -88,6 +87,7 @@ public class FileHandler {
                     levelTime = Integer.parseInt(lineArray[i]);
                 }
                 xNum = xNum - 1;
+                yNum = yNum - 1;
             }
         }
         in.close();
