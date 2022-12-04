@@ -20,8 +20,9 @@ class FloorFollowingThief extends NPC {
 
     }
 
-    //needs to compare to the previous coordChange as it needs to stick to the edge not to the left
-    //needs to check to the left of the previous coord change
+    // needs to compare to the previous coordChange as it needs to stick to the
+    // edge not to the left
+    // needs to check to the left of the previous coord change
     private void validMove() {
       //changes the coordChange to the coord to the left
       switch(this.coordChange){

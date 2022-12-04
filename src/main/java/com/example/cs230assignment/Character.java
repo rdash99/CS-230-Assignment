@@ -5,7 +5,7 @@ public class Character extends Entity {
         super(name, x, y);
     }
 
-    // moved up from NPC as the player will also need board
+    // moved up from NPC as the player will also need Board
     protected Board currentBoard;
 
     public Character() {
@@ -21,25 +21,31 @@ public class Character extends Entity {
     }
 
     private void interact() {
-        for (int i = 0; i < board.getTile(coord).getEntities().length(); i++) {
-            if (board.getTile(coord).getEntities()[i].getEntityName() == "Item") {
-                board.getTile(coord).removeEntity(board.getTile(coord).getEntities()[i]);
+        for (int i = 0; i < currentBoard.getTile(coord).getEntities()
+                .length(); i++) {
+            if (currentBoard.getTile(coord).getEntities()[i]
+                    .getEntityName() == "Item") {
+                currentBoard.getTile(coord).removeEntity(
+                        currentBoard.getTile(coord).getEntities()[i]);
             }
-            elif(board.getTile(coord).getEntities()[i].getEntityName() == "leaver");
+            elif(currentBoard.getTile(coord).getEntities()[i]
+                    .getEntityName() == "leaver");
             {
-                board.getTile(coord).getEntities()[i].openGate();
+                currentBoard.getTile(coord).getEntities()[i].openGate();
             }
-            elif(board.getTile(coord).getEntities()[i].getEntityName() == "clock");
+            elif(currentBoard.getTile(coord).getEntities()[i]
+                    .getEntityName() == "clock");
             {
                 time.addClock();
             }
-            elif(board.getTile(coord).getEntities()[i].getEntityName() == "player");
+            elif(currentBoard.getTile(coord).getEntities()[i]
+                    .getEntityName() == "player");
             {
-                board.getPlayer().die();
+                currentBoard.getPlayer().die();
             }
         }
     }
     // protected void drawMove(){
     // }
-    // not needed as this will be covered by board update
+    // not needed as this will be covered by currentBoard update
 }
