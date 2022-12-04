@@ -12,7 +12,7 @@ public class Key extends Entity {
         return keyColour;
     }
 
-    public void interact() {
+    public void openGate() {
     }
 
 }
