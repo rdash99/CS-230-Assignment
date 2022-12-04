@@ -106,11 +106,10 @@ public class FileHandler {
         // characters = board.getCharacters();
     }
 
-    private static String saveCharacter(Character character) {
-        return null;
+    private static void savePlayerData(String playerID, int score, int level) {
     }
 
-    private static Character loadCharacter(String charData) {
+    private static Character loadPlayerData(String charData) {
         return null;
     }
 
