@@ -8,6 +8,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * Sample application that demonstrates the use of JavaFX Canvas for a Game.
  * This class is intentionally not structured very well. This is just a starting point to show
@@ -25,7 +27,7 @@ public class Main extends Application {
 	 * Setup the new application.
 	 * @param primaryStage The stage that is to be used for the application.
 	 */
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws IOException, InterruptedException {
 		new MainMenu();
 	}
 	        	
