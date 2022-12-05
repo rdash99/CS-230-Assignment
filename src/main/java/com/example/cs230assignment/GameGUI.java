@@ -21,6 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+
 public class GameGUI extends Stage {
     // The dimensions of the window
     private static final int WINDOW_WIDTH = 800;
@@ -120,29 +122,41 @@ public class GameGUI extends Stage {
      * Draw the game on the canvas.
      */
     public void drawGame() {
-        // //Hard coded test values - Thom
-        // Tile tile1 = new Tile('r', 'r', 'r', 'r');
-        // Tile tile2 = new Tile('r', 'g', 'b', 'y');
-        // Tile tile3 = new Tile('r', 'g', 'b', 'b');
-        // Tile tile4 = new Tile('r', 'g', 'b', 'y');
-        // Tile tile5 = new Tile('r', 'r', 'y', 'y');
-        // Tile tile6 = new Tile('g', 'g', 'g', 'y');
-        // Tile tile7 = new Tile('r', 'g', 'b', 'y');
-        // Tile tile8 = new Tile('r', 'g', 'b', 'y');
-        // Tile tile9 = new Tile('r', 'g', 'b', 'y');
-        // Tile tile10 = new Tile('r', 'g', 'b', 'y');
-        // Tile[][] tiles = new Tile[][] ;
-        // FlyingAssassin entity1 = new FlyingAssassin(1, 0, 1);
-        // Entity[] entities = new Entity[] {entity1};
-        // Player player = new Player(0, 0);
-        // Board board = new Board(5, 2, tiles, player, entities);
+//         //Hard coded test values - Thom
+//         Tile tile1 = new Tile('r', 'r', 'r', 'r');
+//         Tile tile2 = new Tile('r', 'g', 'b', 'y');
+//         Tile tile3 = new Tile('r', 'g', 'b', 'b');
+//         Tile tile4 = new Tile('r', 'g', 'b', 'y');
+//         Tile tile5 = new Tile('r', 'r', 'y', 'y');
+//         Tile tile6 = new Tile('g', 'g', 'g', 'y');
+//         Tile tile7 = new Tile('r', 'g', 'b', 'y');
+//         Tile tile8 = new Tile('r', 'g', 'b', 'y');
+//         Tile tile9 = new Tile('r', 'g', 'b', 'y');
+//         Tile tile10 = new Tile('r', 'g', 'b', 'y');
+//         Tile[][] tiles = new Tile[2][5];
+//         tiles[0][0] = tile1;
+//         tiles[0][1] = tile2;
+//         tiles[0][2] = tile3;
+//         tiles[0][3] = tile4;
+//         tiles[0][4] = tile5;
+//         tiles[1][0] = tile6;
+//         tiles[1][1] = tile7;
+//         tiles[1][2] = tile8;
+//         tiles[1][3] = tile9;
+//         tiles[1][4] = tile10;
+//         FlyingAssassin entity1 = new FlyingAssassin(1, 0, 1, 1, 2);
+//         ArrayList<Entity> entities = new ArrayList<>();
+//         entities.add(entity1);
+//         Player player = new Player(0, 0);
+//         Timer timer = new Timer(1);
+//         Board board = new Board(5, 2, tiles, entities, player, timer);
         gc = canvas.getGraphicsContext2D();
         FileHandler.readLevelFile("src/main/resources/testLevel").draw(gc);
         //
         // Get the Graphic Context of the canvas. This is what we draw on.
         //
         // // Draw the board on screen - Thom
-        // board.draw(gc);
+        //board.draw(gc);
         //
         // // Clear canvas
         // gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
