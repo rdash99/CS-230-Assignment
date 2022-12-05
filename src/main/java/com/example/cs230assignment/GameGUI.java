@@ -90,6 +90,7 @@ public class GameGUI extends Stage {
         // Display the scene on the stage
         drawGame();
         this.setScene(scene);
+        this.setTitle("The game");
         this.show();
     }
 
