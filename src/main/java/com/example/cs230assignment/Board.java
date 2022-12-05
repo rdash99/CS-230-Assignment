@@ -103,6 +103,7 @@ public class Board extends DrawShape {
         Image greenSquareImg = new Image("greenSquare.png");
         Image blueSquareImg = new Image("blueSquare.png");
         Image yellowSquareImg = new Image("yellowSquare.png");
+        Image playerImg = new Image("player.png");
 
         // Draw all tiles on screen to make up the board
         for (int i = 0; i < this.tiles.length; i++) {
@@ -160,8 +161,6 @@ public class Board extends DrawShape {
         // Draw player on board filled in purple
         int playerXCoord = this.player.getXCoord();
         int playerYCoord = this.player.getYCoord();
-//        gc.setFill(purple);
-        gc.fillOval(playerXCoord, playerYCoord, DEFAULT_PLAYER_WIDTH,
-                DEFAULT_PLAYER_HEIGHT);
+        gc.drawImage(playerImg, playerXCoord + 25, playerYCoord + 25);
     }
 }
