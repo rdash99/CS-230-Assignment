@@ -122,6 +122,8 @@ public class MainMenu extends Stage {
                     charNums.set(i, (Math.abs(charNums.get(i) - 26)) % 26);
                 } else if (charNums.get(i) < 0) {
                     charNums.set(i, (Math.abs(charNums.get(i) + 26)) % 26);
+                } else if (charNums.get(i) == 26) {
+                    charNums.set(i, 0);
                 }
 
 
@@ -131,6 +133,8 @@ public class MainMenu extends Stage {
                     charNums.set(i, (Math.abs(charNums.get(i) - 26)) % 26);
                 } else if (charNums.get(i) < 0) {
                     charNums.set(i, (Math.abs(charNums.get(i) + 26)) % 26);
+                } else if (charNums.get(i) == 26) {
+                    charNums.set(i, 0);
                 }
             }
         }
