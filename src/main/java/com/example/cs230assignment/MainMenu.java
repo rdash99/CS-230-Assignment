@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -17,6 +18,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 
 public class MainMenu extends Stage {
 
@@ -26,6 +28,7 @@ public class MainMenu extends Stage {
     private Text titleText = new Text("Welcome to the game!");
     private Text scoresTitle = new Text("High scores: ");
     private Text motdTitle = new Text("Message of the day: ");
+    private Text motdText;
     private VBox middleButtons = new VBox();
     private VBox highScoreList = new VBox();
     private VBox motd = new VBox();
@@ -39,9 +42,17 @@ public class MainMenu extends Stage {
 
         scoresTitle.setFont(Font.font ("Arial",FontWeight.BOLD, 15));
         scoresTitle.setFill(Color.GRAY);
+        scoresTitle.setWrappingWidth(100);
 
         motdTitle.setFont(Font.font ("Arial",FontWeight.BOLD, 15));
         motdTitle.setFill(Color.GRAY);
+        motdTitle.setWrappingWidth(100);
+
+        motdText = new Text(getsolvedMOTD(solvePuzzle()));
+        motdText.setFont(Font.font ("Arial", 12));
+        motdText.setFill(Color.GRAY);
+        motdText.setWrappingWidth(100);
+
 
         middleButtons.getChildren().add(launchGameBtn);
         middleButtons.setAlignment(Pos.CENTER);
@@ -50,7 +61,9 @@ public class MainMenu extends Stage {
         highScoreList.getChildren().add(scoresTitle);
 
         motd.getChildren().add(motdTitle);
-        motd.getChildren().add(new Text(getsolvedMOTD(solvePuzzle())));
+        motd.getChildren().add(motdText);
+        motd.setMaxWidth(100);
+        motd.setMinWidth(100);
 
         hbox.getChildren().add(titleText);
         hbox.setAlignment(Pos.CENTER);
@@ -58,9 +71,10 @@ public class MainMenu extends Stage {
 
 
 
+
         root.setTop(hbox);
         root.setCenter(middleButtons);
-        root.setLeft(highScoreList);
+        root.setLeft(scoresTitle);
         root.setRight(motd);
 
         this.setScene(new Scene(root, 600, 500));
@@ -79,6 +93,7 @@ public class MainMenu extends Stage {
         Text scoreText = new Text(name + ": " + score);
         scoreText.setFont(Font.font("Arial", 12));
         scoreText.setFill(Color.GRAY);
+        scoreText.setWrappingWidth(100);
         highScoreList.getChildren().add(scoreText);
     }
 
@@ -93,10 +108,47 @@ public class MainMenu extends Stage {
 
     private String solvePuzzle() throws IOException, InterruptedException {
         String puzzle = getMOTDPuzzle();
-        String answer = "";
+        ArrayList<Integer> charNums = new ArrayList<Integer>();
 
-        //TODO: implement this method
-        return answer;
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for(int i=0; i < puzzle.length(); i++){
+            charNums.add((alphabet.indexOf(puzzle.charAt(i))));
+        }
+
+        for (int i = 0; i < charNums.size(); i++) {
+            if (i % 2 != 0) {
+                charNums.set(i, charNums.get(i) + (i + 1));
+                if (charNums.get(i) > 26) {
+                    charNums.set(i, (Math.abs(charNums.get(i) - 26)) % 26);
+                } else if (charNums.get(i) < 0) {
+                    charNums.set(i, (Math.abs(charNums.get(i) + 26)) % 26);
+                }
+
+
+            } else if (i % 2 == 0) {
+                charNums.set(i, charNums.get(i) - (i + 1));
+                if (charNums.get(i) > 26) {
+                    charNums.set(i, (Math.abs(charNums.get(i) - 26)) % 26);
+                } else if (charNums.get(i) < 0) {
+                    charNums.set(i, (Math.abs(charNums.get(i) + 26)) % 26);
+                }
+            }
+        }
+
+        ArrayList<java.lang.Character> charRes = new ArrayList<java.lang.Character>();
+        for (int i = 0; i < charNums.size(); i++) {
+            charRes.add(alphabet.charAt(charNums.get(i)));
+        }
+
+        StringBuilder builder = new StringBuilder(charRes.size());
+        for(java.lang.Character cha: charRes)
+        {
+            builder.append(cha);
+        }
+        String result =  builder.toString().concat("CS-230");
+        result = result.chars().count() + result;
+
+        return result;
     }
 
     private String getsolvedMOTD(String puzzle) throws IOException, InterruptedException {
