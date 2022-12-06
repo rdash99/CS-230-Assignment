@@ -152,7 +152,21 @@ public class FileHandler {
                 tiles5[i][j] = tiles4[tiles4.length - 1 - j][i];
             }
         }
-        return new Board(x, y, tiles5, entities, player, timer);
+        Board board = new Board(x, y, tiles5, entities, player, timer);
+        addBoardLinks(board);
+        return board;
+    }
+
+    private static void addBoardLinks(Board board) {
+        ArrayList<Entity> entities = board.getEntities();
+        Player player = board.getPlayer();
+        for (Entity e : entities) {
+            if (e instanceof FloorFollowingThief || e instanceof SmartThief
+                    || e instanceof FlyingAssassin) {
+                ((Character) e).setBoard(board);
+            }
+        }
+        player.setBoard(board);
     }
 
     /**

@@ -16,6 +16,10 @@ public class Character extends Entity {
 
     }
 
+    public void setBoard(Board board) {
+        this.currentBoard = board;
+    }
+
     protected void interact(Timer timer) {
         int x = this.coord[0];
         int y = this.coord[1];
