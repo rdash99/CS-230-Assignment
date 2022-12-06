@@ -6,7 +6,7 @@ public class Character extends Entity {
     }
 
     // moved up from NPC as the player will also need Board
-    protected Board currentBoard;
+    protected Board board;
 
     protected void move() {
 

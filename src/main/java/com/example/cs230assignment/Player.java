@@ -28,7 +28,6 @@ public class Player extends Character {
 
     // added to remove from character code that is only needed for player
     public void move() {
-
     }
 
     public ArrayList<String> getLevels() {
