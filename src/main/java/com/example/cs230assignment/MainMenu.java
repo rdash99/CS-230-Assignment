@@ -4,6 +4,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -28,6 +30,8 @@ public class MainMenu extends Stage {
     private Text scoresTitle = new Text("High scores: ");
     private Text motdTitle = new Text("Message of the day: ");
     private Text motdText;
+    private TextField nameField = new TextField();
+    private Text errorText  = new Text();
     private VBox middleButtons = new VBox();
     private VBox highScoreList = new VBox();
     private VBox motd = new VBox();
@@ -50,6 +54,10 @@ public class MainMenu extends Stage {
         motdText.setFill(Color.GRAY);
         motdText.setWrappingWidth(100);
 
+        nameField.setPromptText("Please enter your name");
+        nameField.setMaxWidth(150);
+
+        middleButtons.getChildren().add(nameField);
         middleButtons.getChildren().add(launchGameBtn);
         middleButtons.setAlignment(Pos.CENTER);
         middleButtons.setSpacing(20);
@@ -76,8 +84,16 @@ public class MainMenu extends Stage {
 
         // end action
         launchGameBtn.setOnAction(e -> {
-            new GameGUI(playerName);
-            this.close();
+            if ((nameField.getText() != null && !nameField.getText().isEmpty())) {
+                new GameGUI(nameField.getText());
+                this.close();
+            } else if (errorText.getText().isEmpty()) {
+               errorText.setText("Please enter your name");
+               errorText.setFill(Color.RED);
+               middleButtons.getChildren().add(errorText);
+
+            }
+
         });
 
     }
