@@ -90,8 +90,8 @@ public class Player extends Character {
         if (directionCheckY != 0) {
             // checks each tile from the current position to the edge of the
             // board
-            for (int i = super.coord[1]; (i != super.currentBoard
-                    .getHeight() + 1) || i != -1; i += directionCheckY) {
+            for (int i = super.coord[1]; (i <= super.currentBoard
+                    .getHeight() - 1) || i >= -1; i += directionCheckY) {
                 // checks every colour on the current tile with the tile being
                 // checked
                 for (int colourPos = 0; colourPos <= 4; i++) {
@@ -117,8 +117,8 @@ public class Player extends Character {
         if (directionCheckX != 0) {
             // checks each tile from the current position to the edge of the
             // board
-            for (int i = super.coord[1]; (i != super.currentBoard
-                    .getWidth() + 1) || i != -1; i += directionCheckX) {
+            for (int i = super.coord[1]; (i <= super.currentBoard
+                    .getWidth() - 1) || i >= -1; i += directionCheckX) {
                 // checks every colour on the current tile with the tile being
                 // checked
                 for (int colourPos = 0; colourPos <= 4; i++) {
