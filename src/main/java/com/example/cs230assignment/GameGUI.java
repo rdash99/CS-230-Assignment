@@ -57,6 +57,25 @@ public class GameGUI extends Stage {
 
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch(event.getCode()) {
+                    case W:
+                        level.getPlayer().move(1);
+                        break;
+                    case A:
+                        level.getPlayer().move(2);
+                        break;
+                    case S:
+                        level.getPlayer().move(3);
+                        break;
+                    case D:
+                        level.getPlayer().move(4);
+                        break;
+                }
+            }
+        });
 
         // Display the scene on the stage
         this.setScene(scene);

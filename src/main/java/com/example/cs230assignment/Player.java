@@ -38,20 +38,7 @@ public class Player extends Character {
         //the y coord direction to check for a valid square
         int directionCheckY = 0;
         //converts the directon from a character to a usable coord direction
-        switch(direction){
-            case 'N':
-                directionCheckY = 1;
-                break;
-            case 'E':
-                directionCheckX = 1;
-                break;
-            case 'S':
-                directionCheckY = -1;
-                break;
-            case 'W':
-                directionCheckX = -1;
-                break;
-        }
+
         //checks to see if the movement is on the y axis
         if(directionCheckY != 0){
             //checks each tile from the current position to the edge of the board
