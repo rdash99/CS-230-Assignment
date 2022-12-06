@@ -23,7 +23,7 @@ public class FileHandler {
      * @param fileName The level file to process
      * @return The instance of board for that level
      */
-    private static Board loadBoard(File fileName) {
+    private static Board loadBoard(File fileName, String playerName) {
         Scanner in = null;
         try {
             in = new Scanner(fileName);
@@ -68,7 +68,7 @@ public class FileHandler {
                     }
                     // read in player
                     if (lineArray[i].equals("ply")) {
-                        Player player1 = new Player(xCoord, yCoord);
+                        Player player1 = new Player(playerName, xCoord, yCoord);
                         player = player1;
                     }
                     // read in a floor following thief
@@ -225,7 +225,7 @@ public class FileHandler {
         // write the data to a file
         String data = boardData + tileData + playerData + itemData + entityData
                 + "\n" + levelTime;
-        File file = new File(fileName + ".txt");
+        File file = new File("src/main/resources/saves/" + fileName + ".txt");
         try {
             FileWriter fw = new FileWriter(file);
             fw.write(data);
@@ -304,7 +304,7 @@ public class FileHandler {
      */
     private static String savePlayerData(String playerID, int score,
             ArrayList<String> level) {
-        String data = "player " + playerID + " " + score + " " + level;
+        String data = score + " " + level;
         return data;
     }
 
@@ -321,7 +321,8 @@ public class FileHandler {
         ArrayList<String> levels = player.getLevels();
         String playerID = player.getEntityName();
         try {
-            String data = savePlayerData("ply " + playerID, score, levels);
+            String data = savePlayerData(
+                    "src/main/resources/profiles/" + playerID, score, levels);
             writeToFile(playerID, data);
         } catch (NullPointerException e) {
             return "";
@@ -397,9 +398,9 @@ public class FileHandler {
      * @param fileName
      * @return Board
      */
-    public static Board readLevelFile(String fileName) {
-        File file = new File(fileName + ".txt");
-        return loadBoard(file);
+    public static Board readLevelFile(String fileName, String playerName) {
+        File file = new File("src/resources/levels/" + fileName + ".txt");
+        return loadBoard(file, playerName);
     }
 
     /**
