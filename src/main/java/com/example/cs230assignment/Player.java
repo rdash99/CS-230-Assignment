@@ -102,8 +102,9 @@ public class Player extends Character {
                         super.currentBoard
                                 .getTile(super.coord[0], super.coord[1])
                                 .removeEntity(this);
+                        interact(super.currentBoard.getTile(coord[0], i).getEntity());
                         super.currentBoard.getTile(super.coord[0], i)
-                                .addEntity(this);
+                                .setEntity(this);
                         super.coord[1] = i;
                         i = super.currentBoard.getHeight() + 2;
                     }
@@ -128,21 +129,15 @@ public class Player extends Character {
                         super.currentBoard
                                 .getTile(super.coord[0], super.coord[1])
                                 .removeEntity(this);
+                        interact(super.currentBoard.getTile(i, coord[1]).getEntity());
                         super.currentBoard.getTile(i, super.coord[1])
-                                .addEntity(this);
+                                .setEntity(this);
                         super.coord[0] = i;
                         i = super.currentBoard.getWidth() + 2;
                     }
                 }
             }
         }
-        for (int items = 0; items <= super.currentBoard
-                .getTile(super.coord[0], super.coord[1])
-                .getEntities().length; items++) {
-            interact(super.currentBoard.getTile(super.coord[0], super.coord[1])
-                    .getEntities()[items]);
-        }
-
     }
 
     public ArrayList<String> getLevels() {
