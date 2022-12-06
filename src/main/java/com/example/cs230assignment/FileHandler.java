@@ -152,9 +152,30 @@ public class FileHandler {
                 tiles5[i][j] = tiles4[tiles4.length - 1 - j][i];
             }
         }
-        Board board = new Board(x, y, tiles5, entities, player, timer);
+        Tile[][] tiles6 = linkTilesEntity(tiles5, entities, player);
+        Board board = new Board(x, y, tiles6, entities, player, timer);
         addBoardLinks(board);
         return board;
+    }
+
+    /**
+     * Links the tiles and entities together.
+     * 
+     * @param tiles
+     * @param entities
+     * @return Tile[][]
+     */
+    private static Tile[][] linkTilesEntity(Tile[][] tiles,
+            ArrayList<Entity> entities, Player player) {
+        for (int i = 0; i < entities.size(); i++) {
+            int x = entities.get(i).getXCoord();
+            int y = entities.get(i).getYCoord();
+            tiles[x][y].addEntity(entities.get(i));
+        }
+        int x = player.getXCoord();
+        int y = player.getYCoord();
+        tiles[x][y].addEntity(player);
+        return tiles;
     }
 
     private static void addBoardLinks(Board board) {
