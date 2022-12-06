@@ -24,17 +24,19 @@ public class Player extends Character {
     private void interact(Entity interactedEntity) {
         int x = this.coord[0];
         int y = this.coord[1];
-        switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
-            case("item"):
-                this.score += ((Item)(this.currentBoard.getTile(x, y).getEntity())).getItemValue();
-                break;
-            case("key"):
-                Key key = (Key) currentBoard.getTile(x, y).getEntity();
-                key.openGate();
-                break;
-            case("clock"):
-                Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
-                super.currentBoard.getTimer().addClock(clock);
+        if(currentBoard.getTile(x, y).getEntity() != null){
+            switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
+                case("item"):
+                    this.score += ((Item)(this.currentBoard.getTile(x, y).getEntity())).getItemValue();
+                    break;
+                case("key"):
+                    Key key = (Key) currentBoard.getTile(x, y).getEntity();
+                    key.openGate();
+                    break;
+                case("clock"):
+                    Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
+                    super.currentBoard.getTimer().addClock(clock);
+            }
         }
     }
 
