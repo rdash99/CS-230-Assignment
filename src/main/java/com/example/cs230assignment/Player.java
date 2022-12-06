@@ -17,7 +17,7 @@ public class Player extends Character {
     }
 
     // changed to just interact to overwrite from character
-    private void interact(Item interactedItem) {
+    private void interact(Entity interactedEntity) {
 
     }
 
@@ -26,8 +26,73 @@ public class Player extends Character {
 
     }
 
-    // added to remove from character code that is only needed for player
-    public void move() {
+
+    /**
+     * moves the character from an input from the user
+     * 
+     * @param direction the direction desired by the movement inputed by the user
+     */
+    public void move(char direction) {
+        //the x coord direction to check for a valid square
+        int directionCheckX = 0;
+        //the y coord direction to check for a valid square
+        int directionCheckY = 0;
+        //converts the directon from a character to a usable coord direction
+        switch(direction){
+            case 'N':
+                directionCheckY = 1;
+                break;
+            case 'E':
+                directionCheckX = 1;
+                break;
+            case 'S':
+                directionCheckY = -1;
+                break;
+            case 'W':
+                directionCheckX = -1;
+                break;
+        }
+        //checks to see if the movement is on the y axis
+        if(directionCheckY != 0){
+            //checks each tile from the current position to the edge of the board
+            for(int i = super.coord[1];(i != super.currentBoard.getHeight() + 1) 
+            || i  != -1; i += directionCheckY){
+                //checks every colour on the current tile with the tile being checked
+                for(int colourPos = 0; colourPos <= 4; i++){
+                    //compares a colour on the current tile and the tile being checked
+                    if(super.currentBoard.getTile(super.coord[0],i)
+                    .checkColour(super.currentBoard.getTile(super.coord[0], super.coord[1]).getColours()[colourPos])){
+                        super.currentBoard.getTile(super.coord[0], super.coord[1]).removeEntity(this);
+                        super.currentBoard.getTile(super.coord[0],i).addEntity(this);
+                        super.coord[1] = i;
+                        i = super.currentBoard.getHeight() + 2;
+                    }
+                }
+            }
+        }
+        //checks to see if the movement is on the x axis
+        if(directionCheckX != 0){
+            //checks each tile from the current position to the edge of the board
+            for(int i = super.coord[1];(i != super.currentBoard.getWidth() + 1) 
+            || i  != -1; i += directionCheckX){
+                //checks every colour on the current tile with the tile being checked
+                for(int colourPos = 0; colourPos <= 4; i++){
+                    //compares a colour on the current tile and the tile being checked
+                    if(super.currentBoard.getTile(i,super.coord[1])
+                    .checkColour(super.currentBoard.getTile(super.coord[0], super.coord[1]).getColours()[colourPos])){
+                        super.currentBoard.getTile(super.coord[0], super.coord[1]).removeEntity(this);
+                        super.currentBoard.getTile(i,super.coord[1]).addEntity(this);
+                        super.coord[0] = i;
+                        i = super.currentBoard.getWidth() + 2;
+                    }
+                }
+            }
+        }
+        for(int items = 0; items <= super.currentBoard.getTile(super.coord[0], super.coord[1])
+        .getEntities().length; items++){
+            interact(super.currentBoard.getTile(super.coord[0], super.coord[1]).getEntities()[items]);
+        }
+
     }
 
 }

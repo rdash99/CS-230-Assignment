@@ -11,7 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
  */
 
 public class Entity extends DrawShape {
-    private String entityName;
+    protected String entityName;
     protected int[] coord;
 
     public Entity(String entityNamePass, int x, int y) {
