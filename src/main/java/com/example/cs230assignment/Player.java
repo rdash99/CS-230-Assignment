@@ -31,4 +31,12 @@ public class Player extends Character {
 
     }
 
+    public ArrayList<String> getLevels() {
+        return this.levelComp;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
 }

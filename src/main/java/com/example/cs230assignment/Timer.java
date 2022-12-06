@@ -35,4 +35,8 @@ public class Timer extends DrawShape {
 
     }
 
+    public int getLevelTime() {
+        return this.levelTime;
+    }
+
 }

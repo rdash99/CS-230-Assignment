@@ -2,6 +2,8 @@ package com.example.cs230assignment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -152,18 +154,121 @@ public class FileHandler {
     }
 
     private static void saveBoard(Board board, String fileName) {
-        // characters = board.getCharacters();
+        Player player = board.getPlayer();
+        ArrayList<Entity> entities = board.getEntities();
+        Tile[][] tiles = board.getTiles();
+        int levelTime = board.getTimer().getLevelTime();
+        int x = board.getTiles().length;
+        int y = board.getTiles()[0].length;
+        String playerData = savePlayer(player);
+        String itemData = "";
+        for (int i = 0; i < entities.size(); i++) {
+            if (entities.get(i) instanceof Item) {
+                itemData = itemData + saveItem((Item) entities.get(i));
+            }
+        }
+        String boardData = saveBoardData(x, y);
+        String tileData = "";
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[0].length; j++) {
+                tileData = tileData + saveTile(tiles[i][j], i, j);
+            }
+        }
+        String entityData = "";
+        for (int i = 0; i < entities.size(); i++) {
+            if (!(entities.get(i) instanceof Item)) {
+                entityData = entityData + saveEntity(entities.get(i));
+            }
+        }
+        // - Format this differently, x, y,
+        String data = playerData + itemData + boardData + tileData + entityData + levelTime;
+        File file = new File(fileName + ".txt");
+        try {
+            FileWriter fw = new FileWriter(file);
+            fw.write(data);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static void savePlayerData(String playerID, int score, int level) {
+    private static String saveEntity(Entity entity) {
+        int x = entity.getXCoord();
+        int y = entity.getYCoord();
+        String entityName = entity.getEntityName();
+        if (entityName.equals("player")) {
+            throw new IllegalArgumentException(
+                    "Player data should be saved separately, how did this get here?");
+        }
+        switch (entityName) {
+        case "Floor Following Thief":
+            entityName = "fft";
+        }
+        String data = x + " " + y + " " + entityName;
+        return data;
     }
 
-    private static Character loadPlayerData(String charData) {
+    private static String saveTile(Tile tile, int x, int y) {
+        String tileSquareString = tile.getSquares();
+        String data = x + " " + y + " " + tileSquareString + " ";
+        return data;
+    }
+
+    private static String savePlayerData(String playerID, int score,
+            ArrayList<String> level) {
+        String data = "player " + playerID + " " + score + " " + level;
+        return data;
+    }
+
+    private static String savePlayer(Player player) {
+        int x = player.getXCoord();
+        int y = player.getYCoord();
+        int score = player.getScore();
+        ArrayList<String> levels = player.getLevels();
+        String playerID = player.getEntityName();
+        try {
+            String data = savePlayerData("ply" + playerID, score, levels) + " "
+                    + x + " " + y;
+            writeToFile(playerID, data);
+        } catch (NullPointerException e) {
+            return "";
+        }
+        String data = x + " " + y + " " + "ply";
+        return data;
+    }
+
+    private static void writeToFile(String filename, String data) {
+        File file = new File(filename + ".txt");
+        try {
+            FileWriter fw = new FileWriter(file);
+            fw.write(data);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String saveBoardData(int x, int y) {
+        String data = x + " " + y;
+        return data;
+    }
+
+    private static String loadPlayerData(String charData) {
         return null;
     }
 
     private static String saveItem(Item item) {
-        return null;
+        String itemName = item.getEntityName();
+        int x = item.getXCoord();
+        int y = item.getYCoord();
+        int value = item.getItemValue();
+        boolean isCollected = item.isCollected();
+        if (isCollected) {
+            return "";
+        } else {
+            String data = "item " + itemName + " " + x + " " + y + " " + value;
+            return data;
+        }
     }
 
     private static Item loadItem(String itemName, int x, int y, int value) {

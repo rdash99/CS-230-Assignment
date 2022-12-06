@@ -42,4 +42,8 @@ public class Tile {
             }
         }
     }
+
+    public String getSquares() {
+        return String.valueOf(this.squares);
+    }
 }

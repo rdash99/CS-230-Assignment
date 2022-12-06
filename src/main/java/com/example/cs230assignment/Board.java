@@ -36,7 +36,7 @@ public class Board extends DrawShape {
      * @param player the player to be drawn on the board
      */
     public Board(int width, int height, Tile[][] tiles,
-                 ArrayList<Entity> entities, Player player, Timer timer) {
+            ArrayList<Entity> entities, Player player, Timer timer) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
@@ -162,5 +162,13 @@ public class Board extends DrawShape {
         int playerXCoord = this.player.getXCoord();
         int playerYCoord = this.player.getYCoord();
         gc.drawImage(playerImg, playerXCoord + 25, playerYCoord + 25);
+    }
+
+    public ArrayList<Entity> getEntities() {
+        return this.entities;
+    }
+
+    public Tile[][] getTiles() {
+        return this.tiles;
     }
 }
