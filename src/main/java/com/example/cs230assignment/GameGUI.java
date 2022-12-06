@@ -57,7 +57,7 @@ public class GameGUI extends Stage {
 
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
-                new PauseMenu(level, "level name");
+                new PauseMenu(level, "testLevel");
             }
         });
 
@@ -66,19 +66,19 @@ public class GameGUI extends Stage {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch(event.getCode()) {
-                    case W:
-                        level.getPlayer().move(1);
-                        break;
-                    case A:
-                        level.getPlayer().move(2);
-                        break;
-                    case S:
-                        level.getPlayer().move(3);
-                        break;
-                    case D:
-                        level.getPlayer().move(4);
-                        break;
+                switch (event.getCode()) {
+                case W:
+                    level.getPlayer().move(1);
+                    break;
+                case A:
+                    level.getPlayer().move(2);
+                    break;
+                case S:
+                    level.getPlayer().move(3);
+                    break;
+                case D:
+                    level.getPlayer().move(4);
+                    break;
                 }
             }
         });
@@ -151,7 +151,6 @@ public class GameGUI extends Stage {
 
         // Finally, return the border pane we built up.
         return root;
-
 
     }
 }
