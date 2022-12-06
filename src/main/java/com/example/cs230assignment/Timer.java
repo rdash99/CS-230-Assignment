@@ -39,4 +39,8 @@ public class Timer extends DrawShape {
         return this.levelTime;
     }
 
+    public int getInitTime() {
+        return this.initTime;
+    }
+
 }
