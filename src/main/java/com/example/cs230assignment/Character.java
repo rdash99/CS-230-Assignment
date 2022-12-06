@@ -1,19 +1,13 @@
 package com.example.cs230assignment;
 
 public class Character extends Entity {
+    protected Board currentBoard;
+
     public Character(String name, int x, int y) {
         super(name, x, y);
     }
-
-    // moved up from NPC as the player will also need Board
-    protected Board currentBoard;
-
-    protected void move() {
-
-    }
-
-    protected void savePosition() {
-
+    public void boardSet(Board freshBoard){
+        this.currentBoard = freshBoard;
     }
 
     protected void interact(Timer timer) {

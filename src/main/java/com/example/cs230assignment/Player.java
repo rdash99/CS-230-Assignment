@@ -13,12 +13,26 @@ public class Player extends Character {
     }
 
     public void die() {
-
+        this.score = 0;
+        super.currentBoard.missionFailed();
     }
 
     // changed to just interact to overwrite from character
     private void interact(Entity interactedEntity) {
-
+        int x = this.coord[0];
+        int y = this.coord[1];
+        switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
+            case("item"):
+                this.score += ((Item)(this.currentBoard.getTile(x, y).getEntity())).getItemValue();
+                break;
+            case("key"):
+                Key key = (Key) currentBoard.getTile(x, y).getEntity();
+                key.openGate();
+                break;
+            case("clock"):
+                Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
+                super.currentBoard.getTimer().addClock(clock);
+        }
     }
 
     // changed to take the item in as different items will add different scores
@@ -26,6 +40,21 @@ public class Player extends Character {
 
     }
 
+<<<<<<< Updated upstream
+=======
+    private void loadProfile() {
+        String profile = FileHandler.loadPlayerData(playerName);
+        if (profile != null) {
+            String[] profileData = profile.split(" ");
+            this.score = Integer.parseInt(profileData[0]);
+            for (int i = 1; i < profileData.length; i++) {
+                this.levelComp.add(profileData[i]);
+            }
+        }else{
+            levelComp.add("level1");
+        }
+    }
+>>>>>>> Stashed changes
 
     /**
      * moves the character from an input from the user
