@@ -71,16 +71,16 @@ public class Player extends Character {
 
         // converts the directon from a character to a usable coord direction
         switch (direction) {
-        case '1':
+        case 1:
             directionCheckY = 1;
             break;
-        case '3':
+        case 3:
             directionCheckX = 1;
             break;
-        case '4':
+        case 4:
             directionCheckY = -1;
             break;
-        case '2':
+        case 2:
             directionCheckX = -1;
             break;
         }
