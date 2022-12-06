@@ -181,7 +181,7 @@ public class FileHandler {
         try {
             sc = new Scanner(file);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
         String data = sc.nextLine();
@@ -413,7 +413,7 @@ public class FileHandler {
      * @return Board
      */
     public static Board readLevelFile(String fileName, String playerName) {
-        File file = new File("src/resources/levels/" + fileName + ".txt");
+        File file = new File("src/main/resources/levels/" + fileName + ".txt");
         return loadBoard(file, playerName);
     }
 
