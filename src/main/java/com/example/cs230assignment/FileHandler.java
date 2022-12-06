@@ -321,8 +321,7 @@ public class FileHandler {
         ArrayList<String> levels = player.getLevels();
         String playerID = player.getEntityName();
         try {
-            String data = savePlayerData("ply" + playerID, score, levels) + " "
-                    + x + " " + y;
+            String data = savePlayerData("ply " + playerID, score, levels);
             writeToFile(playerID, data);
         } catch (NullPointerException e) {
             return "";
