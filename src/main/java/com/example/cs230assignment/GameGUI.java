@@ -55,6 +55,12 @@ public class GameGUI extends Stage {
         // Build the GUI
         Pane root = buildGUI(level);
 
+        this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+            if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
+                new PauseMenu(level, "level name");
+            }
+        });
+
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -126,5 +132,7 @@ public class GameGUI extends Stage {
 
         // Finally, return the border pane we built up.
         return root;
+
+
     }
 }
