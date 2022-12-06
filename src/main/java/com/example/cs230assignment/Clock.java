@@ -1,22 +1,22 @@
 package com.example.cs230assignment;
 
 public class Clock extends Entity {
-    private int clockTime = 0;
+    private int time;
 
-    public Clock (String entityNamePass, int addedTime, int x, int y) {
-        super(entityNamePass, x, y);
-        this.clockTime = addedTime;
+    public Clock(int x, int y, int time) {
+        super("Clock", x, y);
+        this.time = time;
     }
 
-    public void setClockTime (int additionalTime) {
-        this.clockTime = additionalTime;
+    public int gettime() {
+        return time;
     }
 
-    public void getClockTime () {
-        return clockTime;
+    public void settime(int time) {
+        this.time = time;
     }
-    
-    public void addTime (int additionalTime) {
 
+    public void tick() {
+        time--;
     }
 }
