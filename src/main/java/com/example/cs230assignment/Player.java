@@ -21,23 +21,17 @@ public class Player extends Character {
     private void interact(Entity interactedEntity) {
         int x = this.coord[0];
         int y = this.coord[1];
-        for (int i = 0; i < currentBoard.getTile(x, y)
-                .getEntities().length; i++) {
-            if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "item") {
-                this.score += ((Item)(this.currentBoard.getTile(x, y).getEntities()[i])).getItemValue();
-            } else if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "key") {
-                Key key = (Key) currentBoard.getTile(x, y).getEntities()[i];
+        switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
+            case("item"):
+                this.score += ((Item)(this.currentBoard.getTile(x, y).getEntity())).getItemValue();
+                break;
+            case("key"):
+                Key key = (Key) currentBoard.getTile(x, y).getEntity();
                 key.openGate();
-                currentBoard.getTile(x, y).removeEntity(
-                        currentBoard.getTile(x, y).getEntities()[i]);
-            } else if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "clock") {
-                Clock clock = (Clock) currentBoard.getTile(x, y)
-                        .getEntities()[i];
+                break;
+            case("clock"):
+                Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
                 super.currentBoard.getTimer().addClock(clock);
-            }
         }
     }
 
@@ -46,6 +40,21 @@ public class Player extends Character {
 
     }
 
+<<<<<<< Updated upstream
+=======
+    private void loadProfile() {
+        String profile = FileHandler.loadPlayerData(playerName);
+        if (profile != null) {
+            String[] profileData = profile.split(" ");
+            this.score = Integer.parseInt(profileData[0]);
+            for (int i = 1; i < profileData.length; i++) {
+                this.levelComp.add(profileData[i]);
+            }
+        }else{
+            levelComp.add("level1");
+        }
+    }
+>>>>>>> Stashed changes
 
     /**
      * moves the character from an input from the user
