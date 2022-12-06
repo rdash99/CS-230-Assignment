@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Tile {
     private char[] squares;
-    private ArrayList<Entity> entityList; // Need to implement Entity class
+    private Entity entity; // Need to implement Entity class
 
     public Tile(char charAt, char charAt2, char charAt3, char charAt4) {
         this.squares = new char[] { charAt, charAt2, charAt3, charAt4 };
@@ -16,10 +16,8 @@ public class Tile {
         return this.squares;
     }
 
-    public Entity[] getEntities() {
-        Entity[] entities = new Entity[entityList.size()];
-        entities = entityList.toArray(entities);
-        return entities;
+    public Entity getEntity() {
+        return this.entity;
     }
 
     public boolean checkColour(char colour) {
@@ -31,16 +29,12 @@ public class Tile {
         return false;
     }
 
-    public void addEntity(Entity entity) {
-        this.entityList.add(entity);
+    public void setEntity(Entity entity) {
+        this.entity = entity;
     }
 
     public void removeEntity(Entity entity) {
-        for (Entity elem : this.entityList) {
-            if (entity.equals(elem)) {
-                entityList.remove(elem);
-            }
-        }
+        this.entity = null;
     }
 
     public String getSquares() {
