@@ -23,8 +23,8 @@ public class Gate extends Entity {
         return gateID;
     }
 
-    public int getGateColour() {
-        return gateColour;
+    public char getGateColour() {
+        return this.gateColour;
     }
 
     public boolean getGateOpen() {
