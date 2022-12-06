@@ -36,7 +36,7 @@ public class Player extends Character {
                     .getEntityName() == "clock") {
                 Clock clock = (Clock) currentBoard.getTile(x, y)
                         .getEntities()[i];
-                timer.addClock(clock);
+                super.currentBoard.getTimer().addClock(clock);
             } else if (currentBoard.getTile(x, y).getEntities()[i]
                     .getEntityName() == "player") {
                 currentBoard.getPlayer().die();
