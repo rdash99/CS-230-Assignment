@@ -20,15 +20,20 @@ public class PauseMenu extends Stage {
     private BorderPane root = new BorderPane();
     private Button resumeBtn = new Button("Resume");
     private Button exitBtn = new Button("Save & Exit");
-    private Text titleText = new Text ("Game is paused");
+    private Text titleText = new Text("Game is paused");
     private VBox vbox = new VBox();
     private HBox hbox = new HBox();
+    private Board board;
+    private String levelName;
 
-    public PauseMenu() {
+    public PauseMenu(Board board, String levelName) {
+        this.board = board;
+        this.levelName = levelName;
         this.initStyle(StageStyle.UNDECORATED);
-        root.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        root.setBackground(new Background(new BackgroundFill(Color.GRAY,
+                CornerRadii.EMPTY, Insets.EMPTY)));
 
-        titleText.setFont(Font.font ("Arial", FontPosture.ITALIC, 18));
+        titleText.setFont(Font.font("Arial", FontPosture.ITALIC, 18));
         titleText.setFill(Color.BLACK);
 
         vbox.getChildren().add(resumeBtn);
@@ -38,7 +43,7 @@ public class PauseMenu extends Stage {
 
         hbox.getChildren().add(titleText);
         hbox.setAlignment(Pos.CENTER);
-        hbox.setPadding(new Insets(20,10,10,10));
+        hbox.setPadding(new Insets(20, 10, 10, 10));
 
         root.setTop(hbox);
         root.setCenter(vbox);
@@ -47,18 +52,17 @@ public class PauseMenu extends Stage {
         this.setTitle("Pause menu");
         this.show();
 
-
         resumeBtn.setOnAction(e -> {
-            //add code to resume ticks
+            // add code to resume ticks
             this.close();
-        } );
+        });
 
         exitBtn.setOnAction(e -> {
-            //add code to save
+            // add code to save
+            FileHandler.saveGame(this.board, this.levelName);
             System.exit(0);
-        } );
+        });
 
     }
-
 
 }
