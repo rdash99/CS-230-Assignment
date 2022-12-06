@@ -156,6 +156,39 @@ public class FileHandler {
     }
 
     /**
+     * Attempts to load a player's data from a file.
+     * 
+     * @param playerName The name of the player
+     * @return String
+     */
+    public static String loadPlayerData(String playerName) {
+        File file = new File(playerName + ".txt");
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        String data = sc.nextLine();
+        sc.close();
+        return data;
+    }
+
+    /**
+     * Instansiate a new item.
+     * 
+     * @param itemName The name of the item
+     * @param x        The x coordinate of the item
+     * @param y        The y coordinate of the item
+     * @param value    The value of the item
+     * @return Item
+     */
+    private static Item loadItem(String itemName, int x, int y, int value) {
+        return new Item(itemName, x, y, value);
+    }
+
+    /**
      * Saves the board to a file.
      * 
      * @param board    the board to save
@@ -299,23 +332,6 @@ public class FileHandler {
     }
 
     /**
-     * Writes a string to a file.
-     * 
-     * @param filename The name of the file
-     * @param data     The data to be written
-     */
-    private static void writeToFile(String filename, String data) {
-        File file = new File(filename + ".txt");
-        try {
-            FileWriter fw = new FileWriter(file);
-            fw.write(data);
-            fw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Returns the x and y size of the board as a string for saving purposes.
      * 
      * @param x The x size of the board
@@ -324,26 +340,6 @@ public class FileHandler {
      */
     private static String saveBoardData(int x, int y) {
         String data = x + " " + y + "\n";
-        return data;
-    }
-
-    /**
-     * Attempts to load a player's data from a file.
-     * 
-     * @param playerName The name of the player
-     * @return String
-     */
-    public static String loadPlayerData(String playerName) {
-        File file = new File(playerName + ".txt");
-        Scanner sc = null;
-        try {
-            sc = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-        String data = sc.nextLine();
-        sc.close();
         return data;
     }
 
@@ -369,16 +365,31 @@ public class FileHandler {
     }
 
     /**
-     * Instansiate a new item.
+     * Saves a board to a file.
      * 
-     * @param itemName The name of the item
-     * @param x        The x coordinate of the item
-     * @param y        The y coordinate of the item
-     * @param value    The value of the item
-     * @return Item
+     * @param board
+     * @param fileName
      */
-    private static Item loadItem(String itemName, int x, int y, int value) {
-        return new Item(itemName, x, y, value);
+    public static void saveGame(Board board, String fileName) {
+        File saveFile = new File(fileName);
+        saveBoard(board, fileName);
+    }
+
+    /**
+     * Writes a string to a file.
+     * 
+     * @param filename The name of the file
+     * @param data     The data to be written
+     */
+    private static void writeToFile(String filename, String data) {
+        File file = new File(filename + ".txt");
+        try {
+            FileWriter fw = new FileWriter(file);
+            fw.write(data);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -390,17 +401,6 @@ public class FileHandler {
     public static Board readLevelFile(String fileName) {
         File file = new File(fileName + ".txt");
         return loadBoard(file);
-    }
-
-    /**
-     * Saves a board to a file.
-     * 
-     * @param board
-     * @param fileName
-     */
-    public static void saveGame(Board board, String fileName) {
-        File saveFile = new File(fileName);
-        saveBoard(board, fileName);
     }
 
     /**
