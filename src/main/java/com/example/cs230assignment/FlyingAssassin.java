@@ -19,4 +19,8 @@ public class FlyingAssassin extends NPC {
     private void validMove() {
 
     }
+
+    public int[] getDirection() {
+        return new int[] { this.xdir, this.ydir };
+    }
 }
