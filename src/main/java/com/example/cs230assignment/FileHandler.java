@@ -258,8 +258,7 @@ public class FileHandler {
             }
         }
         // write the data to a file
-        String data = boardData + tileData + playerData + itemData + entityData
-                + "\n" + levelTime;
+        String data = boardData + tileData + playerData + itemData + entityData + levelTime;
         File file = new File("src/main/resources/saves/" + fileName + ".txt");
         try {
             FileWriter fw = new FileWriter(file);
