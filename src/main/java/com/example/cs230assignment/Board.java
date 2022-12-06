@@ -171,4 +171,7 @@ public class Board extends DrawShape {
     public Tile[][] getTiles() {
         return this.tiles;
     }
+    public void missionFailed(){
+        
+    }
 }
