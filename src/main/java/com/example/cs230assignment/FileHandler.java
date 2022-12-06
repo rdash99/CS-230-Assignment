@@ -18,6 +18,8 @@ import java.util.Scanner;
 public class FileHandler {
 
     /**
+     * This method loads the level from a file.
+     * 
      * @param fileName The level file to process
      * @return The instance of board for that level
      */
@@ -153,6 +155,12 @@ public class FileHandler {
         return new Board(x, y, tiles5, entities, player, timer);
     }
 
+    /**
+     * Saves the board to a file.
+     * 
+     * @param board
+     * @param fileName
+     */
     private static void saveBoard(Board board, String fileName) {
         Player player = board.getPlayer();
         ArrayList<Entity> entities = board.getEntities();
@@ -194,6 +202,12 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Converts an entity to a string representation.
+     * 
+     * @param entity The entity to be saved
+     * @return String The data to be saved
+     */
     private static String saveEntity(Entity entity) {
         int x = entity.getXCoord();
         int y = entity.getYCoord();
@@ -233,18 +247,40 @@ public class FileHandler {
         return data;
     }
 
+    /**
+     * Converts a tile to a string representation.
+     * 
+     * @param tile
+     * @param x
+     * @param y
+     * @return String
+     */
     private static String saveTile(Tile tile, int x, int y) {
         String tileSquareString = tile.getSquares();
         String data = x + " " + y + " " + tileSquareString + " ";
         return data;
     }
 
+    /**
+     * Converts a player to a string representation to save their progress.
+     * 
+     * @param playerID
+     * @param score
+     * @param level
+     * @return String
+     */
     private static String savePlayerData(String playerID, int score,
             ArrayList<String> level) {
         String data = "player " + playerID + " " + score + " " + level;
         return data;
     }
 
+    /**
+     * Converts a player to a string representation in order to save it.
+     * 
+     * @param player
+     * @return String
+     */
     private static String savePlayer(Player player) {
         int x = player.getXCoord();
         int y = player.getYCoord();
@@ -262,6 +298,12 @@ public class FileHandler {
         return data;
     }
 
+    /**
+     * Writes a string to a file.
+     * 
+     * @param filename
+     * @param data
+     */
     private static void writeToFile(String filename, String data) {
         File file = new File(filename + ".txt");
         try {
@@ -273,11 +315,24 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Returns the x and y size of the board as a string for saving purposes.
+     * 
+     * @param x
+     * @param y
+     * @return String
+     */
     private static String saveBoardData(int x, int y) {
         String data = x + " " + y + "\n";
         return data;
     }
 
+    /**
+     * Attempts to load a player's data from a file.
+     * 
+     * @param playerName
+     * @return String
+     */
     public static String loadPlayerData(String playerName) {
         File file = new File(playerName + ".txt");
         Scanner sc = null;
@@ -285,12 +340,19 @@ public class FileHandler {
             sc = new Scanner(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return null;
         }
         String data = sc.nextLine();
         sc.close();
         return data;
     }
 
+    /**
+     * Converts an item to a string representation.
+     * 
+     * @param item
+     * @return String
+     */
     private static String saveItem(Item item) {
         String itemName = item.getEntityName();
         int x = item.getXCoord();
@@ -306,11 +368,22 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Instansiate a new item.
+     * 
+     * @param itemName
+     * @param x
+     * @param y
+     * @param value
+     * @return Item
+     */
     private static Item loadItem(String itemName, int x, int y, int value) {
         return new Item(itemName, x, y, value);
     }
 
     /**
+     * Instansiates a new instance of board.
+     * 
      * @param fileName
      * @return Board
      */
@@ -319,12 +392,20 @@ public class FileHandler {
         return loadBoard(file);
     }
 
+    /**
+     * Saves a board to a file.
+     * 
+     * @param board
+     * @param fileName
+     */
     public static void saveGame(Board board, String fileName) {
         File saveFile = new File(fileName);
         saveBoard(board, fileName);
     }
 
     /**
+     * Reads the level names from a file.
+     * 
      * @return String[]
      */
     public static String[] readLevelNameStrings() {
