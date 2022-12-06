@@ -49,8 +49,8 @@ public class GameGUI extends Stage {
     private int playerX = 0;
     private int playerY = 0;
 
-    public GameGUI() {
-        Board level = FileHandler.readLevelFile("testLevel");
+    public GameGUI(String playerName) {
+        Board level = FileHandler.readLevelFile("testLevel", playerName);
 
         // Build the GUI
         Pane root = buildGUI(level);
