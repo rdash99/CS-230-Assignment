@@ -173,6 +173,7 @@ public class FileHandler {
             for (int j = 0; j < tiles[0].length; j++) {
                 tileData = tileData + saveTile(tiles[i][j], i, j);
             }
+            tileData = tileData + "\n";
         }
         String entityData = "";
         for (int i = 0; i < entities.size(); i++) {
@@ -180,8 +181,9 @@ public class FileHandler {
                 entityData = entityData + saveEntity(entities.get(i));
             }
         }
-        // - Format this differently, x, y,
-        String data = playerData + itemData + boardData + tileData + entityData + levelTime;
+        // write the data to a file
+        String data = boardData + tileData + playerData + itemData + entityData
+                + "\n" + levelTime;
         File file = new File(fileName + ".txt");
         try {
             FileWriter fw = new FileWriter(file);
@@ -196,6 +198,7 @@ public class FileHandler {
         int x = entity.getXCoord();
         int y = entity.getYCoord();
         String entityName = entity.getEntityName();
+        String extraData = "";
         if (entityName.equals("player")) {
             throw new IllegalArgumentException(
                     "Player data should be saved separately, how did this get here?");
@@ -203,8 +206,30 @@ public class FileHandler {
         switch (entityName) {
         case "Floor Following Thief":
             entityName = "fft";
+            break;
+        case "Flying Assassin":
+            entityName = "fla";
+            int[] directions = ((FlyingAssassin) entity).getDirection();
+            extraData = " " + directions[0] + " " + directions[1];
+            break;
+        case "Smart Thief":
+            entityName = "smt";
+            break;
+        case "Gate":
+            entityName = "gte";
+            char colour = ((Gate) entity).getGateColour();
+            extraData = " " + colour;
+            break;
+        case "Door":
+            entityName = "dor";
+            break;
+        case "Key":
+            entityName = "key";
+            colour = ((Key) entity).getKeyColour();
+            extraData = " " + colour;
+            break;
         }
-        String data = x + " " + y + " " + entityName;
+        String data = x + " " + y + " " + entityName + extraData + "\n";
         return data;
     }
 
@@ -233,7 +258,7 @@ public class FileHandler {
         } catch (NullPointerException e) {
             return "";
         }
-        String data = x + " " + y + " " + "ply";
+        String data = x + " " + y + " " + "ply" + "\n";
         return data;
     }
 
@@ -249,12 +274,21 @@ public class FileHandler {
     }
 
     private static String saveBoardData(int x, int y) {
-        String data = x + " " + y;
+        String data = x + " " + y + "\n";
         return data;
     }
 
-    private static String loadPlayerData(String charData) {
-        return null;
+    public static String loadPlayerData(String playerName) {
+        File file = new File(playerName + ".txt");
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        String data = sc.nextLine();
+        sc.close();
+        return data;
     }
 
     private static String saveItem(Item item) {
@@ -266,7 +300,8 @@ public class FileHandler {
         if (isCollected) {
             return "";
         } else {
-            String data = "item " + itemName + " " + x + " " + y + " " + value;
+            String data = "item " + itemName + " " + x + " " + y + " " + value
+                    + "\n";
             return data;
         }
     }
