@@ -91,7 +91,7 @@ public class Player extends Character {
             // checks each tile from the current position to the edge of the
             // board
             for (int i = super.coord[1]; (i <= super.currentBoard
-                    .getHeight() + 1) || i >= -1; i += directionCheckY) {
+                    .getHeight() - 1) || i >= -1; i += directionCheckY) {
                 // checks every colour on the current tile with the tile being
                 // checked
                 for (int colourPos = 0; colourPos <= 4; i++) {
@@ -118,7 +118,7 @@ public class Player extends Character {
             // checks each tile from the current position to the edge of the
             // board
             for (int i = super.coord[1]; (i <= super.currentBoard
-                    .getWidth() + 1) || i >= -1; i += directionCheckX) {
+                    .getWidth() - 1) || i >= -1; i += directionCheckX) {
                 // checks every colour on the current tile with the tile being
                 // checked
                 for (int colourPos = 0; colourPos <= 4; i++) {
