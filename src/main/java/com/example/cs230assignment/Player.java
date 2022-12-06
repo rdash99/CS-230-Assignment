@@ -24,17 +24,19 @@ public class Player extends Character {
     private void interact(Entity interactedEntity) {
         int x = this.coord[0];
         int y = this.coord[1];
-        switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
-            case("item"):
-                this.score += ((Item)(this.currentBoard.getTile(x, y).getEntity())).getItemValue();
-                break;
-            case("key"):
-                Key key = (Key) currentBoard.getTile(x, y).getEntity();
-                key.openGate();
-                break;
-            case("clock"):
-                Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
-                super.currentBoard.getTimer().addClock(clock);
+        if(currentBoard.getTile(x, y).getEntity() != null){
+            switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
+                case("item"):
+                    this.score += ((Item)(this.currentBoard.getTile(x, y).getEntity())).getItemValue();
+                    break;
+                case("key"):
+                    Key key = (Key) currentBoard.getTile(x, y).getEntity();
+                    key.openGate();
+                    break;
+                case("clock"):
+                    Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
+                    super.currentBoard.getTimer().addClock(clock);
+            }
         }
     }
 
@@ -71,16 +73,16 @@ public class Player extends Character {
 
         // converts the directon from a character to a usable coord direction
         switch (direction) {
-        case '1':
+        case 1:
             directionCheckY = 1;
             break;
-        case '3':
+        case 3:
             directionCheckX = 1;
             break;
-        case '4':
+        case 4:
             directionCheckY = -1;
             break;
-        case '2':
+        case 2:
             directionCheckX = -1;
             break;
         }
@@ -88,10 +90,8 @@ public class Player extends Character {
         if (directionCheckY != 0) {
             // checks each tile from the current position to the edge of the
             // board
-
             for (int i = super.coord[1]; (i <= super.currentBoard
-                    .getHeight() - 2) || i >= 0; i += directionCheckY) {
-
+                    .getHeight() - 1) || i >= -1; i += directionCheckY) {
                 // checks every colour on the current tile with the tile being
                 // checked
                 for (int colourPos = 0; colourPos <= 4; i++) {
@@ -118,7 +118,8 @@ public class Player extends Character {
             // checks each tile from the current position to the edge of the
             // board
             for (int i = super.coord[1]; (i <= super.currentBoard
-                    .getWidth() - 2) || i >= 0; i += directionCheckX) {
+                    .getWidth() - 1) || i >= -1; i += directionCheckX) {
+
                 // checks every colour on the current tile with the tile being
                 // checked
                 for (int colourPos = 0; colourPos <= 4; i++) {
