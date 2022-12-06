@@ -12,6 +12,7 @@ public class FlyingAssassin extends NPC {
     }
 
     // was flying assassin kill changed to fit better with boardupdate
+    //kills any npcs
     private void interact() {
 
     }
