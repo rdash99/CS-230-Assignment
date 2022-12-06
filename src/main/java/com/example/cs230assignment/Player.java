@@ -101,7 +101,7 @@ public class Player extends Character {
                                     .getColours()[colourPos])) {
                         super.currentBoard
                                 .getTile(super.coord[0], super.coord[1])
-                                .removeEntity(this);
+                                .removeEntity();
                         interact(super.currentBoard.getTile(coord[0], i).getEntity());
                         super.currentBoard.getTile(super.coord[0], i)
                                 .setEntity(this);
@@ -128,7 +128,7 @@ public class Player extends Character {
                                     .getColours()[colourPos])) {
                         super.currentBoard
                                 .getTile(super.coord[0], super.coord[1])
-                                .removeEntity(this);
+                                .removeEntity();
                         interact(super.currentBoard.getTile(i, coord[1]).getEntity());
                         super.currentBoard.getTile(i, super.coord[1])
                                 .setEntity(this);

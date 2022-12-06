@@ -33,7 +33,7 @@ public class Tile {
         this.entity = entity;
     }
 
-    public void removeEntity(Entity entity) {
+    public void removeEntity() {
         this.entity = null;
     }
 
