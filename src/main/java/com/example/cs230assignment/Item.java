@@ -26,4 +26,8 @@ public class Item extends Entity {
     public void draw() {
         System.out.println("Item");
     }
+
+    public boolean isCollected() {
+        return false;
+    }
 }

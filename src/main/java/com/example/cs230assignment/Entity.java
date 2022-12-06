@@ -11,11 +11,11 @@ import javafx.scene.canvas.GraphicsContext;
  */
 
 public class Entity extends DrawShape {
-    private String entityName;
+    protected String entityName;
     protected int[] coord;
 
     public Entity(String entityNamePass, int x, int y) {
-        this.coord = new int[] {x, y};
+        this.coord = new int[] { x, y };
         this.entityName = entityNamePass;
     }
 
@@ -23,8 +23,12 @@ public class Entity extends DrawShape {
         return this.entityName;
     }
 
-    public int[] getCoord() {
-        return this.coord;
+    public int getXCoord() {
+        return this.coord[0];
+    }
+
+    public int getYCoord() {
+        return this.coord[1];
     }
 
     @Override
