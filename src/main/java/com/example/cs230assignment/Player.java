@@ -32,13 +32,28 @@ public class Player extends Character {
      * 
      * @param direction the direction desired by the movement inputed by the user
      */
-    public void move(char direction) {
+    public void move(int direction) {
         //the x coord direction to check for a valid square
         int directionCheckX = 0;
         //the y coord direction to check for a valid square
         int directionCheckY = 0;
         //converts the directon from a character to a usable coord direction
 
+        switch(direction){
+            case '1':
+                directionCheckY = 1;
+                break;
+            case '3':
+                directionCheckX = 1;
+                break;
+            case '4':
+                directionCheckY = -1;
+                break;
+            case '2':
+                directionCheckX = -1;
+                break;
+        }
+        
         //checks to see if the movement is on the y axis
         if(directionCheckY != 0){
             //checks each tile from the current position to the edge of the board
