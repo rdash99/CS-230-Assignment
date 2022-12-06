@@ -16,7 +16,8 @@ public class Player extends Character {
     }
 
     public void die() {
-
+        this.score = 0;
+        super.currentBoard.missionFailed();
     }
 
     // changed to just interact to overwrite from character
