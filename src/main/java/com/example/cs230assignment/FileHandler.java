@@ -170,11 +170,11 @@ public class FileHandler {
         for (int i = 0; i < entities.size(); i++) {
             int x = entities.get(i).getXCoord();
             int y = entities.get(i).getYCoord();
-            tiles[x][y].addEntity(entities.get(i));
+            tiles[x][y].setEntity(entities.get(i));
         }
         int x = player.getXCoord();
         int y = player.getYCoord();
-        tiles[x][y].addEntity(player);
+        tiles[x][y].setEntity(player);
         return tiles;
     }
 
