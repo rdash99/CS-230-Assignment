@@ -39,16 +39,16 @@ public class Player extends Character {
         int directionCheckY = 0;
         //converts the directon from a character to a usable coord direction
         switch(direction){
-            case 'N':
+            case '1':
                 directionCheckY = 1;
                 break;
-            case 'E':
+            case '3':
                 directionCheckX = 1;
                 break;
-            case 'S':
+            case '4':
                 directionCheckY = -1;
                 break;
-            case 'W':
+            case '2':
                 directionCheckX = -1;
                 break;
         }
