@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * This class defines the FileHandler methods. This is used to read and write
- * files, saving and instantiating the game.
+ * This class defines the FileHandler methods. These are used to read and write
+ * files, saving and loading the game and relevant data.
  * 
  * @author Rowan Dash
  * @version 1.0
@@ -158,7 +158,7 @@ public class FileHandler {
     /**
      * Saves the board to a file.
      * 
-     * @param board the board to save
+     * @param board    the board to save
      * @param fileName the name of the file to save to
      */
     private static void saveBoard(Board board, String fileName) {
