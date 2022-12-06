@@ -164,6 +164,14 @@ public class Board extends DrawShape {
         gc.drawImage(playerImg, playerXCoord + 25, playerYCoord + 25);
     }
 
+    public void setEntities(ArrayList<Entity> entities) {
+        this.entities = entities;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public ArrayList<Entity> getEntities() {
         return this.entities;
     }
