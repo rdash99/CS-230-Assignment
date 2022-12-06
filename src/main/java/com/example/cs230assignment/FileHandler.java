@@ -158,8 +158,8 @@ public class FileHandler {
     /**
      * Saves the board to a file.
      * 
-     * @param board
-     * @param fileName
+     * @param board the board to save
+     * @param fileName the name of the file to save to
      */
     private static void saveBoard(Board board, String fileName) {
         Player player = board.getPlayer();
@@ -179,7 +179,7 @@ public class FileHandler {
         String tileData = "";
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[0].length; j++) {
-                tileData = tileData + saveTile(tiles[i][j], i, j);
+                tileData = tileData + saveTile(tiles[i][j]);
             }
             tileData = tileData + "\n";
         }
@@ -250,23 +250,23 @@ public class FileHandler {
     /**
      * Converts a tile to a string representation.
      * 
-     * @param tile
-     * @param x
-     * @param y
+     * @param tile The tile to be saved
+     * @param x    The x coordinate of the tile
+     * @param y    The y coordinate of the tile
      * @return String
      */
-    private static String saveTile(Tile tile, int x, int y) {
+    private static String saveTile(Tile tile) {
         String tileSquareString = tile.getSquares();
-        String data = x + " " + y + " " + tileSquareString + " ";
+        String data = tileSquareString + " ";
         return data;
     }
 
     /**
      * Converts a player to a string representation to save their progress.
      * 
-     * @param playerID
-     * @param score
-     * @param level
+     * @param playerID The name of the player
+     * @param score    The player's score
+     * @param level    The player's completed levels
      * @return String
      */
     private static String savePlayerData(String playerID, int score,
@@ -278,7 +278,7 @@ public class FileHandler {
     /**
      * Converts a player to a string representation in order to save it.
      * 
-     * @param player
+     * @param player The player to be saved
      * @return String
      */
     private static String savePlayer(Player player) {
@@ -301,8 +301,8 @@ public class FileHandler {
     /**
      * Writes a string to a file.
      * 
-     * @param filename
-     * @param data
+     * @param filename The name of the file
+     * @param data     The data to be written
      */
     private static void writeToFile(String filename, String data) {
         File file = new File(filename + ".txt");
@@ -318,8 +318,8 @@ public class FileHandler {
     /**
      * Returns the x and y size of the board as a string for saving purposes.
      * 
-     * @param x
-     * @param y
+     * @param x The x size of the board
+     * @param y The y size of the board
      * @return String
      */
     private static String saveBoardData(int x, int y) {
@@ -330,7 +330,7 @@ public class FileHandler {
     /**
      * Attempts to load a player's data from a file.
      * 
-     * @param playerName
+     * @param playerName The name of the player
      * @return String
      */
     public static String loadPlayerData(String playerName) {
@@ -350,7 +350,7 @@ public class FileHandler {
     /**
      * Converts an item to a string representation.
      * 
-     * @param item
+     * @param item The item to be converted
      * @return String
      */
     private static String saveItem(Item item) {
@@ -371,10 +371,10 @@ public class FileHandler {
     /**
      * Instansiate a new item.
      * 
-     * @param itemName
-     * @param x
-     * @param y
-     * @param value
+     * @param itemName The name of the item
+     * @param x        The x coordinate of the item
+     * @param y        The y coordinate of the item
+     * @param value    The value of the item
      * @return Item
      */
     private static Item loadItem(String itemName, int x, int y, int value) {
