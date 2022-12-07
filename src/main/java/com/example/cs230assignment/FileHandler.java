@@ -197,7 +197,7 @@ public class FileHandler {
      * @return String
      */
     public static String loadPlayerData(String playerName) {
-        File file = new File(playerName + ".txt");
+        File file = new File("src/main/resources/profiles/" + playerName + ".txt");
         Scanner sc = null;
         try {
             sc = new Scanner(file);
