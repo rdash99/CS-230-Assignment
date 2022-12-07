@@ -100,7 +100,7 @@ public class Player extends Character {
             //not off the edge and is a contains an entity;
             if(!(tempCoordX+x > super.currentBoard.getWidth()-1 || x+tempCoordX < 0 
                 ||tempCoordY+y > super.currentBoard.getHeight()-1 || y+tempCoordY < 0 ) 
-                && super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity() == null){
+                && super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity() != null){
                 // if the entity is a bomb execute bomb.explodeBomb();
                 if(super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity().getEntityName() == "Bomb"){
                     //the bomb on an adjacent tile
