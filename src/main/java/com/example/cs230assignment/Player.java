@@ -1,17 +1,22 @@
 package com.example.cs230assignment;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 
 public class Player extends Character {
     private int score;
     private ArrayList<String> levelComp;
     private String playerName;
+    private Image playerImg;
 
     public Player(String name, int x, int y) {
         super("Player", x, y);
         this.playerName = name;
         this.score = 0;
         this.levelComp = new ArrayList<String>();
+        this.playerImg = new Image("player.png");
         loadProfile();
     }
 
@@ -68,7 +73,7 @@ public class Player extends Character {
      * @param direction the direction desired by the movement inputed by the
      *                  user
      */
-    public void move(int direction) {
+    public void move(GraphicsContext gc, int direction) {
         // the x coord direction to check for a valid square
         int directionCheckX = 0;
         // the y coord direction to check for a valid square
@@ -79,14 +84,14 @@ public class Player extends Character {
             case 1:
                 directionCheckY = 1;
                 break;
-            case 4:
-                directionCheckX = 1;
+            case 2:
+                directionCheckX = -1;
                 break;
             case 3:
                 directionCheckY = -1;
                 break;
-            case 2:
-                directionCheckX = -1;
+            case 4:
+                directionCheckX = 1;
                 break;
         }
         // checks to see if the movement is on the y axis
@@ -148,6 +153,7 @@ public class Player extends Character {
                 }
             }
         }
+        currentBoard.getTimer().boardUpdate(gc, this);
     }
 
     public ArrayList<String> getLevels() {
@@ -156,6 +162,10 @@ public class Player extends Character {
 
     public int getScore() {
         return this.score;
+    }
+
+    public Image getImage() {
+        return this.playerImg;
     }
 
 }

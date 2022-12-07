@@ -1,5 +1,7 @@
 package com.example.cs230assignment;
 
+import javafx.scene.image.Image;
+
 public class Character extends Entity {
     protected Board currentBoard;
 

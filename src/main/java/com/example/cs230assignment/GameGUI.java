@@ -68,16 +68,20 @@ public class GameGUI extends Stage {
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                 case W:
-                    level.getPlayer().move(1);
+                    level.getPlayer().move(gc, 1);
+                    System.out.println(level.getPlayer().getYCoord());
                     break;
                 case A:
-                    level.getPlayer().move(2);
+                    level.getPlayer().move(gc, 2);
+                    System.out.println(level.getPlayer().getXCoord());
                     break;
                 case S:
-                    level.getPlayer().move(3);
+                    level.getPlayer().move(gc, 3);
+                    System.out.println(level.getPlayer().getYCoord());
                     break;
                 case D:
-                    level.getPlayer().move(4);
+                    level.getPlayer().move(gc, 4);
+                    System.out.println(level.getPlayer().getXCoord());
                     break;
                 }
             }
