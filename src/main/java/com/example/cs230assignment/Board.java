@@ -155,13 +155,11 @@ public class Board extends DrawShape {
                 } else if (colourArray[3] == 'y') {
                     gc.drawImage(yellowSquareImg, xPos, yPos + 50);
                 }
+                for (Entity elem : getEntities()) {
+                    getTimer().boardUpdate(gc, elem);
+                }
             }
         }
-
-        // Draw player on board filled in purple
-        int playerXCoord = this.player.getXCoord();
-        int playerYCoord = this.player.getYCoord();
-        gc.drawImage(playerImg, playerXCoord + 25, playerYCoord + 25);
     }
 
     public void setEntities(ArrayList<Entity> entities) {

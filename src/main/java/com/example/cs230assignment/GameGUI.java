@@ -61,26 +61,34 @@ public class GameGUI extends Stage {
             }
         });
 
+        System.out.println(level.getTile(2, level.getPlayer().getXCoord()).checkColour(level.getTile(3, level.getPlayer().getXCoord()).getColours()[3]));
+        //System.out.println(level.getTile(level.getPlayer().getXCoord(),2).getColours()[3]);
+        //System.out.println(level.getTile(level.getPlayer().getXCoord(),3).getColours()[3]);
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+        System.out.printf("Start coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                 case W:
-                    level.getPlayer().move(1);
+                    level.getPlayer().move(gc, 1);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
                     break;
                 case A:
-                    level.getPlayer().move(2);
+                    level.getPlayer().move(gc, 2);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
                     break;
                 case S:
-                    level.getPlayer().move(3);
+                    level.getPlayer().move(gc, 3);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
                     break;
                 case D:
-                    level.getPlayer().move(4);
+                    level.getPlayer().move(gc, 4);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
                     break;
                 }
-            }
+           }
         });
 
         // Display the scene on the stage

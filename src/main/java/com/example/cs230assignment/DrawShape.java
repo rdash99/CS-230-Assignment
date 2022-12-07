@@ -1,6 +1,7 @@
 package com.example.cs230assignment;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  * This class is used to force all classes below it to implement the draw
@@ -11,5 +12,5 @@ import javafx.scene.canvas.GraphicsContext;
  */
 
 public abstract class DrawShape {
-    public abstract void draw(GraphicsContext g);
+    public abstract void draw(GraphicsContext gc);
 }
