@@ -12,8 +12,11 @@ import java.lang.Math.*;
  */
 
 public class Player extends Character {
+    //score of the player on the current mission
     private int score;
+    //all the levels the player has completed
     private ArrayList<String> levelComp;
+    //player name
     private String playerName;
 
     /**
@@ -24,6 +27,7 @@ public class Player extends Character {
      * @param y spawning ycoord for the player
      */
     public Player(String name, int x, int y) {
+        //constructor for character
         super("Player", x, y);
         this.playerName = name;
         this.score = 0;
@@ -47,21 +51,21 @@ public class Player extends Character {
      */
     private void interact(int x, int y) {
         //checks to see if there is an item on the next square
-        if(currentBoard.getTile(x, y).getEntity() != null){
+        if(super.currentBoard.getTile(x, y).getEntity() != null){
             //switch statement to find out what entity is on the next square
-            switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
+            switch (super.currentBoard.getTile(x, y).getEntity().getEntityName()){
                 case("Item"):
-                    this.score += ((Item)(this.currentBoard.getTile(x, y).getEntity())).getItemValue();
+                    this.score += ((Item)(super.currentBoard.getTile(x, y).getEntity())).getItemValue();
                     break;
                 case("Key"):
-                    Key key = (Key) currentBoard.getTile(x, y).getEntity();
+                    Key key = (Key) super.currentBoard.getTile(x, y).getEntity();
                     key.openGate();
                     break;
                 case("Clock"):
-                    Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
+                    Clock clock = (Clock) super.currentBoard.getTile(x, y).getEntity();
                     super.currentBoard.getTimer().addClock(clock);
                 case("Door"):
-                    Door door = (Door) currentBoard.getTile(x, y).getEntity();
+                    Door door = (Door) super.currentBoard.getTile(x, y).getEntity();
                     door.endMission();
             }
         }
@@ -82,9 +86,9 @@ public class Player extends Character {
             }
             //not off the edge and is a bomb run bomb.explodeBomb();
             if(!(tempCoordX+x > super.currentBoard.getWidth()-1 || x+tempCoordX < 0 
-                ||tempCoordY+y > super.currentBoard.getHeight()-1 || x+tempCoordX < 0 ) 
-                && currentBoard.getTile(tempCoordX, tempCoordY).getEntity().getEntityName() == "Bomb"){
-                Bomb bomb = (Bomb) currentBoard.getTile(tempCoordX, tempCoordY).getEntity();
+                ||tempCoordY+y > super.currentBoard.getHeight()-1 || y+tempCoordY < 0 ) 
+                && super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity().getEntityName() == "Bomb"){
+                Bomb bomb = (Bomb) super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity();
                 bomb.explodeBomb();
             }
         }
