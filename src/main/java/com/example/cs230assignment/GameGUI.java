@@ -57,30 +57,35 @@ public class GameGUI extends Stage {
 
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
-                new PauseMenu(level, "level name");
+                new PauseMenu(level, "testLevel");
             }
         });
 
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+        System.out.printf("Start coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch(event.getCode()) {
-                    case W:
-                        level.getPlayer().move(1);
-                        break;
-                    case A:
-                        level.getPlayer().move(2);
-                        break;
-                    case S:
-                        level.getPlayer().move(3);
-                        break;
-                    case D:
-                        level.getPlayer().move(4);
-                        break;
+                switch (event.getCode()) {
+                case W:
+                    level.getPlayer().move(gc, 1);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
+                    break;
+                case A:
+                    level.getPlayer().move(gc, 2);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
+                    break;
+                case S:
+                    level.getPlayer().move(gc, 3);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
+                    break;
+                case D:
+                    level.getPlayer().move(gc, 4);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
+                    break;
                 }
-            }
+           }
         });
 
         // Display the scene on the stage
@@ -151,7 +156,6 @@ public class GameGUI extends Stage {
 
         // Finally, return the border pane we built up.
         return root;
-
 
     }
 }

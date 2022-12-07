@@ -1,6 +1,7 @@
 package com.example.cs230assignment;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  * Class that acts as a controller, updating the level every so often with the
@@ -8,7 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
  *
  * Level time remaining is also displayed on the board in this class
  */
-public class Timer extends DrawShape {
+public class Timer {
     private int levelTime;
     private int initTime;
 
@@ -17,8 +18,8 @@ public class Timer extends DrawShape {
         this.initTime = levelTime;
     }
 
-    public void boardUpdate() {
-
+    public void boardUpdate(GraphicsContext gc, Entity entity) {
+        redraw(gc, entity);
     }
 
     public void addClock(Clock clock) {
@@ -30,9 +31,22 @@ public class Timer extends DrawShape {
      *
      * @param gc the reference to the canvas to be drawn on
      */
-    @Override
-    public void draw(GraphicsContext gc) {
+    public void redraw(GraphicsContext gc, Entity entity) {
+        Image playerImg = new Image("player.png");
+        int xCoord = (entity.getXCoord());
+        int yCoord = (entity.getYCoord());
+        int xDefaultOffset = 25;
+        int yDefaultOffset = 25;
 
+        for (int i = 0; i < xCoord; i++) {
+            xDefaultOffset += 100;
+        }
+        for (int i = 0; i < yCoord; i++) {
+            yDefaultOffset += 100;
+        }
+        if (entity.getEntityName().equals("Player")) {
+            gc.drawImage(playerImg, xCoord + xDefaultOffset, yDefaultOffset);
+        }
     }
 
     public int getLevelTime() {

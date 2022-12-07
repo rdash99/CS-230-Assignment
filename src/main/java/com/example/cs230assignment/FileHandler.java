@@ -197,7 +197,7 @@ public class FileHandler {
      * @return String
      */
     public static String loadPlayerData(String playerName) {
-        File file = new File(playerName + ".txt");
+        File file = new File("src/main/resources/profiles/" + playerName + ".txt");
         Scanner sc = null;
         try {
             sc = new Scanner(file);
@@ -258,8 +258,7 @@ public class FileHandler {
             }
         }
         // write the data to a file
-        String data = boardData + tileData + playerData + itemData + entityData
-                + "\n" + levelTime;
+        String data = boardData + tileData + playerData + itemData + entityData + levelTime;
         File file = new File("src/main/resources/saves/" + fileName + ".txt");
         try {
             FileWriter fw = new FileWriter(file);

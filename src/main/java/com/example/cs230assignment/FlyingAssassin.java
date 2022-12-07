@@ -6,13 +6,13 @@ public class FlyingAssassin extends NPC {
 
     public FlyingAssassin(double movementTimerPass, int x, int y, int xdir,
             int ydir) {
-        super("Flying Assasin", movementTimerPass, x, y);
+        super("Flying Assassin", movementTimerPass, x, y);
         this.xdir = xdir;
         this.ydir = ydir;
     }
 
     // was flying assassin kill changed to fit better with boardupdate
-    //kills any npcs
+    // kills any npcs
     private void interact() {
 
     }
