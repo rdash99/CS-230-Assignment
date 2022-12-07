@@ -80,78 +80,116 @@ public class Player extends Character {
         int directionCheckY = 0;
 
         // converts the directon from a character to a usable coord direction
+        Boolean foundSquare = false;
         switch (direction) {
             case 1:
-                directionCheckY = 1;
+                // checks each tile from the current position to the edge of the
+                // board
+                for (int i = super.coord[1] - 1; ((i < super.currentBoard
+                        .getHeight()) && i > -1) && foundSquare == false; i += directionCheckY) {
+                    // checks every colour on the current tile with the tile being
+                    // checked
+                    for (int colourPos = 0; colourPos < 4; colourPos++) {
+                        // compares a colour on the current tile and the tile being
+                        // checked
+                        if (super.currentBoard.getTile(super.coord[0], i)
+                                .checkColour(super.currentBoard
+                                        .getTile(super.coord[0], super.coord[1])
+                                        .getColours()[colourPos])) {
+                            super.currentBoard
+                                    .getTile(super.coord[0], super.coord[1])
+                                    .removeEntity();
+                            interact(super.currentBoard.getTile(super.coord[0], i)
+                                    .getEntity());
+                            super.currentBoard.getTile(super.coord[0], i)
+                                    .setEntity(this);
+                            super.coord[1] = i;
+                            foundSquare = true;
+                        }
+                    }
+                }
                 break;
             case 2:
-                directionCheckX = -1;
+                for (int i = super.coord[0] - 1; ((i < super.currentBoard
+                        .getWidth()) && i > -1) && foundSquare == false; i += directionCheckX) {
+
+
+                    // checks every colour on the current tile with the tile being
+                    // checked
+                    for (int colourPos = 0; colourPos < 4; colourPos++) {
+                        // compares a colour on the current tile and the tile being
+                        // checked
+                        if (super.currentBoard.getTile(i, super.coord[1])
+                                .checkColour(super.currentBoard
+                                        .getTile(super.coord[0], super.coord[1])
+                                        .getColours()[colourPos])) {
+                            super.currentBoard
+                                    .getTile(super.coord[0], super.coord[1])
+                                    .removeEntity();
+                            interact(super.currentBoard.getTile(i, super.coord[1])
+                                    .getEntity());
+                            super.currentBoard.getTile(i, super.coord[1])
+                                    .setEntity(this);
+                            super.coord[0] = i;
+                            foundSquare = true;
+                        }
+                    }
+                }
                 break;
             case 3:
-                directionCheckY = -1;
+                // checks each tile from the current position to the edge of the
+                // board
+                for (int i = super.coord[1] + 1; ((i < super.currentBoard
+                        .getHeight()) && i > -1) && foundSquare == false; i += directionCheckY) {
+                    // checks every colour on the current tile with the tile being
+                    // checked
+                    for (int colourPos = 0; colourPos < 4; colourPos++) {
+                        // compares a colour on the current tile and the tile being
+                        // checked
+                        if (super.currentBoard.getTile(super.coord[0], i)
+                                .checkColour(super.currentBoard
+                                        .getTile(super.coord[0], super.coord[1])
+                                        .getColours()[colourPos])) {
+                            super.currentBoard
+                                    .getTile(super.coord[0], super.coord[1])
+                                    .removeEntity();
+                            interact(super.currentBoard.getTile(super.coord[0], i)
+                                    .getEntity());
+                            super.currentBoard.getTile(super.coord[0], i)
+                                    .setEntity(this);
+                            super.coord[1] = i;
+                            foundSquare = true;
+                        }
+                    }
+                }
                 break;
             case 4:
-                directionCheckX = 1;
-                break;
-        }
-        // checks to see if the movement is on the y axis
-        if (directionCheckY != 0) {
-            // checks each tile from the current position to the edge of the
-            // board
-            Boolean foundSquare = false;
-            for (int i = super.coord[1] + 1; ((i < super.currentBoard
-                    .getHeight()) && i > -1) && foundSquare == false; i += directionCheckY) {
-                // checks every colour on the current tile with the tile being
-                // checked
-                for (int colourPos = 0; colourPos < 4; colourPos++) {
-                    // compares a colour on the current tile and the tile being
-                    // checked
-                    if (super.currentBoard.getTile(super.coord[0], i)
-                            .checkColour(super.currentBoard
-                                    .getTile(super.coord[0], super.coord[1])
-                                    .getColours()[colourPos])) {
-                        super.currentBoard
-                                .getTile(super.coord[0], super.coord[1])
-                                .removeEntity();
-                        interact(super.currentBoard.getTile(coord[0], i)
-                                .getEntity());
-                        super.currentBoard.getTile(super.coord[0], i)
-                                .setEntity(this);
-                        super.coord[1] = i;
-                        foundSquare = true;
-                    }
-                }
-            }
-        }
-        // checks to see if the movement is on the x axis
-        if (directionCheckX != 0) {
-            // checks each tile from the current position to the edge of the
-            // board
-            Boolean foundSquare = false;
-            for (int i = super.coord[1] + 1; ((i < super.currentBoard
-                    .getWidth()) && i > -1) && foundSquare == false; i += directionCheckX) {
+                for (int i = super.coord[0] + 1; ((i < super.currentBoard
+                        .getWidth()) && i > -1) && foundSquare == false; i += directionCheckX) {
 
-                // checks every colour on the current tile with the tile being
-                // checked
-                for (int colourPos = 0; colourPos < 4; colourPos++) {
-                    // compares a colour on the current tile and the tile being
+
+                    // checks every colour on the current tile with the tile being
                     // checked
-                    if (super.currentBoard.getTile(i, super.coord[1])
-                            .checkColour(super.currentBoard
+                    for (int colourPos = 0; colourPos < 4; colourPos++) {
+                        // compares a colour on the current tile and the tile being
+                        // checked
+                        if (super.currentBoard.getTile(i, super.coord[1])
+                                .checkColour(super.currentBoard
+                                        .getTile(super.coord[0], super.coord[1])
+                                        .getColours()[colourPos])) {
+                            super.currentBoard
                                     .getTile(super.coord[0], super.coord[1])
-                                    .getColours()[colourPos])) {
-                        super.currentBoard
-                                .getTile(super.coord[0], super.coord[1])
-                                .removeEntity();
-                        interact(super.currentBoard.getTile(i, coord[1])
-                                .getEntity());
-                        super.currentBoard.getTile(i, super.coord[1])
-                                .setEntity(this);
-                        super.coord[0] = i;
-                        foundSquare = true;
+                                    .removeEntity();
+                            interact(super.currentBoard.getTile(i, super.coord[1])
+                                    .getEntity());
+                            super.currentBoard.getTile(i, super.coord[1])
+                                    .setEntity(this);
+                            super.coord[0] = i;
+                            foundSquare = true;
+                        }
                     }
+                    break;
                 }
-            }
         }
         currentBoard.getTimer().boardUpdate(gc, this);
     }

@@ -24,6 +24,10 @@ public class Entity extends DrawShape {
         return this.entityName;
     }
 
+    public int[] getCoord() {
+        return this.coord;
+    }
+
     public int getXCoord() {
         return this.coord[0];
     }

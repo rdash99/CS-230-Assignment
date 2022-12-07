@@ -33,9 +33,10 @@ public class Timer {
      */
     public void redraw(GraphicsContext gc, Entity entity) {
         Image playerImg = new Image("player.png");
-        int XCoord = entity.getXCoord();
-        int YCoord = entity.getYCoord();
-        gc.drawImage(playerImg, XCoord + 25, YCoord + 25);
+        int xCoord = entity.getXCoord();
+        int yCoord = entity.getYCoord();
+
+        gc.drawImage(playerImg, xCoord + 25, yCoord + 25);
     }
 
     public int getLevelTime() {
