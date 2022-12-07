@@ -54,17 +54,25 @@ public class Player extends Character {
         if(super.currentBoard.getTile(x, y).getEntity() != null){
             //switch statement to find out what entity is on the next square
             switch (super.currentBoard.getTile(x, y).getEntity().getEntityName()){
+                //interact with an item entity
                 case("Item"):
+                    //adding the score to player from the item
                     this.score += ((Item)(super.currentBoard.getTile(x, y).getEntity())).getItemValue();
                     break;
+                //interact with a key entity
                 case("Key"):
+                    //key being interacted with
                     Key key = (Key) super.currentBoard.getTile(x, y).getEntity();
                     key.openGate();
                     break;
+                //interact with a clock entity
                 case("Clock"):
+                    //clock being interacted with
                     Clock clock = (Clock) super.currentBoard.getTile(x, y).getEntity();
                     super.currentBoard.getTimer().addClock(clock);
+                //interact with a door entity
                 case("Door"):
+                    //door being interacted with
                     Door door = (Door) super.currentBoard.getTile(x, y).getEntity();
                     door.endMission();
             }
@@ -74,7 +82,9 @@ public class Player extends Character {
             //  6  0  2
             //  5  4  3
         for(int i = 1; i < 9; i++){
+            //the xcoord of an adjacent tile
             int tempCoordX = 0;
+            //the ycoord of an adjacent tile
             int tempCoordY = 0;
             //checks to see if i isnt 8 or 4 if it isnt anything above 4 becomes -1 anything below 1
             if(i%4 != 0){
@@ -87,13 +97,17 @@ public class Player extends Character {
             }else if(i < 6 && i > 2){
                 tempCoordY = -1;
             }
-            //not off the edge and is a bomb run bomb.explodeBomb();
+            //not off the edge and is a contains an entity;
             if(!(tempCoordX+x > super.currentBoard.getWidth()-1 || x+tempCoordX < 0 
                 ||tempCoordY+y > super.currentBoard.getHeight()-1 || y+tempCoordY < 0 ) 
-                && super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity().getEntityName() == "Bomb"){
-                Bomb bomb = (Bomb) super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity();
-                //starts the bomb detination
-                bomb.explodeBomb();
+                && super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity() == null){
+                // if the entity is a bomb execute bomb.explodeBomb();
+                if(super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity().getEntityName() == "Bomb"){
+                    //the bomb on an adjacent tile
+                    Bomb bomb = (Bomb) super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity();
+                    //starts the bomb detination
+                    bomb.explodeBomb();
+                }
             }
         }
     }
@@ -102,15 +116,19 @@ public class Player extends Character {
     private void addScore(Item interactedItem) {
 
     }
-
+    /**
+     * loads a profile to put into player from a file
+     */
     private void loadProfile() {
         String profile = FileHandler.loadPlayerData(playerName);
+        //checks to see if the player has existed before to load the profile
         if (profile != null) {
             String[] profileData = profile.split(" ");
             this.score = Integer.parseInt(profileData[0]);
             for (int i = 1; i < profileData.length; i++) {
                 this.levelComp.add(profileData[i]);
             }
+        //creates a new profile if one isnt found
         }else{
             levelComp.add("level1");
         }
