@@ -74,28 +74,19 @@ public class Player extends Character {
      *                  user
      */
     public void move(GraphicsContext gc, int direction) {
-        // the x coord direction to check for a valid square
-        int directionCheckX = 0;
-        // the y coord direction to check for a valid square
-        int directionCheckY = 0;
-
-        // converts the directon from a character to a usable coord direction
         Boolean foundSquare = false;
         switch (direction) {
             case 1:
                 // checks each tile from the current position to the edge of the
                 // board
                 for (int i = super.coord[1] - 1; ((i < super.currentBoard
-                        .getHeight()) && i > -1) && foundSquare == false; i += directionCheckY) {
+                        .getHeight()) && i > -1) && !foundSquare; i--) {
                     // checks every colour on the current tile with the tile being
                     // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // compares a colour on the current tile and the tile being
                         // checked
-                        if (super.currentBoard.getTile(super.coord[0], i)
-                                .checkColour(super.currentBoard
-                                        .getTile(super.coord[0], super.coord[1])
-                                        .getColours()[colourPos])) {
+                        if (super.currentBoard.getTile(i, super.coord[0]).checkColour(super.currentBoard.getTile(super.coord[1], super.coord[0]).getColours()[colourPos])) {
                             super.currentBoard
                                     .getTile(super.coord[0], super.coord[1])
                                     .removeEntity();
@@ -111,17 +102,15 @@ public class Player extends Character {
                 break;
             case 2:
                 for (int i = super.coord[0] - 1; ((i < super.currentBoard
-                        .getWidth()) && i > -1) && foundSquare == false; i += directionCheckX) {
-
-
+                        .getWidth()) && i > -1) && !foundSquare; i--) {
                     // checks every colour on the current tile with the tile being
                     // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // compares a colour on the current tile and the tile being
                         // checked
-                        if (super.currentBoard.getTile(i, super.coord[1])
+                        if (super.currentBoard.getTile(super.coord[1], i)
                                 .checkColour(super.currentBoard
-                                        .getTile(super.coord[0], super.coord[1])
+                                        .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
                             super.currentBoard
                                     .getTile(super.coord[0], super.coord[1])
@@ -137,18 +126,16 @@ public class Player extends Character {
                 }
                 break;
             case 3:
-                // checks each tile from the current position to the edge of the
-                // board
                 for (int i = super.coord[1] + 1; ((i < super.currentBoard
-                        .getHeight()) && i > -1) && foundSquare == false; i += directionCheckY) {
+                        .getHeight()) && i > -1) && !foundSquare; i++) {
                     // checks every colour on the current tile with the tile being
                     // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // compares a colour on the current tile and the tile being
                         // checked
-                        if (super.currentBoard.getTile(super.coord[0], i)
+                        if (super.currentBoard.getTile(i, super.coord[0])
                                 .checkColour(super.currentBoard
-                                        .getTile(super.coord[0], super.coord[1])
+                                        .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
                             super.currentBoard
                                     .getTile(super.coord[0], super.coord[1])
@@ -165,17 +152,15 @@ public class Player extends Character {
                 break;
             case 4:
                 for (int i = super.coord[0] + 1; ((i < super.currentBoard
-                        .getWidth()) && i > -1) && foundSquare == false; i += directionCheckX) {
-
-
+                        .getWidth()) && i > -1) && !foundSquare; i++) {
                     // checks every colour on the current tile with the tile being
                     // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // compares a colour on the current tile and the tile being
                         // checked
-                        if (super.currentBoard.getTile(i, super.coord[1])
+                        if (super.currentBoard.getTile(super.coord[1], i)
                                 .checkColour(super.currentBoard
-                                        .getTile(super.coord[0], super.coord[1])
+                                        .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
                             super.currentBoard
                                     .getTile(super.coord[0], super.coord[1])
@@ -188,8 +173,8 @@ public class Player extends Character {
                             foundSquare = true;
                         }
                     }
-                    break;
                 }
+                break;
         }
         currentBoard.getTimer().boardUpdate(gc, this);
     }
