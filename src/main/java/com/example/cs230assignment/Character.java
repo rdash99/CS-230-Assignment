@@ -17,27 +17,21 @@ public class Character extends Entity {
     protected void interact(Timer timer) {
         int x = this.coord[0];
         int y = this.coord[1];
-        for (int i = 0; i < currentBoard.getTile(x, y)
-                .getEntities().length; i++) {
-            if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "item") {
-                currentBoard.getTile(x, y).removeEntity(
-                        currentBoard.getTile(x, y).getEntities()[i]);
-            } else if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "key") {
-                Key key = (Key) currentBoard.getTile(x, y).getEntities()[i];
+        switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
+            case("item"):
+                this.currentBoard.getTile(x, y).removeEntity();
+                break;
+            case("key"):
+                Key key = (Key) currentBoard.getTile(x, y).getEntity();
                 key.openGate();
-                currentBoard.getTile(x, y).removeEntity(
-                        currentBoard.getTile(x, y).getEntities()[i]);
-            } else if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "clock") {
-                Clock clock = (Clock) currentBoard.getTile(x, y)
-                        .getEntities()[i];
-                timer.addClock(clock);
-            } else if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "player") {
+                break;
+            case("clock"):
+                Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
+                this.currentBoard.getTimer().addClock(clock);
+                break;
+            case("player"):
                 currentBoard.getPlayer().die();
-            }
+                break;
         }
     }
     // protected void drawMove(){
