@@ -76,19 +76,23 @@ public class Player extends Character {
         for(int i = 1; i < 9; i++){
             int tempCoordX = 0;
             int tempCoordY = 0;
+            //checks to see if i isnt 8 or 4 if it isnt anything above 4 becomes -1 anything below 1
             if(i%4 != 0){
                 tempCoordX = 1 + (int)-(Math.floor((double)(i/4.0))*2);
             }
+            //if i coordinates to the numbers for postive y set y to 1
             if(i > 6 || i == 1){
                 tempCoordY = 1;
+            //if i coordinates to the numbers for negative y set y to -1
             }else if(i < 6 && i > 2){
-                tempCoordY = 0;
+                tempCoordY = -1;
             }
             //not off the edge and is a bomb run bomb.explodeBomb();
             if(!(tempCoordX+x > super.currentBoard.getWidth()-1 || x+tempCoordX < 0 
                 ||tempCoordY+y > super.currentBoard.getHeight()-1 || y+tempCoordY < 0 ) 
                 && super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity().getEntityName() == "Bomb"){
                 Bomb bomb = (Bomb) super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity();
+                //starts the bomb detination
                 bomb.explodeBomb();
             }
         }
