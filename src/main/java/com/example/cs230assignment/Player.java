@@ -97,14 +97,15 @@ public class Player extends Character {
             }else if(i < 6 && i > 2){
                 tempCoordY = -1;
             }
+            //is off the edge of the board does nothing
+            if((tempCoordX+x > super.currentBoard.getWidth()-1 || x+tempCoordX < 0 
+                ||tempCoordY+y > super.currentBoard.getHeight()-1 || y+tempCoordY < 0 )){
             //not off the edge and is a contains an entity;
-            if(!(tempCoordX+x > super.currentBoard.getWidth()-1 || x+tempCoordX < 0 
-                ||tempCoordY+y > super.currentBoard.getHeight()-1 || y+tempCoordY < 0 ) 
-                && super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity() != null){
+            }else if(super.currentBoard.getTile(x+tempCoordX, y+tempCoordY).getEntity() != null){
                 // if the entity is a bomb execute bomb.explodeBomb();
-                if(super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity().getEntityName() == "Bomb"){
+                if(super.currentBoard.getTile(x+tempCoordX, y+tempCoordY).getEntity().getEntityName() == "Bomb"){
                     //the bomb on an adjacent tile
-                    Bomb bomb = (Bomb) super.currentBoard.getTile(tempCoordX, tempCoordY).getEntity();
+                    Bomb bomb = (Bomb) super.currentBoard.getTile(x+tempCoordX, y+tempCoordY).getEntity();
                     //starts the bomb detination
                     bomb.explodeBomb();
                 }
