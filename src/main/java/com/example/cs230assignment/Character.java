@@ -1,44 +1,40 @@
 package com.example.cs230assignment;
 
+import javafx.scene.image.Image;
+
 public class Character extends Entity {
+    protected Board currentBoard;
+
     public Character(String name, int x, int y) {
         super(name, x, y);
     }
-
-    // moved up from NPC as the player will also need Board
-    protected Board currentBoard;
-
-    protected void move() {
-
+    public void boardSet(Board freshBoard){
+        this.currentBoard = freshBoard;
     }
 
-    protected void savePosition() {
-
+    public void setBoard(Board board) {
+        this.currentBoard = board;
     }
 
     protected void interact(Timer timer) {
         int x = this.coord[0];
         int y = this.coord[1];
-        for (int i = 0; i < currentBoard.getTile(x, y)
-                .getEntities().length; i++) {
-            if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "item") {
-                currentBoard.getTile(x, y).removeEntity(
-                        currentBoard.getTile(x, y).getEntities()[i]);
-            } else if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "key") {
-                Key key = (Key) currentBoard.getTile(x, y).getEntities()[i];
-                key.openGate();
-                currentBoard.getTile(x, y).removeEntity(
-                        currentBoard.getTile(x, y).getEntities()[i]);
-            } else if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "clock") {
-                Clock clock = (Clock) currentBoard.getTile(x, y)
-                        .getEntities()[i];
-                timer.addClock(clock);
-            } else if (currentBoard.getTile(x, y).getEntities()[i]
-                    .getEntityName() == "player") {
-                currentBoard.getPlayer().die();
+        if(currentBoard.getTile(x, y).getEntity() != null){
+            switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
+                case("item"):
+                    this.currentBoard.getTile(x, y).removeEntity();
+                    break;
+                case("key"):
+                    Key key = (Key) currentBoard.getTile(x, y).getEntity();
+                    key.openGate();
+                    break;
+                case("clock"):
+                    Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
+                    this.currentBoard.getTimer().addClock(clock);
+                    break;
+                case("player"):
+                    currentBoard.getPlayer().die();
+                    break;
             }
         }
     }

@@ -157,11 +157,14 @@ public class Board extends DrawShape {
                 }
             }
         }
+    }
 
-        // Draw player on board filled in purple
-        int playerXCoord = this.player.getXCoord();
-        int playerYCoord = this.player.getYCoord();
-        gc.drawImage(playerImg, playerXCoord + 25, playerYCoord + 25);
+    public void setEntities(ArrayList<Entity> entities) {
+        this.entities = entities;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public ArrayList<Entity> getEntities() {
@@ -170,5 +173,8 @@ public class Board extends DrawShape {
 
     public Tile[][] getTiles() {
         return this.tiles;
+    }
+    public void missionFailed(){
+        
     }
 }

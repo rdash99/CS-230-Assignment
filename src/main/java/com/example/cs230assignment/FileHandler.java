@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * This class defines the FileHandler methods. This is used to read and write
- * files, saving and instantiating the game.
+ * This class defines the FileHandler methods. These are used to read and write
+ * files, saving and loading the game and relevant data.
  * 
  * @author Rowan Dash
  * @version 1.0
@@ -23,7 +23,7 @@ public class FileHandler {
      * @param fileName The level file to process
      * @return The instance of board for that level
      */
-    private static Board loadBoard(File fileName) {
+    private static Board loadBoard(File fileName, String playerName) {
         Scanner in = null;
         try {
             in = new Scanner(fileName);
@@ -68,7 +68,7 @@ public class FileHandler {
                     }
                     // read in player
                     if (lineArray[i].equals("ply")) {
-                        Player player1 = new Player(xCoord, yCoord);
+                        Player player1 = new Player(playerName, xCoord, yCoord);
                         player = player1;
                     }
                     // read in a floor following thief
@@ -152,13 +152,81 @@ public class FileHandler {
                 tiles5[i][j] = tiles4[tiles4.length - 1 - j][i];
             }
         }
-        return new Board(x, y, tiles5, entities, player, timer);
+        Tile[][] tiles6 = linkTilesEntity(tiles5, entities, player);
+        Board board = new Board(x, y, tiles6, entities, player, timer);
+        addBoardLinks(board);
+        return board;
+    }
+
+    /**
+     * Links the tiles and entities together.
+     * 
+     * @param tiles
+     * @param entities
+     * @return Tile[][]
+     */
+    private static Tile[][] linkTilesEntity(Tile[][] tiles,
+            ArrayList<Entity> entities, Player player) {
+        for (int i = 0; i < entities.size(); i++) {
+            int x = entities.get(i).getXCoord();
+            int y = entities.get(i).getYCoord();
+            tiles[x][y].setEntity(entities.get(i));
+        }
+        int x = player.getXCoord();
+        int y = player.getYCoord();
+        tiles[x][y].setEntity(player);
+        return tiles;
+    }
+
+    private static void addBoardLinks(Board board) {
+        ArrayList<Entity> entities = board.getEntities();
+        Player player = board.getPlayer();
+        for (Entity e : entities) {
+            if (e instanceof FloorFollowingThief || e instanceof SmartThief
+                    || e instanceof FlyingAssassin) {
+                ((Character) e).setBoard(board);
+            }
+        }
+        player.setBoard(board);
+    }
+
+    /**
+     * Attempts to load a player's data from a file.
+     * 
+     * @param playerName The name of the player
+     * @return String
+     */
+    public static String loadPlayerData(String playerName) {
+        File file = new File("src/main/resources/profiles/" + playerName + ".txt");
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            // e.printStackTrace();
+            return null;
+        }
+        String data = sc.nextLine();
+        sc.close();
+        return data;
+    }
+
+    /**
+     * Instansiate a new item.
+     * 
+     * @param itemName The name of the item
+     * @param x        The x coordinate of the item
+     * @param y        The y coordinate of the item
+     * @param value    The value of the item
+     * @return Item
+     */
+    private static Item loadItem(String itemName, int x, int y, int value) {
+        return new Item(itemName, x, y, value);
     }
 
     /**
      * Saves the board to a file.
      * 
-     * @param board the board to save
+     * @param board    the board to save
      * @param fileName the name of the file to save to
      */
     private static void saveBoard(Board board, String fileName) {
@@ -190,9 +258,8 @@ public class FileHandler {
             }
         }
         // write the data to a file
-        String data = boardData + tileData + playerData + itemData + entityData
-                + "\n" + levelTime;
-        File file = new File(fileName + ".txt");
+        String data = boardData + tileData + playerData + itemData + entityData + levelTime;
+        File file = new File("src/main/resources/saves/" + fileName + ".txt");
         try {
             FileWriter fw = new FileWriter(file);
             fw.write(data);
@@ -271,7 +338,7 @@ public class FileHandler {
      */
     private static String savePlayerData(String playerID, int score,
             ArrayList<String> level) {
-        String data = "player " + playerID + " " + score + " " + level;
+        String data = score + " " + level;
         return data;
     }
 
@@ -288,31 +355,14 @@ public class FileHandler {
         ArrayList<String> levels = player.getLevels();
         String playerID = player.getEntityName();
         try {
-            String data = savePlayerData("ply" + playerID, score, levels) + " "
-                    + x + " " + y;
+            String data = savePlayerData(
+                    "src/main/resources/profiles/" + playerID, score, levels);
             writeToFile(playerID, data);
         } catch (NullPointerException e) {
             return "";
         }
         String data = x + " " + y + " " + "ply" + "\n";
         return data;
-    }
-
-    /**
-     * Writes a string to a file.
-     * 
-     * @param filename The name of the file
-     * @param data     The data to be written
-     */
-    private static void writeToFile(String filename, String data) {
-        File file = new File(filename + ".txt");
-        try {
-            FileWriter fw = new FileWriter(file);
-            fw.write(data);
-            fw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -324,26 +374,6 @@ public class FileHandler {
      */
     private static String saveBoardData(int x, int y) {
         String data = x + " " + y + "\n";
-        return data;
-    }
-
-    /**
-     * Attempts to load a player's data from a file.
-     * 
-     * @param playerName The name of the player
-     * @return String
-     */
-    public static String loadPlayerData(String playerName) {
-        File file = new File(playerName + ".txt");
-        Scanner sc = null;
-        try {
-            sc = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-        String data = sc.nextLine();
-        sc.close();
         return data;
     }
 
@@ -369,30 +399,6 @@ public class FileHandler {
     }
 
     /**
-     * Instansiate a new item.
-     * 
-     * @param itemName The name of the item
-     * @param x        The x coordinate of the item
-     * @param y        The y coordinate of the item
-     * @param value    The value of the item
-     * @return Item
-     */
-    private static Item loadItem(String itemName, int x, int y, int value) {
-        return new Item(itemName, x, y, value);
-    }
-
-    /**
-     * Instansiates a new instance of board.
-     * 
-     * @param fileName
-     * @return Board
-     */
-    public static Board readLevelFile(String fileName) {
-        File file = new File(fileName + ".txt");
-        return loadBoard(file);
-    }
-
-    /**
      * Saves a board to a file.
      * 
      * @param board
@@ -401,6 +407,34 @@ public class FileHandler {
     public static void saveGame(Board board, String fileName) {
         File saveFile = new File(fileName);
         saveBoard(board, fileName);
+    }
+
+    /**
+     * Writes a string to a file.
+     * 
+     * @param filename The name of the file
+     * @param data     The data to be written
+     */
+    private static void writeToFile(String filename, String data) {
+        File file = new File(filename + ".txt");
+        try {
+            FileWriter fw = new FileWriter(file);
+            fw.write(data);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Instansiates a new instance of board.
+     * 
+     * @param fileName
+     * @return Board
+     */
+    public static Board readLevelFile(String fileName, String playerName) {
+        File file = new File("src/main/resources/levels/" + fileName + ".txt");
+        return loadBoard(file, playerName);
     }
 
     /**

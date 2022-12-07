@@ -49,14 +49,44 @@ public class GameGUI extends Stage {
     private int playerX = 0;
     private int playerY = 0;
 
-    public GameGUI() {
-        Board level = FileHandler.readLevelFile("src/main/resources/testLevel");
+    public GameGUI(String playerName) {
+        Board level = FileHandler.readLevelFile("testLevel", playerName);
 
         // Build the GUI
         Pane root = buildGUI(level);
 
+        this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+            if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
+                new PauseMenu(level, "testLevel");
+            }
+        });
+
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+        System.out.printf("Start coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                case W:
+                    level.getPlayer().move(gc, 1);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
+                    break;
+                case A:
+                    level.getPlayer().move(gc, 2);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
+                    break;
+                case S:
+                    level.getPlayer().move(gc, 3);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
+                    break;
+                case D:
+                    level.getPlayer().move(gc, 4);
+                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
+                    break;
+                }
+           }
+        });
 
         // Display the scene on the stage
         this.setScene(scene);
@@ -69,34 +99,34 @@ public class GameGUI extends Stage {
      * Draw the game on the canvas.
      */
     public void drawGame() {
-//         //Hard coded test values - Thom
-//         Tile tile1 = new Tile('r', 'r', 'r', 'r');
-//         Tile tile2 = new Tile('r', 'g', 'b', 'y');
-//         Tile tile3 = new Tile('r', 'g', 'b', 'b');
-//         Tile tile4 = new Tile('r', 'g', 'b', 'y');
-//         Tile tile5 = new Tile('r', 'r', 'y', 'y');
-//         Tile tile6 = new Tile('g', 'g', 'g', 'y');
-//         Tile tile7 = new Tile('r', 'g', 'b', 'y');
-//         Tile tile8 = new Tile('r', 'g', 'b', 'y');
-//         Tile tile9 = new Tile('r', 'g', 'b', 'y');
-//         Tile tile10 = new Tile('r', 'g', 'b', 'y');
-//         Tile[][] tiles = new Tile[2][5];
-//         tiles[0][0] = tile1;
-//         tiles[0][1] = tile2;
-//         tiles[0][2] = tile3;
-//         tiles[0][3] = tile4;
-//         tiles[0][4] = tile5;
-//         tiles[1][0] = tile6;
-//         tiles[1][1] = tile7;
-//         tiles[1][2] = tile8;
-//         tiles[1][3] = tile9;
-//         tiles[1][4] = tile10;
-//         FlyingAssassin entity1 = new FlyingAssassin(1, 0, 1, 1, 2);
-//         ArrayList<Entity> entities = new ArrayList<>();
-//         entities.add(entity1);
-//         Player player = new Player(0, 0);
-//         Timer timer = new Timer(1);
-//         Board board = new Board(5, 2, tiles, entities, player, timer);
+        // //Hard coded test values - Thom
+        // Tile tile1 = new Tile('r', 'r', 'r', 'r');
+        // Tile tile2 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile3 = new Tile('r', 'g', 'b', 'b');
+        // Tile tile4 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile5 = new Tile('r', 'r', 'y', 'y');
+        // Tile tile6 = new Tile('g', 'g', 'g', 'y');
+        // Tile tile7 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile8 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile9 = new Tile('r', 'g', 'b', 'y');
+        // Tile tile10 = new Tile('r', 'g', 'b', 'y');
+        // Tile[][] tiles = new Tile[2][5];
+        // tiles[0][0] = tile1;
+        // tiles[0][1] = tile2;
+        // tiles[0][2] = tile3;
+        // tiles[0][3] = tile4;
+        // tiles[0][4] = tile5;
+        // tiles[1][0] = tile6;
+        // tiles[1][1] = tile7;
+        // tiles[1][2] = tile8;
+        // tiles[1][3] = tile9;
+        // tiles[1][4] = tile10;
+        // FlyingAssassin entity1 = new FlyingAssassin(1, 0, 1, 1, 2);
+        // ArrayList<Entity> entities = new ArrayList<>();
+        // entities.add(entity1);
+        // Player player = new Player(0, 0);
+        // Timer timer = new Timer(1);
+        // Board board = new Board(5, 2, tiles, entities, player, timer);
     }
 
     /**
@@ -120,11 +150,12 @@ public class GameGUI extends Stage {
         levelTimeBox.setPadding(new Insets(10, 10, 10, 10));
         root.setRight(levelTimeBox);
 
-        //Display level time in levelTimeBox
+        // Display level time in levelTimeBox
         Label levelTimeLabel = new Label("" + level.getTimer().getLevelTime());
         levelTimeBox.getChildren().add(levelTimeLabel);
 
         // Finally, return the border pane we built up.
         return root;
+
     }
 }
