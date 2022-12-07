@@ -155,9 +155,6 @@ public class Board extends DrawShape {
                 } else if (colourArray[3] == 'y') {
                     gc.drawImage(yellowSquareImg, xPos, yPos + 50);
                 }
-                for (Entity elem : getEntities()) {
-                    getTimer().boardUpdate(gc, elem);
-                }
             }
         }
     }

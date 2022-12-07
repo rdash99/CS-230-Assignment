@@ -176,7 +176,7 @@ public class Player extends Character {
                 }
                 break;
         }
-        currentBoard.getTimer().boardUpdate(gc, this);
+        currentBoard.getTimer().boardUpdate(gc, this, super.currentBoard);
     }
 
     public ArrayList<String> getLevels() {
