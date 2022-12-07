@@ -18,8 +18,8 @@ public class Timer {
         this.initTime = levelTime;
     }
 
-    public void boardUpdate(GraphicsContext gc, Entity entity) {
-        redraw(gc, entity);
+    public void boardUpdate(GraphicsContext gc, Entity entity, Board board) {
+        redraw(gc, entity, board);
     }
 
     public void addClock(Clock clock) {
@@ -31,8 +31,9 @@ public class Timer {
      *
      * @param gc the reference to the canvas to be drawn on
      */
-    public void redraw(GraphicsContext gc, Entity entity) {
+    public void redraw(GraphicsContext gc, Entity entity, Board board) {
         Image playerImg = new Image("player.png");
+
         int xCoord = (entity.getXCoord());
         int yCoord = (entity.getYCoord());
         int xDefaultOffset = 25;
@@ -44,6 +45,7 @@ public class Timer {
         for (int i = 0; i < yCoord; i++) {
             yDefaultOffset += 100;
         }
+        board.draw(gc);
         if (entity.getEntityName().equals("Player")) {
             gc.drawImage(playerImg, xCoord + xDefaultOffset, yDefaultOffset);
         }
