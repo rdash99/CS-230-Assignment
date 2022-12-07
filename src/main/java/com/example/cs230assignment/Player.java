@@ -41,11 +41,14 @@ public class Player extends Character {
 
     /**
      * allows the player to perform actions on entities affected by the players next move
-     * @param interactedEntity the entity being interacted with
+     * 
+     * @param x the xcoord of the next tile with the potential interactable item
+     * @param y the ycoord of the next tile with the potential interactable item
      */
-    //changed to retrive coords rather then an entity
     private void interact(int x, int y) {
+        //checks to see if there is an item on the next square
         if(currentBoard.getTile(x, y).getEntity() != null){
+            //switch statement to find out what entity is on the next square
             switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
                 case("Item"):
                     this.score += ((Item)(this.currentBoard.getTile(x, y).getEntity())).getItemValue();
@@ -61,29 +64,28 @@ public class Player extends Character {
                     Door door = (Door) currentBoard.getTile(x, y).getEntity();
                     door.endMission();
             }
-        }else {
+        }
             // values of i to the position around tile 0
             //  7  8  1
             //  6  0  2
             //  5  4  3
-            for(int i = 1; i < 9; i++){
-                int tempCoordX = 0;
-                int tempCoordY = 0;
-                if(i%4 != 0){
-                    tempCoordX = 1 + (int)-(Math.floor((double)(i/4.0))*2);
-                }
-                if(i > 6 || i == 1){
-                    tempCoordY = 1;
-                }else if(i < 6 && i > 2){
-                    tempCoordY = 0;
-                }
-                //not off the edge and is a bomb run bomb.explodeBomb();
-                if(!(tempCoordX+x > super.currentBoard.getWidth()-1 || x+tempCoordX < 0 
-                    ||tempCoordY+y > super.currentBoard.getHeight()-1 || x+tempCoordX < 0 ) 
-                    && currentBoard.getTile(tempCoordX, tempCoordY).getEntity().getEntityName() == "Bomb"){
-                    Bomb bomb = (Bomb) currentBoard.getTile(tempCoordX, tempCoordY).getEntity();
-                    bomb.explodeBomb();
-                }
+        for(int i = 1; i < 9; i++){
+            int tempCoordX = 0;
+            int tempCoordY = 0;
+            if(i%4 != 0){
+                tempCoordX = 1 + (int)-(Math.floor((double)(i/4.0))*2);
+            }
+            if(i > 6 || i == 1){
+                tempCoordY = 1;
+            }else if(i < 6 && i > 2){
+                tempCoordY = 0;
+            }
+            //not off the edge and is a bomb run bomb.explodeBomb();
+            if(!(tempCoordX+x > super.currentBoard.getWidth()-1 || x+tempCoordX < 0 
+                ||tempCoordY+y > super.currentBoard.getHeight()-1 || x+tempCoordX < 0 ) 
+                && currentBoard.getTile(tempCoordX, tempCoordY).getEntity().getEntityName() == "Bomb"){
+                Bomb bomb = (Bomb) currentBoard.getTile(tempCoordX, tempCoordY).getEntity();
+                bomb.explodeBomb();
             }
         }
     }
