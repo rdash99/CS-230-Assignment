@@ -33,10 +33,20 @@ public class Timer {
      */
     public void redraw(GraphicsContext gc, Entity entity) {
         Image playerImg = new Image("player.png");
-        int xCoord = entity.getXCoord();
-        int yCoord = entity.getYCoord();
+        int xCoord = (entity.getXCoord());
+        int yCoord = (entity.getYCoord());
+        int xDefaultOffset = 25;
+        int yDefaultOffset = 25;
 
-        gc.drawImage(playerImg, xCoord + 25, yCoord + 25);
+        for (int i = 0; i < xCoord; i++) {
+            xDefaultOffset += 100;
+        }
+        for (int i = 0; i < yCoord; i++) {
+            yDefaultOffset += 100;
+        }
+        if (entity.getEntityName().equals("Player")) {
+            gc.drawImage(playerImg, xCoord + xDefaultOffset, yDefaultOffset);
+        }
     }
 
     public int getLevelTime() {
