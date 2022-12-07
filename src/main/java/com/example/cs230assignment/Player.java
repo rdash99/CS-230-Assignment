@@ -26,17 +26,17 @@ public class Player extends Character {
         int y = this.coord[1];
         if (currentBoard.getTile(x, y).getEntity() != null) {
             switch (currentBoard.getTile(x, y).getEntity().getEntityName()) {
-                case ("item"):
-                    this.score += ((Item) (this.currentBoard.getTile(x, y)
-                            .getEntity())).getItemValue();
-                    break;
-                case ("key"):
-                    Key key = (Key) currentBoard.getTile(x, y).getEntity();
-                    key.openGate();
-                    break;
-                case ("clock"):
-                    Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
-                    super.currentBoard.getTimer().addClock(clock);
+            case ("item"):
+                this.score += ((Item) (this.currentBoard.getTile(x, y)
+                        .getEntity())).getItemValue();
+                break;
+            case ("key"):
+                Key key = (Key) currentBoard.getTile(x, y).getEntity();
+                key.openGate();
+                break;
+            case ("clock"):
+                Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
+                super.currentBoard.getTimer().addClock(clock);
             }
         }
     }
@@ -47,18 +47,14 @@ public class Player extends Character {
     }
 
     private void loadProfile() throws NullPointerException {
-        try {
-            String profile = FileHandler.loadPlayerData(playerName).replace("[", "")
-                    .replace("]", "");
-            if (profile != null) {
-                String[] profileData = profile.split(" ");
-                this.score = Integer.parseInt(profileData[0]);
-                for (int i = 1; i < profileData.length; i++) {
-                    this.levelComp.add(profileData[i]);
-                }
+        String profile = FileHandler.loadPlayerData(playerName);
+        if (profile != null) {
+            profile = profile.replace("[", "").replace("]", "");
+            String[] profileData = profile.split(" ");
+            this.score = Integer.parseInt(profileData[0]);
+            for (int i = 1; i < profileData.length; i++) {
+                this.levelComp.add(profileData[i]);
             }
-        } catch (NullPointerException e) {
-            levelComp.add("level1");
         }
     }
 
@@ -76,18 +72,18 @@ public class Player extends Character {
 
         // converts the directon from a character to a usable coord direction
         switch (direction) {
-            case 1:
-                directionCheckY = 1;
-                break;
-            case 4:
-                directionCheckX = 1;
-                break;
-            case 3:
-                directionCheckY = -1;
-                break;
-            case 2:
-                directionCheckX = -1;
-                break;
+        case 1:
+            directionCheckY = 1;
+            break;
+        case 4:
+            directionCheckX = 1;
+            break;
+        case 3:
+            directionCheckY = -1;
+            break;
+        case 2:
+            directionCheckX = -1;
+            break;
         }
         // checks to see if the movement is on the y axis
         if (directionCheckY != 0) {
@@ -95,7 +91,8 @@ public class Player extends Character {
             // board
             Boolean foundSquare = false;
             for (int i = super.coord[1] + 1; ((i < super.currentBoard
-                    .getHeight()) && i > -1) && foundSquare == false; i += directionCheckY) {
+                    .getHeight()) && i > -1)
+                    && foundSquare == false; i += directionCheckY) {
                 // checks every colour on the current tile with the tile being
                 // checked
                 for (int colourPos = 0; colourPos < 4; colourPos++) {
@@ -124,7 +121,8 @@ public class Player extends Character {
             // board
             Boolean foundSquare = false;
             for (int i = super.coord[1] + 1; ((i < super.currentBoard
-                    .getWidth()) && i > -1) && foundSquare == false; i += directionCheckX) {
+                    .getWidth()) && i > -1)
+                    && foundSquare == false; i += directionCheckX) {
 
                 // checks every colour on the current tile with the tile being
                 // checked
