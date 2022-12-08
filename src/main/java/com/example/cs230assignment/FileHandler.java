@@ -504,7 +504,6 @@ public class FileHandler {
             System.out.println("Could not find " + file.getName());
             System.exit(0);
         }
-        System.out.println(file.getName());
         String line = in.nextLine();
         String[] lineArray = line.split(" ");
         in.close();
