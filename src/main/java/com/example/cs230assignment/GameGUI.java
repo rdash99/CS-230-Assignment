@@ -126,26 +126,21 @@ public class GameGUI extends Stage {
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        System.out.printf("Start coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                     case W:
                         level.getPlayer().move(gc, 1);
-                        System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
                         break;
                     case A:
                         level.getPlayer().move(gc, 2);
-                        System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
                         break;
                     case S:
                         level.getPlayer().move(gc, 3);
-                        System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
                         break;
                     case D:
                         level.getPlayer().move(gc, 4);
-                        System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
                         break;
                 }
             }

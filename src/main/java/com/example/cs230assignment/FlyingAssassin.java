@@ -17,9 +17,9 @@ public class FlyingAssassin extends NPC {
 
     private void validMove() {
         if (super.coord[0] + super.coordChange[0] < 0 
-        || super.coord[0] + super.coordChange[0] > super.currentBoard.getWidth()-1 
+        || super.coord[0] + super.coordChange[0] > super.getCurrentBoard().getWidth()-1
         || super.coord[1] + super.coordChange[1] < 0 
-        || super.coord[1] + super.coordChange[1] > super.currentBoard.getHeight()-1 ){
+        || super.coord[1] + super.coordChange[1] > super.getCurrentBoard().getHeight()-1 ){
             super.coordChange[0] = - super.coordChange[0];
             super.coordChange[1] = - super.coordChange[1];
         }

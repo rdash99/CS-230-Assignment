@@ -161,6 +161,16 @@ public class Board extends DrawShape {
         this.player.draw(gc);
         for (Entity elem : this.getEntities()) {
             elem.draw(gc);
+
+            //Call entity NPC movement from here perhaps?
+//            if (elem instanceof FlyingAssassin) {
+//                System.out.println("FA: " + elem.getXCoord() + " " + elem.getYCoord());
+//                ((FlyingAssassin) elem).move();
+//            }
+//            } else if (elem instanceof FloorFollowingThief) {
+//                System.out.println("FFT: " + elem.getXCoord() + " " + elem.getYCoord());
+//                ((FloorFollowingThief) elem).move();
+//            }
         }
     }
 

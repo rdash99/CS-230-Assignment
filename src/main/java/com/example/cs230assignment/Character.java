@@ -16,6 +16,10 @@ public class Character extends Entity {
         this.currentBoard = board;
     }
 
+    public Board getCurrentBoard() {
+        return this.currentBoard;
+    }
+
     protected void interact() {
         int x = this.coord[0];
         int y = this.coord[1];
