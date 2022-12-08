@@ -491,8 +491,7 @@ public class FileHandler {
                 playerScores.add(playerName + " " + playerScore);
             }
         }
-        System.out.println(playerScores);
-        return null;
+        return playerScores;
     }
 
     private static String readPlayerScore(String filename) {
