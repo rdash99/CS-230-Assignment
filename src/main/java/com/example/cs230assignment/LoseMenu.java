@@ -18,12 +18,10 @@ public class LoseMenu extends Stage {
     private Text titleText = new Text("Game Over");
     private VBox vbox = new VBox();
     private HBox hbox = new HBox();
-    private Board board;
     private String playerName;
     private GameGUI originalWindow;
 
-    public LoseMenu(Board board, String playerName, GameGUI originalWindow) {
-        this.board = board;
+    public LoseMenu(String playerName, GameGUI originalWindow) {
         this.playerName = playerName;
         this.originalWindow = originalWindow;
         root.setBackground(new Background(new BackgroundFill(Color.GRAY,

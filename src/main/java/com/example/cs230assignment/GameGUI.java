@@ -177,7 +177,7 @@ public class GameGUI extends Stage {
         this.levelTimeLabel.setText("" + this.level.getTimer().decrementTime());
         //TODO if statement to go here that displays a loser screen when levelTime == 0
         if (this.level.getTimer().getLevelTime() == 0) {
-            new LoseMenu(level, level.getPlayer().getPlayerName(), this);
+            new LoseMenu(level.getPlayer().getPlayerName(), this);
         }
     }
 }
