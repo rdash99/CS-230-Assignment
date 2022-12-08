@@ -14,6 +14,13 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+/**
+ * The Win Menu class. It creates the window that appears when the player wins the game
+ * which contains a button to retry the game and a button to quit the game.
+ * @author Fraser Clough
+ * @version 1.0
+ */
+
 public class WinMenu extends Stage {
     private BorderPane root = new BorderPane();
     private Button retryBtn = new Button("Retry");
@@ -25,6 +32,11 @@ public class WinMenu extends Stage {
     private String playerName;
     private GameGUI originalWindow;
 
+    /**
+     * Creates a new Win Menu when this class is instantiated.
+     * @param playerName The name of the player.
+     * @param originalWindow The original window of the game.
+     */
     public WinMenu(String playerName, GameGUI originalWindow) {
         this.playerName = playerName;
         this.originalWindow = originalWindow;

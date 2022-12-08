@@ -14,6 +14,14 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+/**
+ * The Lose Menu class. It creates the window that appears when the player loses the game
+ * which contains a button to retry the game and a button to quit the game.
+ * @author Thomas McAuley
+ * @author Fraser Clough
+ * @version 1.0
+ */
+
 public class LoseMenu extends Stage {
     private BorderPane root = new BorderPane();
     private Button retryBtn = new Button("Retry");
@@ -25,6 +33,11 @@ public class LoseMenu extends Stage {
     private String playerName;
     private GameGUI originalWindow;
 
+    /**
+     * Creates a new Lose Menu when this class is instantiated.
+     * @param playerName The name of the player.
+     * @param originalWindow The original window of the game.
+     */
     public LoseMenu(String playerName, GameGUI originalWindow) {
         this.playerName = playerName;
         this.originalWindow = originalWindow;
