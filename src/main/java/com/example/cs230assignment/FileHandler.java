@@ -83,7 +83,7 @@ public class FileHandler {
                     }
                     // read in a floor following thief
                     if (lineArray[i].equals("fft")) {
-                        char colour = lineArray[i + 3].charAt(0);
+                        char colour = lineArray[i + 1].charAt(0);
                         FloorFollowingThief fft = new FloorFollowingThief(
                                 colour, xCoord, yCoord);
                         entities.add(fft);

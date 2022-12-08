@@ -22,7 +22,6 @@ public class Player extends Character {
     private ArrayList<String> levelComp;
     // player name
     private String playerName;
-    private Image playerImg;
 
     /**
      * constructor for player to set up basic attrubutes
@@ -38,7 +37,7 @@ public class Player extends Character {
         this.playerName = name;
         this.score = 0;
         this.levelComp = new ArrayList<String>();
-        this.playerImg = new Image("player.png");
+        this.entityName = "Player";
         loadProfile();
     }
 
@@ -302,7 +301,7 @@ public class Player extends Character {
                 }
             break;
         }
-        currentBoard.getTimer().boardUpdate(gc, this, super.currentBoard);
+        currentBoard.getTimer().boardUpdate(gc, super.currentBoard);
     }
 
     public ArrayList<String> getLevels() {

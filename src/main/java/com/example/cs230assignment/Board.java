@@ -105,9 +105,6 @@ public class Board extends DrawShape {
         Image greenSquareImg = new Image("greenSquare.png");
         Image blueSquareImg = new Image("blueSquare.png");
         Image yellowSquareImg = new Image("yellowSquare.png");
-        Image playerImg = new Image("player.png");
-        Image flyingAssassinImg = new Image("flying assassin 2.png");
-        Image floorFollowingThiefImg = new Image("floorfollowingthiefedit.png");
 
         // Draw all tiles on screen to make up the board
         for (int i = 0; i < this.tiles.length; i++) {
@@ -161,23 +158,10 @@ public class Board extends DrawShape {
                 }
             }
         }
-        int xCoord = (this.player.getXCoord());
-        int yCoord = (this.player.getYCoord());
-        int xDefaultOffset = 25;
-        int yDefaultOffset = 25;
-
-        for (int i = 0; i < xCoord; i++) {
-            xDefaultOffset += 100;
+        this.player.draw(gc);
+        for (Entity elem : this.getEntities()) {
+            elem.draw(gc);
         }
-        for (int i = 0; i < yCoord; i++) {
-            yDefaultOffset += 100;
-        }
-        gc.drawImage(playerImg, xCoord + xDefaultOffset,
-                yCoord + yDefaultOffset);
-        gc.drawImage(flyingAssassinImg, xCoord + xDefaultOffset,
-                yCoord + yDefaultOffset);
-        gc.drawImage(floorFollowingThiefImg, xCoord + xDefaultOffset,
-                yCoord + yDefaultOffset);
     }
 
     public void setEntities(ArrayList<Entity> entities) {
