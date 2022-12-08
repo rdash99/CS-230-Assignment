@@ -476,4 +476,39 @@ public class FileHandler {
         levelNamesArray = levelNames.toArray(levelNamesArray);
         return levelNamesArray;
     }
+
+    public static ArrayList<String> readPlayerScores() {
+        // find all files in src/main/resources/profiles
+        File folder = new File("src/main/resources/profiles");
+        File[] listOfFiles = folder.listFiles();
+        ArrayList<String> playerScores = new ArrayList<String>();
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                String fileName = file.getName();
+                String playerName = fileName.substring(0,
+                        fileName.length() - 4);
+                String playerScore = readPlayerScore(fileName);
+                playerScores.add(playerName + " " + playerScore);
+            }
+        }
+        System.out.println(playerScores);
+        return null;
+    }
+
+    private static String readPlayerScore(String filename) {
+        Scanner in = null;
+        File file = new File("src/main/resources/profiles/" + filename);
+        try {
+            in = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find " + file.getName());
+            System.exit(0);
+        }
+        System.out.println(file.getName());
+        String line = in.nextLine();
+        String[] lineArray = line.split(" ");
+        in.close();
+        String playerScore = lineArray[0];
+        return playerScore;
+    }
 }
