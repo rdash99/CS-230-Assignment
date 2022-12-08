@@ -1,27 +1,32 @@
 package com.example.cs230assignment;
 
 public class FlyingAssassin extends NPC {
-    private int xdir;
-    private int ydir;
 
     public FlyingAssassin(double movementTimerPass, int x, int y, int xdir,
             int ydir) {
         super("Flying Assassin", movementTimerPass, x, y);
-        this.xdir = xdir;
-        this.ydir = ydir;
+        super.coordChange[0] = xdir;
+        super.coordChange[1] = ydir;
     }
 
     // was flying assassin kill changed to fit better with boardupdate
     // kills any npcs
-    private void interact() {
+    @Override
+    protected void interact() {
 
     }
 
     private void validMove() {
-
+        if (super.coord[0] + super.coordChange[0] < 0 
+        || super.coord[0] + super.coordChange[0] > super.currentBoard.getWidth()-1 
+        || super.coord[1] + super.coordChange[1] < 0 
+        || super.coord[1] + super.coordChange[1] > super.currentBoard.getHeight()-1 ){
+            super.coordChange[0] = - super.coordChange[0];
+            super.coordChange[1] = - super.coordChange[1];
+        }
     }
 
     public int[] getDirection() {
-        return new int[] { this.xdir, this.ydir };
+        return super.coordChange;
     }
 }

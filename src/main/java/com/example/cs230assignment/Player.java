@@ -156,9 +156,13 @@ public class Player extends Character {
                     // checks every colour on the current tile with the tile being
                     // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
+                        // checks for a gate to stop any future movements
+                        if (super.currentBoard.getTile(super.coord[1], i)
+                            .getEntity().getEntityName() == "Gate"){
+                            foundSquare = true;
                         // compares a colour on the current tile and the tile being
                         // checked
-                        if (super.currentBoard.getTile(i, super.coord[0])
+                        }else if (super.currentBoard.getTile(i, super.coord[0])
                                 .checkColour(super.currentBoard
                                         .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
@@ -180,9 +184,13 @@ public class Player extends Character {
                     // checks every colour on the current tile with the tile being
                     // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
+                        // checks for a gate to stop any future movements
+                        if (super.currentBoard.getTile(super.coord[1], i)
+                            .getEntity().getEntityName() == "Gate"){
+                            foundSquare = true;
                         // compares a colour on the current tile and the tile being
                         // checked
-                        if (super.currentBoard.getTile(super.coord[1], i)
+                        }else if (super.currentBoard.getTile(super.coord[1], i)
                                 .checkColour(super.currentBoard
                                         .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
@@ -204,9 +212,13 @@ public class Player extends Character {
                     // checks every colour on the current tile with the tile being
                     // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
+                        // checks for a gate to stop any future movements
+                        if (super.currentBoard.getTile(i, super.coord[0])
+                            .getEntity().getEntityName() == "Gate"){
+                            foundSquare = true;
                         // compares a colour on the current tile and the tile being
                         // checked
-                        if (super.currentBoard.getTile(i, super.coord[0])
+                        }else if (super.currentBoard.getTile(i, super.coord[0])
                                 .checkColour(super.currentBoard
                                         .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
@@ -228,9 +240,13 @@ public class Player extends Character {
                     // checks every colour on the current tile with the tile being
                     // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
+                        // checks for a gate to stop any future movements
+                        if (super.currentBoard.getTile(super.coord[1], i)
+                            .getEntity().getEntityName() == "Gate"){
+                            foundSquare = true;
                         // compares a colour on the current tile and the tile being
                         // checked
-                        if (super.currentBoard.getTile(super.coord[1], i)
+                        }else if (super.currentBoard.getTile(super.coord[1], i)
                                 .checkColour(super.currentBoard
                                         .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {

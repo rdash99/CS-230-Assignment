@@ -16,9 +16,6 @@ class FloorFollowingThief extends NPC {
     super.coordChange = new int[] { x, y };
   }
 
-  private void interact() {
-
-  }
 
   // needs to compare to the previous coordChange as it needs to stick to the
   // edge not to the left
@@ -46,7 +43,8 @@ class FloorFollowingThief extends NPC {
             && super.getXCoord() != super.currentBoard.getWidth()) {
           if (super.currentBoard
               .getTile(super.getXCoord(), super.getYCoord() + 1)
-              .checkColour(this.allocatedColour) == true) {
+              .checkColour(this.allocatedColour) == true || !(super.currentBoard
+              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
             i = 5;
           } else {
             super.coordChange[0] = 0;
@@ -56,7 +54,8 @@ class FloorFollowingThief extends NPC {
             && super.getYCoord() != super.currentBoard.getHeight()) {
           if (super.currentBoard
               .getTile(super.getXCoord(), super.getYCoord() + 1)
-              .checkColour(this.allocatedColour) == true) {
+              .checkColour(this.allocatedColour) == true || !(super.currentBoard
+              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
             i = 5;
           } else {
             super.coordChange[0] = 1;
@@ -66,7 +65,8 @@ class FloorFollowingThief extends NPC {
             && super.getXCoord() != 0) {
           if (super.currentBoard
               .getTile(super.getXCoord(), super.getYCoord() - 1)
-              .checkColour(this.allocatedColour) == true) {
+              .checkColour(this.allocatedColour) == true || !(super.currentBoard
+              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
             i = 5;
           } else {
             super.coordChange[0] = 0;
@@ -76,7 +76,8 @@ class FloorFollowingThief extends NPC {
             && super.getYCoord() != 0) {
           if (super.currentBoard
               .getTile(super.getXCoord(), super.getYCoord() - 1)
-              .checkColour(this.allocatedColour) == true) {
+              .checkColour(this.allocatedColour) == true || !(super.currentBoard
+              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
             i = 5;
           } else {
             super.coordChange[0] = -1;
