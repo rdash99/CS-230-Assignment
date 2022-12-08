@@ -1,6 +1,5 @@
 package com.example.cs230assignment;
 
-import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,36 +8,33 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.Console;
+import java.io.IOException;
 
-public class PauseMenu extends Stage {
-
+public class LoseMenu extends Stage {
     private BorderPane root = new BorderPane();
-    private Button resumeBtn = new Button("Resume");
-    private Button exitBtn = new Button("Save & Exit");
-    private Text titleText = new Text("Game is paused");
+    private Button retryBtn = new Button("Retry");
+    private Button quitBtn = new Button("Quit");
+    private Text titleText = new Text("Game Over");
     private VBox vbox = new VBox();
     private HBox hbox = new HBox();
     private Board board;
-    private String levelName;
+    private String playerName;
+    private GameGUI originalWindow;
 
-    public PauseMenu(Board board, String levelName, Timeline tickTimeline) {
-        this.board = board;
-        this.levelName = levelName;
-        this.initStyle(StageStyle.UNDECORATED);
+    public LoseMenu(String playerName, GameGUI originalWindow) {
+        this.playerName = playerName;
+        this.originalWindow = originalWindow;
         root.setBackground(new Background(new BackgroundFill(Color.GRAY,
                 CornerRadii.EMPTY, Insets.EMPTY)));
 
         titleText.setFont(Font.font("Arial", FontPosture.ITALIC, 18));
         titleText.setFill(Color.BLACK);
 
-        vbox.getChildren().add(resumeBtn);
-        vbox.getChildren().add(exitBtn);
+        vbox.getChildren().add(retryBtn);
+        vbox.getChildren().add(quitBtn);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
 
@@ -50,21 +46,24 @@ public class PauseMenu extends Stage {
         root.setCenter(vbox);
 
         this.setScene(new Scene(root, 300, 200));
-        this.setTitle("Pause menu");
+        this.setTitle("Game Over");
         this.show();
 
-        resumeBtn.setOnAction(e -> {
-            // add code to resume ticks
+        retryBtn.setOnAction(e -> {
             this.close();
-            tickTimeline.playFromStart();
+            this.originalWindow.createGame(this.playerName);
         });
 
-        exitBtn.setOnAction(e -> {
-            // add code to save
-            FileHandler.saveGame(this.board, this.levelName);
-            System.exit(0);
+        quitBtn.setOnAction(e -> {
+            this.close();
+            this.originalWindow.close();
+            try {
+                new MainMenu();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
         });
-
     }
-
 }

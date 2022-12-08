@@ -157,6 +157,18 @@ public class Board extends DrawShape {
                 }
             }
         }
+        int xCoord = (this.player.getXCoord());
+        int yCoord = (this.player.getYCoord());
+        int xDefaultOffset = 25;
+        int yDefaultOffset = 25;
+
+        for (int i = 0; i < xCoord; i++) {
+            xDefaultOffset += 100;
+        }
+        for (int i = 0; i < yCoord; i++) {
+            yDefaultOffset += 100;
+        }
+        gc.drawImage(playerImg, xCoord + xDefaultOffset, yCoord + yDefaultOffset);
     }
 
     public void setEntities(ArrayList<Entity> entities) {

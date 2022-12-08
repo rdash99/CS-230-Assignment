@@ -258,8 +258,8 @@ public class Player extends Character {
         return this.score;
     }
 
-    public Image getImage() {
-        return this.playerImg;
+    public String getPlayerName() {
+        return this.playerName;
     }
 
 }
