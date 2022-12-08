@@ -54,55 +54,7 @@ public class GameGUI extends Stage {
     private int playerY = 0;
 
     public GameGUI(String playerName) {
-        this.level = FileHandler.readLevelFile("testLevel", playerName);
-
-        // Build the GUI
-        Pane root = buildGUI(level);
-
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(ONE_SECOND_IN_MILLISECONDS), event -> tick()));
-        tickTimeline.setCycleCount(level.getTimer().getLevelTime());
-
-        this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
-                new PauseMenu(level, "testLevel", tickTimeline);
-                tickTimeline.stop();
-            }
-        });
-
-        // Create a scene from the GUI
-        Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
-
-        System.out.printf("Start coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                case W:
-                    level.getPlayer().move(gc, 1);
-                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
-                    break;
-                case A:
-                    level.getPlayer().move(gc, 2);
-                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
-                    break;
-                case S:
-                    level.getPlayer().move(gc, 3);
-                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
-                    break;
-                case D:
-                    level.getPlayer().move(gc, 4);
-                    System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
-                    break;
-                }
-           }
-        });
-
-        // Display the scene on the stage
-        this.setScene(scene);
-        this.setTitle("The game");
-        this.show();
-        level.draw(gc);
-        tickTimeline.playFromStart();
+        createGame(playerName);
     }
 
     /**
@@ -139,12 +91,64 @@ public class GameGUI extends Stage {
         // Board board = new Board(5, 2, tiles, entities, player, timer);
     }
 
+    public void createGame(String playerName) {
+        this.level = FileHandler.readLevelFile("testLevel", playerName);
+
+        // Build the GUI
+        Pane root = buildGUI(level);
+
+        tickTimeline = new Timeline(new KeyFrame(Duration.millis(ONE_SECOND_IN_MILLISECONDS), event -> tick()));
+        tickTimeline.setCycleCount(level.getTimer().getLevelTime());
+
+        this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+            if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
+                new PauseMenu(level, "testLevel", tickTimeline);
+                tickTimeline.stop();
+            }
+        });
+
+        // Create a scene from the GUI
+        Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+        System.out.printf("Start coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case W:
+                        level.getPlayer().move(gc, 1);
+                        System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
+                        break;
+                    case A:
+                        level.getPlayer().move(gc, 2);
+                        System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
+                        break;
+                    case S:
+                        level.getPlayer().move(gc, 3);
+                        System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
+                        break;
+                    case D:
+                        level.getPlayer().move(gc, 4);
+                        System.out.printf("New coords %d, %d", level.getPlayer().getXCoord(), level.getPlayer().getYCoord());
+                        break;
+                }
+            }
+        });
+
+        // Display the scene on the stage
+        this.setScene(scene);
+        this.setTitle("The game");
+        this.show();
+        level.draw(gc);
+        tickTimeline.playFromStart();
+    }
+
     /**
      * Create the GUI.
-     * 
+     *
      * @return The panel that contains the created GUI.
      */
-    private Pane buildGUI(Board level) {
+    public Pane buildGUI(Board level) {
         // Create top-level panel that will hold all GUI nodes.
         BorderPane root = new BorderPane();
 
@@ -172,5 +176,8 @@ public class GameGUI extends Stage {
     public void tick() {
         this.levelTimeLabel.setText("" + this.level.getTimer().decrementTime());
         //TODO if statement to go here that displays a loser screen when levelTime == 0
+        if (this.level.getTimer().getLevelTime() == 0) {
+            new LoseMenu(level, level.getPlayer().getPlayerName(), this);
+        }
     }
 }
