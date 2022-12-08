@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 public class GameGUI extends Stage {
     // The dimensions of the window
+    private static final int ONE_SECOND_IN_MILLISECONDS = 1000;
     private static final int WINDOW_WIDTH = 800;
     private static final int WINDOW_HEIGHT = 500;
 
@@ -44,13 +45,16 @@ public class GameGUI extends Stage {
     // We could use FXML to place code in the controller instead.
     private Canvas canvas;
     private GraphicsContext gc;
+    private Timeline tickTimeline;
+    private Board level;
+    private Label levelTimeLabel;
 
     // X and Y coordinate of player on the grid.
     private int playerX = 0;
     private int playerY = 0;
 
     public GameGUI(String playerName) {
-        Board level = FileHandler.readLevelFile("testLevel", playerName);
+        this.level = FileHandler.readLevelFile("testLevel", playerName);
 
         // Build the GUI
         Pane root = buildGUI(level);
@@ -63,6 +67,10 @@ public class GameGUI extends Stage {
 
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+        tickTimeline = new Timeline(new KeyFrame(Duration.millis(ONE_SECOND_IN_MILLISECONDS), event -> tick()));
+        tickTimeline.setCycleCount(level.getTimer().getLevelTime());
+
         System.out.printf("Start coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -93,6 +101,7 @@ public class GameGUI extends Stage {
         this.setTitle("The game");
         this.show();
         level.draw(gc);
+        tickTimeline.playFromStart();
     }
 
     /**
@@ -151,11 +160,15 @@ public class GameGUI extends Stage {
         root.setRight(levelTimeBox);
 
         // Display level time in levelTimeBox
-        Label levelTimeLabel = new Label("" + level.getTimer().getLevelTime());
+        this.levelTimeLabel = new Label("" + level.getTimer().getLevelTime());
         levelTimeBox.getChildren().add(levelTimeLabel);
 
         // Finally, return the border pane we built up.
         return root;
 
+    }
+
+    public void tick() {
+        this.levelTimeLabel.setText("" + level.getTimer().decrementTime());
     }
 }

@@ -1,6 +1,7 @@
 package com.example.cs230assignment;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 
 /**
@@ -12,6 +13,7 @@ import javafx.scene.image.Image;
 public class Timer {
     private int levelTime;
     private int initTime;
+    private Label levelTimeLabel;
 
     public Timer(int levelTime) {
         this.levelTime = levelTime;
@@ -51,6 +53,9 @@ public class Timer {
         }
     }
 
+    public int decrementTime() {
+        return this.levelTime -= 1;
+    }
     public int getLevelTime() {
         return this.levelTime;
     }
