@@ -50,6 +50,9 @@ public class FileHandler {
             int xNum = x - 1;
 
             for (int i = 0; i < lineArray.length; i++) {
+                if (lineArray[i].equals("time")) {
+                    levelTime = Integer.parseInt(lineArray[i + 1]);
+                }
                 // read in tile colours
                 if (lineArray[i].length() == 4) {
                     tiles[xNum][yNum] = new Tile(lineArray[i].charAt(0),
@@ -111,6 +114,11 @@ public class FileHandler {
                         }
                     }
                     ;
+                    if (lineArray[i].equals("itm")) {
+                        String name = lineArray[i + 1];
+                        int value = Integer.parseInt(lineArray[i + 2]);
+                        entities.add(loadItem(name, x, y, value));
+                    }
                 }
 
             }
@@ -131,7 +139,7 @@ public class FileHandler {
                 tiles2[i][j] = tiles[tiles.length - 1 - i][tiles[0].length - 1 - j];
             }
         }
-        // flip the tiles array 90 degrees again
+        // flip the tiles array 90 degrees
         Tile[][] tiles3 = new Tile[tiles2.length][tiles2[0].length];
         for (int i = 0; i < tiles2.length; i++) {
             for (int j = 0; j < tiles2[0].length; j++) {
@@ -197,7 +205,8 @@ public class FileHandler {
      * @return String
      */
     public static String loadPlayerData(String playerName) {
-        File file = new File("src/main/resources/profiles/" + playerName + ".txt");
+        File file = new File(
+                "src/main/resources/profiles/" + playerName + ".txt");
         Scanner sc = null;
         try {
             sc = new Scanner(file);
@@ -355,11 +364,9 @@ public class FileHandler {
         ArrayList<String> levels = player.getLevels();
         String playerID = player.getEntityName();
         try {
-            String data = savePlayerData(
-                    "src/main/resources/profiles/" + playerID, score, levels);
-            writeToFile(playerID, data);
+            String data = savePlayerData(playerID, score, levels);
+            writeToFile("src/main/resources/profiles/" + playerID, data);
         } catch (NullPointerException e) {
-            return "";
         }
         String data = x + " " + y + " " + "ply" + "\n";
         return data;
