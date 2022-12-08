@@ -1,5 +1,6 @@
 package com.example.cs230assignment;
 
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -26,7 +27,7 @@ public class PauseMenu extends Stage {
     private Board board;
     private String levelName;
 
-    public PauseMenu(Board board, String levelName) {
+    public PauseMenu(Board board, String levelName, Timeline tickTimeline) {
         this.board = board;
         this.levelName = levelName;
         this.initStyle(StageStyle.UNDECORATED);
@@ -55,6 +56,7 @@ public class PauseMenu extends Stage {
         resumeBtn.setOnAction(e -> {
             // add code to resume ticks
             this.close();
+            tickTimeline.playFromStart();
         });
 
         exitBtn.setOnAction(e -> {

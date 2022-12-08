@@ -59,17 +59,18 @@ public class GameGUI extends Stage {
         // Build the GUI
         Pane root = buildGUI(level);
 
+        tickTimeline = new Timeline(new KeyFrame(Duration.millis(ONE_SECOND_IN_MILLISECONDS), event -> tick()));
+        tickTimeline.setCycleCount(level.getTimer().getLevelTime());
+
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
-                new PauseMenu(level, "testLevel");
+                new PauseMenu(level, "testLevel", tickTimeline);
+                tickTimeline.stop();
             }
         });
 
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
-
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(ONE_SECOND_IN_MILLISECONDS), event -> tick()));
-        tickTimeline.setCycleCount(level.getTimer().getLevelTime());
 
         System.out.printf("Start coords %d, %d", level.getPlayer().getXCoord(),level.getPlayer().getYCoord());
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -169,6 +170,6 @@ public class GameGUI extends Stage {
     }
 
     public void tick() {
-        this.levelTimeLabel.setText("" + level.getTimer().decrementTime());
+        this.levelTimeLabel.setText("" + this.level.getTimer().decrementTime());
     }
 }
