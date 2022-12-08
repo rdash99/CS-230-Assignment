@@ -25,6 +25,7 @@ public class NPC extends Character {
         validMove(this.coord);
         this.coord[0] = this.coord[0] + this.coordChange[0];
         this.coord[1] = this.coord[1] + this.coordChange[1];
+        super.interact();
     }
 
     protected double getMovementTimer() {

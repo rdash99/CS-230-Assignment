@@ -11,10 +11,6 @@ public class SmartThief extends NPC {
 
     }
 
-    private void interact() {
-
-    }
-
     private void validMove() {
 
     }
