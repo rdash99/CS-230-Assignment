@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -27,7 +28,8 @@ public class LoseMenu extends Stage {
     public LoseMenu(String playerName, GameGUI originalWindow) {
         this.playerName = playerName;
         this.originalWindow = originalWindow;
-        root.setBackground(new Background(new BackgroundFill(Color.GRAY,
+        this.initStyle(StageStyle.UNDECORATED);
+        root.setBackground(new Background(new BackgroundFill(Color.DARKRED,
                 CornerRadii.EMPTY, Insets.EMPTY)));
 
         titleText.setFont(Font.font("Arial", FontPosture.ITALIC, 18));
