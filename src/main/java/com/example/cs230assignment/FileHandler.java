@@ -399,8 +399,7 @@ public class FileHandler {
         if (isCollected) {
             return "";
         } else {
-            String data = "item " + itemName + " " + x + " " + y + " " + value
-                    + "\n";
+            String data = x + " " + y + "itm " + itemName + " " + value + "\n";
             return data;
         }
     }
