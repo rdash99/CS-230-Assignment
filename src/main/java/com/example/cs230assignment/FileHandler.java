@@ -359,10 +359,18 @@ public class FileHandler {
      * @param level    The player's completed levels
      * @return String
      */
-    private static String savePlayerData(String playerID, int score,
-            ArrayList<String> level) {
+    private static ArrayList<String> savePlayerData(String playerID, int score,
+            ArrayList<String> level, ArrayList<String> playerData) {
         String data = score + " " + level;
-        return data;
+        if (playerData == null || playerData.size() == 0) {
+            playerData = new ArrayList<String>();
+        } else {
+        }
+        // TODO needs to replace the level in the arraylist with the new one if
+        // the score is greater than the old one
+        playerData.add(data);
+
+        return playerData;
     }
 
     /**
@@ -376,9 +384,31 @@ public class FileHandler {
         int y = player.getYCoord();
         int score = player.getScore();
         ArrayList<String> levels = player.getLevels();
+        ArrayList<String> playerData = new ArrayList<String>();
         String playerID = player.getEntityName();
+        Scanner in = null;
         try {
-            String data = savePlayerData(playerID, score, levels);
+            in = new Scanner(new File(
+                    "src/main/resources/profiles/" + playerID + ".txt"));
+            String data = in.nextLine();
+
+            data = data.replace(data.substring(0, 0), "");
+            data = data.replace(data.substring(data.length(), data.length()),
+                    " ");
+            String[] dataSplit = data.split(",");
+
+            for (int i = 0; i < dataSplit.length; i++) {
+                playerData.add(dataSplit[i]);
+            }
+            in.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+        try {
+            playerData = savePlayerData(playerID, score, levels, playerData);
+            String data = playerData.toString();
+            System.out.println(data);
             writeToFile("src/main/resources/profiles/" + playerID, data);
         } catch (NullPointerException e) {
         }
