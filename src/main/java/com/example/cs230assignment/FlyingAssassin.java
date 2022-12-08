@@ -5,8 +5,7 @@ public class FlyingAssassin extends NPC {
     public FlyingAssassin(double movementTimerPass, int x, int y, int xdir,
             int ydir) {
         super("Flying Assassin", movementTimerPass, x, y);
-        super.coordChange[0] = xdir;
-        super.coordChange[1] = ydir;
+        super.coordChange = new int[] {xdir,ydir};
     }
 
     // was flying assassin kill changed to fit better with boardupdate
