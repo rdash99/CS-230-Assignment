@@ -11,6 +11,8 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class LoseMenu extends Stage {
     private BorderPane root = new BorderPane();
     private Button retryBtn = new Button("Retry");
@@ -18,6 +20,7 @@ public class LoseMenu extends Stage {
     private Text titleText = new Text("Game Over");
     private VBox vbox = new VBox();
     private HBox hbox = new HBox();
+    private Board board;
     private String playerName;
     private GameGUI originalWindow;
 
@@ -47,9 +50,20 @@ public class LoseMenu extends Stage {
         this.show();
 
         retryBtn.setOnAction(e -> {
-            // add code to resume ticks
             this.close();
             this.originalWindow.createGame(this.playerName);
+        });
+
+        quitBtn.setOnAction(e -> {
+            this.close();
+            this.originalWindow.close();
+            try {
+                new MainMenu();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
         });
     }
 }
