@@ -193,6 +193,11 @@ public class FileHandler {
         return tiles;
     }
 
+    /**
+     * Links all the entities and the board together
+     * 
+     * @param board
+     */
     private static void addBoardLinks(Board board) {
         ArrayList<Entity> entities = board.getEntities();
         Player player = board.getPlayer();
@@ -477,6 +482,11 @@ public class FileHandler {
         return levelNamesArray;
     }
 
+    /**
+     * Loads all profile's names and scores.
+     * 
+     * @return ArrayList<String> of player names and scores
+     */
     public static ArrayList<String> readPlayerScores() {
         // find all files in src/main/resources/profiles
         File folder = new File("src/main/resources/profiles");
@@ -494,6 +504,12 @@ public class FileHandler {
         return playerScores;
     }
 
+    /**
+     * Reads a player's score from a file.
+     * 
+     * @param filename The name of the file to be read
+     * @return String of player score
+     */
     private static String readPlayerScore(String filename) {
         Scanner in = null;
         File file = new File("src/main/resources/profiles/" + filename);
