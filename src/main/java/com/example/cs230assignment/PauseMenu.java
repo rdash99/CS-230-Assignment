@@ -1,5 +1,6 @@
 package com.example.cs230assignment;
 
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,6 +16,13 @@ import javafx.stage.StageStyle;
 
 import java.io.Console;
 
+
+/**
+ * The pause menu class. It is used to display the pause menu which contains
+ * options to resume the game or quit the game and save.
+ * @author Fraser Clough
+ * @version 1.0
+ */
 public class PauseMenu extends Stage {
 
     private BorderPane root = new BorderPane();
@@ -26,7 +34,13 @@ public class PauseMenu extends Stage {
     private Board board;
     private String levelName;
 
-    public PauseMenu(Board board, String levelName) {
+    /**
+     * Creates a new Pause Menu when this class is instantiated.
+     * @param board the board of the games.
+     * @param levelName what level the player is on.
+     * @param tickTimeline to control the game's ticks.
+     */
+    public PauseMenu(Board board, String levelName, Timeline tickTimeline) {
         this.board = board;
         this.levelName = levelName;
         this.initStyle(StageStyle.UNDECORATED);
@@ -53,12 +67,11 @@ public class PauseMenu extends Stage {
         this.show();
 
         resumeBtn.setOnAction(e -> {
-            // add code to resume ticks
             this.close();
+            tickTimeline.play();
         });
 
         exitBtn.setOnAction(e -> {
-            // add code to save
             FileHandler.saveGame(this.board, this.levelName);
             System.exit(0);
         });

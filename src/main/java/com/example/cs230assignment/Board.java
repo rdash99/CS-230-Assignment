@@ -30,10 +30,12 @@ public class Board extends DrawShape {
     /**
      * Construct the board with to be played on.
      *
-     * @param width  the width of the board
-     * @param height the height of the board
-     * @param tiles  the arraylist of tiles to be drawn on the board
-     * @param player the player to be drawn on the board
+     * @param width    the width of the board
+     * @param height   the height of the board
+     * @param tiles    the arraylist of tiles to be drawn on the board
+     * @param player   the player to be drawn on the board
+     * @param timer    the timer to be drawn on the board
+     * @param entities the entities to be drawn on the board
      */
     public Board(int width, int height, Tile[][] tiles,
             ArrayList<Entity> entities, Player player, Timer timer) {
@@ -157,6 +159,19 @@ public class Board extends DrawShape {
                 }
             }
         }
+        int xCoord = (this.player.getXCoord());
+        int yCoord = (this.player.getYCoord());
+        int xDefaultOffset = 25;
+        int yDefaultOffset = 25;
+
+        for (int i = 0; i < xCoord; i++) {
+            xDefaultOffset += 100;
+        }
+        for (int i = 0; i < yCoord; i++) {
+            yDefaultOffset += 100;
+        }
+        gc.drawImage(playerImg, xCoord + xDefaultOffset,
+                yCoord + yDefaultOffset);
     }
 
     public void setEntities(ArrayList<Entity> entities) {
@@ -174,7 +189,8 @@ public class Board extends DrawShape {
     public Tile[][] getTiles() {
         return this.tiles;
     }
-    public void missionFailed(){
-        
+
+    public void missionFailed() {
+
     }
 }

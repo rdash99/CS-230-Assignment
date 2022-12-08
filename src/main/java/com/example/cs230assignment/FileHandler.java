@@ -50,6 +50,16 @@ public class FileHandler {
             int xNum = x - 1;
 
             for (int i = 0; i < lineArray.length; i++) {
+                if (lineArray[i].equals("timer")) {
+                    levelTime = Integer.parseInt(lineArray[i + 1]);
+                }
+                if (lineArray[i].equals("items")) {
+                    int xCoord = Integer.parseInt(lineArray[i - 2]);
+                    int yCoord = Integer.parseInt(lineArray[i - 1]);
+                    String name = lineArray[i + 1];
+                    int value = Integer.parseInt(lineArray[i + 2]);
+                    entities.add(loadItem(name, xCoord, yCoord, value));
+                }
                 // read in tile colours
                 if (lineArray[i].length() == 4) {
                     tiles[xNum][yNum] = new Tile(lineArray[i].charAt(0),
@@ -111,6 +121,11 @@ public class FileHandler {
                         }
                     }
                     ;
+                    if (lineArray[i].equals("itm")) {
+                        String name = lineArray[i + 1];
+                        int value = Integer.parseInt(lineArray[i + 2]);
+                        entities.add(loadItem(name, x, y, value));
+                    }
                 }
 
             }
@@ -131,7 +146,7 @@ public class FileHandler {
                 tiles2[i][j] = tiles[tiles.length - 1 - i][tiles[0].length - 1 - j];
             }
         }
-        // flip the tiles array 90 degrees again
+        // flip the tiles array 90 degrees
         Tile[][] tiles3 = new Tile[tiles2.length][tiles2[0].length];
         for (int i = 0; i < tiles2.length; i++) {
             for (int j = 0; j < tiles2[0].length; j++) {
@@ -161,8 +176,8 @@ public class FileHandler {
     /**
      * Links the tiles and entities together.
      * 
-     * @param tiles
-     * @param entities
+     * @param tiles    The tiles to link the entities to
+     * @param entities The entities to link to the tiles
      * @return Tile[][]
      */
     private static Tile[][] linkTilesEntity(Tile[][] tiles,
@@ -178,6 +193,11 @@ public class FileHandler {
         return tiles;
     }
 
+    /**
+     * Links all the entities and the board together
+     * 
+     * @param board The board to link the entities to
+     */
     private static void addBoardLinks(Board board) {
         ArrayList<Entity> entities = board.getEntities();
         Player player = board.getPlayer();
@@ -197,7 +217,8 @@ public class FileHandler {
      * @return String
      */
     public static String loadPlayerData(String playerName) {
-        File file = new File("src/main/resources/profiles/" + playerName + ".txt");
+        File file = new File(
+                "src/main/resources/profiles/" + playerName + ".txt");
         Scanner sc = null;
         try {
             sc = new Scanner(file);
@@ -231,6 +252,7 @@ public class FileHandler {
      */
     private static void saveBoard(Board board, String fileName) {
         Player player = board.getPlayer();
+        fileName = player.getEntityName() + fileName + "save";
         ArrayList<Entity> entities = board.getEntities();
         Tile[][] tiles = board.getTiles();
         int levelTime = board.getTimer().getLevelTime();
@@ -258,7 +280,8 @@ public class FileHandler {
             }
         }
         // write the data to a file
-        String data = boardData + tileData + playerData + itemData + entityData + levelTime;
+        String data = boardData + tileData + playerData + itemData + entityData
+                + "timer " + levelTime;
         File file = new File("src/main/resources/saves/" + fileName + ".txt");
         try {
             FileWriter fw = new FileWriter(file);
@@ -355,11 +378,9 @@ public class FileHandler {
         ArrayList<String> levels = player.getLevels();
         String playerID = player.getEntityName();
         try {
-            String data = savePlayerData(
-                    "src/main/resources/profiles/" + playerID, score, levels);
-            writeToFile(playerID, data);
+            String data = savePlayerData(playerID, score, levels);
+            writeToFile("src/main/resources/profiles/" + playerID, data);
         } catch (NullPointerException e) {
-            return "";
         }
         String data = x + " " + y + " " + "ply" + "\n";
         return data;
@@ -392,7 +413,7 @@ public class FileHandler {
         if (isCollected) {
             return "";
         } else {
-            String data = "item " + itemName + " " + x + " " + y + " " + value
+            String data = x + " " + y + " items " + itemName + " " + value
                     + "\n";
             return data;
         }
@@ -401,8 +422,8 @@ public class FileHandler {
     /**
      * Saves a board to a file.
      * 
-     * @param board
-     * @param fileName
+     * @param board    The board to be saved
+     * @param fileName The name of the file to save the board to
      */
     public static void saveGame(Board board, String fileName) {
         File saveFile = new File(fileName);
@@ -429,8 +450,9 @@ public class FileHandler {
     /**
      * Instansiates a new instance of board.
      * 
-     * @param fileName
-     * @return Board
+     * @param fileName   The name of the file to be read
+     * @param playerName The name of the player
+     * @return The level
      */
     public static Board readLevelFile(String fileName, String playerName) {
         File file = new File("src/main/resources/levels/" + fileName + ".txt");
@@ -459,5 +481,49 @@ public class FileHandler {
         String[] levelNamesArray = new String[levelNames.size()];
         levelNamesArray = levelNames.toArray(levelNamesArray);
         return levelNamesArray;
+    }
+
+    /**
+     * Loads all profile's names and scores.
+     * 
+     * @return ArrayList<String> of player names and scores
+     */
+    public static ArrayList<String> readPlayerScores() {
+        // find all files in src/main/resources/profiles
+        File folder = new File("src/main/resources/profiles");
+        File[] listOfFiles = folder.listFiles();
+        ArrayList<String> playerScores = new ArrayList<String>();
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                String fileName = file.getName();
+                String playerName = fileName.substring(0,
+                        fileName.length() - 4);
+                String playerScore = readPlayerScore(fileName);
+                playerScores.add(playerName + " " + playerScore);
+            }
+        }
+        return playerScores;
+    }
+
+    /**
+     * Reads a player's score from a file.
+     * 
+     * @param filename The name of the file to be read
+     * @return String of player score
+     */
+    private static String readPlayerScore(String filename) {
+        Scanner in = null;
+        File file = new File("src/main/resources/profiles/" + filename);
+        try {
+            in = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find " + file.getName());
+            System.exit(0);
+        }
+        String line = in.nextLine();
+        String[] lineArray = line.split(" ");
+        in.close();
+        String playerScore = lineArray[0];
+        return playerScore;
     }
 }
