@@ -247,6 +247,7 @@ public class FileHandler {
      */
     private static void saveBoard(Board board, String fileName) {
         Player player = board.getPlayer();
+        fileName = player.getEntityName() + fileName + "save";
         ArrayList<Entity> entities = board.getEntities();
         Tile[][] tiles = board.getTiles();
         int levelTime = board.getTimer().getLevelTime();
@@ -274,7 +275,8 @@ public class FileHandler {
             }
         }
         // write the data to a file
-        String data = boardData + tileData + playerData + itemData + entityData + levelTime;
+        String data = boardData + tileData + playerData + itemData + entityData
+                + "timer " + levelTime;
         File file = new File("src/main/resources/saves/" + fileName + ".txt");
         try {
             FileWriter fw = new FileWriter(file);
@@ -406,7 +408,8 @@ public class FileHandler {
         if (isCollected) {
             return "";
         } else {
-            String data = x + " " + y + "itm " + itemName + " " + value + "\n";
+            String data = x + " " + y + " items " + itemName + " " + value
+                    + "\n";
             return data;
         }
     }
