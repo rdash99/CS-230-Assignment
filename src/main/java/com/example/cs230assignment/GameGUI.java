@@ -171,5 +171,6 @@ public class GameGUI extends Stage {
 
     public void tick() {
         this.levelTimeLabel.setText("" + this.level.getTimer().decrementTime());
+        //TODO if statement to go here that displays a loser screen when levelTime == 0
     }
 }
