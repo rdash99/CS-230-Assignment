@@ -50,8 +50,15 @@ public class FileHandler {
             int xNum = x - 1;
 
             for (int i = 0; i < lineArray.length; i++) {
-                if (lineArray[i].equals("time")) {
+                if (lineArray[i].equals("timer")) {
                     levelTime = Integer.parseInt(lineArray[i + 1]);
+                }
+                if (lineArray[i].equals("items")) {
+                    int xCoord = Integer.parseInt(lineArray[i - 2]);
+                    int yCoord = Integer.parseInt(lineArray[i - 1]);
+                    String name = lineArray[i + 1];
+                    int value = Integer.parseInt(lineArray[i + 2]);
+                    entities.add(loadItem(name, xCoord, yCoord, value));
                 }
                 // read in tile colours
                 if (lineArray[i].length() == 4) {
