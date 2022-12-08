@@ -87,7 +87,6 @@ class FloorFollowingThief extends NPC {
       } else {
         super.coordChange[0] = 0;
         super.coordChange[1] = 0;
-        ;
       }
     }
   }
