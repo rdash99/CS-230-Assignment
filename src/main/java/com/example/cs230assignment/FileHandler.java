@@ -176,8 +176,8 @@ public class FileHandler {
     /**
      * Links the tiles and entities together.
      * 
-     * @param tiles
-     * @param entities
+     * @param tiles    The tiles to link the entities to
+     * @param entities The entities to link to the tiles
      * @return Tile[][]
      */
     private static Tile[][] linkTilesEntity(Tile[][] tiles,
@@ -196,7 +196,7 @@ public class FileHandler {
     /**
      * Links all the entities and the board together
      * 
-     * @param board
+     * @param board The board to link the entities to
      */
     private static void addBoardLinks(Board board) {
         ArrayList<Entity> entities = board.getEntities();
@@ -422,8 +422,8 @@ public class FileHandler {
     /**
      * Saves a board to a file.
      * 
-     * @param board
-     * @param fileName
+     * @param board    The board to be saved
+     * @param fileName The name of the file to save the board to
      */
     public static void saveGame(Board board, String fileName) {
         File saveFile = new File(fileName);
@@ -450,8 +450,9 @@ public class FileHandler {
     /**
      * Instansiates a new instance of board.
      * 
-     * @param fileName
-     * @return Board
+     * @param fileName   The name of the file to be read
+     * @param playerName The name of the player
+     * @return The level
      */
     public static Board readLevelFile(String fileName, String playerName) {
         File file = new File("src/main/resources/levels/" + fileName + ".txt");
