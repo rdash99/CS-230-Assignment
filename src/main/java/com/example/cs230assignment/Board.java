@@ -106,6 +106,8 @@ public class Board extends DrawShape {
         Image blueSquareImg = new Image("blueSquare.png");
         Image yellowSquareImg = new Image("yellowSquare.png");
         Image playerImg = new Image("player.png");
+        Image flyingAssassinImg = new Image("flying assassin 2.png");
+        Image floorFollowingThiefImg = new Image("floorfollowingthiefedit.png");
 
         // Draw all tiles on screen to make up the board
         for (int i = 0; i < this.tiles.length; i++) {
@@ -171,6 +173,10 @@ public class Board extends DrawShape {
             yDefaultOffset += 100;
         }
         gc.drawImage(playerImg, xCoord + xDefaultOffset,
+                yCoord + yDefaultOffset);
+        gc.drawImage(flyingAssassinImg, xCoord + xDefaultOffset,
+                yCoord + yDefaultOffset);
+        gc.drawImage(floorFollowingThiefImg, xCoord + xDefaultOffset,
                 yCoord + yDefaultOffset);
     }
 

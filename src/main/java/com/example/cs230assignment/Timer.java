@@ -38,6 +38,8 @@ public class Timer {
      */
     public void boardUpdate(GraphicsContext gc, Entity entity, Board board) {
         Image playerImg = new Image("player.png");
+        Image flyingAssassinImg = new Image("flyingAssassin.png");
+        Image floorFollowingThiefImg = new Image("floorFollowingThief.png");
 
         int xCoord = (entity.getXCoord());
         int yCoord = (entity.getYCoord());
@@ -53,11 +55,13 @@ public class Timer {
         board.draw(gc);
         switch (entity.getEntityName()) {
             case "Player":
-                gc.drawImage(playerImg, xCoord + xDefaultOffset, yDefaultOffset);
+                gc.drawImage(playerImg, xCoord + xDefaultOffset, yCoord + yDefaultOffset);
                 break;
             case "Flying Assassin":
+                gc.drawImage(flyingAssassinImg, xCoord + xDefaultOffset, yCoord + yDefaultOffset);
                 break;
             case "Floor Following Thief":
+                gc.drawImage(floorFollowingThiefImg, xCoord + xDefaultOffset, yCoord + yDefaultOffset);
                 break;
             case "Smart Thief":
                 break;
