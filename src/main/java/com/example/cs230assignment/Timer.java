@@ -51,8 +51,26 @@ public class Timer {
             yDefaultOffset += 100;
         }
         board.draw(gc);
-        if (entity.getEntityName().equals("Player")) {
-            gc.drawImage(playerImg, xCoord + xDefaultOffset, yDefaultOffset);
+        switch (entity.getEntityName()) {
+            case "Player":
+                gc.drawImage(playerImg, xCoord + xDefaultOffset, yDefaultOffset);
+                break;
+            case "Flying Assassin":
+                break;
+            case "Floor Following Thief":
+                break;
+            case "Smart Thief":
+                break;
+            case "Clock":
+                break;
+            case "Gate":
+                break;
+            case "Key":
+                break;
+            case "Bomb":
+                break;
+            case "Door":
+                break;
         }
     }
 
