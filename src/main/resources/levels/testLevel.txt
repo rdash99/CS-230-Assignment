@@ -8,5 +8,5 @@ YYYY RRRG RRRR GGGG
 0 0 ply
 3 2 gte R
 3 3 key R
-2 2 itm Diamond 100
-time 320
+2 2 items Diamond 10
+timer 320
