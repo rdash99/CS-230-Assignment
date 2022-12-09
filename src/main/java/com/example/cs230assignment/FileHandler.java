@@ -385,7 +385,7 @@ public class FileHandler {
         int score = player.getScore();
         ArrayList<String> levels = player.getLevels();
         ArrayList<String> playerData = new ArrayList<String>();
-        String playerID = player.getEntityName();
+        String playerID = player.getPlayerName();
         Scanner in = null;
         try {
             in = new Scanner(new File(
