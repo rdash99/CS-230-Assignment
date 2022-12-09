@@ -310,7 +310,7 @@ public class Player extends Character {
                                 .getEntity().getEntityName()).equals("Door")
                                 && !(super.currentBoard.getTile(super.coord[0], i)
                                 .getEntity().getEntityName()).equals("Key")) {
-                            if (super.currentBoard.getTile(i, super.coord[1])
+                            if (super.currentBoard.getTile(super.coord[0], i)
                                     .getEntity().getEntityName().equals("Gate")) {
                                 foundSquare = true;
                             }
