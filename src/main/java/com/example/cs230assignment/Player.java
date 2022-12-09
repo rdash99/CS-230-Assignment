@@ -142,23 +142,23 @@ public class Player extends Character {
         try {
             if (profile != null) {
                 profile = profile.replace("[", "").replace("]", "");
-                String[] profileData = profile.split(",");
-                String[] scoreData = new String[profileData.length];
-                String[] levelData = new String[profileData.length];
-                for (int i = 0; i < profileData.length; i++) {
-                    String[] data = profileData[i].split(" ");
-                    scoreData[i] = data[0];
-                    levelData[i + 1] = data[1];
-                }
+                profile = profile.replace(",", " ");
+                String[] profileData = profile.split(" ");
+                String[] scoreData = new String[profileData.length / 2];
+                String[] levelData = new String[profileData.length / 2];
+                int i = 0;
+                do {
+                    scoreData[i] = profileData[i];
+                    levelData[i] = profileData[i + 1];
+                    this.levelComp.add((String) levelData[i]);
+                    i = i + 2;
+                } while (i <= profileData.length);
                 // TODO needs updating to check current level and update score
                 // apropiately - only if this is a loading of a saved game
-                this.score = Integer.parseInt(profileData[0]);
-                for (int i = 1; i < levelData.length; i++) {
-                    this.levelComp.add(levelData[i]);
-                }
+                this.score = Integer.parseInt(scoreData[scoreData.length - 1]);
                 // creates a new profile if one isnt found
             } else {
-                levelComp.add("level1");
+                this.levelComp.add("level1");
             }
         } catch (Exception e) {
             this.score = 0;

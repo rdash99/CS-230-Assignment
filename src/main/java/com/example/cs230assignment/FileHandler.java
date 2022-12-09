@@ -252,7 +252,7 @@ public class FileHandler {
      */
     private static void saveBoard(Board board, String fileName) {
         Player player = board.getPlayer();
-        fileName = player.getEntityName() + fileName + "save";
+        fileName = player.getPlayerName() + fileName + "save";
         ArrayList<Entity> entities = board.getEntities();
         Tile[][] tiles = board.getTiles();
         int levelTime = board.getTimer().getLevelTime();
@@ -361,14 +361,21 @@ public class FileHandler {
      */
     private static ArrayList<String> savePlayerData(String playerID, int score,
             ArrayList<String> level, ArrayList<String> playerData) {
-        String data = score + " " + level;
+        String levels = level.toString().replace("[", "").replace("]", "");
         if (playerData == null || playerData.size() == 0) {
             playerData = new ArrayList<String>();
         } else {
+            String[] levelsSplit = levels.split(",");
+            for (int i = 0; i < levelsSplit.length; i++) {
+                levelsSplit[i] = levelsSplit[i].trim();
+                String data = score + " " + levelsSplit[i];
+                playerData.add(data);
+                // TODO needs to replace the level in the arraylist with the new
+                // one if
+                // the score is greater than the old one
+            }
+
         }
-        // TODO needs to replace the level in the arraylist with the new one if
-        // the score is greater than the old one
-        playerData.add(data);
 
         return playerData;
     }
@@ -392,9 +399,9 @@ public class FileHandler {
                     "src/main/resources/profiles/" + playerID + ".txt"));
             String data = in.nextLine();
 
-            data = data.replace(data.substring(0, 0), "");
-            data = data.replace(data.substring(data.length(), data.length()),
-                    " ");
+            data = data.replace("[", "");
+            data = data.replace("]", "");
+            ;
             String[] dataSplit = data.split(",");
 
             for (int i = 0; i < dataSplit.length; i++) {
@@ -408,7 +415,6 @@ public class FileHandler {
         try {
             playerData = savePlayerData(playerID, score, levels, playerData);
             String data = playerData.toString();
-            System.out.println(data);
             writeToFile("src/main/resources/profiles/" + playerID, data);
         } catch (NullPointerException e) {
         }
