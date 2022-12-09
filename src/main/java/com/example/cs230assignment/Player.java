@@ -84,7 +84,7 @@ public class Player extends Character {
             case ("Door"):
                 // door being interacted with
                 Door door = (Door) super.currentBoard.getTile(x, y).getEntity();
-                door.endMission();
+                door.endMission(this.score, super.currentBoard.getTimer().getLevelTime());
             }
         }
         // values of i to the position around tile 0

@@ -5,7 +5,8 @@ public class Door extends Entity {
         super("Door", x, y);
     }
     
-    public void endMission(){
+    //needs to calculate points from score and time left
+    public void endMission(int score, int timeleft){
 
     }
 }
