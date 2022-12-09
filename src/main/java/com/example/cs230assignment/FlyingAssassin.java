@@ -8,9 +8,8 @@ public class FlyingAssassin extends NPC {
         super.coordChange = new int[] {xdir,ydir};
     }
 
-    @Override
     public void move() {
-        validMove(this.coord);
+        validMove();
         this.coord[0] = this.coord[0] + this.coordChange[0];
         this.coord[1] = this.coord[1] + this.coordChange[1];
         super.interact();

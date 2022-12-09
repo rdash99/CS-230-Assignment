@@ -24,13 +24,20 @@ class FloorFollowingThief extends NPC {
   }
 
 
-
+  public void move() {
+    Boolean x = validMove();
+    if(x){
+      this.coord[0] = this.coord[0] + this.coordChange[0];
+      this.coord[1] = this.coord[1] + this.coordChange[1];
+      super.interact();
+    }
+  }
   /**
    * checks the tiles for possible movements 
    * changes the change in coords till finds a valid move or has looped all the way around
    * when it finds a possible move it ends with the correct change in coords
    */
-  private void validMove() {
+  private Boolean validMove() {
     // changes the coordChange to the coord to the left
     if (super.coordChange[0] == 1 && super.coordChange[1] == 0) {
       super.coordChange[0] = 0;
@@ -188,9 +195,9 @@ class FloorFollowingThief extends NPC {
         }
       //sets the movement to make the thief stand still as there is no valid move
       } else {
-        super.coordChange[0] = 0;
-        super.coordChange[1] = 0;
+        return false;
       }
     }
+  return true;
   }
 }
