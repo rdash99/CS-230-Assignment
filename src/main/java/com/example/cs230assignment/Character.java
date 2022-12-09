@@ -34,9 +34,6 @@ public class Character extends Entity {
                     Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
                     this.currentBoard.getTimer().addClock(clock);
                     break;
-                case("player"):
-                    currentBoard.getPlayer().die();
-                    break;
             }
         }
         for(int i = 1; i < 9; i++){

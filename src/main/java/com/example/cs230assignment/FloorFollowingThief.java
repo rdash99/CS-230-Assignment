@@ -95,6 +95,7 @@ class FloorFollowingThief extends NPC {
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
+              case ("Player"):
                 super.coordChange[0] = 0;
                 super.coordChange[1] = -1;
                 break;
