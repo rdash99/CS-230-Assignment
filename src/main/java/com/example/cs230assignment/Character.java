@@ -20,9 +20,7 @@ public class Character extends Entity {
         return this.currentBoard;
     }
 
-    protected void interact() {
-        int x = this.coord[0];
-        int y = this.coord[1];
+    protected void interact(int x, int y) {
         if(currentBoard.getTile(x, y).getEntity() != null){
             switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
                 case("item"):

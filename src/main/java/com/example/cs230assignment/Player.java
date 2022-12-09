@@ -56,7 +56,7 @@ public class Player extends Character {
      * @param x the xcoord of the next tile with the potential interactable item
      * @param y the ycoord of the next tile with the potential interactable item
      */
-    private void interact(int x, int y) {
+    protected void interact(int x, int y) {
         // checks to see if there is an item on the next square
         if (super.currentBoard.getTile(x, y).getEntity() != null) {
             // switch statement to find out what entity is on the next square

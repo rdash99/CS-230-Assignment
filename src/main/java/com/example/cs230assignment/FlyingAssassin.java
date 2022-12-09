@@ -9,17 +9,19 @@ public class FlyingAssassin extends NPC {
     }
 
     public void move() {
-        validMove();
+    Boolean x = validMove();
+        if (x) {
+        super.interact(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
+        super.currentBoard.getTile(this.coord[0], this.coord[1]).removeEntity();
+        super.currentBoard.getTile(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
         this.coord[0] = this.coord[0] + this.coordChange[0];
         this.coord[1] = this.coord[1] + this.coordChange[1];
-        super.interact();
-    }
+        }
+  }
     // was flying assassin kill changed to fit better with boardupdate
     // kills any npcs
     @Override
-    protected void interact() {
-        int x = this.coord[0];
-        int y = this.coord[1];
+    protected void interact(int x, int y) {
         if(currentBoard.getTile(x, y).getEntity() != null){
             switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
                 case("item"):
@@ -74,7 +76,7 @@ public class FlyingAssassin extends NPC {
         }
     }
 
-    private void validMove() {
+    private Boolean validMove() {
         if (super.coord[0] + super.coordChange[0] < 0 
         || super.coord[0] + super.coordChange[0] > super.getCurrentBoard().getWidth()-1
         || super.coord[1] + super.coordChange[1] < 0 
@@ -82,6 +84,7 @@ public class FlyingAssassin extends NPC {
             super.coordChange[0] = - super.coordChange[0];
             super.coordChange[1] = - super.coordChange[1];
         }
+        return true;
     }
 
     public int[] getDirection() {

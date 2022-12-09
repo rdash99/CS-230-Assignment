@@ -32,9 +32,11 @@ class FloorFollowingThief extends NPC {
   public void move() {
     Boolean x = validMove();
     if (x) {
+      super.interact(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
+      super.currentBoard.getTile(this.coord[0], this.coord[1]).removeEntity();
+      super.currentBoard.getTile(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
       this.coord[0] = this.coord[0] + this.coordChange[0];
       this.coord[1] = this.coord[1] + this.coordChange[1];
-      super.interact();
     }
   }
 
