@@ -160,9 +160,11 @@ public class Board extends DrawShape {
         }
         this.player.draw(gc);
         for (Entity elem : this.getEntities()) {
-            System.out.println("Drawn at: " + elem.getXCoord() + "" + elem.getYCoord());
             elem.draw(gc);
-
+            if (elem instanceof SmartThief) {
+                ((SmartThief) elem).findClosestInteractable(this).getEntityName();
+            }
+        }
             //Call entity NPC movement from here perhaps?
 //            if (elem instanceof FlyingAssassin) {
 //                System.out.println("FA: " + elem.getXCoord() + " " + elem.getYCoord());
@@ -173,7 +175,6 @@ public class Board extends DrawShape {
 //                ((FloorFollowingThief) elem).move();
 //            }
         }
-    }
 
     public void setEntities(ArrayList<Entity> entities) {
         this.entities = entities;

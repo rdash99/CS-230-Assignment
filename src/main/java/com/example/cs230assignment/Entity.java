@@ -15,6 +15,8 @@ public class Entity extends DrawShape {
     protected String entityName;
     protected int[] coord;
 
+    protected int distanceFromSmartThief = -1;
+
     public Entity(String entityNamePass, int x, int y) {
         this.coord = new int[] { x, y };
         this.entityName = entityNamePass;
@@ -184,4 +186,11 @@ public class Entity extends DrawShape {
         }
     }
 
+    public void setDistanceFromSmartThief(int distanceFromSmartThief) {
+        this.distanceFromSmartThief = distanceFromSmartThief;
+    }
+
+    public int getDistanceFromSmartThief() {
+        return this.distanceFromSmartThief;
+    }
 }
