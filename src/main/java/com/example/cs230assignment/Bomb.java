@@ -1,13 +1,16 @@
 package com.example.cs230assignment;
 
 public class Bomb extends Entity {
-    //private int bombTimer;
+    private int xCoord;
+    private int yCoord;
 
     public Bomb(int x, int y){
         super("Bomb", x, y);
-        //this.bombTimer = 3;
+        this.xCoord = x;
+        this.yCoord = y;
     }
 
+    //Method removes all loot, clocks and levers and bombs
     /**
      * starts the proccess of detonating the bomb
      */
@@ -18,6 +21,7 @@ public class Bomb extends Entity {
             bombClock.decrementTime();
         }
 
+        if ()
 
     }
 }

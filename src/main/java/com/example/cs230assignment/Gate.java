@@ -35,4 +35,5 @@ public class Gate extends Entity {
         this.gateOpen = gateOpenPass;
     }
 
+
 }
