@@ -108,10 +108,8 @@ public class SmartThief extends NPC {
                                     + getYDistanceFromInteractable(entity.getYCoord()));
                     queue.add(entity);
 
-                    if (distanceFromClosestInteractable == -1) {
-                        distanceFromClosestInteractable = entity.getDistanceFromSmartThief();
-                        nextInteractable = entity;
-                    } else if (entity.getDistanceFromSmartThief() < distanceFromClosestInteractable) {
+                    if (distanceFromClosestInteractable == -1
+                            || (entity.getDistanceFromSmartThief() < distanceFromClosestInteractable)) {
                         distanceFromClosestInteractable = entity.getDistanceFromSmartThief();
                         nextInteractable = entity;
                     }
@@ -122,7 +120,6 @@ public class SmartThief extends NPC {
         if (nextInteractable == null) {
             return null;
         }
-        System.out.println(nextInteractable.getEntityName());
         return nextInteractable;
     }
 
@@ -131,7 +128,6 @@ public class SmartThief extends NPC {
         for (int i = 0; i < x + 1; i++) {
             distanceFromX = i;
         }
-        System.out.println(distanceFromX);
         return distanceFromX;
     }
 
@@ -140,7 +136,6 @@ public class SmartThief extends NPC {
         for (int i = 0; i < y + 1; i++) {
             distanceFromY = i;
         }
-        System.out.println(distanceFromY);
         return distanceFromY;
     }
 

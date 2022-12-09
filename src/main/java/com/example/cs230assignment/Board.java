@@ -38,7 +38,7 @@ public class Board extends DrawShape {
      * @param entities the entities to be drawn on the board
      */
     public Board(int width, int height, Tile[][] tiles,
-            ArrayList<Entity> entities, Player player, Timer timer) {
+                 ArrayList<Entity> entities, Player player, Timer timer) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
@@ -161,11 +161,8 @@ public class Board extends DrawShape {
         this.player.draw(gc);
         for (Entity elem : this.getEntities()) {
             elem.draw(gc);
-            if (elem instanceof SmartThief) {
-                ((SmartThief) elem).findClosestInteractable(this).getEntityName();
-            }
         }
-            //Call entity NPC movement from here perhaps?
+        //Call entity NPC movement from here perhaps?
 //            if (elem instanceof FlyingAssassin) {
 //                System.out.println("FA: " + elem.getXCoord() + " " + elem.getYCoord());
 //                ((FlyingAssassin) elem).move();
@@ -174,7 +171,7 @@ public class Board extends DrawShape {
 //                System.out.println("FFT: " + elem.getXCoord() + " " + elem.getYCoord());
 //                ((FloorFollowingThief) elem).move();
 //            }
-        }
+    }
 
     public void setEntities(ArrayList<Entity> entities) {
         this.entities = entities;
