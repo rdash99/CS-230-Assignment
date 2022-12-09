@@ -41,45 +41,93 @@ class FloorFollowingThief extends NPC {
       if (i != 4) {
         if ((super.coordChange[0] == 1 && super.coordChange[1] == 0)
             && super.getXCoord() != super.getCurrentBoard().getWidth()) {
-          if (super.getCurrentBoard()
+            if (super.getCurrentBoard()
               .getTile(super.getXCoord(), super.getYCoord() + 1)
-              .checkColour(this.allocatedColour) == true || !(super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
-            i = 5;
-          } else {
+              .checkColour(this.allocatedColour) == true){
+              if(!(super.getCurrentBoard().getTile
+              (super.getXCoord(), super.getYCoord() + 1).getEntity() != null)) {
+                switch(super.currentBoard.getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName()){
+                  case("Gate"):
+                  case("FloorFollowingThief"):
+                  case("FlyingAssassin"):
+                  case("SmartThief"):
+                    super.coordChange[0] = 0;
+                    super.coordChange[1] = -1;
+                    break;
+                }
+               }else {
+                  i = 5;
+              } 
+          }else {
             super.coordChange[0] = 0;
-            super.coordChange[1] = -1;
+            super.coordChange[1] =-1;
           }
         } else if ((super.coordChange[0] == 0 && super.coordChange[1] == 1)
             && super.getYCoord() != super.getCurrentBoard().getHeight()) {
           if (super.getCurrentBoard()
               .getTile(super.getXCoord(), super.getYCoord() + 1)
-              .checkColour(this.allocatedColour) == true || !(super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
-            i = 5;
-          } else {
+              .checkColour(this.allocatedColour) == true){
+            if(!(super.getCurrentBoard().getTile
+              (super.getXCoord(), super.getYCoord() + 1).getEntity() != null)) {
+              switch(super.currentBoard.getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName()){
+                case("Gate"):
+                case("FloorFollowingThief"):
+                case("FlyingAssassin"):
+                case("SmartThief"):
+                  super.coordChange[0] = 1;
+                  super.coordChange[1] = 0;
+                  break;
+              }
+            }else {
+                i = 5;
+            } 
+          }else {
             super.coordChange[0] = 1;
             super.coordChange[1] = 0;
           }
         } else if ((super.coordChange[0] == -1 && super.coordChange[1] == 0)
             && super.getXCoord() != 0) {
-          if (super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() - 1)
-              .checkColour(this.allocatedColour) == true || !(super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
-            i = 5;
-          } else {
+            if (super.getCurrentBoard()
+              .getTile(super.getXCoord(), super.getYCoord() + 1)
+              .checkColour(this.allocatedColour) == true){
+              if(!(super.getCurrentBoard().getTile
+              (super.getXCoord(), super.getYCoord() + 1).getEntity() != null)) {
+                switch(super.currentBoard.getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName()){
+                  case("Gate"):
+                  case("FloorFollowingThief"):
+                  case("FlyingAssassin"):
+                  case("SmartThief"):
+                    super.coordChange[0] = 0;
+                    super.coordChange[1] = 1;
+                    break;
+                }
+              }else {
+                  i = 5;
+              } 
+          }else {
             super.coordChange[0] = 0;
             super.coordChange[1] = 1;
           }
         } else if ((super.coordChange[0] == 0 && super.coordChange[1] == -1)
             && super.getYCoord() != 0) {
-          if (super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() - 1)
-              .checkColour(this.allocatedColour) == true || !(super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
-            i = 5;
-          } else {
+              if (super.getCurrentBoard()
+              .getTile(super.getXCoord(), super.getYCoord() + 1)
+              .checkColour(this.allocatedColour) == true){
+            if(!(super.getCurrentBoard().getTile
+              (super.getXCoord(), super.getYCoord() + 1).getEntity() != null)) {
+              switch(super.currentBoard.getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName()){
+                case("Gate"):
+                case("FloorFollowingThief"):
+                case("FlyingAssassin"):
+                case("SmartThief"):
+                  super.coordChange[0] = -1;
+                  super.coordChange[1] = 0;
+                  break;
+              }
+            }else {
+                i = 5;
+            } 
+          }else {
             super.coordChange[0] = -1;
             super.coordChange[1] = 0;
           }
