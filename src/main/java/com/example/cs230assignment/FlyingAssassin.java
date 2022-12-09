@@ -1,15 +1,33 @@
 package com.example.cs230assignment;
-
+/**
+ * a class to create an instance of a FlyingAssassin.
+ * 
+ * @author Charles Overton
+ * @version 1.0
+ */
 public class FlyingAssassin extends NPC {
-
-    public FlyingAssassin(double movementTimerPass, int x, int y, int xdir,
-            int ydir) {
+    
+    /**
+     * constructor to assign basic values upon creation of a flyingassassin
+     * @param movementTimerPass the speed the npc moves
+     * @param x the starting x coord of the flying assassin
+     * @param y the starting y coord of the flying assassin
+     * @param xdir the x direction the flying assassin will move in after spawning
+     * @param ydir the y direction of the flying assassin will move after spawning
+     */
+    public FlyingAssassin(double movementTimerPass, int x, int y, int xdir,int ydir) {
+        //constructor for NPC
         super("Flying Assassin", movementTimerPass, x, y);
         super.coordChange = new int[] {xdir,ydir};
     }
 
+    /**
+     * moves the npc from one tile to another
+     * calls validmove to check for the next move
+     */
     public void move() {
     Boolean x = validMove();
+        //move if a valid move is found
         if (x) {
         super.interact(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
         super.currentBoard.getTile(this.coord[0], this.coord[1]).removeEntity();
@@ -18,11 +36,14 @@ public class FlyingAssassin extends NPC {
         this.coord[1] = this.coord[1] + this.coordChange[1];
         }
   }
-    // was flying assassin kill changed to fit better with boardupdate
-    // kills any npcs
+    /**
+     * interact for flying assassin allowing the assassin to kill as well as
+     * interact with other entities
+     */
     @Override
     protected void interact(int x, int y) {
         if(currentBoard.getTile(x, y).getEntity() != null){
+            //select the entities by type and perform the correct interactions
             switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
                 case("item"):
                     super.currentBoard.getTile(x, y).removeEntity();
