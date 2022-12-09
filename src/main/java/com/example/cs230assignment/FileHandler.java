@@ -307,9 +307,12 @@ public class FileHandler {
             throw new IllegalArgumentException(
                     "Player data should be saved separately, how did this get here?");
         }
+        char colour;
         switch (entityName) {
         case "Floor Following Thief":
             entityName = "fft";
+            colour = ((FloorFollowingThief) entity).getAllocatedColour();
+            extraData = " " + colour;
             break;
         case "Flying Assassin":
             entityName = "fla";
@@ -321,7 +324,7 @@ public class FileHandler {
             break;
         case "Gate":
             entityName = "gte";
-            char colour = ((Gate) entity).getGateColour();
+            colour = ((Gate) entity).getGateColour();
             extraData = " " + colour;
             break;
         case "Door":
@@ -401,11 +404,10 @@ public class FileHandler {
 
             data = data.replace("[", "");
             data = data.replace("]", "");
-            ;
             String[] dataSplit = data.split(",");
 
             for (int i = 0; i < dataSplit.length; i++) {
-                playerData.add(dataSplit[i]);
+                playerData.add(dataSplit[i].trim());
             }
             in.close();
 

@@ -10,4 +10,4 @@ yyyy rrrg rrrr gggg
 1 2 fft
 3 2 gte r
 3 3 key r
-timer 320
+timer 319

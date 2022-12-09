@@ -142,14 +142,15 @@ public class Player extends Character {
         try {
             if (profile != null) {
                 profile = profile.replace("[", "").replace("]", "");
-                profile = profile.replace(",", " ");
-                String[] profileData = profile.split(" ");
+                profile = profile.replace(",", "");
+                String[] profileData = profile.split(",");
                 String[] scoreData = new String[profileData.length / 2];
                 String[] levelData = new String[profileData.length / 2];
                 int i = 0;
                 do {
-                    scoreData[i] = profileData[i];
-                    levelData[i] = profileData[i + 1];
+                    String[] data = profileData[i].trim().split(" ");
+                    scoreData[i] = profileData[i].trim();
+                    levelData[i] = profileData[i + 1].trim();
                     this.levelComp.add((String) levelData[i]);
                     i = i + 2;
                 } while (i <= profileData.length);
