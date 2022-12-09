@@ -23,10 +23,15 @@ public class Character extends Entity {
     protected void interact() {
         int x = this.coord[0];
         int y = this.coord[1];
-        if(currentBoard.getTile(x, y).getEntity() != null){
-            switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
+        Entity currentEntity = currentBoard.getTile(x, y).getEntity();
+        if(currentEntity != null){
+            switch (currentEntity.getEntityName()){
+                //Doesn't cover the case for what happens if an NPC steals an item
                 case("item"):
                     this.currentBoard.getTile(x, y).removeEntity();
+                        if (currentEntity instanceof Item) {
+                            this.currentBoard.getPlayer().increaseScore(((Item) currentEntity).getItemValue());
+                        }
                     break;
                 case("key"):
                     Key key = (Key) currentBoard.getTile(x, y).getEntity();
