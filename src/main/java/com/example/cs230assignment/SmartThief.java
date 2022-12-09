@@ -101,7 +101,8 @@ public class SmartThief extends NPC {
         while (!(queue.isEmpty())) {
             queue.remove();
             for (Entity entity : board.getEntities()) {
-                if (entity.getDistanceFromSmartThief() == -1) {
+                if (entity.getDistanceFromSmartThief() == -1
+                        && (entity instanceof Key || entity instanceof Item)) {
                     entity.setDistanceFromSmartThief
                             (getXDistanceFromInteractable(entity.getXCoord())
                                     + getYDistanceFromInteractable(entity.getYCoord()));
@@ -127,17 +128,19 @@ public class SmartThief extends NPC {
 
     private int getXDistanceFromInteractable(int x) {
         int distanceFromX = 0;
-        for (int i = 0; i != x; i++) {
+        for (int i = 0; i < x + 1; i++) {
             distanceFromX = i;
         }
+        System.out.println(distanceFromX);
         return distanceFromX;
     }
 
     private int getYDistanceFromInteractable(int y) {
         int distanceFromY = 0;
-        for (int i = 0; i != y; i++) {
+        for (int i = 0; i < y + 1; i++) {
             distanceFromY = i;
         }
+        System.out.println(distanceFromY);
         return distanceFromY;
     }
 
