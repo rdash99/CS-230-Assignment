@@ -16,7 +16,6 @@ class FloorFollowingThief extends NPC {
     super.coordChange = new int[] { x, y };
   }
 
-
   // needs to compare to the previous coordChange as it needs to stick to the
   // edge not to the left
   // needs to check to the left of the previous coord change
@@ -43,8 +42,10 @@ class FloorFollowingThief extends NPC {
             && super.getXCoord() != super.getCurrentBoard().getWidth()) {
           if (super.getCurrentBoard()
               .getTile(super.getXCoord(), super.getYCoord() + 1)
-              .checkColour(this.allocatedColour) == true || !(super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
+              .checkColour(this.allocatedColour) == true
+              || !(super.getCurrentBoard()
+                  .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
+                  .getEntityName() == "Gate")) {
             i = 5;
           } else {
             super.coordChange[0] = 0;
@@ -54,8 +55,10 @@ class FloorFollowingThief extends NPC {
             && super.getYCoord() != super.getCurrentBoard().getHeight()) {
           if (super.getCurrentBoard()
               .getTile(super.getXCoord(), super.getYCoord() + 1)
-              .checkColour(this.allocatedColour) == true || !(super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
+              .checkColour(this.allocatedColour) == true
+              || !(super.getCurrentBoard()
+                  .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
+                  .getEntityName() == "Gate")) {
             i = 5;
           } else {
             super.coordChange[0] = 1;
@@ -65,8 +68,10 @@ class FloorFollowingThief extends NPC {
             && super.getXCoord() != 0) {
           if (super.getCurrentBoard()
               .getTile(super.getXCoord(), super.getYCoord() - 1)
-              .checkColour(this.allocatedColour) == true || !(super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
+              .checkColour(this.allocatedColour) == true
+              || !(super.getCurrentBoard()
+                  .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
+                  .getEntityName() == "Gate")) {
             i = 5;
           } else {
             super.coordChange[0] = 0;
@@ -76,8 +81,10 @@ class FloorFollowingThief extends NPC {
             && super.getYCoord() != 0) {
           if (super.getCurrentBoard()
               .getTile(super.getXCoord(), super.getYCoord() - 1)
-              .checkColour(this.allocatedColour) == true || !(super.getCurrentBoard()
-              .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity().getEntityName() == "Gate")) {
+              .checkColour(this.allocatedColour) == true
+              || !(super.getCurrentBoard()
+                  .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
+                  .getEntityName() == "Gate")) {
             i = 5;
           } else {
             super.coordChange[0] = -1;
@@ -89,5 +96,9 @@ class FloorFollowingThief extends NPC {
         super.coordChange[1] = 0;
       }
     }
+  }
+
+  public char getAllocatedColour() {
+    return this.allocatedColour;
   }
 }
