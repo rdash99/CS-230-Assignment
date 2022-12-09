@@ -191,7 +191,9 @@ public class Player extends Character {
                                 && !(super.currentBoard.getTile(super.coord[0], i)
                                 .getEntity() instanceof Item)
                                 && !(super.currentBoard.getTile(super.coord[0], i)
-                                .getEntity().getEntityName()).equals("Door")) {
+                                .getEntity().getEntityName()).equals("Door")
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity().getEntityName()).equals("Key")) {
                             if (super.currentBoard.getTile(super.coord[0], i)
                                     .getEntity().getEntityName().equals("Gate")) {
                                 foundSquare = true;
@@ -228,7 +230,9 @@ public class Player extends Character {
                                 && !(super.currentBoard.getTile(i, super.coord[1])
                                 .getEntity() instanceof Item)
                                 && !(super.currentBoard.getTile(i, super.coord[1])
-                                .getEntity().getEntityName()).equals("Door")) {
+                                .getEntity().getEntityName()).equals("Door")
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity().getEntityName()).equals("Key")) {
                             if (super.currentBoard.getTile(i, super.coord[1])
                                     .getEntity().getEntityName().equals("Gate")) {
                                 foundSquare = true;
@@ -265,7 +269,9 @@ public class Player extends Character {
                                 && !(super.currentBoard.getTile(super.coord[0], i)
                                 .getEntity() instanceof Item)
                                 && !(super.currentBoard.getTile(super.coord[0], i)
-                                .getEntity().getEntityName()).equals("Door")) {
+                                .getEntity().getEntityName()).equals("Door")
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity().getEntityName()).equals("Key")) {
                             if (super.currentBoard.getTile(super.coord[0], i)
                                     .getEntity().getEntityName().equals("Gate")) {
                                 foundSquare = true;
@@ -302,11 +308,9 @@ public class Player extends Character {
                                 && !(super.currentBoard.getTile(i, super.coord[1])
                                 .getEntity() instanceof Item)
                                 && !(super.currentBoard.getTile(i, super.coord[1])
-                                .getEntity().getEntityName()).equals("Door")) {
-                            if (super.currentBoard.getTile(i, super.coord[1])
-                                    .getEntity().getEntityName().equals("Gate")) {
-                                foundSquare = true;
-                            }
+                                .getEntity().getEntityName()).equals("Door")
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity().getEntityName()).equals("Key")) {
                             if (super.currentBoard.getTile(i, super.coord[1])
                                     .getEntity().getEntityName().equals("Gate")) {
                                 foundSquare = true;

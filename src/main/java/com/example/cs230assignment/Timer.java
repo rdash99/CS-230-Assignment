@@ -34,6 +34,7 @@ public class Timer {
      * @param board a reference to the board to be updated
      */
     public void boardUpdate(GraphicsContext gc, Board board) {
+
         board.draw(gc);
     }
 
