@@ -183,9 +183,9 @@ public class Player extends Character {
                 // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // checks for a gate to stop any future movements
-                        if (super.currentBoard.getTile(i, super.coord[0])
+                        if (super.currentBoard.getTile(super.coord[0], i)
                             .getEntity() != null){
-                                if (super.currentBoard.getTile(i, super.coord[0])
+                                if (super.currentBoard.getTile(super.coord[0], i)
                                 .getEntity().getEntityName() == "Gate"){
                                     foundSquare = true;
                                 }
@@ -214,9 +214,9 @@ public class Player extends Character {
                 // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // checks for a gate to stop any future movements
-                        if (super.currentBoard.getTile(super.coord[1], i)
+                        if (super.currentBoard.getTile(i, super.coord[1])
                             .getEntity() != null){
-                                if (super.currentBoard.getTile(super.coord[1], i)
+                                if (super.currentBoard.getTile(i, super.coord[1])
                                 .getEntity().getEntityName() == "Gate"){
                                     foundSquare = true;
                                 }
@@ -245,9 +245,9 @@ public class Player extends Character {
                 // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // checks for a gate to stop any future movements
-                        if (super.currentBoard.getTile(i, super.coord[0])
+                        if (super.currentBoard.getTile(super.coord[0], i)
                         .getEntity() != null){
-                            if (super.currentBoard.getTile(i, super.coord[0])
+                            if (super.currentBoard.getTile(super.coord[0], i)
                             .getEntity().getEntityName() == "Gate"){
                                 foundSquare = true;
                             }
@@ -276,9 +276,9 @@ public class Player extends Character {
                 // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // checks for a gate to stop any future movements
-                        if (super.currentBoard.getTile(super.coord[1], i)
+                        if (super.currentBoard.getTile(i, super.coord[1])
                         .getEntity() != null){
-                            if (super.currentBoard.getTile(super.coord[1], i)
+                            if (super.currentBoard.getTile(i, super.coord[1])
                             .getEntity().getEntityName() == "Gate"){
                                 foundSquare = true;
                             }

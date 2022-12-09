@@ -160,6 +160,7 @@ public class Board extends DrawShape {
         }
         this.player.draw(gc);
         for (Entity elem : this.getEntities()) {
+            System.out.println("Drawn at: " + elem.getXCoord() + "" + elem.getYCoord());
             elem.draw(gc);
 
             //Call entity NPC movement from here perhaps?
