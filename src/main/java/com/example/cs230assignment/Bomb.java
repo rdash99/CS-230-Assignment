@@ -34,10 +34,10 @@ public class Bomb extends Entity {
          * for items
          */
         for (int i = 0; i < currentBoard.getTiles().length; i++) {
-            if (currentBoard.getTile(xCoord, i).getEntity() != null) {
-                currentBoard.getTile(xCoord, i).removeEntity();
-            } else if (currentBoard.getTile(xCoord, i).getEntity().getEntityName() == "bomb") {
+            if (currentBoard.getTile(xCoord, i).getEntity().getEntityName() == "bomb") {
                 explodeBomb();
+            } else if (currentBoard.getTile(xCoord, i).getEntity() != null) {
+                currentBoard.getTile(xCoord, i).removeEntity();
             } else {
                 i++;
             }
@@ -47,10 +47,10 @@ public class Bomb extends Entity {
          * for items
          */
         for (int i = 0; i < currentBoard.getTiles().length; i++) {
-            if (currentBoard.getTile(i, yCoord).getEntity() != null) {
-                currentBoard.getTile(i, yCoord).removeEntity();
-            } else if (currentBoard.getTile(i, yCoord).getEntity().getEntityName() != "bomb") {
+            if (currentBoard.getTile(i, yCoord).getEntity().getEntityName() == "bomb") {
                 explodeBomb();
+            } else if (currentBoard.getTile(i, yCoord).getEntity() != null) {
+                currentBoard.getTile(i, yCoord).removeEntity();
             } else {
                 i++;
             }
