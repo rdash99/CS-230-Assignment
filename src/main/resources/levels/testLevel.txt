@@ -6,4 +6,5 @@ YYYY RRRG RRRR GGGG
 0 0 ply
 2 3 items Diamond 10
 1 0 smt
+0 2 dor
 timer 320
