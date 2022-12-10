@@ -30,11 +30,11 @@ public class SmartThief extends NPC {
 
     private boolean validMoveUp() {
         boolean foundSquare = false;
-        for (int i = super.coord[0] - 1; ((i < super.currentBoard
+        for (int i = super.coord[0] - 1; ((i < Character.currentBoard
                 .getHeight()) && i > -1) && !foundSquare; i--) {
             for (int colourPos = 0; colourPos < 4; colourPos++) {
-                if (super.currentBoard.getTile(i, super.coord[0])
-                        .checkColour(super.currentBoard
+                if (Character.currentBoard.getTile(i, super.coord[0])
+                        .checkColour(Character.currentBoard
                                 .getTile(super.coord[1], super.coord[0])
                                 .getColours()[colourPos])) {
                     foundSquare = true;
@@ -46,11 +46,11 @@ public class SmartThief extends NPC {
 
     private boolean validMoveLeft() {
         boolean foundSquare = false;
-        for (int i = super.coord[0] - 1; ((i < super.currentBoard
+        for (int i = super.coord[0] - 1; ((i < Character.currentBoard
                 .getWidth()) && i > -1) && !foundSquare; i--) {
             for (int colourPos = 0; colourPos < 4; colourPos++) {
-                if (super.currentBoard.getTile(super.coord[1], i)
-                        .checkColour(super.currentBoard
+                if (Character.currentBoard.getTile(super.coord[1], i)
+                        .checkColour(Character.currentBoard
                                 .getTile(super.coord[1], super.coord[0])
                                 .getColours()[colourPos])) {
                     foundSquare = true;
@@ -62,11 +62,11 @@ public class SmartThief extends NPC {
 
     private boolean validMoveDown() {
         boolean foundSquare = false;
-        for (int i = super.coord[0] + 1; ((i < super.currentBoard
+        for (int i = super.coord[0] + 1; ((i < Character.currentBoard
                 .getHeight()) && i > -1) && !foundSquare; i++) {
             for (int colourPos = 0; colourPos < 4; colourPos++) {
-                if (super.currentBoard.getTile(i, super.coord[0])
-                        .checkColour(super.currentBoard
+                if (Character.currentBoard.getTile(i, super.coord[0])
+                        .checkColour(Character.currentBoard
                                 .getTile(super.coord[1], super.coord[0])
                                 .getColours()[colourPos])) {
                     foundSquare = true;
@@ -78,11 +78,11 @@ public class SmartThief extends NPC {
 
     private boolean validMoveRight() {
         boolean foundSquare = false;
-        for (int i = super.coord[0] + 1; ((i < super.currentBoard
+        for (int i = super.coord[0] + 1; ((i < Character.currentBoard
                 .getWidth()) && i > -1) && !foundSquare; i++) {
             for (int colourPos = 0; colourPos < 4; colourPos++) {
-                if (super.currentBoard.getTile(super.coord[1], i)
-                        .checkColour(super.currentBoard
+                if (Character.currentBoard.getTile(super.coord[1], i)
+                        .checkColour(Character.currentBoard
                                 .getTile(super.coord[1], super.coord[0])
                                 .getColours()[colourPos])) {
                     foundSquare = true;
