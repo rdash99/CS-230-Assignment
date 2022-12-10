@@ -40,6 +40,7 @@ public class FileHandler {
                 .parseInt(size[1])];
         ArrayList<Entity> entities = new ArrayList<Entity>();
         Player player = null;
+        Door door = null;
         x = Integer.parseInt(size[0]);
         y = Integer.parseInt(size[1]);
 
@@ -112,7 +113,7 @@ public class FileHandler {
                     }
                     // read in doors
                     if (lineArray[i].equals("dor")) {
-                        entities.add(new Door(xCoord, yCoord));
+                        door = new Door(xCoord, yCoord);
                     } // read in level time
                     else {
                         try {
@@ -137,6 +138,9 @@ public class FileHandler {
         }
         if (levelTime == 0) {
             throw new IllegalArgumentException("No level time found in file");
+        }
+        if (door == null) {
+            throw new IllegalArgumentException("No door found in file");
         }
         Timer timer = new Timer(levelTime);
         // flip the tiles array along x axis
@@ -167,7 +171,7 @@ public class FileHandler {
                 tiles5[i][j] = tiles4[tiles4.length - 1 - j][i];
             }
         }
-        Tile[][] tiles6 = linkTilesEntity(tiles5, entities, player);
+        Tile[][] tiles6 = linkTilesEntity(tiles5, entities, player, door);
         Board board = new Board(x, y, tiles6, entities, player, timer);
         addBoardLinks(board);
         return board;
@@ -181,7 +185,7 @@ public class FileHandler {
      * @return Tile[][]
      */
     private static Tile[][] linkTilesEntity(Tile[][] tiles,
-            ArrayList<Entity> entities, Player player) {
+            ArrayList<Entity> entities, Player player, Door door) {
         for (int i = 0; i < entities.size(); i++) {
             int x = entities.get(i).getXCoord();
             int y = entities.get(i).getYCoord();
@@ -190,6 +194,9 @@ public class FileHandler {
         int x = player.getXCoord();
         int y = player.getYCoord();
         tiles[x][y].setEntity(player);
+        x = door.getXCoord();
+        y = door.getYCoord();
+        tiles[x][y].setDoor(door);
         return tiles;
     }
 
