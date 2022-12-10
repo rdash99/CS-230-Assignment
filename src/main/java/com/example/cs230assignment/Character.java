@@ -20,13 +20,9 @@ public class Character extends Entity {
         return this.currentBoard;
     }
 
-    protected void interact() {
-        int x = this.coord[0];
-        int y = this.coord[1];
-        Entity currentEntity = currentBoard.getTile(x, y).getEntity();
-        if(currentEntity != null){
-            switch (currentEntity.getEntityName()){
-                //Doesn't cover the case for what happens if an NPC steals an item
+    protected void interact(int x, int y) {
+        if(currentBoard.getTile(x, y).getEntity() != null){
+            switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
                 case("item"):
                     this.currentBoard.getTile(x, y).removeEntity();
                         if (currentEntity instanceof Item) {
@@ -40,9 +36,6 @@ public class Character extends Entity {
                 case("clock"):
                     Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
                     this.currentBoard.getTimer().addClock(clock);
-                    break;
-                case("player"):
-                    currentBoard.getPlayer().die();
                     break;
             }
         }

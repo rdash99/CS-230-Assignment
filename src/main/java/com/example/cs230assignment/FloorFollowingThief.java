@@ -1,7 +1,7 @@
 package com.example.cs230assignment;
 
 /**
- * Describes a class to create an instance of a FloorFollowingThief.
+ * a class to create an instance of a FloorFollowingThief.
  *
  * @author Charles Overton
  * @version 1.0
@@ -20,21 +20,30 @@ class FloorFollowingThief extends NPC {
    */
   public FloorFollowingThief(char allocatedColourPass, int x, int y) {
     // Allocated a timer of 0.5 seconds for the thief
+    //constructor for NPC
     super("Floor Following Thief", 0.5, x, y);
     this.allocatedColour = allocatedColourPass;
     super.coordChange = new int[] { x, y };
   }
-
+  /**
+   * passes the allocated colour
+   * @return allocatedColour
+   */
   public char getAllocatedColour() {
     return this.allocatedColour;
   }
 
+  /**
+   * performs the movement for the npc from tile to tile as well as call valid move
+   */
   public void move() {
     Boolean x = validMove();
     if (x) {
+      super.interact(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
+      super.currentBoard.getTile(this.coord[0], this.coord[1]).removeEntity();
+      super.currentBoard.getTile(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
       this.coord[0] = this.coord[0] + this.coordChange[0];
       this.coord[1] = this.coord[1] + this.coordChange[1];
-      super.interact();
     }
   }
 
@@ -86,6 +95,7 @@ class FloorFollowingThief extends NPC {
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
+              case ("Player"):
                 super.coordChange[0] = 0;
                 super.coordChange[1] = -1;
                 break;

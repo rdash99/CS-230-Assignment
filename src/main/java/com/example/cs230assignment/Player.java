@@ -56,35 +56,35 @@ public class Player extends Character {
      * @param x the xcoord of the next tile with the potential interactable item
      * @param y the ycoord of the next tile with the potential interactable item
      */
-    private void interact(int x, int y) {
+    protected void interact(int x, int y) {
         // checks to see if there is an item on the next square
         if (super.currentBoard.getTile(x, y).getEntity() != null) {
             // switch statement to find out what entity is on the next square
             switch (super.currentBoard.getTile(x, y).getEntity()
                     .getEntityName()) {
-                // interact with an item entity
-                case ("Item"):
-                    // adding the score to player from the item
-                    this.score += ((Item) (super.currentBoard.getTile(x, y)
-                            .getEntity())).getItemValue();
-                    break;
-                // interact with a key entity
-                case ("Key"):
-                    // key being interacted with
-                    Key key = (Key) super.currentBoard.getTile(x, y).getEntity();
-                    key.openGate();
-                    break;
-                // interact with a clock entity
-                case ("Clock"):
-                    // clock being interacted with
-                    Clock clock = (Clock) super.currentBoard.getTile(x, y)
-                            .getEntity();
-                    super.currentBoard.getTimer().addClock(clock);
-                    // interact with a door entity
-                case ("Door"):
-                    // door being interacted with
-                    Door door = (Door) super.currentBoard.getTile(x, y).getEntity();
-                    door.endMission();
+            // interact with an item entity
+            case ("Item"):
+                // adding the score to player from the item
+                this.score += ((Item) (super.currentBoard.getTile(x, y)
+                        .getEntity())).getItemValue();
+                break;
+            // interact with a key entity
+            case ("Key"):
+                // key being interacted with
+                Key key = (Key) super.currentBoard.getTile(x, y).getEntity();
+                key.openGate();
+                break;
+            // interact with a clock entity
+            case ("Clock"):
+                // clock being interacted with
+                Clock clock = (Clock) super.currentBoard.getTile(x, y)
+                        .getEntity();
+                super.currentBoard.getTimer().addClock(clock);
+                // interact with a door entity
+            case ("Door"):
+                // door being interacted with
+                Door door = (Door) super.currentBoard.getTile(x, y).getEntity();
+                door.endMission(this.score, super.currentBoard.getTimer().getLevelTime());
             }
         }
         // values of i to the position around tile 0
