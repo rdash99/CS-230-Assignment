@@ -571,4 +571,44 @@ public class FileHandler {
         String playerScore = lineArray[0];
         return playerScore;
     }
+
+    public static ArrayList<String> readLevelFiles() {
+        // find all files in src/main/resources/levels
+        File folder = new File("src/main/resources/levels");
+        File[] listOfFiles = folder.listFiles();
+        ArrayList<String> levelFiles = new ArrayList<String>();
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                String fileName = file.getName();
+                fileName = fileName.substring(0, fileName.length() - 4);
+                levelFiles.add(fileName);
+            }
+        }
+        return levelFiles;
+    }
+
+    public static ArrayList<String> readSaveFiles(String playerName) {
+        // find all files in src/main/resources/saves
+        File folder = new File("src/main/resources/saves");
+        File[] listOfFiles = folder.listFiles();
+        ArrayList<String> levelFiles = new ArrayList<String>();
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                String fileName = file.getName();
+                String playerName2 = fileName.substring(0, playerName.length());
+                fileName = fileName.substring(0, fileName.length() - 4);
+                fileName = fileName.replace(playerName, "");
+                fileName = fileName.replace("save", "");
+                if (playerName2.equals(playerName)) {
+                    levelFiles.add(fileName);
+                }
+            }
+        }
+        return levelFiles;
+    }
+
+    public static void main(String[] args) {
+        readSaveFiles("Bob");
+    }
+
 }
