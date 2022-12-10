@@ -40,8 +40,8 @@ class FloorFollowingThief extends NPC {
     Boolean x = validMove();
     if (x) {
       super.interact(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
-      super.currentBoard.getTile(this.coord[0], this.coord[1]).removeEntity();
-      super.currentBoard.getTile(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
+      Character.currentBoard.getTile(this.coord[0], this.coord[1]).removeEntity();
+      Character.currentBoard.getTile(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
       this.coord[0] = this.coord[0] + this.coordChange[0];
       this.coord[1] = this.coord[1] + this.coordChange[1];
     }
@@ -88,17 +88,26 @@ class FloorFollowingThief extends NPC {
               // movement
               // if not the valid move has been found
               // if it is check another direction
-              switch (super.currentBoard
+              switch (Character.currentBoard
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
+                if(!((Gate)Character.currentBoard
+                .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                  i = 5;
+                }else{
+                  super.coordChange[0] = -1;
+                  super.coordChange[1] = 0;
+                }
+                break;
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
-              case ("Player"):
                 super.coordChange[0] = 0;
                 super.coordChange[1] = -1;
                 break;
+                case ("Player"):
+                    return false;
               // breaks out of the loop as the correct direction has been found
               default:
                 i = 5;
@@ -127,16 +136,26 @@ class FloorFollowingThief extends NPC {
               // if not valid move has been found
               // else breaks out of the loop as the correct direction has been
               // found
-              switch (super.currentBoard
+              switch (Character.currentBoard
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
+                if(!((Gate)Character.currentBoard
+                .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                  i = 5;
+                }else{
+                  super.coordChange[0] = -1;
+                  super.coordChange[1] = 0;
+                }
+                break;
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
                 super.coordChange[0] = 1;
                 super.coordChange[1] = 0;
                 break;
+              case ("Player"):
+                return false;
               // breaks out of the loop as the correct direction has been found
               default:
                 i = 5;
@@ -166,16 +185,26 @@ class FloorFollowingThief extends NPC {
               // movement
               // if it is a movement blocking entity check another direction
               // else break out of the loop as it is a valid move
-              switch (super.currentBoard
+              switch (Character.currentBoard
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
+                if(!((Gate)Character.currentBoard
+                .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                  i = 5;
+                }else{
+                  super.coordChange[0] = -1;
+                  super.coordChange[1] = 0;
+                }
+                break;
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
                 super.coordChange[0] = 0;
                 super.coordChange[1] = 1;
                 break;
+              case ("Player"):
+                return false;
               // breaks out of the loop as the correct direction has been found
               default:
                 i = 5;
@@ -204,16 +233,26 @@ class FloorFollowingThief extends NPC {
               // checks to see if the entity on the tile blocks movement
               // if it is check a different direction
               // if it isnt then its a valid move
-              switch (super.currentBoard
+              switch (Character.currentBoard
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
+                    if(!((Gate)Character.currentBoard
+                    .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                      i = 5;
+                    }else{
+                      super.coordChange[0] = -1;
+                      super.coordChange[1] = 0;
+                    }
+                    break;
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
                 super.coordChange[0] = -1;
                 super.coordChange[1] = 0;
                 break;
+              case ("Player"):
+                return false;
               // breaks out of the loop as the correct direction has been found
               default:
                 i = 5;

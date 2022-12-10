@@ -9,4 +9,7 @@ public class Door extends Entity {
     public void endMission(int score, int timeleft){
 
     }
+    public Boolean validEndMission(int score){
+        return false;
+    }
 }

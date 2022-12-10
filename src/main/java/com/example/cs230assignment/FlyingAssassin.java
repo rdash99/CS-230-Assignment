@@ -30,8 +30,8 @@ public class FlyingAssassin extends NPC {
         //move if a valid move is found
         if (x) {
         super.interact(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
-        super.currentBoard.getTile(this.coord[0], this.coord[1]).removeEntity();
-        super.currentBoard.getTile(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
+        Character.currentBoard.getTile(this.coord[0], this.coord[1]).removeEntity();
+        Character.currentBoard.getTile(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
         this.coord[0] = this.coord[0] + this.coordChange[0];
         this.coord[1] = this.coord[1] + this.coordChange[1];
         }
@@ -46,23 +46,23 @@ public class FlyingAssassin extends NPC {
             //select the entities by type and perform the correct interactions
             switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
                 case("item"):
-                    super.currentBoard.getTile(x, y).removeEntity();
+                    Character.currentBoard.getTile(x, y).removeEntity();
                     break;
                 case("key"):
-                    Key key = (Key) super.currentBoard.getTile(x, y).getEntity();
+                    Key key = (Key) Character.currentBoard.getTile(x, y).getEntity();
                     key.openGate();
                     break;
                 case("clock"):
-                    Clock clock = (Clock) super.currentBoard.getTile(x, y).getEntity();
-                    this.currentBoard.getTimer().addClock(clock);
+                    Clock clock = (Clock) Character.currentBoard.getTile(x, y).getEntity();
+                    Character.currentBoard.getTimer().addClock(clock);
                     break;
                 case("player"):
-                    super.currentBoard.getPlayer().die();
+                    Character.currentBoard.getPlayer().die();
                     break;
                 case("FlyingAssassin"):
                 case("FloorFollowingThief"):
                 case("SmartThief"):
-                    super.currentBoard.getTile(x, y).removeEntity();
+                    Character.currentBoard.getTile(x, y).removeEntity();
             }
         }
         for(int i = 1; i < 9; i++){
@@ -82,14 +82,14 @@ public class FlyingAssassin extends NPC {
                 tempCoordY = -1;
             }
             //is off the edge of the board does nothing
-            if((tempCoordX+x > this.currentBoard.getWidth()-1 || x+tempCoordX < 0 
-                ||tempCoordY+y > this.currentBoard.getHeight()-1 || y+tempCoordY < 0 )){
+            if((tempCoordX+x > Character.currentBoard.getWidth()-1 || x+tempCoordX < 0 
+                ||tempCoordY+y > Character.currentBoard.getHeight()-1 || y+tempCoordY < 0 )){
             //not off the edge and is a contains an entity;
-            }else if(this.currentBoard.getTile(x+tempCoordX, y+tempCoordY).getEntity() != null){
+            }else if(Character.currentBoard.getTile(x+tempCoordX, y+tempCoordY).getEntity() != null){
                 // if the entity is a bomb execute bomb.explodeBomb();
-                if(this.currentBoard.getTile(x+tempCoordX, y+tempCoordY).getEntity().getEntityName() == "Bomb"){
+                if(Character.currentBoard.getTile(x+tempCoordX, y+tempCoordY).getEntity().getEntityName() == "Bomb"){
                     //the bomb on an adjacent tile
-                    Bomb bomb = (Bomb) this.currentBoard.getTile(x+tempCoordX, y+tempCoordY).getEntity();
+                    Bomb bomb = (Bomb) Character.currentBoard.getTile(x+tempCoordX, y+tempCoordY).getEntity();
                     //starts the bomb detination
                     bomb.explodeBomb();
                 }
