@@ -340,18 +340,34 @@ public class Player extends Character {
 
     }
 
+    /**
+     * returns the arraylist of levels
+     * @return arraylist of levels
+     */
     public ArrayList<String> getLevels() {
         return this.levelComp;
     }
 
+    /**
+     * increases the score of the player
+     * @param scoreIncrease the amount the score is being increased by
+     */
     public void increaseScore(int scoreIncrease) {
         this.score += scoreIncrease;
     }
 
+    /**
+     * returns the score within player
+     * @return returns score
+     */
     public int getScore() {
         return this.score;
     }
 
+    /**
+     * returns the player name
+     * @return playerName
+     */
     public String getPlayerName() {
         return this.playerName;
     }
