@@ -1,13 +1,33 @@
 package com.example.cs230assignment;
 
+/**
+ * @author Maxwell
+ */
 public class Lever extends Entity {
     private char leverColour;
 
+    /**
+     * This is the constructor for the lever class
+     * 
+     * @param entityNamePass the name of the lever
+     * @param x              the x coordinate of the lever
+     * @param y              the y coordinate of the lever
+     */
     public Lever(String entityNamePass, int x, int y) {
         super(entityNamePass, x, y);
     }
 
-    public char getleverColour() {return leverColour; }
+    /**
+     * @return char
+     */
+    public char getleverColour() {
+        return leverColour;
+    }
 
-    public void setleverColour(char newColour) {this.leverColour = newColour; }
+    /**
+     * @param newColour
+     */
+    public void setleverColour(char newColour) {
+        this.leverColour = newColour;
+    }
 }

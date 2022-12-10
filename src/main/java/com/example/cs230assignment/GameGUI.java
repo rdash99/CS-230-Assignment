@@ -23,6 +23,12 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
+/**
+ * Class that models the GUI for the game.
+ * 
+ * @author Fraser Clough
+ */
+
 public class GameGUI extends Stage {
     // The dimensions of the window
     private static final int ONE_SECOND_IN_MILLISECONDS = 1000;
@@ -53,6 +59,11 @@ public class GameGUI extends Stage {
     private int playerX = 0;
     private int playerY = 0;
 
+    /**
+     * Create the game.
+     * 
+     * @param playerName
+     */
     public GameGUI(String playerName) {
         createGame(playerName);
     }
@@ -91,13 +102,17 @@ public class GameGUI extends Stage {
         // Board board = new Board(5, 2, tiles, entities, player, timer);
     }
 
+    /**
+     * @param playerName
+     */
     public void createGame(String playerName) {
         this.level = FileHandler.readLevelFile("testLevel", playerName);
 
         // Build the GUI
         Pane root = buildGUI(level);
 
-        tickTimeline = new Timeline(new KeyFrame(Duration.millis(ONE_SECOND_IN_MILLISECONDS), event -> tick()));
+        tickTimeline = new Timeline(new KeyFrame(
+                Duration.millis(ONE_SECOND_IN_MILLISECONDS), event -> tick()));
         tickTimeline.setCycleCount(level.getTimer().getLevelTime());
 
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
@@ -107,7 +122,7 @@ public class GameGUI extends Stage {
             }
         });
 
-        //for testing only
+        // for testing only
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.L) {
                 new LoseMenu(playerName, this);
@@ -115,7 +130,7 @@ public class GameGUI extends Stage {
             }
         });
 
-        //for testing only
+        // for testing only
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.M) {
                 new WinMenu(playerName, this);
@@ -130,18 +145,18 @@ public class GameGUI extends Stage {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
-                    case W:
-                        level.getPlayer().move(gc, 1);
-                        break;
-                    case A:
-                        level.getPlayer().move(gc, 2);
-                        break;
-                    case S:
-                        level.getPlayer().move(gc, 3);
-                        break;
-                    case D:
-                        level.getPlayer().move(gc, 4);
-                        break;
+                case W:
+                    level.getPlayer().move(gc, 1);
+                    break;
+                case A:
+                    level.getPlayer().move(gc, 2);
+                    break;
+                case S:
+                    level.getPlayer().move(gc, 3);
+                    break;
+                case D:
+                    level.getPlayer().move(gc, 4);
+                    break;
                 }
             }
         });

@@ -38,7 +38,7 @@ public class Board extends DrawShape {
      * @param entities the entities to be drawn on the board
      */
     public Board(int width, int height, Tile[][] tiles,
-                 ArrayList<Entity> entities, Player player, Timer timer) {
+            ArrayList<Entity> entities, Player player, Timer timer) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
@@ -162,29 +162,43 @@ public class Board extends DrawShape {
         for (Entity elem : this.getEntities()) {
             elem.draw(gc);
         }
-        //Call entity NPC movement from here perhaps?
-//            if (elem instanceof FlyingAssassin) {
-//                System.out.println("FA: " + elem.getXCoord() + " " + elem.getYCoord());
-//                ((FlyingAssassin) elem).move();
-//            }
-//            } else if (elem instanceof FloorFollowingThief) {
-//                System.out.println("FFT: " + elem.getXCoord() + " " + elem.getYCoord());
-//                ((FloorFollowingThief) elem).move();
-//            }
+        // Call entity NPC movement from here perhaps?
+        // if (elem instanceof FlyingAssassin) {
+        // System.out.println("FA: " + elem.getXCoord() + " " +
+        // elem.getYCoord());
+        // ((FlyingAssassin) elem).move();
+        // }
+        // } else if (elem instanceof FloorFollowingThief) {
+        // System.out.println("FFT: " + elem.getXCoord() + " " +
+        // elem.getYCoord());
+        // ((FloorFollowingThief) elem).move();
+        // }
     }
 
+    /**
+     * @param entities
+     */
     public void setEntities(ArrayList<Entity> entities) {
         this.entities = entities;
     }
 
+    /**
+     * @param player
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    /**
+     * @return ArrayList<Entity>
+     */
     public ArrayList<Entity> getEntities() {
         return this.entities;
     }
 
+    /**
+     * @return Tile[][]
+     */
     public Tile[][] getTiles() {
         return this.tiles;
     }

@@ -531,7 +531,7 @@ public class FileHandler {
     /**
      * Loads all profile's names and scores.
      * 
-     * @return ArrayList<String> of player names and scores
+     * @return ArrayList of player names and scores
      */
     public static ArrayList<String> readPlayerScores() {
         // find all files in src/main/resources/profiles
@@ -572,6 +572,11 @@ public class FileHandler {
         return playerScore;
     }
 
+    /**
+     * Reads a list of level files from the levels folder.
+     * 
+     * @return ArrayList List of files in src/main/resources/levels
+     */
     public static ArrayList<String> readLevelFiles() {
         // find all files in src/main/resources/levels
         File folder = new File("src/main/resources/levels");
@@ -587,6 +592,12 @@ public class FileHandler {
         return levelFiles;
     }
 
+    /**
+     * Reads a list of save files from the saves folder.
+     * 
+     * @param playerName
+     * @return ArrayList List of files in src/main/resources/saves
+     */
     public static ArrayList<String> readSaveFiles(String playerName) {
         // find all files in src/main/resources/saves
         File folder = new File("src/main/resources/saves");
@@ -605,10 +616,6 @@ public class FileHandler {
             }
         }
         return levelFiles;
-    }
-
-    public static void main(String[] args) {
-        readSaveFiles("Bob");
     }
 
 }

@@ -12,6 +12,13 @@ public class Gate extends Entity {
     private char gateColour;
     private boolean gateOpen;
 
+    /**
+     * This is the constructor for the gate class
+     * 
+     * @param gateColourPass the colour of the gate
+     * @param x              the x coordinate of the gate
+     * @param y              the y coordinate of the gate
+     */
     public Gate(char gateColourPass, int x, int y) {
         super("Gate", x, y);
         // this.gateID = gateIDPass;
@@ -19,21 +26,32 @@ public class Gate extends Entity {
         this.gateOpen = false;
     }
 
+    /**
+     * @return int
+     */
     public int getGateID() {
         return gateID;
     }
 
+    /**
+     * @return char
+     */
     public char getGateColour() {
         return this.gateColour;
     }
 
+    /**
+     * @return boolean
+     */
     public boolean getGateOpen() {
         return gateOpen;
     }
 
+    /**
+     * @param gateOpenPass
+     */
     public void setGateOpen(boolean gateOpenPass) {
         this.gateOpen = gateOpenPass;
     }
-
 
 }

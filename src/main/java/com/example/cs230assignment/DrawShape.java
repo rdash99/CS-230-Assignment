@@ -12,5 +12,11 @@ import javafx.scene.image.Image;
  */
 
 public abstract class DrawShape {
+
+    /**
+     * This method will be used to draw the thing on the canvas.
+     * 
+     * @param gc the graphics context of the canvas
+     */
     public abstract void draw(GraphicsContext gc);
 }

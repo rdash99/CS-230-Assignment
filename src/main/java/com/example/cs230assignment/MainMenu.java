@@ -21,13 +21,13 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 
 /**
- * The main menu class. It is used to display the main menu which contains
- * the scores, the message of the day and allows the player to enter their name
- * and start the game.
+ * The main menu class. It is used to display the main menu which contains the
+ * scores, the message of the day and allows the player to enter their name and
+ * start the game.
+ * 
  * @author Fraser Clough
  * @version 1.0
  */
-
 
 public class MainMenu extends Stage {
 
@@ -38,7 +38,7 @@ public class MainMenu extends Stage {
     private Text motdTitle = new Text("Message of the day: ");
     private Text motdText;
     private TextField nameField = new TextField();
-    private Text errorText  = new Text();
+    private Text errorText = new Text();
     private VBox middleButtons = new VBox();
     private VBox highScoreList = new VBox();
     private VBox motd = new VBox();
@@ -46,7 +46,8 @@ public class MainMenu extends Stage {
 
     /**
      * Creates a new Main Menu when this class is instantiated.
-     * @throws IOException if the http request fails.
+     * 
+     * @throws IOException          if the http request fails.
      * @throws InterruptedException if the http request is interrupted.
      */
     public MainMenu() throws IOException, InterruptedException {
@@ -94,9 +95,11 @@ public class MainMenu extends Stage {
         this.setTitle("The game menu");
         this.show();
 
-        // When the button is clicked, the game is once a name has been provided.
+        // When the button is clicked, the game is once a name has been
+        // provided.
         launchGameBtn.setOnAction(e -> {
-            if ((nameField.getText() != null && !nameField.getText().isEmpty())) {
+            if ((nameField.getText() != null
+                    && !nameField.getText().isEmpty())) {
                 new GameGUI(nameField.getText());
                 this.close();
             } else if (errorText.getText().isEmpty()) {
@@ -112,6 +115,7 @@ public class MainMenu extends Stage {
 
     /**
      * Adds the high scores to the high score list.
+     * 
      * @param name
      * @param score
      */
@@ -125,8 +129,9 @@ public class MainMenu extends Stage {
 
     /**
      * Gets the message of the day puzzle from the server.
+     * 
      * @return the message of the day puzzle.
-     * @throws IOException if the http request fails.
+     * @throws IOException          if the http request fails.
      * @throws InterruptedException if the http request is interrupted.
      */
     private String getMOTDPuzzle() throws IOException, InterruptedException {
@@ -141,8 +146,9 @@ public class MainMenu extends Stage {
 
     /**
      * Solves the message of the day puzzle.
+     * 
      * @return the solution to the message of the day puzzle.
-     * @throws IOException if the http request fails.
+     * @throws IOException          if the http request fails.
      * @throws InterruptedException if the http request is interrupted.
      */
     private String solvePuzzle() throws IOException, InterruptedException {
@@ -199,15 +205,17 @@ public class MainMenu extends Stage {
 
     /**
      * Gets the message of the day from the server using a computed solution.
+     * 
      * @param solution the solved message of the day puzzle.
      * @return the message of the day.
-     * @throws IOException if the http request fails.
+     * @throws IOException          if the http request fails.
      * @throws InterruptedException if the http request is interrupted.
      */
-    private String getSolvedMOTD(String solution) throws IOException, InterruptedException {
+    private String getSolvedMOTD(String solution)
+            throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(
-                        "http://cswebcat.swansea.ac.uk/message?solution=" + solution))
+                "http://cswebcat.swansea.ac.uk/message?solution=" + solution))
                 .build();
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());

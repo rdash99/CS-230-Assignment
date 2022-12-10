@@ -20,13 +20,15 @@ class FloorFollowingThief extends NPC {
    */
   public FloorFollowingThief(char allocatedColourPass, int x, int y) {
     // Allocated a timer of 0.5 seconds for the thief
-    //constructor for NPC
+    // constructor for NPC
     super("Floor Following Thief", 0.5, x, y);
     this.allocatedColour = allocatedColourPass;
     super.coordChange = new int[] { x, y };
   }
+
   /**
    * passes the allocated colour
+   * 
    * @return allocatedColour
    */
   public char getAllocatedColour() {
@@ -34,14 +36,18 @@ class FloorFollowingThief extends NPC {
   }
 
   /**
-   * performs the movement for the npc from tile to tile as well as call valid move
+   * performs the movement for the npc from tile to tile as well as call valid
+   * move
    */
   public void move() {
     Boolean x = validMove();
     if (x) {
-      super.interact(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
-      Character.currentBoard.getTile(this.coord[0], this.coord[1]).removeEntity();
-      Character.currentBoard.getTile(this.coord[0] + this.coordChange[0],this.coord[1] + this.coordChange[1]);
+      super.interact(this.coord[0] + this.coordChange[0],
+          this.coord[1] + this.coordChange[1]);
+      Character.currentBoard.getTile(this.coord[0], this.coord[1])
+          .removeEntity();
+      Character.currentBoard.getTile(this.coord[0] + this.coordChange[0],
+          this.coord[1] + this.coordChange[1]);
       this.coord[0] = this.coord[0] + this.coordChange[0];
       this.coord[1] = this.coord[1] + this.coordChange[1];
     }
@@ -92,10 +98,11 @@ class FloorFollowingThief extends NPC {
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
-                if(!((Gate)Character.currentBoard
-                .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                if (!((Gate) Character.currentBoard
+                    .getTile(super.getXCoord(), super.getYCoord() + 1)
+                    .getEntity()).getGateOpen()) {
                   i = 5;
-                }else{
+                } else {
                   super.coordChange[0] = -1;
                   super.coordChange[1] = 0;
                 }
@@ -106,8 +113,8 @@ class FloorFollowingThief extends NPC {
                 super.coordChange[0] = 0;
                 super.coordChange[1] = -1;
                 break;
-                case ("Player"):
-                    return false;
+              case ("Player"):
+                return false;
               // breaks out of the loop as the correct direction has been found
               default:
                 i = 5;
@@ -140,10 +147,11 @@ class FloorFollowingThief extends NPC {
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
-                if(!((Gate)Character.currentBoard
-                .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                if (!((Gate) Character.currentBoard
+                    .getTile(super.getXCoord(), super.getYCoord() + 1)
+                    .getEntity()).getGateOpen()) {
                   i = 5;
-                }else{
+                } else {
                   super.coordChange[0] = -1;
                   super.coordChange[1] = 0;
                 }
@@ -189,10 +197,11 @@ class FloorFollowingThief extends NPC {
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
-                if(!((Gate)Character.currentBoard
-                .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                if (!((Gate) Character.currentBoard
+                    .getTile(super.getXCoord(), super.getYCoord() + 1)
+                    .getEntity()).getGateOpen()) {
                   i = 5;
-                }else{
+                } else {
                   super.coordChange[0] = -1;
                   super.coordChange[1] = 0;
                 }
@@ -237,14 +246,15 @@ class FloorFollowingThief extends NPC {
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
-                    if(!((Gate)Character.currentBoard
-                    .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
-                      i = 5;
-                    }else{
-                      super.coordChange[0] = -1;
-                      super.coordChange[1] = 0;
-                    }
-                    break;
+                if (!((Gate) Character.currentBoard
+                    .getTile(super.getXCoord(), super.getYCoord() + 1)
+                    .getEntity()).getGateOpen()) {
+                  i = 5;
+                } else {
+                  super.coordChange[0] = -1;
+                  super.coordChange[1] = 0;
+                }
+                break;
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):

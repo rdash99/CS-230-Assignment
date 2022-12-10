@@ -16,10 +16,10 @@ import javafx.stage.StageStyle;
 
 import java.io.Console;
 
-
 /**
  * The pause menu class. It is used to display the pause menu which contains
  * options to resume the game or quit the game and save.
+ * 
  * @author Fraser Clough
  * @version 1.0
  */
@@ -36,8 +36,9 @@ public class PauseMenu extends Stage {
 
     /**
      * Creates a new Pause Menu when this class is instantiated.
-     * @param board the board of the games.
-     * @param levelName what level the player is on.
+     * 
+     * @param board        the board of the games.
+     * @param levelName    what level the player is on.
      * @param tickTimeline to control the game's ticks.
      */
     public PauseMenu(Board board, String levelName, Timeline tickTimeline) {
