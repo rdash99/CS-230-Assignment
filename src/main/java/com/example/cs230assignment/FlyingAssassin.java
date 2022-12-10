@@ -7,7 +7,6 @@ package com.example.cs230assignment;
  * @version 1.0
  */
 public class FlyingAssassin extends NPC {
-
     /**
      * constructor to assign basic values upon creation of a flyingassassin
      * 
@@ -19,8 +18,8 @@ public class FlyingAssassin extends NPC {
      * @param ydir              the y direction of the flying assassin will move
      *                          after spawning
      */
-    public FlyingAssassin(double movementTimerPass, int x, int y, int xdir,
-            int ydir) {
+    public FlyingAssassin(int movementTimerPass, int x, int y, int xdir,
+                          int ydir) {
         // constructor for NPC
         super("Flying Assassin", movementTimerPass, x, y);
         super.coordChange = new int[] { xdir, ydir };

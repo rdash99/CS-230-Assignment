@@ -376,10 +376,7 @@ public class Player extends Character {
             }
             break;
         }
-        currentBoard.getTimer().
-
-                boardUpdate(gc, Character.currentBoard);
-
+        currentBoard.getTimer().boardUpdate(gc, super.currentBoard);
     }
 
     /**

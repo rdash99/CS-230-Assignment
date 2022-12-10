@@ -20,8 +20,7 @@ class FloorFollowingThief extends NPC {
    */
   public FloorFollowingThief(char allocatedColourPass, int x, int y) {
     // Allocated a timer of 0.5 seconds for the thief
-    // constructor for NPC
-    super("Floor Following Thief", 0.5, x, y);
+    super("Floor Following Thief", 500, x, y);
     this.allocatedColour = allocatedColourPass;
     super.coordChange = new int[] { x, y };
   }

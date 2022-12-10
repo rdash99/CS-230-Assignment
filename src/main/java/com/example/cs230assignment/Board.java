@@ -1,8 +1,12 @@
 package com.example.cs230assignment;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 
@@ -161,6 +165,11 @@ public class Board extends DrawShape {
         this.player.draw(gc);
         for (Entity elem : this.getEntities()) {
             elem.draw(gc);
+            if (elem instanceof NPC) {
+                Timeline smartThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
+                smartThiefTimeline.setCycleCount(Animation.INDEFINITE);
+                smartThiefTimeline.playFromStart();
+            }
         }
         // Call entity NPC movement from here perhaps?
         // if (elem instanceof FlyingAssassin) {

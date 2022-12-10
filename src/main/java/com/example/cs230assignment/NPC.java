@@ -7,7 +7,7 @@ package com.example.cs230assignment;
  * @version 1.0
  */
 public class NPC extends Character {
-    private double movementTimer;
+    private int movementTimer;
     protected int[] coordChange;
 
     // thinking about adding move into here aswell as character for the basic
@@ -20,7 +20,8 @@ public class NPC extends Character {
      * @param x
      * @param y
      */
-    public NPC(String name, double movementTimerPass, int x, int y) {
+
+    public NPC(String name, int movementTimerPass, int x, int y) {
         super(name, x, y);
         this.movementTimer = movementTimerPass;
     }
@@ -46,6 +47,5 @@ public class NPC extends Character {
      */
     protected double getMovementTimer() {
         return movementTimer;
-
     }
 }
