@@ -25,8 +25,8 @@ public class SmartThief extends NPC {
         Entity closestInteractable = findClosestInteractable(board);
         int targetXCoord = closestInteractable.getXCoord();
         int targetYCoord = closestInteractable.getYCoord();
+        boolean foundSquare = false;
         if (this.getYCoord() > targetYCoord) {
-            boolean foundSquare = false;
             for (int i = super.coord[1] - 1; i >= targetYCoord && i < board.getHeight() && i > -1 && !foundSquare; i--) {
                 for (int colourPos = 0; colourPos < 4; colourPos++) {
                     if (board.getTile(i, super.coord[0])
@@ -36,63 +36,72 @@ public class SmartThief extends NPC {
                         board.getTile(super.coord[0], super.coord[1])
                                 .removeEntity();
                         //Interact for Smart Thief should go here
+                        board.getTile(super.coord[0], i)
+                                .setEntity(this);
+                        super.coord[1] = i;
+                        foundSquare = true;
+                    }
+                }
+            }
+            board.getTimer().boardUpdate(gc, board);
+
+        } else if (this.getXCoord() > targetXCoord) {
+            for (int i = super.coord[0] - 1; i >= targetXCoord && i < board.getWidth() && i > -1 && !foundSquare; i--) {
+                for (int colourPos = 0; colourPos < 4; colourPos++) {
+                    if (board.getTile(super.coord[1], i)
+                            .checkColour(board
+                                    .getTile(super.coord[1], super.coord[0])
+                                    .getColours()[colourPos])) {
+                        board.getTile(super.coord[0], super.coord[1])
+                                .removeEntity();
+                        //Interact for Smart Thief should go here
                         board.getTile(i, super.coord[1])
                                 .setEntity(this);
+                        super.coord[0] = i;
                         foundSquare = true;
+                    }
+                }
+            }
+            board.getTimer().boardUpdate(gc, board);
+
+        } else if (this.getYCoord() < targetYCoord) {
+            for (int i = super.coord[1] + 1; i <= targetYCoord && i < board.getHeight() && i > -1 && !foundSquare; i++) {
+                for (int colourPos = 0; colourPos < 4; colourPos++) {
+                    if (board.getTile(i, super.coord[0])
+                            .checkColour(board
+                                    .getTile(super.coord[1], super.coord[0])
+                                    .getColours()[colourPos])) {
+                        board.getTile(super.coord[0], super.coord[1])
+                                .removeEntity();
+                        //Interact for Smart Thief should go here
+                        board.getTile(super.coord[0], i)
+                                .setEntity(this);
                         super.coord[1] = i;
+                        foundSquare = true;
+                    }
+                }
+            }
+            board.getTimer().boardUpdate(gc, board);
+
+        } else if (this.getXCoord() < targetXCoord) {
+            for (int i = super.coord[0] + 1; i <= targetXCoord && i < board.getWidth() && i > -1 && !foundSquare; i++) {
+                for (int colourPos = 0; colourPos < 4; colourPos++) {
+                    if (board.getTile(super.coord[1], i)
+                            .checkColour(board
+                                    .getTile(super.coord[1], super.coord[0])
+                                    .getColours()[colourPos])) {
+                        board.getTile(super.coord[0], super.coord[1])
+                                .removeEntity();
+                        //Interact for Smart Thief should go here
+                        board.getTile(i, super.coord[1])
+                                .setEntity(this);
+                        super.coord[0] = i;
+                        foundSquare = true;
                     }
                 }
             }
             board.getTimer().boardUpdate(gc, board);
         }
-    }
-
-    private boolean validMoveLeft() {
-        boolean foundSquare = false;
-        for (int i = super.coord[0] - 1; ((i < super.currentBoard
-                .getWidth()) && i > -1) && !foundSquare; i--) {
-            for (int colourPos = 0; colourPos < 4; colourPos++) {
-                if (super.currentBoard.getTile(super.coord[1], i)
-                        .checkColour(super.currentBoard
-                                .getTile(super.coord[1], super.coord[0])
-                                .getColours()[colourPos])) {
-                    foundSquare = true;
-                }
-            }
-        }
-        return foundSquare;
-    }
-
-    private boolean validMoveDown() {
-        boolean foundSquare = false;
-        for (int i = super.coord[0] + 1; ((i < super.currentBoard
-                .getHeight()) && i > -1) && !foundSquare; i++) {
-            for (int colourPos = 0; colourPos < 4; colourPos++) {
-                if (super.currentBoard.getTile(i, super.coord[0])
-                        .checkColour(super.currentBoard
-                                .getTile(super.coord[1], super.coord[0])
-                                .getColours()[colourPos])) {
-                    foundSquare = true;
-                }
-            }
-        }
-        return foundSquare;
-    }
-
-    private boolean validMoveRight() {
-        boolean foundSquare = false;
-        for (int i = super.coord[0] + 1; ((i < super.currentBoard
-                .getWidth()) && i > -1) && !foundSquare; i++) {
-            for (int colourPos = 0; colourPos < 4; colourPos++) {
-                if (super.currentBoard.getTile(super.coord[1], i)
-                        .checkColour(super.currentBoard
-                                .getTile(super.coord[1], super.coord[0])
-                                .getColours()[colourPos])) {
-                    foundSquare = true;
-                }
-            }
-        }
-        return foundSquare;
     }
 
     public Entity findClosestInteractable(Board board) {

@@ -165,10 +165,10 @@ public class Board extends DrawShape {
         this.player.draw(gc);
         for (Entity elem : this.getEntities()) {
             elem.draw(gc);
-            if (elem instanceof SmartThief) {
-                Timeline tickTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
-                tickTimeline.setCycleCount(Animation.INDEFINITE);
-                tickTimeline.playFromStart();
+            if (elem instanceof NPC) {
+                Timeline smartThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
+                smartThiefTimeline.setCycleCount(Animation.INDEFINITE);
+                smartThiefTimeline.playFromStart();
             }
         }
         //Call entity NPC movement from here perhaps?
