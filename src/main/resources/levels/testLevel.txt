@@ -7,8 +7,6 @@ YYYY RRRG RRRR GGGG
 1 1 dor
 1 2 fft R
 2 3 ply
-3 2 gte R
-2 1 key R
-2 0 items Diamond 10
-0 0 smt
+3 0 items Diamond 10
+3 3 smt
 timer 320

@@ -2,7 +2,7 @@ package com.example.cs230assignment;
 
 public class FlyingAssassin extends NPC {
 
-    public FlyingAssassin(double movementTimerPass, int x, int y, int xdir,
+    public FlyingAssassin(int movementTimerPass, int x, int y, int xdir,
             int ydir) {
         super("Flying Assassin", movementTimerPass, x, y);
         super.coordChange = new int[] {xdir,ydir};

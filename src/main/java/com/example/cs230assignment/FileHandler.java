@@ -92,13 +92,13 @@ public class FileHandler {
                     if (lineArray[i].equals("fla")) {
                         int xdir = Integer.parseInt(lineArray[i + 1]);
                         int ydir = Integer.parseInt(lineArray[i + 2]);
-                        FlyingAssassin fly = new FlyingAssassin(0.5, xCoord,
+                        FlyingAssassin fly = new FlyingAssassin(500, xCoord,
                                 yCoord, xdir, ydir);
                         entities.add(fly);
                     }
                     // read in a smart thief
                     if (lineArray[i].equals("smt")) {
-                        entities.add(new SmartThief(xCoord, yCoord, 0.5));
+                        entities.add(new SmartThief(xCoord, yCoord, 1000));
                     }
                     // read in a gate
                     if (lineArray[i].equals("gte")) {
