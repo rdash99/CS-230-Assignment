@@ -95,10 +95,11 @@ class FloorFollowingThief extends NPC {
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
-              case ("Player"):
                 super.coordChange[0] = 0;
                 super.coordChange[1] = -1;
                 break;
+                case ("Player"):
+                    return false;
               // breaks out of the loop as the correct direction has been found
               default:
                 i = 5;
@@ -137,6 +138,8 @@ class FloorFollowingThief extends NPC {
                 super.coordChange[0] = 1;
                 super.coordChange[1] = 0;
                 break;
+              case ("Player"):
+                return false;
               // breaks out of the loop as the correct direction has been found
               default:
                 i = 5;
@@ -176,6 +179,8 @@ class FloorFollowingThief extends NPC {
                 super.coordChange[0] = 0;
                 super.coordChange[1] = 1;
                 break;
+              case ("Player"):
+                return false;
               // breaks out of the loop as the correct direction has been found
               default:
                 i = 5;
@@ -214,6 +219,8 @@ class FloorFollowingThief extends NPC {
                 super.coordChange[0] = -1;
                 super.coordChange[1] = 0;
                 break;
+              case ("Player"):
+                return false;
               // breaks out of the loop as the correct direction has been found
               default:
                 i = 5;
