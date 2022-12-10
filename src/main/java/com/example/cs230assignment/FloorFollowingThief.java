@@ -92,6 +92,14 @@ class FloorFollowingThief extends NPC {
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
+                if(!((Gate)Character.currentBoard
+                .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                  i = 5;
+                }else{
+                  super.coordChange[0] = -1;
+                  super.coordChange[1] = 0;
+                }
+                break;
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
@@ -132,6 +140,14 @@ class FloorFollowingThief extends NPC {
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
+                if(!((Gate)Character.currentBoard
+                .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                  i = 5;
+                }else{
+                  super.coordChange[0] = -1;
+                  super.coordChange[1] = 0;
+                }
+                break;
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
@@ -173,6 +189,14 @@ class FloorFollowingThief extends NPC {
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
+                if(!((Gate)Character.currentBoard
+                .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                  i = 5;
+                }else{
+                  super.coordChange[0] = -1;
+                  super.coordChange[1] = 0;
+                }
+                break;
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):
@@ -213,6 +237,14 @@ class FloorFollowingThief extends NPC {
                   .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()
                   .getEntityName()) {
               case ("Gate"):
+                    if(!((Gate)Character.currentBoard
+                    .getTile(super.getXCoord(), super.getYCoord() + 1).getEntity()).getGateOpen()){
+                      i = 5;
+                    }else{
+                      super.coordChange[0] = -1;
+                      super.coordChange[1] = 0;
+                    }
+                    break;
               case ("FloorFollowingThief"):
               case ("FlyingAssassin"):
               case ("SmartThief"):

@@ -196,7 +196,9 @@ public class Player extends Character {
                                 .getEntity().getEntityName()).equals("Key")) {
                             if (Character.currentBoard.getTile(super.coord[0], i)
                                     .getEntity().getEntityName().equals("Gate")) {
-                                foundSquare = true;
+                                if(!((Gate) Character.currentBoard.getTile(super.coord[0], i)
+                                    .getEntity()).getGateOpen())
+                                    foundSquare = true;
                             }
                             // compares a colour on the current tile and the tile being
                             // checked
