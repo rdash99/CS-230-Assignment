@@ -25,9 +25,10 @@ public class Character extends Entity {
             switch (currentBoard.getTile(x, y).getEntity().getEntityName()){
                 case("item"):
                     Character.currentBoard.getTile(x, y).removeEntity();
-                        if (currentEntity instanceof Item) {
-                            Character.currentBoard.getPlayer().increaseScore(((Item) currentEntity).getItemValue());
-                        }
+                    Character.currentBoard.getPlayer().increaseScore(((Item) currentBoard.getTile(x, y).getEntity()).getItemValue());
+                        //if (currentEntity instanceof Item) {
+                        //    Character.currentBoard.getPlayer().increaseScore(((Item) currentEntity).getItemValue());
+                        //}
                     break;
                 case("key"):
                     Key key = (Key) currentBoard.getTile(x, y).getEntity();
