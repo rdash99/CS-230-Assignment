@@ -10,7 +10,7 @@ import java.lang.Math.*;
  * This class defines the Player methods. this object is used to perform the
  * actions of the player in a mission as well as store the completed levels the
  * player has already done
- * 
+ *
  * @author Charles Overton
  * @version 1.0
  */
@@ -22,11 +22,10 @@ public class Player extends Character {
     private ArrayList<String> levelComp;
     // player name
     private String playerName;
-    private Image playerImg;
 
     /**
      * constructor for player to set up basic attrubutes
-     * 
+     *
      * @param name passes in the name of the player used to check what data is
      *             already stored
      * @param x    spawning xcoord for the player
@@ -38,7 +37,7 @@ public class Player extends Character {
         this.playerName = name;
         this.score = 0;
         this.levelComp = new ArrayList<String>();
-        this.playerImg = new Image("player.png");
+        this.entityName = "Player";
         loadProfile();
     }
 
@@ -53,11 +52,11 @@ public class Player extends Character {
     /**
      * allows the player to perform actions on entities affected by the players
      * next move
-     * 
+     *
      * @param x the xcoord of the next tile with the potential interactable item
      * @param y the ycoord of the next tile with the potential interactable item
      */
-    private void interact(int x, int y) {
+    protected void interact(int x, int y) {
         // checks to see if there is an item on the next square
         if (super.currentBoard.getTile(x, y).getEntity() != null) {
             // switch statement to find out what entity is on the next square
@@ -85,7 +84,7 @@ public class Player extends Character {
             case ("Door"):
                 // door being interacted with
                 Door door = (Door) super.currentBoard.getTile(x, y).getEntity();
-                door.endMission();
+                door.endMission(this.score, super.currentBoard.getTimer().getLevelTime());
             }
         }
         // values of i to the position around tile 0
@@ -143,23 +142,24 @@ public class Player extends Character {
         try {
             if (profile != null) {
                 profile = profile.replace("[", "").replace("]", "");
+                profile = profile.replace(",", "");
                 String[] profileData = profile.split(",");
-                String[] scoreData = new String[profileData.length];
-                String[] levelData = new String[profileData.length];
-                for (int i = 0; i < profileData.length; i++) {
-                    String[] data = profileData[i].split(" ");
-                    scoreData[i] = data[0];
-                    levelData[i + 1] = data[1];
-                }
+                String[] scoreData = new String[profileData.length / 2];
+                String[] levelData = new String[profileData.length / 2];
+                int i = 0;
+                do {
+                    String[] data = profileData[i].trim().split(" ");
+                    scoreData[i] = profileData[i].trim();
+                    levelData[i] = profileData[i + 1].trim();
+                    this.levelComp.add((String) levelData[i]);
+                    i = i + 2;
+                } while (i <= profileData.length);
                 // TODO needs updating to check current level and update score
                 // apropiately - only if this is a loading of a saved game
-                this.score = Integer.parseInt(profileData[0]);
-                for (int i = 1; i < levelData.length; i++) {
-                    this.levelComp.add(levelData[i]);
-                }
+                this.score = Integer.parseInt(scoreData[scoreData.length - 1]);
                 // creates a new profile if one isnt found
             } else {
-                levelComp.add("level1");
+                this.levelComp.add("level1");
             }
         } catch (Exception e) {
             this.score = 0;
@@ -175,24 +175,32 @@ public class Player extends Character {
     public void move(GraphicsContext gc, int direction) {
         Boolean foundSquare = false;
         switch (direction) {
-        case 1:
-            // checks each tile from the current position to the edge of the
-            // board
-            for (int i = super.coord[1] - 1; ((i < super.currentBoard
-                    .getHeight()) && i > -1) && !foundSquare; i--) {
-                // checks every colour on the current tile with the tile being
-                // checked
+            case 1:
+                // checks each tile from the current position to the edge of the
+                // board
+                for (int i = super.coord[1] - 1; ((i < super.currentBoard
+                        .getHeight()) && i > -1) && !foundSquare; i--) {
+                    // checks every colour on the current tile with the tile being
+                    // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // checks for a gate to stop any future movements
-                        if (super.currentBoard.getTile(i, super.coord[0])
-                            .getEntity() != null){
-                                if (super.currentBoard.getTile(i, super.coord[0])
-                                .getEntity().getEntityName() == "Gate"){
-                                    foundSquare = true;
-                                }
-                        // compares a colour on the current tile and the tile being
-                        // checked
-                        }else if (super.currentBoard.getTile(i, super.coord[0])
+                        if (super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity() != null
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity().getEntityName()).equals("Flying Assassin")
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity() instanceof Item)
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity().getEntityName()).equals("Door")
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity().getEntityName()).equals("Key")) {
+                            if (super.currentBoard.getTile(super.coord[0], i)
+                                    .getEntity().getEntityName().equals("Gate")) {
+                                foundSquare = true;
+                            }
+                            // compares a colour on the current tile and the tile being
+                            // checked
+                        } else if (super.currentBoard.getTile(i, super.coord[0])
                                 .checkColour(super.currentBoard
                                         .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
@@ -207,23 +215,31 @@ public class Player extends Character {
                         }
                     }
                 }
-            break;
-        case 2:
-            for (int i = super.coord[0] - 1; ((i < super.currentBoard
-                    .getWidth()) && i > -1) && !foundSquare; i--) {
-                // checks every colour on the current tile with the tile being
-                // checked
+                break;
+            case 2:
+                for (int i = super.coord[0] - 1; ((i < super.currentBoard
+                        .getWidth()) && i > -1) && !foundSquare; i--) {
+                    // checks every colour on the current tile with the tile being
+                    // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // checks for a gate to stop any future movements
-                        if (super.currentBoard.getTile(super.coord[1], i)
-                            .getEntity() != null){
-                                if (super.currentBoard.getTile(super.coord[1], i)
-                                .getEntity().getEntityName() == "Gate"){
-                                    foundSquare = true;
-                                }
-                        // compares a colour on the current tile and the tile being
-                        // checked
-                        }else if (super.currentBoard.getTile(super.coord[1], i)
+                        if (super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity() != null
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity().getEntityName()).equals("Flying Assassin")
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity() instanceof Item)
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity().getEntityName()).equals("Door")
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity().getEntityName()).equals("Key")) {
+                            if (super.currentBoard.getTile(i, super.coord[1])
+                                    .getEntity().getEntityName().equals("Gate")) {
+                                foundSquare = true;
+                            }
+                            // compares a colour on the current tile and the tile being
+                            // checked
+                        } else if (super.currentBoard.getTile(super.coord[1], i)
                                 .checkColour(super.currentBoard
                                         .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
@@ -238,23 +254,31 @@ public class Player extends Character {
                         }
                     }
                 }
-            break;
-        case 3:
-            for (int i = super.coord[1] + 1; ((i < super.currentBoard
-                    .getHeight()) && i > -1) && !foundSquare; i++) {
-                // checks every colour on the current tile with the tile being
-                // checked
+                break;
+            case 3:
+                for (int i = super.coord[1] + 1; ((i < super.currentBoard
+                        .getHeight()) && i > -1) && !foundSquare; i++) {
+                    // checks every colour on the current tile with the tile being
+                    // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // checks for a gate to stop any future movements
-                        if (super.currentBoard.getTile(i, super.coord[0])
-                        .getEntity() != null){
-                            if (super.currentBoard.getTile(i, super.coord[0])
-                            .getEntity().getEntityName() == "Gate"){
+                        if (super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity() != null
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity().getEntityName()).equals("Flying Assassin")
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity() instanceof Item)
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity().getEntityName()).equals("Door")
+                                && !(super.currentBoard.getTile(super.coord[0], i)
+                                .getEntity().getEntityName()).equals("Key")) {
+                            if (super.currentBoard.getTile(super.coord[0], i)
+                                    .getEntity().getEntityName().equals("Gate")) {
                                 foundSquare = true;
                             }
-                        // compares a colour on the current tile and the tile being
-                        // checked
-                        }else if (super.currentBoard.getTile(i, super.coord[0])
+                            // compares a colour on the current tile and the tile being
+                            // checked
+                        } else if (super.currentBoard.getTile(i, super.coord[0])
                                 .checkColour(super.currentBoard
                                         .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
@@ -269,23 +293,31 @@ public class Player extends Character {
                         }
                     }
                 }
-            break;
-        case 4:
-            for (int i = super.coord[0] + 1; ((i < super.currentBoard
-                    .getWidth()) && i > -1) && !foundSquare; i++) {
-                // checks every colour on the current tile with the tile being
-                // checked
+                break;
+            case 4:
+                for (int i = super.coord[0] + 1; ((i < super.currentBoard
+                        .getWidth()) && i > -1) && !foundSquare; i++) {
+                    // checks every colour on the current tile with the tile being
+                    // checked
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         // checks for a gate to stop any future movements
-                        if (super.currentBoard.getTile(super.coord[1], i)
-                        .getEntity() != null){
-                            if (super.currentBoard.getTile(super.coord[1], i)
-                            .getEntity().getEntityName() == "Gate"){
+                        if (super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity() != null
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity().getEntityName()).equals("Flying Assassin")
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity() instanceof Item)
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity().getEntityName()).equals("Door")
+                                && !(super.currentBoard.getTile(i, super.coord[1])
+                                .getEntity().getEntityName()).equals("Key")) {
+                            if (super.currentBoard.getTile(i, super.coord[1])
+                                    .getEntity().getEntityName().equals("Gate")) {
                                 foundSquare = true;
                             }
-                        // compares a colour on the current tile and the tile being
-                        // checked
-                        }else if (super.currentBoard.getTile(super.coord[1], i)
+                            // compares a colour on the current tile and the tile being
+                            // checked
+                        } else if (super.currentBoard.getTile(super.coord[1], i)
                                 .checkColour(super.currentBoard
                                         .getTile(super.coord[1], super.coord[0])
                                         .getColours()[colourPos])) {
@@ -300,13 +332,20 @@ public class Player extends Character {
                         }
                     }
                 }
-            break;
+                break;
         }
-        currentBoard.getTimer().boardUpdate(gc, this, super.currentBoard);
+        currentBoard.getTimer().
+
+                boardUpdate(gc, super.currentBoard);
+
     }
 
     public ArrayList<String> getLevels() {
         return this.levelComp;
+    }
+
+    public void increaseScore(int scoreIncrease) {
+        this.score += scoreIncrease;
     }
 
     public int getScore() {

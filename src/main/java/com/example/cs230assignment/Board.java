@@ -38,7 +38,7 @@ public class Board extends DrawShape {
      * @param entities the entities to be drawn on the board
      */
     public Board(int width, int height, Tile[][] tiles,
-            ArrayList<Entity> entities, Player player, Timer timer) {
+                 ArrayList<Entity> entities, Player player, Timer timer) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
@@ -105,7 +105,6 @@ public class Board extends DrawShape {
         Image greenSquareImg = new Image("greenSquare.png");
         Image blueSquareImg = new Image("blueSquare.png");
         Image yellowSquareImg = new Image("yellowSquare.png");
-        Image playerImg = new Image("player.png");
 
         // Draw all tiles on screen to make up the board
         for (int i = 0; i < this.tiles.length; i++) {
@@ -159,19 +158,19 @@ public class Board extends DrawShape {
                 }
             }
         }
-        int xCoord = (this.player.getXCoord());
-        int yCoord = (this.player.getYCoord());
-        int xDefaultOffset = 25;
-        int yDefaultOffset = 25;
-
-        for (int i = 0; i < xCoord; i++) {
-            xDefaultOffset += 100;
+        this.player.draw(gc);
+        for (Entity elem : this.getEntities()) {
+            elem.draw(gc);
         }
-        for (int i = 0; i < yCoord; i++) {
-            yDefaultOffset += 100;
-        }
-        gc.drawImage(playerImg, xCoord + xDefaultOffset,
-                yCoord + yDefaultOffset);
+        //Call entity NPC movement from here perhaps?
+//            if (elem instanceof FlyingAssassin) {
+//                System.out.println("FA: " + elem.getXCoord() + " " + elem.getYCoord());
+//                ((FlyingAssassin) elem).move();
+//            }
+//            } else if (elem instanceof FloorFollowingThief) {
+//                System.out.println("FFT: " + elem.getXCoord() + " " + elem.getYCoord());
+//                ((FloorFollowingThief) elem).move();
+//            }
     }
 
     public void setEntities(ArrayList<Entity> entities) {

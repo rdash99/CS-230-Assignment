@@ -83,7 +83,7 @@ public class FileHandler {
                     }
                     // read in a floor following thief
                     if (lineArray[i].equals("fft")) {
-                        char colour = lineArray[i + 3].charAt(0);
+                        char colour = lineArray[i + 1].charAt(0);
                         FloorFollowingThief fft = new FloorFollowingThief(
                                 colour, xCoord, yCoord);
                         entities.add(fft);
@@ -252,7 +252,7 @@ public class FileHandler {
      */
     private static void saveBoard(Board board, String fileName) {
         Player player = board.getPlayer();
-        fileName = player.getEntityName() + fileName + "save";
+        fileName = player.getPlayerName() + fileName + "save";
         ArrayList<Entity> entities = board.getEntities();
         Tile[][] tiles = board.getTiles();
         int levelTime = board.getTimer().getLevelTime();
@@ -307,9 +307,12 @@ public class FileHandler {
             throw new IllegalArgumentException(
                     "Player data should be saved separately, how did this get here?");
         }
+        char colour;
         switch (entityName) {
         case "Floor Following Thief":
             entityName = "fft";
+            colour = ((FloorFollowingThief) entity).getAllocatedColour();
+            extraData = " " + colour;
             break;
         case "Flying Assassin":
             entityName = "fla";
@@ -321,7 +324,7 @@ public class FileHandler {
             break;
         case "Gate":
             entityName = "gte";
-            char colour = ((Gate) entity).getGateColour();
+            colour = ((Gate) entity).getGateColour();
             extraData = " " + colour;
             break;
         case "Door":
@@ -361,14 +364,21 @@ public class FileHandler {
      */
     private static ArrayList<String> savePlayerData(String playerID, int score,
             ArrayList<String> level, ArrayList<String> playerData) {
-        String data = score + " " + level;
+        String levels = level.toString().replace("[", "").replace("]", "");
         if (playerData == null || playerData.size() == 0) {
             playerData = new ArrayList<String>();
         } else {
+            String[] levelsSplit = levels.split(",");
+            for (int i = 0; i < levelsSplit.length; i++) {
+                levelsSplit[i] = levelsSplit[i].trim();
+                String data = score + " " + levelsSplit[i];
+                playerData.add(data);
+                // TODO needs to replace the level in the arraylist with the new
+                // one if
+                // the score is greater than the old one
+            }
+
         }
-        // TODO needs to replace the level in the arraylist with the new one if
-        // the score is greater than the old one
-        playerData.add(data);
 
         return playerData;
     }
@@ -385,20 +395,19 @@ public class FileHandler {
         int score = player.getScore();
         ArrayList<String> levels = player.getLevels();
         ArrayList<String> playerData = new ArrayList<String>();
-        String playerID = player.getEntityName();
+        String playerID = player.getPlayerName();
         Scanner in = null;
         try {
             in = new Scanner(new File(
                     "src/main/resources/profiles/" + playerID + ".txt"));
             String data = in.nextLine();
 
-            data = data.replace(data.substring(0, 0), "");
-            data = data.replace(data.substring(data.length(), data.length()),
-                    " ");
+            data = data.replace("[", "");
+            data = data.replace("]", "");
             String[] dataSplit = data.split(",");
 
             for (int i = 0; i < dataSplit.length; i++) {
-                playerData.add(dataSplit[i]);
+                playerData.add(dataSplit[i].trim());
             }
             in.close();
 
@@ -408,7 +417,6 @@ public class FileHandler {
         try {
             playerData = savePlayerData(playerID, score, levels, playerData);
             String data = playerData.toString();
-            System.out.println(data);
             writeToFile("src/main/resources/profiles/" + playerID, data);
         } catch (NullPointerException e) {
         }

@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
 public class Timer {
     private int levelTime;
     private int initTime;
-    private Label levelTimeLabel;
 
     /**
      * Construct a timer by initialising the levelTime and initTime
@@ -32,46 +31,11 @@ public class Timer {
      * have occurred
      *
      * @param gc a reference to the canvas to be drawn on
-     * @param entity a reference to the entity to have an updated drawing
-     *               on the board
      * @param board a reference to the board to be updated
      */
-    public void boardUpdate(GraphicsContext gc, Entity entity, Board board) {
-        Image playerImg = new Image("player.png");
+    public void boardUpdate(GraphicsContext gc, Board board) {
 
-        int xCoord = (entity.getXCoord());
-        int yCoord = (entity.getYCoord());
-        int xDefaultOffset = 25;
-        int yDefaultOffset = 25;
-
-        for (int i = 0; i < xCoord; i++) {
-            xDefaultOffset += 100;
-        }
-        for (int i = 0; i < yCoord; i++) {
-            yDefaultOffset += 100;
-        }
         board.draw(gc);
-        switch (entity.getEntityName()) {
-            case "Player":
-                gc.drawImage(playerImg, xCoord + xDefaultOffset, yDefaultOffset);
-                break;
-            case "Flying Assassin":
-                break;
-            case "Floor Following Thief":
-                break;
-            case "Smart Thief":
-                break;
-            case "Clock":
-                break;
-            case "Gate":
-                break;
-            case "Key":
-                break;
-            case "Bomb":
-                break;
-            case "Door":
-                break;
-        }
     }
 
     /**
