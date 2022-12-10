@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Tile {
     private char[] squares;
     private Entity entity; // Need to implement Entity class
+    private Door door;
 
     public Tile(char charAt, char charAt2, char charAt3, char charAt4) {
         this.squares = new char[] { charAt, charAt2, charAt3, charAt4 };
@@ -18,6 +19,14 @@ public class Tile {
 
     public Entity getEntity() {
         return this.entity;
+    }
+
+    public Door getDoor() {
+        return this.door;
+    }
+
+    public void setDoor(Door doorSet) {
+        this.door = doorSet;
     }
 
     public boolean checkColour(char colour) {

@@ -79,12 +79,18 @@ public class Player extends Character {
                 // clock being interacted with
                 Clock clock = (Clock) Character.currentBoard.getTile(x, y)
                         .getEntity();
-                        Character.currentBoard.getTimer().addClock(clock);
+                Character.currentBoard.getTimer().addClock(clock);
+                break;
                 // interact with a door entity
-            case ("Door"):
+            //case ("Door"):
                 // door being interacted with
-                Door door = (Door) Character.currentBoard.getTile(x, y).getEntity();
-                door.endMission(this.score, Character.currentBoard.getTimer().getLevelTime());
+            //    Door door = (Door) Character.currentBoard.getTile(x, y).getEntity();
+            //    door.endMission(this.score, Character.currentBoard.getTimer().getLevelTime());
+            }
+        }
+        if (Character.currentBoard.getTile(x, y).getDoor() != null){
+            if(Character.currentBoard.getTile(x, y).getDoor().validEndMission(this.score)){
+                Character.currentBoard.getTile(x, y).getDoor().endMission(this.score, Character.currentBoard.getTimer().getLevelTime());
             }
         }
         // values of i to the position around tile 0
