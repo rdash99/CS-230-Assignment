@@ -71,18 +71,19 @@ public class Player extends Character {
                 Key key = (Key) Character.currentBoard.getTile(x, y)
                         .getEntity();
                 key.openGate();
-            } else if (Character.currentBoard.getTile(x, y)
-                    .getEntity() instanceof Clock) {
+                Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
+            }else if (Character.currentBoard.getTile(x, y).getEntity() instanceof Clock){
                 Clock clock = (Clock) Character.currentBoard.getTile(x, y)
                         .getEntity();
                 Character.currentBoard.getTimer().addClock(clock);
-                // interact with a door entity
-                // case ("Door"):
-                // door being interacted with
-                // Door door = (Door) Character.currentBoard.getTile(x,
-                // y).getEntity();
-                // door.endMission(this.score,
-                // Character.currentBoard.getTimer().getLevelTime());
+                Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
+            // interact with a door entity
+            // case ("Door"):
+            // door being interacted with
+            // Door door = (Door) Character.currentBoard.getTile(x,
+            // y).getEntity();
+            // door.endMission(this.score,
+            // Character.currentBoard.getTimer().getLevelTime());
             }
         }
         if (Character.currentBoard.getTile(x, y).getDoor() != null) {

@@ -1,0 +1,11 @@
+4 4
+rgby rrrg gggr bbbb 
+yyyy rrrg rrrr gggg 
+rgby rrrg gggr bbbb 
+yyyy rrrg rrrr gggg 
+1 1 ply
+1 0 smt
+2 2 fla 0 1
+2 1 fft r
+0 2 dor
+timer 298
