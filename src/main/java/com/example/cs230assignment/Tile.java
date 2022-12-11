@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Tile {
     private char[] squares;
-    private Entity entity; // Need to implement Entity class
+    private Entity entity;
     private Door door;
 
     /**

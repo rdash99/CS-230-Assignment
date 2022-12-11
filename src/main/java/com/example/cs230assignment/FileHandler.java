@@ -172,7 +172,7 @@ public class FileHandler {
             }
         }
         Tile[][] tiles6 = linkTilesEntity(tiles5, entities, player, door);
-        entities.add(door);
+//        entities.add(door);
         Board board = new Board(x, y, tiles6, entities, player, timer);
         addBoardLinks(board);
         return board;
