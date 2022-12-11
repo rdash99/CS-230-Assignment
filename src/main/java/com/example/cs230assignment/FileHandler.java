@@ -377,6 +377,12 @@ public class FileHandler {
         String levels = level.toString().replace("[", "").replace("]", "");
         if (playerData == null || playerData.size() == 0) {
             playerData = new ArrayList<String>();
+            String[] levelsSplit = levels.split(",");
+            for (int i = 0; i < levelsSplit.length; i++) {
+                levelsSplit[i] = levelsSplit[i].trim();
+                String data = score + " " + levelsSplit[i];
+                playerData.add(data);
+            }
         } else {
             String[] levelsSplit = levels.split(",");
             for (int i = 0; i < levelsSplit.length; i++) {
