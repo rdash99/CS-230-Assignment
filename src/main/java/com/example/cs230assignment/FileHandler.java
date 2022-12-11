@@ -404,7 +404,7 @@ public class FileHandler {
      * @param player The player to be saved
      * @return String
      */
-    private static String savePlayer(Player player) {
+    public static String savePlayer(Player player) {
         int x = player.getXCoord();
         int y = player.getYCoord();
         int score = player.getScore();
