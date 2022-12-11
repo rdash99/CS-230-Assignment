@@ -46,6 +46,7 @@ public class Character extends Entity {
     /**
      * @param x
      * @param y
+     * @return 
      */
     protected void interact(int x, int y) {
         if (currentBoard.getTile(x, y).getEntity() != null) {

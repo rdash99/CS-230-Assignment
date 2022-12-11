@@ -35,7 +35,7 @@ public class FlyingAssassin extends NPC {
         Boolean x = validMove(board);
         // move if a valid move is found
         if (x) {
-            Boolean boolDel = this.interact(this.coord[0] + this.coordChange[0],
+            Boolean boolDel = this.interactFlyingThief(this.coord[0] + this.coordChange[0],
                     this.coord[1] + this.coordChange[1]);
             if(!boolDel){
                 board.getTile(this.coord[0], this.coord[1])
@@ -57,8 +57,7 @@ public class FlyingAssassin extends NPC {
      * interact for flying assassin allowing the assassin to kill as well as
      * interact with other entities
      */
-    @Override
-    protected Boolean interact(int x, int y) {
+    protected Boolean interactFlyingThief(int x, int y) {
         if (currentBoard.getTile(x, y).getEntity() != null) {
             // select the entities by type and perform the correct interactions
             if(Character.currentBoard.getTile(x, y).getEntity() instanceof Player) {
@@ -71,6 +70,7 @@ public class FlyingAssassin extends NPC {
                 Character.currentBoard.getTile(x, y).removeEntity();
                 Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
                 Character.currentBoard.removeEntity(this);
+                return true;
         }
         for (int i = 1; i < 9; i++) {
             // the xcoord of an adjacent tile
@@ -111,6 +111,8 @@ public class FlyingAssassin extends NPC {
                 }
             }
         }
+        }
+    return false;
     }
 
     /**
