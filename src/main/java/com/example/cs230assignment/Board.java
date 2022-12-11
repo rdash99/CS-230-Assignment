@@ -46,7 +46,7 @@ public class Board extends DrawShape {
      * @param entities the entities to be drawn on the board
      */
     public Board(int width, int height, Tile[][] tiles,
-                 ArrayList<Entity> entities, Player player, Timer timer) {
+            ArrayList<Entity> entities, Player player, Timer timer) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
@@ -55,16 +55,25 @@ public class Board extends DrawShape {
         this.timer = timer;
         for (Entity elem : this.entities) {
             if (elem instanceof SmartThief) {
-                this.smartThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
+                this.smartThiefTimeline = new Timeline(new KeyFrame(
+                        Duration.millis(((SmartThief) elem).getMovementTimer()),
+                        event -> ((SmartThief) elem).move(gc, this)));
                 this.smartThiefTimeline.setCycleCount(Animation.INDEFINITE);
                 this.smartThiefTimeline.playFromStart();
             } else if (elem instanceof FlyingAssassin) {
-                this.flyingAssassinTimeline = new Timeline(new KeyFrame(Duration.millis(((FlyingAssassin) elem).getMovementTimer()), event -> ((FlyingAssassin) elem).move(gc, this)));
+                this.flyingAssassinTimeline = new Timeline(new KeyFrame(
+                        Duration.millis(
+                                ((FlyingAssassin) elem).getMovementTimer()),
+                        event -> ((FlyingAssassin) elem).move(gc, this)));
                 this.flyingAssassinTimeline.setCycleCount(Animation.INDEFINITE);
                 this.flyingAssassinTimeline.playFromStart();
             } else if (elem instanceof FloorFollowingThief) {
-                this.floorFollowingThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((FloorFollowingThief) elem).getMovementTimer()), event -> ((FloorFollowingThief) elem).move(gc)));
-                this.floorFollowingThiefTimeline.setCycleCount(Animation.INDEFINITE);
+                this.floorFollowingThiefTimeline = new Timeline(new KeyFrame(
+                        Duration.millis(((FloorFollowingThief) elem)
+                                .getMovementTimer()),
+                        event -> ((FloorFollowingThief) elem).move(gc)));
+                this.floorFollowingThiefTimeline
+                        .setCycleCount(Animation.INDEFINITE);
                 this.floorFollowingThiefTimeline.playFromStart();
             }
         }
