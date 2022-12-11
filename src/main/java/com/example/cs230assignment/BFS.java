@@ -5,7 +5,7 @@ import java.util.Queue;
 
 /**
  * This class represents the BFS algorithm
- * 
+ *
  * @author Thomas McAuley
  * @version 1.0
  */
@@ -14,7 +14,7 @@ public class BFS {
 
     /**
      * This is the constructor for the BFS class
-     * 
+     *
      * @param startVertex the vertex to start the BFS from
      */
     public BFS(Vertex startVertex) {
@@ -23,7 +23,7 @@ public class BFS {
 
     /**
      * This method will traverse the graph using the BFS algorithm
-     * 
+     *
      * @return Vertex
      */
     public Vertex traverse() {
@@ -33,14 +33,14 @@ public class BFS {
         queue.add(startVertex);
         while (!queue.isEmpty()) {
             Vertex current = queue.poll();
-            if (!current.isVisited()) {
+            if (current != null && !current.isVisited()) {
                 current.setVisited(true);
                 distance++;
                 current.setDistanceFromSmartThief(distance);
                 queue.addAll(current.getNeighbours());
                 if (nextInteractable == null || current
                         .getDistanceFromSmartThief() < nextInteractable
-                                .getDistanceFromSmartThief()) {
+                        .getDistanceFromSmartThief()) {
                     nextInteractable = current;
                 }
             }
