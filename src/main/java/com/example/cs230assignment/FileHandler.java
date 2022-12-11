@@ -175,7 +175,7 @@ public class FileHandler {
         Tile[][] tiles6 = linkTilesEntity(tiles5, entities, player, door);
         // entities.add(door);
         Board board = new Board(x, y, tiles6, entities, player, timer);
-        addBoardLinks(board);
+        addBoardLinks(board, door);
         return board;
     }
 
@@ -207,7 +207,7 @@ public class FileHandler {
      * 
      * @param board The board to link the entities to
      */
-    private static void addBoardLinks(Board board) {
+    private static void addBoardLinks(Board board, Door door) {
         ArrayList<Entity> entities = board.getEntities();
         Player player = board.getPlayer();
         for (Entity e : entities) {
@@ -217,6 +217,7 @@ public class FileHandler {
             }
         }
         player.setBoard(board);
+        door.setBoard(board);
     }
 
     /**
