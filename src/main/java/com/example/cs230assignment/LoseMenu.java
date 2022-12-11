@@ -31,19 +31,18 @@ public class LoseMenu extends Stage {
     private Text titleText = new Text("Game Over");
     private VBox vbox = new VBox();
     private HBox hbox = new HBox();
-    private Board board;
     private String playerName;
-    private GameGUI originalWindow;
+    private GameGUI gameGUI;
 
     /**
      * Creates a new Lose Menu when this class is instantiated.
      * 
      * @param playerName     The name of the player.
-     * @param originalWindow The original window of the game.
+     * @param gameGUI        The original window of the game.
      */
-    public LoseMenu(String playerName, GameGUI originalWindow) {
+    public LoseMenu(String playerName, GameGUI gameGUI) {
         this.playerName = playerName;
-        this.originalWindow = originalWindow;
+        this.gameGUI = gameGUI;
         this.initStyle(StageStyle.UNDECORATED);
         root.setBackground(new Background(new BackgroundFill(Color.DARKRED,
                 CornerRadii.EMPTY, Insets.EMPTY)));
@@ -69,12 +68,12 @@ public class LoseMenu extends Stage {
 
         retryBtn.setOnAction(e -> {
             this.close();
-            this.originalWindow.createGame(this.playerName);
+            this.gameGUI.createGame(this.playerName);
         });
 
         quitBtn.setOnAction(e -> {
             this.close();
-            this.originalWindow.close();
+            this.gameGUI.close();
             try {
                 new MainMenu();
             } catch (IOException ex) {

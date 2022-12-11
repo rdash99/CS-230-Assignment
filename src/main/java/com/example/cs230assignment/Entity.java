@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 public class Entity extends DrawShape {
     protected String entityName;
     protected int[] coord;
-
+    private boolean visited;
     protected int distanceFromSmartThief = -1;
 
     /**
@@ -218,6 +218,14 @@ public class Entity extends DrawShape {
             gc.drawImage(itemImg, xCoord + itemXDefaultOffset,
                     yCoord + itemYDefaultOffset);
         }
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    public boolean checkVisited() {
+        return this.visited;
     }
 
     /**

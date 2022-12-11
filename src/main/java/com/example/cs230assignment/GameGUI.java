@@ -117,7 +117,7 @@ public class GameGUI extends Stage {
 
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
-                new PauseMenu(level, "testLevel", tickTimeline);
+                new PauseMenu(level, "testLevel", this);
                 for (Entity entity : level.getEntities()) {
                     if (entity instanceof SmartThief) {
                         level.pauseSmartThief();
@@ -127,25 +127,25 @@ public class GameGUI extends Stage {
                         level.pauseFloorFollowingThief();
                     }
                 }
-                tickTimeline.stop();
+                pauseLevelTime();
             }
         });
 
-        // for testing only
-        this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if (key.getCode() == KeyCode.L) {
-                new LoseMenu(playerName, this);
-                tickTimeline.stop();
-            }
-        });
-
-        // for testing only
-        this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if (key.getCode() == KeyCode.M) {
-                new WinMenu(playerName, this);
-                tickTimeline.stop();
-            }
-        });
+        // // for testing only
+        // this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+        // if (key.getCode() == KeyCode.L) {
+        // new LoseMenu(playerName, this);
+        // tickTimeline.stop();
+        // }
+        // });
+        //
+        // // for testing only
+        // this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+        // if (key.getCode() == KeyCode.M) {
+        // new WinMenu(playerName, this);
+        // tickTimeline.stop();
+        // }
+        // });
 
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -154,18 +154,18 @@ public class GameGUI extends Stage {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
-                case W:
-                    level.getPlayer().move(gc, 1);
-                    break;
-                case A:
-                    level.getPlayer().move(gc, 2);
-                    break;
-                case S:
-                    level.getPlayer().move(gc, 3);
-                    break;
-                case D:
-                    level.getPlayer().move(gc, 4);
-                    break;
+                    case W:
+                        level.getPlayer().move(gc, 1);
+                        break;
+                    case A:
+                        level.getPlayer().move(gc, 2);
+                        break;
+                    case S:
+                        level.getPlayer().move(gc, 3);
+                        break;
+                    case D:
+                        level.getPlayer().move(gc, 4);
+                        break;
                 }
             }
         });
@@ -223,6 +223,14 @@ public class GameGUI extends Stage {
             }
             new LoseMenu(level.getPlayer().getPlayerName(), this);
         }
+    }
+
+    public void pauseLevelTime() {
+        this.tickTimeline.stop();
+    }
+
+    public void resumeLevelTime() {
+        this.tickTimeline.play();
     }
 
     public Board getLevel() {
