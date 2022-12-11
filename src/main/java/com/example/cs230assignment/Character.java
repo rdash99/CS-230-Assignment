@@ -50,25 +50,13 @@ public class Character extends Entity {
      */
     protected void interact(int x, int y) {
         if (currentBoard.getTile(x, y).getEntity() != null) {
-            switch (currentBoard.getTile(x, y).getEntity().getEntityName()) {
-            case ("item"):
+            if (currentBoard.getTile(x, y).getEntity() instanceof Item){
                 Character.currentBoard.getTile(x, y).removeEntity();
-                Character.currentBoard.getPlayer().increaseScore(
-                        ((Item) currentBoard.getTile(x, y).getEntity())
-                                .getItemValue());
-                // if (currentEntity instanceof Item) {
-                // Character.currentBoard.getPlayer().increaseScore(((Item)
-                // currentEntity).getItemValue());
-                // }
-                break;
-            case ("key"):
+            }else if(currentBoard.getTile(x, y).getEntity() instanceof Key){
                 Key key = (Key) currentBoard.getTile(x, y).getEntity();
                 key.openGate();
-                break;
-            case ("clock"):
-                Clock clock = (Clock) currentBoard.getTile(x, y).getEntity();
-                Character.currentBoard.getTimer().addClock(clock);
-                break;
+            }else if(currentBoard.getTile(x, y).getEntity() instanceof Clock){
+                Character.currentBoard.getTile(x, y).removeEntity();
             }
         }
         for (int i = 1; i < 9; i++) {
@@ -99,8 +87,7 @@ public class Character extends Entity {
                     .getEntity() != null) {
                 // if the entity is a bomb execute bomb.explodeBomb();
                 if (Character.currentBoard
-                        .getTile(x + tempCoordX, y + tempCoordY).getEntity()
-                        .getEntityName() == "Bomb") {
+                        .getTile(x + tempCoordX, y + tempCoordY).getEntity() instanceof Bomb) {
                     // the bomb on an adjacent tile
                     Bomb bomb = (Bomb) Character.currentBoard
                             .getTile(x + tempCoordX, y + tempCoordY)
