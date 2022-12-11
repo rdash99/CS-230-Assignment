@@ -60,28 +60,18 @@ public class Player extends Character {
         // checks to see if there is an item on the next square
         if (Character.currentBoard.getTile(x, y).getEntity() != null) {
             // switch statement to find out what entity is on the next square
-            switch (Character.currentBoard.getTile(x, y).getEntity()
-                    .getEntityName()) {
-            // interact with an item entity
-            case ("Item"):
-                // adding the score to player from the item
+            if (Character.currentBoard.getTile(x, y).getEntity() instanceof Item){
                 this.score += ((Item) (Character.currentBoard.getTile(x, y)
-                        .getEntity())).getItemValue();
-                break;
-            // interact with a key entity
-            case ("Key"):
-                // key being interacted with
+                .getEntity())).getItemValue();
+                Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
+            }else if (Character.currentBoard.getTile(x, y).getEntity() instanceof Key){
                 Key key = (Key) Character.currentBoard.getTile(x, y)
                         .getEntity();
                 key.openGate();
-                break;
-            // interact with a clock entity
-            case ("Clock"):
-                // clock being interacted with
+            }else if (Character.currentBoard.getTile(x, y).getEntity() instanceof Clock){
                 Clock clock = (Clock) Character.currentBoard.getTile(x, y)
                         .getEntity();
                 Character.currentBoard.getTimer().addClock(clock);
-                break;
             // interact with a door entity
             // case ("Door"):
             // door being interacted with
@@ -132,7 +122,7 @@ public class Player extends Character {
                 // if the entity is a bomb execute bomb.explodeBomb();
                 if (Character.currentBoard
                         .getTile(x + tempCoordX, y + tempCoordY).getEntity()
-                        .getEntityName() == "Bomb") {
+                        instanceof Bomb) {
                     // the bomb on an adjacent tile
                     Bomb bomb = (Bomb) Character.currentBoard
                             .getTile(x + tempCoordX, y + tempCoordY)
@@ -234,7 +224,7 @@ public class Player extends Character {
                         Character.currentBoard
                                 .getTile(super.coord[0], super.coord[1])
                                 .removeEntity();
-                        interact(super.coord[0], i);
+                        this.interact(super.coord[0], i);
                         Character.currentBoard.getTile(super.coord[0], i)
                                 .setEntity(this);
                         super.coord[1] = i;
@@ -278,7 +268,7 @@ public class Player extends Character {
                         Character.currentBoard
                                 .getTile(super.coord[0], super.coord[1])
                                 .removeEntity();
-                        interact(i, super.coord[1]);
+                        this.interact(i, super.coord[1]);
                         Character.currentBoard.getTile(i, super.coord[1])
                                 .setEntity(this);
                         super.coord[0] = i;
@@ -322,7 +312,7 @@ public class Player extends Character {
                         Character.currentBoard
                                 .getTile(super.coord[0], super.coord[1])
                                 .removeEntity();
-                        interact(super.coord[0], i);
+                        this.interact(super.coord[0], i);
                         Character.currentBoard.getTile(super.coord[0], i)
                                 .setEntity(this);
                         super.coord[1] = i;
@@ -366,7 +356,7 @@ public class Player extends Character {
                         Character.currentBoard
                                 .getTile(super.coord[0], super.coord[1])
                                 .removeEntity();
-                        interact(i, super.coord[1]);
+                        this.interact(i, super.coord[1]);
                         Character.currentBoard.getTile(i, super.coord[1])
                                 .setEntity(this);
                         super.coord[0] = i;
@@ -376,7 +366,7 @@ public class Player extends Character {
             }
             break;
         }
-        currentBoard.getTimer().boardUpdate(gc, super.currentBoard);
+        currentBoard.getTimer().boardUpdate(gc, Character.currentBoard);
     }
 
     /**
