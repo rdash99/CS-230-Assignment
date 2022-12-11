@@ -17,8 +17,8 @@ import java.io.IOException;
 
 /**
  * The Win Menu class. It creates the window that appears when the player wins
- * the game
- * which contains a button to retry the game and a button to quit the game.
+ * the game which contains a button to retry the game and a button to quit the
+ * game.
  * 
  * @author Fraser Clough
  * @version 1.0
@@ -30,7 +30,6 @@ public class WinMenu extends Stage {
     private Button retryBtn = new Button("Retry");
     private Button quitBtn = new Button("Quit");
     private Text titleText = new Text("You Win!");
-    private Label scoreLabel = new Label();
     private VBox vbox = new VBox();
     private HBox hbox = new HBox();
     private Board board;
