@@ -122,11 +122,12 @@ public class FileHandler {
                         }
                     }
                     ;
-                    if (lineArray[i].equals("itm")) {
-                        String name = lineArray[i + 1];
-                        int value = Integer.parseInt(lineArray[i + 2]);
-                        entities.add(loadItem(name, x, y, value));
-                    }
+                    /*
+                     * if (lineArray[i].equals("itm")) { String name =
+                     * lineArray[i + 1]; int value =
+                     * Integer.parseInt(lineArray[i + 2]);
+                     * entities.add(loadItem(name, x, y, value)); }
+                     */
                 }
 
             }
@@ -172,7 +173,7 @@ public class FileHandler {
             }
         }
         Tile[][] tiles6 = linkTilesEntity(tiles5, entities, player, door);
-        entities.add(door);
+        // entities.add(door);
         Board board = new Board(x, y, tiles6, entities, player, timer);
         addBoardLinks(board);
         return board;

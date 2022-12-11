@@ -9,6 +9,7 @@ package com.example.cs230assignment;
 
 public class Item extends Entity {
     private int itemValue;
+    private String itemName;
 
     /**
      * This is the constructor for the item class
@@ -19,7 +20,8 @@ public class Item extends Entity {
      * @param itemValuePass the value of the item
      */
     public Item(String itemNamePass, int x, int y, int itemValuePass) {
-        super(itemNamePass, x, y);
+        super("item", x, y);
+        this.itemName = itemNamePass;
         this.itemValue = itemValuePass;
     }
 
@@ -35,6 +37,13 @@ public class Item extends Entity {
      */
     public void setItemValue(int itemValuePass) {
         this.itemValue = itemValuePass;
+    }
+
+    /**
+     * @return String
+     */
+    public String getItemName() {
+        return this.itemName;
     }
 
     public void draw() {
