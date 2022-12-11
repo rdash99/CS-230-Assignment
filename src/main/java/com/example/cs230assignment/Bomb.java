@@ -10,6 +10,9 @@ import java.util.ArrayList;
 public class Bomb extends Entity {
     private int xCoord;
     private int yCoord;
+    /**
+     * The current board that the bomb is on
+     */
     protected Board currentBoard;
 
     /**

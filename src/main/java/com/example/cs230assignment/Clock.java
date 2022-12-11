@@ -13,7 +13,6 @@ public class Clock extends Entity {
     /**
      * This is the constructor for the clock class
      * 
-     * @param name the name of the clock
      * @param x    the x coordinate of the clock
      * @param y    the y coordinate of the clock
      * @param time the time the clock adds
@@ -31,7 +30,7 @@ public class Clock extends Entity {
     }
 
     /**
-     * @param time
+     * @param time the time to be set
      */
     public void settime(int time) {
         this.time = time;

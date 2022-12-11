@@ -13,8 +13,14 @@ import javafx.scene.image.Image;
 
 public class Entity extends DrawShape {
     protected String entityName;
+    /**
+     * The coordinates of the entity
+     */
     protected int[] coord;
     private boolean visited;
+    /**
+     * The distance from the smart thief
+     */
     protected int distanceFromSmartThief = -1;
 
     /**

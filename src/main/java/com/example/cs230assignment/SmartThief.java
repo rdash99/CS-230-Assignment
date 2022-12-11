@@ -131,8 +131,10 @@ public class SmartThief extends NPC {
     }
 
     /**
-     * @param gc
-     * @param board
+     * Move randomly.
+     * 
+     * @param gc    The graphics context to draw on
+     * @param board The board to move on
      */
     public void randomMovement(GraphicsContext gc, Board board) {
         int directionChoice = randGen.nextInt(1, 5);
@@ -153,8 +155,10 @@ public class SmartThief extends NPC {
     }
 
     /**
-     * @param gc
-     * @param board
+     * Method to move the smart thief up.
+     * 
+     * @param gc    The graphics context to draw on
+     * @param board The board to move on
      */
     public void moveUp(GraphicsContext gc, Board board) {
         boolean foundSquare = false;
@@ -177,8 +181,10 @@ public class SmartThief extends NPC {
     }
 
     /**
-     * @param gc
-     * @param board
+     * Moves the entity left if possible.
+     * 
+     * @param gc    the graphics context
+     * @param board the board
      */
     public void moveLeft(GraphicsContext gc, Board board) {
         boolean foundSquare = false;
@@ -201,8 +207,10 @@ public class SmartThief extends NPC {
     }
 
     /**
-     * @param gc
-     * @param board
+     * Moves the entity down one square if possible.
+     * 
+     * @param gc    the graphics context
+     * @param board the board
      */
     public void moveDown(GraphicsContext gc, Board board) {
         boolean foundSquare = false;
@@ -225,8 +233,10 @@ public class SmartThief extends NPC {
     }
 
     /**
-     * @param gc
-     * @param board
+     * Moves the entity right one square if possible.
+     * 
+     * @param gc    the graphics context
+     * @param board the board
      */
     public void moveRight(GraphicsContext gc, Board board) {
         boolean foundSquare = false;
@@ -249,7 +259,9 @@ public class SmartThief extends NPC {
     }
 
     /**
-     * @param board
+     * Method to find the closest interactable item to a smart thief.
+     * 
+     * @param board the board
      * @return Entity
      */
     private Entity findClosestInteractable(Board board) {

@@ -61,6 +61,7 @@ public class FlyingAssassin extends NPC {
      * 
      * @param x the x coord of the tile to be interacted with
      * @param y the y coord of the tile to be interacted with
+     * @return boolean
      */
     protected Boolean interactFlyingThief(int x, int y) {
         if (currentBoard.getTile(x, y).getEntity() != null) {

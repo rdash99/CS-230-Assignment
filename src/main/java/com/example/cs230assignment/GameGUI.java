@@ -154,18 +154,18 @@ public class GameGUI extends Stage {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
-                    case W:
-                        level.getPlayer().move(gc, 1);
-                        break;
-                    case A:
-                        level.getPlayer().move(gc, 2);
-                        break;
-                    case S:
-                        level.getPlayer().move(gc, 3);
-                        break;
-                    case D:
-                        level.getPlayer().move(gc, 4);
-                        break;
+                case W:
+                    level.getPlayer().move(gc, 1);
+                    break;
+                case A:
+                    level.getPlayer().move(gc, 2);
+                    break;
+                case S:
+                    level.getPlayer().move(gc, 3);
+                    break;
+                case D:
+                    level.getPlayer().move(gc, 4);
+                    break;
                 }
             }
         });
@@ -180,7 +180,8 @@ public class GameGUI extends Stage {
 
     /**
      * Create the GUI.
-     *
+     * 
+     * @param level The level to be displayed.
      * @return The panel that contains the created GUI.
      */
     public Pane buildGUI(Board level) {
@@ -209,6 +210,9 @@ public class GameGUI extends Stage {
 
     }
 
+    /**
+     * This method is called every second.
+     */
     public void tick() {
         this.levelTimeLabel.setText("" + this.level.getTimer().decrementTime());
         if (this.level.getTimer().getLevelTime() == 0) {
@@ -225,14 +229,25 @@ public class GameGUI extends Stage {
         }
     }
 
+    /**
+     * Pause the level timer.
+     */
     public void pauseLevelTime() {
         this.tickTimeline.stop();
     }
 
+    /**
+     * Resume the level timer.
+     */
     public void resumeLevelTime() {
         this.tickTimeline.play();
     }
 
+    /**
+     * Return the level.
+     * 
+     * @return the level
+     */
     public Board getLevel() {
         return this.level;
     }

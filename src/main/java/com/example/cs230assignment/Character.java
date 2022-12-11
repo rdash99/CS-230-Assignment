@@ -9,6 +9,9 @@ import javafx.scene.image.Image;
  * @version 1.0
  */
 public class Character extends Entity {
+    /**
+     * The board that the character is on
+     */
     protected static Board currentBoard;
 
     /**

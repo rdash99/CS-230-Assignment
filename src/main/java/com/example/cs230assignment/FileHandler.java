@@ -611,7 +611,7 @@ public class FileHandler {
     /**
      * Reads a list of save files from the saves folder.
      * 
-     * @param playerName
+     * @param playerName The name of the player
      * @return ArrayList List of files in src/main/resources/saves
      */
     public static ArrayList<String> readSaveFiles(String playerName) {

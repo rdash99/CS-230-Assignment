@@ -237,7 +237,7 @@ public class Board extends DrawShape {
     /**
      * Retrieve the entities list from the board
      * 
-     * @return ArrayList<Entity>
+     * @return ArrayList
      */
     public ArrayList<Entity> getEntities() {
         return this.entities;
@@ -321,6 +321,8 @@ public class Board extends DrawShape {
     }
 
     /**
+     * Set the graphics context
+     * 
      * @param gc GraphicsContext
      */
     public void setGraphicsContext(GraphicsContext gc) {
