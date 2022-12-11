@@ -7,17 +7,16 @@ package com.example.cs230assignment;
  */
 public class Door extends Entity {
     private Board currentBoard;
+    private GameGUI gameGUI;
 
     /**
      * This is the constructor for the door class
-     * 
-     * @param name the name of the door
+     *
      * @param x    the x coordinate of the door
      * @param y    the y coordinate of the door
      */
     public Door(int x, int y) {
         super("Door", x, y);
-        this.currentBoard = currentBoard;
     }
 
     /**
@@ -29,19 +28,27 @@ public class Door extends Entity {
         for (int i = 0; i < timeLeft; i++) {
             score += 10;
         }
-        //Display win menu
+        new WinMenu(currentBoard.getPlayer().getPlayerName(), this.gameGUI);
     }
 
     /**
-     * @param score
      * @return Boolean
      */
-    public Boolean validEndMission(int score) {
-        return false;
+    public Boolean validEndMission() {
+
+        for (Entity elem : this.currentBoard.getEntities()) {
+            if (elem instanceof Item || elem instanceof Key) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void setBoard(Board currentBoard) {
         this.currentBoard = currentBoard;
+    }
 
+    public void setGameGUI(GameGUI gameGUI) {
+        this.gameGUI = gameGUI;
     }
 }

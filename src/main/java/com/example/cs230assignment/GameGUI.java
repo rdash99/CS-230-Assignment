@@ -224,4 +224,8 @@ public class GameGUI extends Stage {
             new LoseMenu(level.getPlayer().getPlayerName(), this);
         }
     }
+
+    public Board getLevel() {
+        return this.level;
+    }
 }

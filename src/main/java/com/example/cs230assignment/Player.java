@@ -93,7 +93,7 @@ public class Player extends Character {
         }
         if (Character.currentBoard.getTile(x, y).getDoor() != null) {
             if (Character.currentBoard.getTile(x, y).getDoor()
-                    .validEndMission(this.score)) {
+                    .validEndMission()) {
                 Character.currentBoard.getTile(x, y).getDoor().endMission(
                         this.score,
                         Character.currentBoard.getTimer().getLevelTime());

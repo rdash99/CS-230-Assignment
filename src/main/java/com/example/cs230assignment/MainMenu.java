@@ -100,7 +100,9 @@ public class MainMenu extends Stage {
         launchGameBtn.setOnAction(e -> {
             if ((nameField.getText() != null
                     && !nameField.getText().isEmpty())) {
-                new GameGUI(nameField.getText());
+                GameGUI gameGUI = new GameGUI(nameField.getText());
+                Door door = gameGUI.getLevel().getDoor();
+                door.setGameGUI(gameGUI);
                 this.close();
             } else if (errorText.getText().isEmpty()) {
                 errorText.setText("Please enter your name");

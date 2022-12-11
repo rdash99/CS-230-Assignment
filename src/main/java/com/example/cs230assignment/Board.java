@@ -209,6 +209,7 @@ public class Board extends DrawShape {
                 }
             }
         }
+        this.player.draw(gc);
         for (Entity elem : this.getEntities()) {
             elem.draw(gc);
         }
@@ -240,6 +241,17 @@ public class Board extends DrawShape {
      */
     public Tile[][] getTiles() {
         return this.tiles;
+    }
+
+    public Door getDoor() {
+        for (int i = 0; i < this.tiles.length; i++) {
+            for (int j = 0; j < this.tiles[0].length; j++) {
+                if (tiles[i][j].getDoor() != null) {
+                    return tiles[i][j].getDoor();
+                }
+            }
+        }
+        return null;
     }
 
     public void missionFailed() {
