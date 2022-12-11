@@ -44,8 +44,12 @@ public class Bomb extends Entity {
             if (currentBoard.getTile(xCoord, i).getEntity()
                     .getEntityName() == "bomb") {
                 explodeBomb();
-            } else if (currentBoard.getTile(xCoord, i).getEntity() != null) {
-                currentBoard.getTile(xCoord, i).removeEntity();
+            }else if (currentBoard.getTile(xCoord, i).getEntity() != null) {
+                if (currentBoard.getTile(xCoord, i).getEntity().getEntityName() == "Gate") {
+                    i++;
+                } else {
+                    currentBoard.getTile(xCoord, i).removeEntity();
+                }
             } else {
                 i++;
             }
@@ -58,7 +62,11 @@ public class Bomb extends Entity {
                     .getEntityName() == "bomb") {
                 explodeBomb();
             } else if (currentBoard.getTile(i, yCoord).getEntity() != null) {
-                currentBoard.getTile(i, yCoord).removeEntity();
+                if (currentBoard.getTile(i, yCoord).getEntity().getEntityName() == "Gate") {
+                    i++;
+                } else {
+                    currentBoard.getTile(i, yCoord).removeEntity();
+                }
             } else {
                 i++;
             }
