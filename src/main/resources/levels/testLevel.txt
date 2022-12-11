@@ -7,5 +7,6 @@ YYYY RRRG RRRR GGGG
 2 3 items Diamond 10
 3 1 smt
 0 2 dor
-1 1 fft R
+1 0 fft R
+0 3 fla 0 1
 timer 320

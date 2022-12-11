@@ -16,7 +16,7 @@ import java.util.*;
  * @version 1.0
  */
 public class SmartThief extends NPC {
-    private int destanceFromSmartThief;
+    private int distanceFromSmartThief;
     private int movementTimer;
     private Random randGen = new Random();
 
@@ -30,7 +30,7 @@ public class SmartThief extends NPC {
      */
     public SmartThief(int x, int y, int movementTimerPass) {
         super("Smart Thief", movementTimerPass, x, y);
-        this.destanceFromSmartThief = -1;
+        this.distanceFromSmartThief = -1;
         this.movementTimer = movementTimerPass;
     }
 
