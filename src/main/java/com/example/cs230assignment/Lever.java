@@ -25,7 +25,7 @@ public class Lever extends Entity {
     }
 
     /**
-     * @param newColour
+     * @param newColour the colour of the lever to be set
      */
     public void setleverColour(char newColour) {
         this.leverColour = newColour;

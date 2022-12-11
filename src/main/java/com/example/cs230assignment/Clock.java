@@ -37,6 +37,9 @@ public class Clock extends Entity {
         this.time = time;
     }
 
+    /**
+     * @deprecated
+     */
     public void tick() {
         time--;
     }

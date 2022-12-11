@@ -118,8 +118,8 @@ public class MainMenu extends Stage {
     /**
      * Adds the high scores to the high score list.
      * 
-     * @param name
-     * @param score
+     * @param name  the name of the player.
+     * @param score the score of the player.
      */
     public void addHighScore(String name, int score) {
         Text scoreText = new Text(name + ": " + score);

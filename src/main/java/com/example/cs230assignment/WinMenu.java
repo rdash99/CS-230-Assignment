@@ -42,6 +42,7 @@ public class WinMenu extends Stage {
      * 
      * @param playerName     The name of the player.
      * @param originalWindow The original window of the game.
+     * @param score          The score of the player.
      */
     public WinMenu(String playerName, GameGUI originalWindow, int score) {
         this.playerName = playerName;

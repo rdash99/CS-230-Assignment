@@ -33,7 +33,7 @@ public class Item extends Entity {
     }
 
     /**
-     * @param itemValuePass
+     * @param itemValuePass the value of the item to be set
      */
     public void setItemValue(int itemValuePass) {
         this.itemValue = itemValuePass;
@@ -46,6 +46,9 @@ public class Item extends Entity {
         return this.itemName;
     }
 
+    /**
+     * draw the item
+     */
     public void draw() {
         System.out.println("Item");
     }

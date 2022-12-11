@@ -37,8 +37,8 @@ public class LoseMenu extends Stage {
     /**
      * Creates a new Lose Menu when this class is instantiated.
      * 
-     * @param playerName     The name of the player.
-     * @param gameGUI        The original window of the game.
+     * @param playerName The name of the player.
+     * @param gameGUI    The original window of the game.
      */
     public LoseMenu(String playerName, GameGUI gameGUI) {
         this.playerName = playerName;

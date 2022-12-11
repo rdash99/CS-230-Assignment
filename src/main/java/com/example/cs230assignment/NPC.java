@@ -15,10 +15,10 @@ public class NPC extends Character {
     /**
      * This is the constructor for the NPC class
      * 
-     * @param name
-     * @param movementTimerPass
-     * @param x
-     * @param y
+     * @param name              the name of the NPC
+     * @param movementTimerPass the time it takes for the NPC to move
+     * @param x                 the x coordinate of the NPC
+     * @param y                 the y coordinate of the NPC
      */
 
     public NPC(String name, int movementTimerPass, int x, int y) {
@@ -36,7 +36,7 @@ public class NPC extends Character {
     }
 
     /**
-     * @param coordCheck
+     * @param coordCheck the coordinates to be checked
      */
     protected void validMove(int[] coordCheck) {
 

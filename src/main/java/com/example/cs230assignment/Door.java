@@ -20,8 +20,8 @@ public class Door extends Entity {
     }
 
     /**
-     * @param score
-     * @param timeLeft
+     * @param score    the score of the player
+     * @param timeLeft the time left in the level
      */
     // needs to calculate points from score and time left
     public void endMission(int score, int timeLeft) {
@@ -57,10 +57,16 @@ public class Door extends Entity {
         return true;
     }
 
+    /**
+     * @param currentBoard the board to be set
+     */
     public void setBoard(Board currentBoard) {
         this.currentBoard = currentBoard;
     }
 
+    /**
+     * @param gameGUI the gameGUI to be set
+     */
     public void setGameGUI(GameGUI gameGUI) {
         this.gameGUI = gameGUI;
     }

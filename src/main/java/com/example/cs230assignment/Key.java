@@ -28,6 +28,9 @@ public class Key extends Entity {
         return keyColour;
     }
 
+    /**
+     * Open the gates
+     */
     public void openGate() {
     }
 
