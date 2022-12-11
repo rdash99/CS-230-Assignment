@@ -6,10 +6,7 @@ import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Class to model a smart thief. A type of thief that can plot its own path
@@ -55,7 +52,7 @@ public class SmartThief extends NPC {
             int targetYCoord = closestInteractable.getYCoord();
             boolean foundSquare = false;
             if (this.getYCoord() > targetYCoord) {
-                for (int i = super.coord[1] - 1; i >= targetYCoord && i < board.getHeight()
+                for (int i = super.coord[1] - 1; i < board.getHeight()
                         && i > -1 && !foundSquare; i--) {
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         if (board.getTile(i, super.coord[0])
@@ -75,7 +72,7 @@ public class SmartThief extends NPC {
                 board.getTimer().boardUpdate(gc, board);
 
             } else if (this.getXCoord() > targetXCoord) {
-                for (int i = super.coord[0] - 1; i >= targetXCoord && i < board.getWidth()
+                for (int i = super.coord[0] - 1; i < board.getWidth()
                         && i > -1 && !foundSquare; i--) {
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         if (board.getTile(super.coord[1], i)
@@ -95,7 +92,7 @@ public class SmartThief extends NPC {
                 board.getTimer().boardUpdate(gc, board);
 
             } else if (this.getYCoord() < targetYCoord) {
-                for (int i = super.coord[1] + 1; i <= targetYCoord && i < board.getHeight()
+                for (int i = super.coord[1] + 1; i < board.getHeight()
                         && i > -1 && !foundSquare; i++) {
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         if (board.getTile(i, super.coord[0])
@@ -115,7 +112,7 @@ public class SmartThief extends NPC {
                 board.getTimer().boardUpdate(gc, board);
 
             } else if (this.getXCoord() < targetXCoord) {
-                for (int i = super.coord[0] + 1; i <= targetXCoord && i < board.getWidth()
+                for (int i = super.coord[0] + 1; i < board.getWidth()
                         && i > -1 && !foundSquare; i++) {
                     for (int colourPos = 0; colourPos < 4; colourPos++) {
                         if (board.getTile(super.coord[1], i)
@@ -243,54 +240,21 @@ public class SmartThief extends NPC {
         board.getTimer().boardUpdate(gc, board);
     }
 
-    /**
-     * Method to locate the closest interactable entity from the smart thief.
-     *
-     * @param board the board where the closest interactable to smart thief
-     *              resides.
-     * @return Entity the closest interactable entity to the smart thief.
-     */
-    public Entity findClosestInteractable(Board board) {
-        int distanceFromClosestInteractable = -1;
-        for (Entity entity : board.getEntities()) {
-            if (entity instanceof Key
-                    || entity instanceof Item) {
-                entity.setDistanceFromSmartThief(-1);
+    private Entity findClosestInteractable(Board board) {
+        Vertex vertex = null;
+        for (Entity elem : board.getEntities()) {
+            if (elem instanceof Key || elem instanceof Item) {
+                vertex = new Vertex<>(elem);
+                vertex.setNeighbours(Arrays.asList(vertex));
             }
         }
-        Entity nextInteractable = null;
-        Queue<Entity> queue = new LinkedList<>();
-        queue.add(this);
-
-        while (!(queue.isEmpty())) {
-            queue.remove();
-            for (Entity entity : board.getEntities()) {
-                if (entity.getDistanceFromSmartThief() == -1
-                        && (entity instanceof Key || entity instanceof Item)) {
-                    entity.setDistanceFromSmartThief(
-                            getXDistanceFromInteractable()
-                                    + getYDistanceFromInteractable());
-                    queue.add(entity);
-
-                    if (distanceFromClosestInteractable == -1 || (entity
-                            .getDistanceFromSmartThief() < distanceFromClosestInteractable)) {
-                        distanceFromClosestInteractable = entity
-                                .getDistanceFromSmartThief();
-                        nextInteractable = entity;
-                    }
-                }
-            }
-        }
-
-        if (nextInteractable == null) {
-            return null;
-        }
-        return nextInteractable;
+        BFS bfs = new BFS(vertex);
+        return bfs.traverse().getVertexData();
     }
 
     /**
      * Method to retrieve the distance of an interactable entity from a smart
-     * thief along the x axis.
+     * thief along the x axis.qq
      *
      * @return int the distance of an interactable entity from smart thief
      * along the x axis.
