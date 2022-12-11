@@ -137,6 +137,7 @@ public class Board extends DrawShape {
         Image greenSquareImg = new Image("greenSquare.png");
         Image blueSquareImg = new Image("blueSquare.png");
         Image yellowSquareImg = new Image("yellowSquare.png");
+        Image doorImg = new Image("door.png");
 
         // Draw all tiles on screen to make up the board
         for (int i = 0; i < this.tiles.length; i++) {
@@ -190,7 +191,24 @@ public class Board extends DrawShape {
                 }
             }
         }
-        this.player.draw(gc);
+        
+        for (int i = 0; i < this.tiles.length; i++) {
+            for (int j = 0; j < this.tiles[0].length; j++) {
+                if (tiles[i][j].getDoor() != null) {
+                    int doorXDefaultOffset = 25;
+                    int doorYDefaultOffset = 25;
+                    int xCoord = tiles[i][j].getDoor().getXCoord();
+                    int yCoord = tiles[i][j].getDoor().getYCoord();
+                    for (int k = 0; k < xCoord; k++) {
+                        doorXDefaultOffset += 100;
+                    }
+                    for (int k = 0; k < yCoord; k++) {
+                        doorYDefaultOffset += 100;
+                    }
+                    gc.drawImage(doorImg, xCoord + doorXDefaultOffset, yCoord + doorYDefaultOffset);
+                }
+            }
+        }
         for (Entity elem : this.getEntities()) {
             elem.draw(gc);
         }

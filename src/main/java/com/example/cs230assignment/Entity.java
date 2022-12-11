@@ -190,20 +190,20 @@ public class Entity extends DrawShape {
             gc.drawImage(bombImg, xCoord + bombXDefaultOffset,
                     yCoord + bombYDefaultOffset);
             break;
-        case "Door":
-            int doorXDefaultOffset = 25;
-            int doorYDefaultOffset = 25;
-            xCoord = (this.coord[0]);
-            yCoord = (this.coord[1]);
-            for (int i = 0; i < xCoord; i++) {
-                doorXDefaultOffset += 100;
-            }
-            for (int i = 0; i < yCoord; i++) {
-                doorYDefaultOffset += 100;
-            }
-            gc.drawImage(doorImg, xCoord + doorXDefaultOffset,
-                    yCoord + doorYDefaultOffset);
-            break;
+//        case "Door":
+//            int doorXDefaultOffset = 25;
+//            int doorYDefaultOffset = 25;
+//            xCoord = (this.coord[0]);
+//            yCoord = (this.coord[1]);
+//            for (int i = 0; i < xCoord; i++) {
+//                doorXDefaultOffset += 100;
+//            }
+//            for (int i = 0; i < yCoord; i++) {
+//                doorYDefaultOffset += 100;
+//            }
+//            gc.drawImage(doorImg, xCoord + doorXDefaultOffset,
+//                    yCoord + doorYDefaultOffset);
+//            break;
         default:
             int itemXDefaultOffset = 25;
             int itemYDefaultOffset = 25;

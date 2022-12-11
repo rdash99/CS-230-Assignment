@@ -56,19 +56,6 @@ public class FlyingAssassin extends NPC {
         if (currentBoard.getTile(x, y).getEntity() != null) {
             // select the entities by type and perform the correct interactions
             switch (currentBoard.getTile(x, y).getEntity().getEntityName()) {
-            case ("item"):
-                Character.currentBoard.getTile(x, y).removeEntity();
-                break;
-            case ("key"):
-                Key key = (Key) Character.currentBoard.getTile(x, y)
-                        .getEntity();
-                key.openGate();
-                break;
-            case ("clock"):
-                Clock clock = (Clock) Character.currentBoard.getTile(x, y)
-                        .getEntity();
-                Character.currentBoard.getTimer().addClock(clock);
-                break;
             case ("player"):
                 Character.currentBoard.getPlayer().die();
                 break;
