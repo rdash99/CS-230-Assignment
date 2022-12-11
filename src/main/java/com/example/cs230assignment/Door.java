@@ -28,6 +28,8 @@ public class Door extends Entity {
         for (int i = 0; i < timeLeft; i++) {
             score += 10;
         }
+        currentBoard.getPlayer().setScore(score);
+        FileHandler.savePlayer(currentBoard.getPlayer());
         new WinMenu(currentBoard.getPlayer().getPlayerName(), this.gameGUI);
     }
 

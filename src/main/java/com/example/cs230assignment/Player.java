@@ -139,11 +139,10 @@ public class Player extends Character {
     }
 
     /**
-     * @param interactedItem
+     * @param score
      */
-    // changed to take the item in as different items will add different scores
-    private void addScore(Item interactedItem) {
-
+    public void setScore(int score) {
+        this.score = score;
     }
 
     /**
