@@ -117,7 +117,7 @@ public class GameGUI extends Stage {
 
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
-                new PauseMenu(level, "testLevel", tickTimeline);
+                new PauseMenu(level, "testLevel", this);
                 for (Entity entity : level.getEntities()) {
                     if (entity instanceof SmartThief) {
                         level.pauseSmartThief();
@@ -127,7 +127,7 @@ public class GameGUI extends Stage {
                         level.pauseFloorFollowingThief();
                     }
                 }
-                tickTimeline.stop();
+                pauseLevelTime();
             }
         });
 
@@ -223,6 +223,14 @@ public class GameGUI extends Stage {
             }
             new LoseMenu(level.getPlayer().getPlayerName(), this);
         }
+    }
+
+    public void pauseLevelTime() {
+        this.tickTimeline.stop();
+    }
+
+    public void resumeLevelTime() {
+        this.tickTimeline.play();
     }
 
     public Board getLevel() {

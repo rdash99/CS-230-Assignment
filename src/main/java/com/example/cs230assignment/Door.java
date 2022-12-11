@@ -32,6 +32,16 @@ public class Door extends Entity {
         FileHandler.savePlayer(this.currentBoard.getPlayer());
         new WinMenu(this.currentBoard.getPlayer().getPlayerName(), this.gameGUI,
                 this.currentBoard.getPlayer().getScore());
+        gameGUI.pauseLevelTime();
+        for (Entity elem : currentBoard.getEntities()) {
+            if (elem instanceof SmartThief) {
+                currentBoard.pauseSmartThief();
+            } else if (elem instanceof FlyingAssassin) {
+                currentBoard.pauseFlyingAssassin();
+            } else if (elem instanceof FloorFollowingThief) {
+                currentBoard.pauseFloorFollowingThief();
+            }
+        }
     }
 
     /**
