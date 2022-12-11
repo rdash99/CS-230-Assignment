@@ -5,7 +5,6 @@ RGBY RRRG GGGR BBBB
 YYYY RRRG RRRR GGGG
 0 0 ply
 2 3 items Diamond 10
-3 1 smt
-2 0 fla 0 -1
+1 0 smt
 0 2 dor
 timer 320
