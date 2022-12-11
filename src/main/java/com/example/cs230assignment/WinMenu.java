@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -23,6 +24,7 @@ import java.io.IOException;
 
 public class WinMenu extends Stage {
     private BorderPane root = new BorderPane();
+    private Label scoreLabel = new Label();
     private Button retryBtn = new Button("Retry");
     private Button quitBtn = new Button("Quit");
     private Text titleText = new Text("You Win!");
@@ -37,9 +39,10 @@ public class WinMenu extends Stage {
      * @param playerName The name of the player.
      * @param originalWindow The original window of the game.
      */
-    public WinMenu(String playerName, GameGUI originalWindow) {
+    public WinMenu(String playerName, GameGUI originalWindow, int score) {
         this.playerName = playerName;
         this.originalWindow = originalWindow;
+        this.scoreLabel.setText("" + score);
         this.initStyle(StageStyle.UNDECORATED);
         root.setBackground(new Background(new BackgroundFill(Color.DARKGREEN,
                 CornerRadii.EMPTY, Insets.EMPTY)));
@@ -48,6 +51,7 @@ public class WinMenu extends Stage {
         titleText.setFill(Color.YELLOW);
 
         vbox.getChildren().add(retryBtn);
+        vbox.getChildren().add(scoreLabel);
         vbox.getChildren().add(quitBtn);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
@@ -65,7 +69,7 @@ public class WinMenu extends Stage {
 
         retryBtn.setOnAction(e -> {
             this.close();
-            this.originalWindow.createGame(this.playerName);
+            //Load next level
         });
 
         quitBtn.setOnAction(e -> {

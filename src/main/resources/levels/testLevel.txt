@@ -8,4 +8,5 @@ YYYY RRRG RRRR GGGG
 3 1 smt
 2 0 fla 0 -1
 0 2 dor
+1 1 fft R
 timer 320

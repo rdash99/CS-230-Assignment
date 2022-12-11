@@ -30,7 +30,7 @@ public class Door extends Entity {
         }
         currentBoard.getPlayer().setScore(score);
         FileHandler.savePlayer(currentBoard.getPlayer());
-        new WinMenu(currentBoard.getPlayer().getPlayerName(), this.gameGUI);
+        new WinMenu(currentBoard.getPlayer().getPlayerName(), this.gameGUI, currentBoard.getPlayer().getScore());
     }
 
     /**
