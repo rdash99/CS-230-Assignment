@@ -39,9 +39,9 @@ public class PauseMenu extends Stage {
      * 
      * @param board        the board of the games.
      * @param levelName    what level the player is on.
-     * @param tickTimeline to control the game's ticks.
+     * @param gameGUI      to have access to tickTimeLine.
      */
-    public PauseMenu(Board board, String levelName, Timeline tickTimeline) {
+    public PauseMenu(Board board, String levelName, GameGUI gameGUI) {
         this.board = board;
         this.levelName = levelName;
         this.initStyle(StageStyle.UNDECORATED);
@@ -69,7 +69,7 @@ public class PauseMenu extends Stage {
 
         resumeBtn.setOnAction(e -> {
             this.close();
-            tickTimeline.play();
+            gameGUI.resumeLevelTime();
             board.resumeSmartThief();
             board.resumeFlyingAssassin();
             board.resumeFloorFollowingThief();

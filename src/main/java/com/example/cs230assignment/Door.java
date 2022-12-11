@@ -12,8 +12,8 @@ public class Door extends Entity {
     /**
      * This is the constructor for the door class
      *
-     * @param x    the x coordinate of the door
-     * @param y    the y coordinate of the door
+     * @param x the x coordinate of the door
+     * @param y the y coordinate of the door
      */
     public Door(int x, int y) {
         super("Door", x, y);
@@ -28,9 +28,20 @@ public class Door extends Entity {
         for (int i = 0; i < timeLeft; i++) {
             score += 10;
         }
-        currentBoard.getPlayer().setScore(score);
-        FileHandler.savePlayer(currentBoard.getPlayer());
-        new WinMenu(currentBoard.getPlayer().getPlayerName(), this.gameGUI, currentBoard.getPlayer().getScore());
+        this.currentBoard.getPlayer().setScore(score);
+        FileHandler.savePlayer(this.currentBoard.getPlayer());
+        new WinMenu(this.currentBoard.getPlayer().getPlayerName(), this.gameGUI,
+                this.currentBoard.getPlayer().getScore());
+        gameGUI.pauseLevelTime();
+        for (Entity elem : currentBoard.getEntities()) {
+            if (elem instanceof SmartThief) {
+                currentBoard.pauseSmartThief();
+            } else if (elem instanceof FlyingAssassin) {
+                currentBoard.pauseFlyingAssassin();
+            } else if (elem instanceof FloorFollowingThief) {
+                currentBoard.pauseFloorFollowingThief();
+            }
+        }
     }
 
     /**
