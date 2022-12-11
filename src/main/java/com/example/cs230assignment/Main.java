@@ -33,6 +33,11 @@ public class Main extends Application {
 		new MainMenu();
 	}
 
+	/**
+	 * The main method for the application.
+	 * 
+	 * @param args The command line arguments.
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -9,6 +9,9 @@ import javafx.scene.image.Image;
  * @version 1.0
  */
 public class Character extends Entity {
+    /**
+     * The board that the character is on
+     */
     protected static Board currentBoard;
 
     /**
@@ -23,14 +26,14 @@ public class Character extends Entity {
     }
 
     /**
-     * @param freshBoard
+     * @param freshBoard the board to be set
      */
     public static void boardSet(Board freshBoard) {
         Character.currentBoard = freshBoard;
     }
 
     /**
-     * @param board
+     * @param board the board to be set
      */
     public static void setBoard(Board board) {
         Character.currentBoard = board;
@@ -44,19 +47,20 @@ public class Character extends Entity {
     }
 
     /**
-     * @param x
-     * @param y
-     * @return 
+     * @param x the x coordinate of the character
+     * @param y the y coordinate of the character
      */
     protected void interact(int x, int y) {
         if (currentBoard.getTile(x, y).getEntity() != null) {
-            if (currentBoard.getTile(x, y).getEntity() instanceof Item){
-                Character.currentBoard.removeEntity(currentBoard.getTile(x, y).getEntity());
+            if (currentBoard.getTile(x, y).getEntity() instanceof Item) {
+                Character.currentBoard
+                        .removeEntity(currentBoard.getTile(x, y).getEntity());
                 Character.currentBoard.getTile(x, y).removeEntity();
-            }else if(currentBoard.getTile(x, y).getEntity() instanceof Key){
+            } else if (currentBoard.getTile(x, y).getEntity() instanceof Key) {
                 Key key = (Key) currentBoard.getTile(x, y).getEntity();
                 key.openGate();
-            }else if(currentBoard.getTile(x, y).getEntity() instanceof Clock){
+            } else if (currentBoard.getTile(x, y)
+                    .getEntity() instanceof Clock) {
                 Character.currentBoard.getTile(x, y).removeEntity();
             }
         }
@@ -88,7 +92,8 @@ public class Character extends Entity {
                     .getEntity() != null) {
                 // if the entity is a bomb execute bomb.explodeBomb();
                 if (Character.currentBoard
-                        .getTile(x + tempCoordX, y + tempCoordY).getEntity() instanceof Bomb) {
+                        .getTile(x + tempCoordX, y + tempCoordY)
+                        .getEntity() instanceof Bomb) {
                     // the bomb on an adjacent tile
                     Bomb bomb = (Bomb) Character.currentBoard
                             .getTile(x + tempCoordX, y + tempCoordY)

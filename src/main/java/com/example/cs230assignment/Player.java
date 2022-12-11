@@ -71,19 +71,22 @@ public class Player extends Character {
                 Key key = (Key) Character.currentBoard.getTile(x, y)
                         .getEntity();
                 key.openGate();
-                Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
-            }else if (Character.currentBoard.getTile(x, y).getEntity() instanceof Clock){
+                Character.currentBoard.removeEntity(
+                        Character.currentBoard.getTile(x, y).getEntity());
+            } else if (Character.currentBoard.getTile(x, y)
+                    .getEntity() instanceof Clock) {
                 Clock clock = (Clock) Character.currentBoard.getTile(x, y)
                         .getEntity();
                 Character.currentBoard.getTimer().addClock(clock);
-                Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
-            // interact with a door entity
-            // case ("Door"):
-            // door being interacted with
-            // Door door = (Door) Character.currentBoard.getTile(x,
-            // y).getEntity();
-            // door.endMission(this.score,
-            // Character.currentBoard.getTimer().getLevelTime());
+                Character.currentBoard.removeEntity(
+                        Character.currentBoard.getTile(x, y).getEntity());
+                // interact with a door entity
+                // case ("Door"):
+                // door being interacted with
+                // Door door = (Door) Character.currentBoard.getTile(x,
+                // y).getEntity();
+                // door.endMission(this.score,
+                // Character.currentBoard.getTimer().getLevelTime());
             }
         }
         if (Character.currentBoard.getTile(x, y).getDoor() != null) {
@@ -140,7 +143,7 @@ public class Player extends Character {
     }
 
     /**
-     * @param score
+     * @param score the score to set
      */
     public void setScore(int score) {
         this.score = score;
@@ -183,6 +186,7 @@ public class Player extends Character {
     /**
      * moves the character from an input from the user
      *
+     * @param gc        the graphics context to draw the character on
      * @param direction the direction desired by the movement inputed by the
      *                  user
      */

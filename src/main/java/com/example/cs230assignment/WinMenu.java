@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -15,14 +16,17 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 /**
- * The Win Menu class. It creates the window that appears when the player wins the game
- * which contains a button to retry the game and a button to quit the game.
+ * The Win Menu class. It creates the window that appears when the player wins
+ * the game which contains a button to retry the game and a button to quit the
+ * game.
+ * 
  * @author Fraser Clough
  * @version 1.0
  */
 
 public class WinMenu extends Stage {
     private BorderPane root = new BorderPane();
+    private Label scoreLabel = new Label();
     private Button retryBtn = new Button("Retry");
     private Button quitBtn = new Button("Quit");
     private Text titleText = new Text("You Win!");
@@ -31,23 +35,30 @@ public class WinMenu extends Stage {
     private Board board;
     private String playerName;
     private GameGUI originalWindow;
+    private int score;
 
     /**
      * Creates a new Win Menu when this class is instantiated.
-     * @param playerName The name of the player.
+     * 
+     * @param playerName     The name of the player.
      * @param originalWindow The original window of the game.
+     * @param score          The score of the player.
      */
-    public WinMenu(String playerName, GameGUI originalWindow) {
+    public WinMenu(String playerName, GameGUI originalWindow, int score) {
         this.playerName = playerName;
         this.originalWindow = originalWindow;
+        this.score = score;
+        vbox.getChildren().add(scoreLabel);
         this.initStyle(StageStyle.UNDECORATED);
         root.setBackground(new Background(new BackgroundFill(Color.DARKGREEN,
                 CornerRadii.EMPTY, Insets.EMPTY)));
 
         titleText.setFont(Font.font("Arial", FontPosture.ITALIC, 18));
         titleText.setFill(Color.YELLOW);
+        scoreLabel.setText("" + this.score);
 
         vbox.getChildren().add(retryBtn);
+        vbox.getChildren().add(scoreLabel);
         vbox.getChildren().add(quitBtn);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
@@ -65,7 +76,7 @@ public class WinMenu extends Stage {
 
         retryBtn.setOnAction(e -> {
             this.close();
-            this.originalWindow.createGame(this.playerName);
+            // Load next level
         });
 
         quitBtn.setOnAction(e -> {

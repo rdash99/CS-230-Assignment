@@ -29,7 +29,7 @@ public class Scoreboard {
     }
 
     /**
-     * @param score
+     * @param score the number to be added to the user's score
      */
     public void addScore(int score) {
         this.userScore += score;

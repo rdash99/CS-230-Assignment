@@ -191,7 +191,7 @@ public class Board extends DrawShape {
                 }
             }
         }
-        
+
         for (int i = 0; i < this.tiles.length; i++) {
             for (int j = 0; j < this.tiles[0].length; j++) {
                 if (tiles[i][j].getDoor() != null) {
@@ -205,7 +205,8 @@ public class Board extends DrawShape {
                     for (int k = 0; k < yCoord; k++) {
                         doorYDefaultOffset += 100;
                     }
-                    gc.drawImage(doorImg, xCoord + doorXDefaultOffset, yCoord + doorYDefaultOffset);
+                    gc.drawImage(doorImg, xCoord + doorXDefaultOffset,
+                            yCoord + doorYDefaultOffset);
                 }
             }
         }
@@ -216,27 +217,36 @@ public class Board extends DrawShape {
     }
 
     /**
-     * @param entities
+     * Set the entities on the board
+     * 
+     * @param entities the entities to set
      */
     public void setEntities(ArrayList<Entity> entities) {
         this.entities = entities;
     }
 
     /**
-     * @param player
+     * Set the player on the board
+     * 
+     * @param player the player to set
      */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
     /**
-     * @return ArrayList<Entity>
+     * Retrieve the entities list from the board
+     * 
+     * @return ArrayList
      */
     public ArrayList<Entity> getEntities() {
         return this.entities;
     }
 
-    public void removeEntity(Entity x){
+    /**
+     * @param x The entity to be removed from the board
+     */
+    public void removeEntity(Entity x) {
         this.entities.remove(x);
     }
 
@@ -251,6 +261,9 @@ public class Board extends DrawShape {
         return this.tiles;
     }
 
+    /**
+     * @return Door
+     */
     public Door getDoor() {
         for (int i = 0; i < this.tiles.length; i++) {
             for (int j = 0; j < this.tiles[0].length; j++) {
@@ -262,34 +275,60 @@ public class Board extends DrawShape {
         return null;
     }
 
+    /**
+     * Should the player have died
+     */
     public void missionFailed() {
-
+        System.out.println("Player dead");
     }
 
+    /**
+     * Pause the smart thief
+     */
     public void pauseSmartThief() {
         this.smartThiefTimeline.stop();
     }
 
+    /**
+     * Pause the flying assassin
+     */
     public void pauseFlyingAssassin() {
         this.flyingAssassinTimeline.stop();
     }
 
+    /**
+     * Pause the floor following thief
+     */
     public void pauseFloorFollowingThief() {
         this.floorFollowingThiefTimeline.stop();
     }
 
+    /**
+     * Resume the smart thief
+     */
     public void resumeSmartThief() {
         this.smartThiefTimeline.play();
     }
 
+    /**
+     * Resume the flying assassin
+     */
     public void resumeFlyingAssassin() {
         this.flyingAssassinTimeline.play();
     }
 
+    /**
+     * Resume the floor following thief
+     */
     public void resumeFloorFollowingThief() {
         this.floorFollowingThiefTimeline.play();
     }
 
+    /**
+     * Set the graphics context
+     * 
+     * @param gc GraphicsContext
+     */
     public void setGraphicsContext(GraphicsContext gc) {
         this.gc = gc;
     }

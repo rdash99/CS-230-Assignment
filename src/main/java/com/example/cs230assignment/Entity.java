@@ -13,8 +13,14 @@ import javafx.scene.image.Image;
 
 public class Entity extends DrawShape {
     protected String entityName;
+    /**
+     * The coordinates of the entity
+     */
     protected int[] coord;
-
+    private boolean visited;
+    /**
+     * The distance from the smart thief
+     */
     protected int distanceFromSmartThief = -1;
 
     /**
@@ -58,7 +64,7 @@ public class Entity extends DrawShape {
     }
 
     /**
-     * @param gc
+     * @param gc the graphics context
      */
     @Override
     public void draw(GraphicsContext gc) {
@@ -190,20 +196,20 @@ public class Entity extends DrawShape {
             gc.drawImage(bombImg, xCoord + bombXDefaultOffset,
                     yCoord + bombYDefaultOffset);
             break;
-//        case "Door":
-//            int doorXDefaultOffset = 25;
-//            int doorYDefaultOffset = 25;
-//            xCoord = (this.coord[0]);
-//            yCoord = (this.coord[1]);
-//            for (int i = 0; i < xCoord; i++) {
-//                doorXDefaultOffset += 100;
-//            }
-//            for (int i = 0; i < yCoord; i++) {
-//                doorYDefaultOffset += 100;
-//            }
-//            gc.drawImage(doorImg, xCoord + doorXDefaultOffset,
-//                    yCoord + doorYDefaultOffset);
-//            break;
+        // case "Door":
+        // int doorXDefaultOffset = 25;
+        // int doorYDefaultOffset = 25;
+        // xCoord = (this.coord[0]);
+        // yCoord = (this.coord[1]);
+        // for (int i = 0; i < xCoord; i++) {
+        // doorXDefaultOffset += 100;
+        // }
+        // for (int i = 0; i < yCoord; i++) {
+        // doorYDefaultOffset += 100;
+        // }
+        // gc.drawImage(doorImg, xCoord + doorXDefaultOffset,
+        // yCoord + doorYDefaultOffset);
+        // break;
         default:
             int itemXDefaultOffset = 25;
             int itemYDefaultOffset = 25;
@@ -221,7 +227,21 @@ public class Entity extends DrawShape {
     }
 
     /**
-     * @param distanceFromSmartThief
+     * @param visited the visited state to set
+     */
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    /**
+     * @return boolean
+     */
+    public boolean checkVisited() {
+        return this.visited;
+    }
+
+    /**
+     * @param distanceFromSmartThief the distance from the smart thief
      */
     public void setDistanceFromSmartThief(int distanceFromSmartThief) {
         this.distanceFromSmartThief = distanceFromSmartThief;

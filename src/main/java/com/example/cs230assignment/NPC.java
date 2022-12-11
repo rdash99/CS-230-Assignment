@@ -8,6 +8,10 @@ package com.example.cs230assignment;
  */
 public class NPC extends Character {
     private int movementTimer;
+
+    /**
+     * Protected array to store the coordinates of the NPC
+     */
     protected int[] coordChange;
 
     // thinking about adding move into here aswell as character for the basic
@@ -15,10 +19,10 @@ public class NPC extends Character {
     /**
      * This is the constructor for the NPC class
      * 
-     * @param name
-     * @param movementTimerPass
-     * @param x
-     * @param y
+     * @param name              the name of the NPC
+     * @param movementTimerPass the time it takes for the NPC to move
+     * @param x                 the x coordinate of the NPC
+     * @param y                 the y coordinate of the NPC
      */
 
     public NPC(String name, int movementTimerPass, int x, int y) {
@@ -27,7 +31,7 @@ public class NPC extends Character {
     }
 
     /**
-     * @param coordTo
+     * @param coordTo the coordinates to be moved to
      * @return int[]
      */
     protected int[] ShortestPath(int[] coordTo) {
@@ -36,7 +40,7 @@ public class NPC extends Character {
     }
 
     /**
-     * @param coordCheck
+     * @param coordCheck the coordinates to be checked
      */
     protected void validMove(int[] coordCheck) {
 

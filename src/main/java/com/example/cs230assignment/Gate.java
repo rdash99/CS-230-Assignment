@@ -48,7 +48,7 @@ public class Gate extends Entity {
     }
 
     /**
-     * @param gateOpenPass
+     * @param gateOpenPass the gate open status to be set
      */
     public void setGateOpen(boolean gateOpenPass) {
         this.gateOpen = gateOpenPass;

@@ -85,6 +85,8 @@ public class FileHandler {
                     // read in a floor following thief
                     if (lineArray[i].equals("fft")) {
                         char colour = lineArray[i + 1].charAt(0);
+                        // xCoord = Integer.parseInt(lineArray[i + 2]);
+                        // yCoord = Integer.parseInt(lineArray[i + 3]);
                         FloorFollowingThief fft = new FloorFollowingThief(
                                 colour, xCoord, yCoord);
                         entities.add(fft);
@@ -609,7 +611,7 @@ public class FileHandler {
     /**
      * Reads a list of save files from the saves folder.
      * 
-     * @param playerName
+     * @param playerName The name of the player
      * @return ArrayList List of files in src/main/resources/saves
      */
     public static ArrayList<String> readSaveFiles(String playerName) {

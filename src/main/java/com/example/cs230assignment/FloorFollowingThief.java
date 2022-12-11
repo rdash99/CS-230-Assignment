@@ -39,6 +39,8 @@ class FloorFollowingThief extends NPC {
   /**
    * performs the movement for the npc from tile to tile as well as call valid
    * move
+   * 
+   * @param gc the graphics context
    */
   public void move(GraphicsContext gc) {
     Boolean x = validMove();
@@ -60,6 +62,8 @@ class FloorFollowingThief extends NPC {
    * checks the tiles for possible movements changes the change in coords till
    * finds a valid move or has looped all the way around when it finds a
    * possible move it ends with the correct change in coords
+   * 
+   * @return true if a valid move is found else false
    */
   private Boolean validMove() {
     // changes the coordChange to the coord to the left

@@ -84,6 +84,9 @@ public class Tile {
         this.entity = entity;
     }
 
+    /**
+     * Removes the entity from the tile.
+     */
     public void removeEntity() {
         this.entity = null;
     }
