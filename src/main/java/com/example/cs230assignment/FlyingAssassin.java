@@ -59,9 +59,9 @@ public class FlyingAssassin extends NPC {
             case ("player"):
                 Character.currentBoard.getPlayer().die();
                 break;
-            case ("FlyingAssassin"):
-            case ("FloorFollowingThief"):
-            case ("SmartThief"):
+            case ("fla"):
+            case ("fft"):
+            case ("smt"):
                 Character.currentBoard.getTile(x, y).removeEntity();
             }
         }
