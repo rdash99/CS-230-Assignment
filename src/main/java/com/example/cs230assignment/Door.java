@@ -6,6 +6,7 @@ package com.example.cs230assignment;
  * @author Maxwell
  */
 public class Door extends Entity {
+    private Board currentBoard;
 
     /**
      * This is the constructor for the door class
@@ -16,6 +17,7 @@ public class Door extends Entity {
      */
     public Door(int x, int y) {
         super("Door", x, y);
+        this.currentBoard = currentBoard;
     }
 
     /**
@@ -36,5 +38,10 @@ public class Door extends Entity {
      */
     public Boolean validEndMission(int score) {
         return false;
+    }
+
+    public void setBoard(Board currentBoard) {
+        this.currentBoard = currentBoard;
+
     }
 }
