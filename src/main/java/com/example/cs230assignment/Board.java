@@ -235,6 +235,10 @@ public class Board extends DrawShape {
         return this.entities;
     }
 
+    public void removeEntity(Entity x){
+        this.entities.remove(x);
+    }
+
     /**
      * @return Tile[][]
      */
