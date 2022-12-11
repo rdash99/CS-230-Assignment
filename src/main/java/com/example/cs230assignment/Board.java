@@ -259,7 +259,7 @@ public class Board extends DrawShape {
     }
 
     public void missionFailed() {
-
+        System.out.println("Player dead");
     }
 
     public void pauseSmartThief() {
