@@ -20,11 +20,14 @@ public class Door extends Entity {
 
     /**
      * @param score
-     * @param timeleft
+     * @param timeLeft
      */
     // needs to calculate points from score and time left
-    public void endMission(int score, int timeleft) {
-
+    public void endMission(int score, int timeLeft) {
+        for (int i = 0; i < timeLeft; i++) {
+            score += 10;
+        }
+        //Display win menu
     }
 
     /**

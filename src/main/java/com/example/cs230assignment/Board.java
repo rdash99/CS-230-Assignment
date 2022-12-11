@@ -30,6 +30,9 @@ public class Board extends DrawShape {
     private int width;
     private int height;
     private Timer timer;
+    private Timeline smartThiefTimeline;
+    private Timeline flyingAssassinTimeline;
+    private Timeline floorFollowingThiefTimeline;
 
     /**
      * Construct the board with to be played on.
@@ -49,6 +52,7 @@ public class Board extends DrawShape {
         this.player = player;
         this.entities = entities;
         this.timer = timer;
+
     }
 
     /**
@@ -165,10 +169,18 @@ public class Board extends DrawShape {
         this.player.draw(gc);
         for (Entity elem : this.getEntities()) {
             elem.draw(gc);
-            if (elem instanceof NPC) {
-                Timeline smartThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
+            if (elem instanceof SmartThief) {
+                smartThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
                 smartThiefTimeline.setCycleCount(Animation.INDEFINITE);
                 smartThiefTimeline.playFromStart();
+            } else if (elem instanceof FlyingAssassin) {
+                flyingAssassinTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
+                flyingAssassinTimeline.setCycleCount(Animation.INDEFINITE);
+                flyingAssassinTimeline.playFromStart();
+            } else if (elem instanceof FloorFollowingThief) {
+                floorFollowingThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
+                floorFollowingThiefTimeline.setCycleCount(Animation.INDEFINITE);
+                floorFollowingThiefTimeline.playFromStart();
             }
         }
         // Call entity NPC movement from here perhaps?
@@ -214,5 +226,17 @@ public class Board extends DrawShape {
 
     public void missionFailed() {
 
+    }
+
+    public void pauseSmartThief() {
+        this.smartThiefTimeline.stop();
+    }
+
+    public void pauseFlyingAssassin() {
+        this.flyingAssassinTimeline.stop();
+    }
+
+    public void pauseFloorFollowingThief() {
+        this.floorFollowingThiefTimeline.stop();
     }
 }

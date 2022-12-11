@@ -1,0 +1,10 @@
+4 4
+rgby rrrg gggr bbbb 
+yyyy rrrg rrrr gggg 
+rgby rrrg gggr bbbb 
+yyyy rrrg rrrr gggg 
+0 0 ply
+2 3 items diamond 10
+1 0 smt
+0 2 dor
+timer 319

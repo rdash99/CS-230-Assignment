@@ -99,7 +99,7 @@ public class FileHandler {
                     }
                     // read in a smart thief
                     if (lineArray[i].equals("smt")) {
-                        entities.add(new SmartThief(xCoord, yCoord, 1000));
+                        entities.add(new SmartThief(xCoord, yCoord, 5000));
                     }
                     // read in a gate
                     if (lineArray[i].equals("gte")) {

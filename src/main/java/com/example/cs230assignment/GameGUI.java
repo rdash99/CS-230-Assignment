@@ -118,6 +118,15 @@ public class GameGUI extends Stage {
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.P || key.getCode() == KeyCode.ESCAPE) {
                 new PauseMenu(level, "testLevel", tickTimeline);
+                for (Entity entity : level.getEntities()) {
+                    if (entity instanceof SmartThief) {
+                        level.pauseSmartThief();
+                    } else if (entity instanceof FlyingAssassin) {
+                        level.pauseFlyingAssassin();
+                    } else if (entity instanceof FloorFollowingThief) {
+                        level.pauseFloorFollowingThief();
+                    }
+                }
                 tickTimeline.stop();
             }
         });
