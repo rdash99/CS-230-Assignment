@@ -158,31 +158,32 @@ public class Player extends Character {
     private void loadProfile() throws NullPointerException {
         String profile = FileHandler.loadPlayerData(playerName);
         // checks to see if the player has existed before to load the profile
-        try {
-            if (profile != null) {
-                profile = profile.replace("[", "").replace("]", "");
-                profile = profile.replace(",", "");
-                String[] profileData = profile.split(",");
-                String[] scoreData = new String[profileData.length / 2];
-                String[] levelData = new String[profileData.length / 2];
-                int i = 0;
-                do {
-                    String[] data = profileData[i].trim().split(" ");
-                    scoreData[i] = profileData[i].trim();
-                    levelData[i] = profileData[i + 1].trim();
-                    this.levelComp.add((String) levelData[i]);
-                    i = i + 2;
-                } while (i <= profileData.length);
-                // TODO needs updating to check current level and update score
-                // apropiately - only if this is a loading of a saved game
-                this.score = Integer.parseInt(scoreData[scoreData.length - 1]);
-                // creates a new profile if one isnt found
-            } else {
-                this.levelComp.add("level1");
+        // try {
+        if (profile != null) {
+            profile = profile.replace("[", "").replace("]", "");
+            String[] profileData = profile.split(",");
+            for (int i = 0; i < profileData.length; i++) {
+                profileData[i] = profileData[i].trim();
             }
-        } catch (Exception e) {
+            String levelData = "";
+            int i = 0;
+            for (String s : profileData) {
+                String[] data = s.split(" ");
+                levelData = data[i + 1].trim();
+                this.levelComp.add((String) levelData);
+                // System.out.println("level " + levelData);
+            }
+            System.out.println(levelComp);
+            // TODO needs updating to check current level and update score
+            // apropiately - only if this is a loading of a saved game
             this.score = 0;
+            // creates a new profile if one isnt found
+        } else {
+            this.levelComp.add("level1");
         }
+        /*
+         * catch (Exception e) { this.score = 0; this.levelComp.add("level1"); }
+         */
     }
 
     /**

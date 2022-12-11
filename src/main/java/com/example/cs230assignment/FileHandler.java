@@ -378,12 +378,17 @@ public class FileHandler {
         } else {
             String[] levelsSplit = levels.split(",");
             for (int i = 0; i < levelsSplit.length; i++) {
-                levelsSplit[i] = levelsSplit[i].trim();
-                String data = score + " " + levelsSplit[i];
-                playerData.add(data);
-                // TODO needs to replace the level in the arraylist with the new
-                // one if
-                // the score is greater than the old one
+                for (int j = 0; j < playerData.size(); j++) {
+                    String[] playerDataSplit = playerData.get(j).split(" ");
+                    if (levelsSplit[i].equals(playerDataSplit[1])) {
+                        if (Integer.parseInt(playerDataSplit[0]) < score) {
+                            playerData.remove(j);
+                            levelsSplit[i] = levelsSplit[i].trim();
+                            String data = score + " " + levelsSplit[i];
+                            playerData.add(data);
+                        }
+                    }
+                }
             }
 
         }
