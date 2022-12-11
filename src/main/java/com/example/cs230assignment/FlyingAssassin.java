@@ -35,15 +35,21 @@ public class FlyingAssassin extends NPC {
         Boolean x = validMove(board);
         // move if a valid move is found
         if (x) {
-            super.interact(this.coord[0] + this.coordChange[0],
+            Boolean boolDel = this.interact(this.coord[0] + this.coordChange[0],
                     this.coord[1] + this.coordChange[1]);
-            board.getTile(this.coord[0], this.coord[1])
-                    .removeEntity();
-            board.getTile(this.coord[0] + this.coordChange[0],
+            if(!boolDel){
+                board.getTile(this.coord[0], this.coord[1])
+                .removeEntity();
+                board.getTile(this.coord[0] + this.coordChange[0],
                     this.coord[1] + this.coordChange[1]);
-            this.coord[0] = this.coord[0] + this.coordChange[0];
-            this.coord[1] = this.coord[1] + this.coordChange[1];
-            board.getTimer().boardUpdate(gc, board);
+                this.coord[0] = this.coord[0] + this.coordChange[0];
+                this.coord[1] = this.coord[1] + this.coordChange[1];
+                board.getTimer().boardUpdate(gc, board);
+            }else {
+                board.getTile(this.coord[0], this.coord[1])
+                .removeEntity();
+            }
+
         }
     }
 
@@ -52,31 +58,19 @@ public class FlyingAssassin extends NPC {
      * interact with other entities
      */
     @Override
-    protected void interact(int x, int y) {
+    protected Boolean interact(int x, int y) {
         if (currentBoard.getTile(x, y).getEntity() != null) {
             // select the entities by type and perform the correct interactions
-            switch (currentBoard.getTile(x, y).getEntity().getEntityName()) {
-            case ("item"):
+            if(Character.currentBoard.getTile(x, y).getEntity() instanceof Player) {
+                ((Player)Character.currentBoard.getTile(x, y).getEntity()).die();
+            }else if(Character.currentBoard.getTile(x, y).getEntity() instanceof FloorFollowingThief 
+                || Character.currentBoard.getTile(x, y).getEntity() instanceof SmartThief){
                 Character.currentBoard.getTile(x, y).removeEntity();
-                break;
-            case ("key"):
-                Key key = (Key) Character.currentBoard.getTile(x, y)
-                        .getEntity();
-                key.openGate();
-                break;
-            case ("clock"):
-                Clock clock = (Clock) Character.currentBoard.getTile(x, y)
-                        .getEntity();
-                Character.currentBoard.getTimer().addClock(clock);
-                break;
-            case ("player"):
-                Character.currentBoard.getPlayer().die();
-                break;
-            case ("fla"):
-            case ("fft"):
-            case ("smt"):
+                Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
+            }else if(Character.currentBoard.getTile(x, y).getEntity() instanceof FlyingAssassin){
                 Character.currentBoard.getTile(x, y).removeEntity();
-            }
+                Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
+                Character.currentBoard.removeEntity(this);
         }
         for (int i = 1; i < 9; i++) {
             // the xcoord of an adjacent tile
