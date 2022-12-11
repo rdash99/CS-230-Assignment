@@ -11,9 +11,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * This class is used to create a smart thief.
+ * Class to model a smart thief. A type of thief that can plot its own path
+ * towards the closest interactable entity.
  * 
- * @author <name>
+ * @author Thomas McAuley
  * @version 1.0
  */
 public class SmartThief extends NPC {
@@ -35,7 +36,12 @@ public class SmartThief extends NPC {
     }
 
     /**
-     * @return boolean
+     * Method to update the smart thief's coordinates based on its movement
+     * rules.
+     *
+     * @param gc a reference to the canvas to be drawn on.
+     * @param board a reference to the board to find the closest
+     *              interactable item
      */
     // changed to move to overwrite move in character
     public void move(GraphicsContext gc, Board board) {
@@ -122,8 +128,11 @@ public class SmartThief extends NPC {
     }
 
     /**
-     * @param board
-     * @return Entity
+     * Method to locate the closest interactable entity from the smart thief.
+     *
+     * @param board the board where the closest interactable to smart thief
+     *              resides.
+     * @return Entity the closest interactable entity to the smart thief.
      */
     public Entity findClosestInteractable(Board board) {
         int distanceFromClosestInteractable = -1;
@@ -143,9 +152,8 @@ public class SmartThief extends NPC {
                 if (entity.getDistanceFromSmartThief() == -1
                         && (entity instanceof Key || entity instanceof Item)) {
                     entity.setDistanceFromSmartThief(
-                            getXDistanceFromInteractable(entity
-                                    .getXCoord()) + getYDistanceFromInteractable(
-                                            entity.getYCoord()));
+                            getXDistanceFromInteractable()
+                                    + getYDistanceFromInteractable());
                     queue.add(entity);
 
                     if (distanceFromClosestInteractable == -1 || (entity
@@ -165,24 +173,30 @@ public class SmartThief extends NPC {
     }
 
     /**
-     * @param x
-     * @return int
+     * Method to retrieve the distance of an interactable entity from a smart
+     * thief along the x axis.
+     *
+     * @return int the distance of an interactable entity from smart thief
+     * along the x axis.
      */
-    private int getXDistanceFromInteractable(int x) {
+    private int getXDistanceFromInteractable() {
         int distanceFromX = 0;
-        for (int i = 0; i < x + 1; i++) {
+        for (int i = 0; i < super.coord[0] + 1; i++) {
             distanceFromX = i;
         }
         return distanceFromX;
     }
 
     /**
-     * @param y
-     * @return int
+     * Method to retrieve the distance of an interactable entity from a smart
+     * thief along the y axis.
+     *
+     * @return int the distance of an interactable entity from smart thief
+     *      * along the y axis.
      */
-    private int getYDistanceFromInteractable(int y) {
+    private int getYDistanceFromInteractable() {
         int distanceFromY = 0;
-        for (int i = 0; i < y + 1; i++) {
+        for (int i = 0; i < super.coord[1] + 1; i++) {
             distanceFromY = i;
         }
         return distanceFromY;
