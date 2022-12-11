@@ -279,7 +279,7 @@ public class Board extends DrawShape {
      * Should the player have died
      */
     public void missionFailed() {
-        System.out.println("Player dead");
+
     }
 
     /**

@@ -19,6 +19,7 @@ public class SmartThief extends NPC {
     private int distanceFromSmartThief;
     private int movementTimer;
     private Random randGen = new Random();
+    private Door door;
 
     /**
      * This is the constructor for the smart thief class
@@ -46,7 +47,7 @@ public class SmartThief extends NPC {
     public void move(GraphicsContext gc, Board board) {
         Entity closestInteractable = findClosestInteractable(board);
         if (closestInteractable == null) {
-            randomMovement(board);
+
         } else {
             int targetXCoord = closestInteractable.getXCoord();
             int targetYCoord = closestInteractable.getYCoord();
@@ -237,5 +238,13 @@ public class SmartThief extends NPC {
             distanceFromY = i;
         }
         return distanceFromY;
+    }
+
+    public void setDoor(Door door) {
+        this.door = door;
+    }
+
+    public Door getDoor() {
+        return door;
     }
 }
