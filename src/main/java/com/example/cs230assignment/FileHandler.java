@@ -195,7 +195,8 @@ public class FileHandler {
             int y = entities.get(i).getYCoord();
             tiles[x][y].setEntity(entities.get(i));
             if (entities.get(i) instanceof SmartThief) {
-                entities.get(i).setDoor(door);
+                SmartThief thief = (SmartThief) entities.get(i);
+                thief.setDoor(door);
             }
         }
         int x = player.getXCoord();
