@@ -93,7 +93,7 @@ public class FileHandler {
                     if (lineArray[i].equals("fla")) {
                         int xdir = Integer.parseInt(lineArray[i + 1]);
                         int ydir = Integer.parseInt(lineArray[i + 2]);
-                        FlyingAssassin fly = new FlyingAssassin(500, xCoord,
+                        FlyingAssassin fly = new FlyingAssassin(2500, xCoord,
                                 yCoord, xdir, ydir);
                         entities.add(fly);
                     }

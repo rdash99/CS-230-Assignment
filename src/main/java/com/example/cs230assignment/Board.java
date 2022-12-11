@@ -33,6 +33,7 @@ public class Board extends DrawShape {
     private Timeline smartThiefTimeline;
     private Timeline flyingAssassinTimeline;
     private Timeline floorFollowingThiefTimeline;
+    private GraphicsContext gc;
 
     /**
      * Construct the board with to be played on.
@@ -45,14 +46,28 @@ public class Board extends DrawShape {
      * @param entities the entities to be drawn on the board
      */
     public Board(int width, int height, Tile[][] tiles,
-            ArrayList<Entity> entities, Player player, Timer timer) {
+                 ArrayList<Entity> entities, Player player, Timer timer) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
         this.player = player;
         this.entities = entities;
         this.timer = timer;
-
+        for (Entity elem : this.entities) {
+            if (elem instanceof SmartThief) {
+                this.smartThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
+                this.smartThiefTimeline.setCycleCount(Animation.INDEFINITE);
+                this.smartThiefTimeline.playFromStart();
+            } else if (elem instanceof FlyingAssassin) {
+                this.flyingAssassinTimeline = new Timeline(new KeyFrame(Duration.millis(((FlyingAssassin) elem).getMovementTimer()), event -> ((FlyingAssassin) elem).move(gc, this)));
+                this.flyingAssassinTimeline.setCycleCount(Animation.INDEFINITE);
+                this.flyingAssassinTimeline.playFromStart();
+            } else if (elem instanceof FloorFollowingThief) {
+                this.floorFollowingThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((FloorFollowingThief) elem).getMovementTimer()), event -> ((FloorFollowingThief) elem).move(gc)));
+                this.floorFollowingThiefTimeline.setCycleCount(Animation.INDEFINITE);
+                this.floorFollowingThiefTimeline.playFromStart();
+            }
+        }
     }
 
     /**
@@ -169,32 +184,20 @@ public class Board extends DrawShape {
         this.player.draw(gc);
         for (Entity elem : this.getEntities()) {
             elem.draw(gc);
-            if (elem instanceof SmartThief) {
-                smartThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
-                smartThiefTimeline.setCycleCount(Animation.INDEFINITE);
-                smartThiefTimeline.playFromStart();
-            } else if (elem instanceof FlyingAssassin) {
-                flyingAssassinTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
-                flyingAssassinTimeline.setCycleCount(Animation.INDEFINITE);
-                flyingAssassinTimeline.playFromStart();
-            } else if (elem instanceof FloorFollowingThief) {
-                floorFollowingThiefTimeline = new Timeline(new KeyFrame(Duration.millis(((SmartThief) elem).getMovementTimer()), event -> ((SmartThief) elem).move(gc, this)));
-                floorFollowingThiefTimeline.setCycleCount(Animation.INDEFINITE);
-                floorFollowingThiefTimeline.playFromStart();
-            }
         }
-        // Call entity NPC movement from here perhaps?
-        // if (elem instanceof FlyingAssassin) {
-        // System.out.println("FA: " + elem.getXCoord() + " " +
-        // elem.getYCoord());
-        // ((FlyingAssassin) elem).move();
-        // }
-        // } else if (elem instanceof FloorFollowingThief) {
-        // System.out.println("FFT: " + elem.getXCoord() + " " +
-        // elem.getYCoord());
-        // ((FloorFollowingThief) elem).move();
-        // }
     }
+
+    // Call entity NPC movement from here perhaps?
+    // if (elem instanceof FlyingAssassin) {
+    // System.out.println("FA: " + elem.getXCoord() + " " +
+    // elem.getYCoord());
+    // ((FlyingAssassin) elem).move();
+    // }
+    // } else if (elem instanceof FloorFollowingThief) {
+    // System.out.println("FFT: " + elem.getXCoord() + " " +
+    // elem.getYCoord());
+    // ((FloorFollowingThief) elem).move();
+    // }
 
     /**
      * @param entities
@@ -238,5 +241,9 @@ public class Board extends DrawShape {
 
     public void pauseFloorFollowingThief() {
         this.floorFollowingThiefTimeline.stop();
+    }
+
+    public void setGraphicsContext(GraphicsContext gc) {
+        this.gc = gc;
     }
 }

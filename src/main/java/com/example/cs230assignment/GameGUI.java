@@ -193,6 +193,7 @@ public class GameGUI extends Stage {
         root.setCenter(canvas);
 
         gc = canvas.getGraphicsContext2D();
+        level.setGraphicsContext(gc);
 
         // Create a toolbar with some nice padding and spacing
         VBox levelTimeBox = new VBox();

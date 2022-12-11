@@ -1,5 +1,7 @@
 package com.example.cs230assignment;
 
+import javafx.scene.canvas.GraphicsContext;
+
 /**
  * a class to create an instance of a FloorFollowingThief.
  *
@@ -38,7 +40,7 @@ class FloorFollowingThief extends NPC {
    * performs the movement for the npc from tile to tile as well as call valid
    * move
    */
-  public void move() {
+  public void move(GraphicsContext gc) {
     Boolean x = validMove();
     if (x) {
       super.interact(this.coord[0] + this.coordChange[0],

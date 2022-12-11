@@ -1,5 +1,7 @@
 package com.example.cs230assignment;
 
+import javafx.scene.canvas.GraphicsContext;
+
 /**
  * a class to create an instance of a FlyingAssassin.
  * 
@@ -29,18 +31,19 @@ public class FlyingAssassin extends NPC {
      * moves the npc from one tile to another calls validmove to check for the
      * next move
      */
-    public void move() {
-        Boolean x = validMove();
+    public void move(GraphicsContext gc, Board board) {
+        Boolean x = validMove(board);
         // move if a valid move is found
         if (x) {
             super.interact(this.coord[0] + this.coordChange[0],
                     this.coord[1] + this.coordChange[1]);
-            Character.currentBoard.getTile(this.coord[0], this.coord[1])
+            board.getTile(this.coord[0], this.coord[1])
                     .removeEntity();
-            Character.currentBoard.getTile(this.coord[0] + this.coordChange[0],
+            board.getTile(this.coord[0] + this.coordChange[0],
                     this.coord[1] + this.coordChange[1]);
             this.coord[0] = this.coord[0] + this.coordChange[0];
             this.coord[1] = this.coord[1] + this.coordChange[1];
+            board.getTimer().boardUpdate(gc, board);
         }
     }
 
@@ -119,12 +122,12 @@ public class FlyingAssassin extends NPC {
     /**
      * @return Boolean
      */
-    private Boolean validMove() {
+    private Boolean validMove(Board board) {
         if (super.coord[0] + super.coordChange[0] < 0
-                || super.coord[0] + super.coordChange[0] > super.getCurrentBoard()
+                || super.coord[0] + super.coordChange[0] > board
                         .getWidth() - 1
                 || super.coord[1] + super.coordChange[1] < 0
-                || super.coord[1] + super.coordChange[1] > super.getCurrentBoard()
+                || super.coord[1] + super.coordChange[1] > board
                         .getHeight() - 1) {
             super.coordChange[0] = -super.coordChange[0];
             super.coordChange[1] = -super.coordChange[1];
