@@ -48,7 +48,6 @@ public class WinMenu extends Stage {
         this.playerName = playerName;
         this.originalWindow = originalWindow;
         this.score = score;
-        vbox.getChildren().add(scoreLabel);
         this.initStyle(StageStyle.UNDECORATED);
         root.setBackground(new Background(new BackgroundFill(Color.DARKGREEN,
                 CornerRadii.EMPTY, Insets.EMPTY)));
