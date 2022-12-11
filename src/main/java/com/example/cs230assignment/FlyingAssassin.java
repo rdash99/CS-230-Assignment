@@ -64,11 +64,11 @@ public class FlyingAssassin extends NPC {
                 ((Player)Character.currentBoard.getTile(x, y).getEntity()).die();
             }else if(Character.currentBoard.getTile(x, y).getEntity() instanceof FloorFollowingThief 
                 || Character.currentBoard.getTile(x, y).getEntity() instanceof SmartThief){
-                Character.currentBoard.getTile(x, y).removeEntity();
                 Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
+                Character.currentBoard.getTile(x, y).removeEntity();
             }else if(Character.currentBoard.getTile(x, y).getEntity() instanceof FlyingAssassin){
-                Character.currentBoard.getTile(x, y).removeEntity();
                 Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
+                Character.currentBoard.getTile(x, y).removeEntity();
                 Character.currentBoard.removeEntity(this);
                 return true;
         }
@@ -100,8 +100,7 @@ public class FlyingAssassin extends NPC {
                     .getEntity() != null) {
                 // if the entity is a bomb execute bomb.explodeBomb();
                 if (Character.currentBoard
-                        .getTile(x + tempCoordX, y + tempCoordY).getEntity()
-                        .getEntityName() == "Bomb") {
+                        .getTile(x + tempCoordX, y + tempCoordY).getEntity() instanceof Bomb) {
                     // the bomb on an adjacent tile
                     Bomb bomb = (Bomb) Character.currentBoard
                             .getTile(x + tempCoordX, y + tempCoordY)
