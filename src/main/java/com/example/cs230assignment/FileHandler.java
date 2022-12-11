@@ -154,7 +154,7 @@ public class FileHandler {
             }
         }
         // flip the tiles array 90 degrees
-        Tile[][] tiles3 = new Tile[tiles2.length][tiles2[0].length];
+        Tile[][] tiles3 = new Tile[tiles2[0].length][tiles2.length];
         for (int i = 0; i < tiles2.length; i++) {
             for (int j = 0; j < tiles2[0].length; j++) {
                 tiles3[i][j] = tiles2[tiles2.length - 1 - j][i];
@@ -194,6 +194,9 @@ public class FileHandler {
             int x = entities.get(i).getXCoord();
             int y = entities.get(i).getYCoord();
             tiles[x][y].setEntity(entities.get(i));
+            if (entities.get(i) instanceof SmartThief) {
+                entities.get(i).setDoor(door);
+            }
         }
         int x = player.getXCoord();
         int y = player.getYCoord();
