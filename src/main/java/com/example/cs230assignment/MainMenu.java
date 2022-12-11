@@ -35,7 +35,6 @@ public class MainMenu extends Stage {
     private Button launchGameBtn = new Button("Start the game");
     private Text titleText = new Text("Welcome to the game!");
     private Text scoresTitle = new Text("High scores: ");
-    private Text scoresText = new Text("test");
     private Text motdTitle = new Text("Message of the day: ");
     private Text motdText;
     private TextField nameField = new TextField();
