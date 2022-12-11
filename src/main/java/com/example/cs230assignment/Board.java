@@ -240,6 +240,10 @@ public class Board extends DrawShape {
         this.entities.remove(x);
     }
 
+    public void addEntity(Entity x) {
+        this.entities.add(x);
+    }
+
     /**
      * @return Tile[][]
      */
