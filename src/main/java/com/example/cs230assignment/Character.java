@@ -51,6 +51,7 @@ public class Character extends Entity {
     protected void interact(int x, int y) {
         if (currentBoard.getTile(x, y).getEntity() != null) {
             if (currentBoard.getTile(x, y).getEntity() instanceof Item){
+                Character.currentBoard.removeEntity(currentBoard.getTile(x, y).getEntity());
                 Character.currentBoard.getTile(x, y).removeEntity();
             }else if(currentBoard.getTile(x, y).getEntity() instanceof Key){
                 Key key = (Key) currentBoard.getTile(x, y).getEntity();
