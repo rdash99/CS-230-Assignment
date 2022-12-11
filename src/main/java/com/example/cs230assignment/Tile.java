@@ -28,6 +28,8 @@ public class Tile {
     }
 
     /**
+     * Returns the colours for the tile.
+     * 
      * @return char[]
      */
     public char[] getColours() {
@@ -49,15 +51,20 @@ public class Tile {
     }
 
     /**
-     * @param doorSet
+     * Sets the door of the tile to the door passed in if and only if the door
+     * is supposed to be there.
+     * 
+     * @param doorSet the door to be set
      */
     public void setDoor(Door doorSet) {
         this.door = doorSet;
     }
 
     /**
-     * @param colour
-     * @return boolean
+     * Checks if the colour passed is in the tile.
+     * 
+     * @param colour the colour to be checked
+     * @return boolean true if the colour is in the tile, false otherwise
      */
     public boolean checkColour(char colour) {
         for (char squareColour : this.squares) {
@@ -69,7 +76,9 @@ public class Tile {
     }
 
     /**
-     * @param entity
+     * Sets the entity of the tile to the entity passed.
+     * 
+     * @param entity the entity to be set
      */
     public void setEntity(Entity entity) {
         this.entity = entity;
