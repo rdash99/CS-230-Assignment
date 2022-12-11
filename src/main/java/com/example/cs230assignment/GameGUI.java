@@ -212,6 +212,9 @@ public class GameGUI extends Stage {
     public void tick() {
         this.levelTimeLabel.setText("" + this.level.getTimer().decrementTime());
         if (this.level.getTimer().getLevelTime() == 0) {
+            level.pauseSmartThief();
+            level.pauseFlyingAssassin();
+            level.pauseFloorFollowingThief();
             new LoseMenu(level.getPlayer().getPlayerName(), this);
         }
     }

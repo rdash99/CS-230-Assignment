@@ -9,4 +9,4 @@ YYYY RRRG RRRR GGGG
 2 0 fla 0 -1
 2 1 fft R
 0 2 dor
-timer 320
+timer 005
