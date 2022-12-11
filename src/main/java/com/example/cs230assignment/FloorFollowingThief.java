@@ -51,6 +51,8 @@ class FloorFollowingThief extends NPC {
           this.coord[1] + this.coordChange[1]);
       this.coord[0] = this.coord[0] + this.coordChange[0];
       this.coord[1] = this.coord[1] + this.coordChange[1];
+      System.out.println("Coords: " + this.coord[0] + "" + this.coord[1]);
+      Character.currentBoard.getTimer().boardUpdate(gc, Character.currentBoard);
     }
   }
 

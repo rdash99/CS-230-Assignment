@@ -187,18 +187,6 @@ public class Board extends DrawShape {
         }
     }
 
-    // Call entity NPC movement from here perhaps?
-    // if (elem instanceof FlyingAssassin) {
-    // System.out.println("FA: " + elem.getXCoord() + " " +
-    // elem.getYCoord());
-    // ((FlyingAssassin) elem).move();
-    // }
-    // } else if (elem instanceof FloorFollowingThief) {
-    // System.out.println("FFT: " + elem.getXCoord() + " " +
-    // elem.getYCoord());
-    // ((FloorFollowingThief) elem).move();
-    // }
-
     /**
      * @param entities
      */
@@ -241,6 +229,18 @@ public class Board extends DrawShape {
 
     public void pauseFloorFollowingThief() {
         this.floorFollowingThiefTimeline.stop();
+    }
+
+    public void resumeSmartThief() {
+        this.smartThiefTimeline.play();
+    }
+
+    public void resumeFlyingAssassin() {
+        this.flyingAssassinTimeline.play();
+    }
+
+    public void resumeFloorFollowingThief() {
+        this.floorFollowingThiefTimeline.play();
     }
 
     public void setGraphicsContext(GraphicsContext gc) {

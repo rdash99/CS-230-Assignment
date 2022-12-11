@@ -70,6 +70,9 @@ public class PauseMenu extends Stage {
         resumeBtn.setOnAction(e -> {
             this.close();
             tickTimeline.play();
+            board.resumeSmartThief();
+            board.resumeFlyingAssassin();
+            board.resumeFloorFollowingThief();
         });
 
         exitBtn.setOnAction(e -> {
