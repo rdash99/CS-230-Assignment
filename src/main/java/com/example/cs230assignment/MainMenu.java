@@ -95,7 +95,7 @@ public class MainMenu extends Stage {
         root.setRight(motd);
 
         this.setScene(new Scene(root, 600, 500));
-        this.setTitle("The game menu");
+        this.setTitle("BACKSTREET THIEVES MENU");
         this.show();
 
         // When the button is clicked, the game is instantiated once a name has
