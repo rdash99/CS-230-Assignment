@@ -33,7 +33,7 @@ public class MainMenu extends Stage {
 
     private BorderPane root = new BorderPane();
     private Button launchGameBtn = new Button("Start the game");
-    private Text titleText = new Text("Welcome to the game!");
+    private Text titleText = new Text("Welcome to the BACKSTREET THIEVES!");
     private Text scoresTitle = new Text("High scores: ");
     private Text motdTitle = new Text("Message of the day: ");
     private Text motdText;
