@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -55,10 +56,12 @@ public class WinMenu extends Stage {
 
         titleText.setFont(Font.font("Arial", FontPosture.ITALIC, 18));
         titleText.setFill(Color.YELLOW);
-        scoreLabel.setText("" + this.score);
+        scoreLabel.setText("Score: " + this.score);
+        scoreLabel.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+        scoreLabel.setTextFill(Color.BLACK);
 
-        vbox.getChildren().add(contBtn);
         vbox.getChildren().add(scoreLabel);
+        vbox.getChildren().add(contBtn);
         vbox.getChildren().add(quitBtn);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(20);
