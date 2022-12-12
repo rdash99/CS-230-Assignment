@@ -11,6 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 class FloorFollowingThief extends NPC {
   // colour the thief is assigned to follow
   private char allocatedColour;
+  private Boolean waitToMove = false;
 
   /**
    * constructor for floor following thief(assigns basic values)
@@ -45,8 +46,6 @@ class FloorFollowingThief extends NPC {
   public void move(GraphicsContext gc) {
     Boolean x = validMove();
     if (x) {
-      System.out.println(this.coordChange[0]);
-      System.out.println(this.coordChange[1]);
       super.interact(this.coord[0] + this.coordChange[0],
           this.coord[1] + this.coordChange[1]);
       Character.currentBoard.getTile(this.coord[0], this.coord[1])
@@ -55,11 +54,8 @@ class FloorFollowingThief extends NPC {
           this.coord[1] + this.coordChange[1]);
       this.coord[0] = this.coord[0] + this.coordChange[0];
       this.coord[1] = this.coord[1] + this.coordChange[1];
-      System.out.println("Coords: " + this.coord[0] + "" + this.coord[1]);
       Character.currentBoard.getTimer().boardUpdate(gc, Character.currentBoard);
-    } else {
-      System.out.println(this.coordChange[0]);
-      System.out.println(this.coordChange[1]);
+    }else {
     }
   }
 
@@ -72,7 +68,9 @@ class FloorFollowingThief extends NPC {
    */
   private Boolean validMove() {
     // changes the coordChange to the coord to the left
-    if (super.coordChange[0] == 1 && super.coordChange[1] == 0) {
+    if (waitToMove == true){
+      this.waitToMove = false;
+    }else if (super.coordChange[0] == 1 && super.coordChange[1] == 0) {
       super.coordChange[0] = 0;
       super.coordChange[1] = 1;
     } else if (super.coordChange[0] == 0 && super.coordChange[1] == 1) {
@@ -107,14 +105,11 @@ class FloorFollowingThief extends NPC {
                   coordChange[1] = -1;
                 }
               }
-              if (Character.currentBoard.getTile(coord[0] + 1, coord[1])
-                  .getEntity() instanceof FloorFollowingThief
-                  || Character.currentBoard.getTile(coord[0] + 1, coord[1])
-                      .getEntity() instanceof Player
-                  || Character.currentBoard.getTile(coord[0] + 1, coord[1])
-                      .getEntity() instanceof FlyingAssassin
-                  || Character.currentBoard.getTile(coord[0] + 1, coord[1])
-                      .getEntity() instanceof SmartThief) {
+              if(Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() instanceof FloorFollowingThief 
+              ||Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() instanceof Player 
+              ||Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() instanceof FlyingAssassin 
+              ||Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() instanceof SmartThief){
+                this.waitToMove = true;
                 return false;
               } else {
                 return true;
@@ -146,14 +141,11 @@ class FloorFollowingThief extends NPC {
                   coordChange[1] = 1;
                 }
               }
-              if (Character.currentBoard.getTile(coord[0] - 1, coord[1])
-                  .getEntity() instanceof FloorFollowingThief
-                  || Character.currentBoard.getTile(coord[0] - 1, coord[1])
-                      .getEntity() instanceof Player
-                  || Character.currentBoard.getTile(coord[0] - 1, coord[1])
-                      .getEntity() instanceof FlyingAssassin
-                  || Character.currentBoard.getTile(coord[0] - 1, coord[1])
-                      .getEntity() instanceof SmartThief) {
+              if(Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() instanceof FloorFollowingThief 
+              ||Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() instanceof Player 
+              ||Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() instanceof FlyingAssassin 
+              ||Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() instanceof SmartThief){
+                this.waitToMove = true;
                 return false;
               } else {
                 return true;
@@ -185,14 +177,11 @@ class FloorFollowingThief extends NPC {
                   coordChange[1] = 0;
                 }
               }
-              if (Character.currentBoard.getTile(coord[0], coord[1] + 1)
-                  .getEntity() instanceof FloorFollowingThief
-                  || Character.currentBoard.getTile(coord[0], coord[1] + 1)
-                      .getEntity() instanceof Player
-                  || Character.currentBoard.getTile(coord[0], coord[1] + 1)
-                      .getEntity() instanceof FlyingAssassin
-                  || Character.currentBoard.getTile(coord[0], coord[1] + 1)
-                      .getEntity() instanceof SmartThief) {
+              if(Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() instanceof FloorFollowingThief 
+              ||Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() instanceof Player 
+              ||Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() instanceof FlyingAssassin 
+              ||Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() instanceof SmartThief){
+                this.waitToMove = true;
                 return false;
               } else {
                 return true;
@@ -224,14 +213,11 @@ class FloorFollowingThief extends NPC {
                   coordChange[1] = 0;
                 }
               }
-              if (Character.currentBoard.getTile(coord[0], coord[1] - 1)
-                  .getEntity() instanceof FloorFollowingThief
-                  || Character.currentBoard.getTile(coord[0], coord[1] - 1)
-                      .getEntity() instanceof Player
-                  || Character.currentBoard.getTile(coord[0], coord[1] - 1)
-                      .getEntity() instanceof FlyingAssassin
-                  || Character.currentBoard.getTile(coord[0], coord[1] - 1)
-                      .getEntity() instanceof SmartThief) {
+              if(Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() instanceof FloorFollowingThief 
+              ||Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() instanceof Player 
+              ||Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() instanceof FlyingAssassin 
+              ||Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() instanceof SmartThief){
+                this.waitToMove = true;
                 return false;
               } else {
                 return true;
