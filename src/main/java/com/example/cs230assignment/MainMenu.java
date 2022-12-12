@@ -98,14 +98,18 @@ public class MainMenu extends Stage {
         this.setTitle("The game menu");
         this.show();
 
-        // When the button is clicked, the game is once a name has been
+        // When the button is clicked, the game is instantiated once a name has been
         // provided.
         launchGameBtn.setOnAction(e -> {
             if ((nameField.getText() != null
                     && !nameField.getText().isEmpty())) {
-                GameGUI gameGUI = new GameGUI(nameField.getText());
-                Door door = gameGUI.getLevel().getDoor();
-                door.setGameGUI(gameGUI);
+                try {
+                    new LevelSelectMenu(nameField.getText());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
                 this.close();
             } else if (errorText.getText().isEmpty()) {
                 errorText.setText("Please enter your name");
@@ -113,7 +117,6 @@ public class MainMenu extends Stage {
                 middleButtons.getChildren().add(errorText);
 
             }
-
         });
 
     }
