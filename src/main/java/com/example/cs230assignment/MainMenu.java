@@ -76,6 +76,9 @@ public class MainMenu extends Stage {
         middleButtons.setSpacing(20);
 
         highScoreList.getChildren().add(scoresTitle);
+        addHighScores();
+        highScoreList.setMaxWidth(100);
+        highScoreList.setMinWidth(100);
 
         motd.getChildren().add(motdTitle);
         motd.getChildren().add(motdText);
@@ -86,9 +89,10 @@ public class MainMenu extends Stage {
         hbox.setAlignment(Pos.CENTER);
         hbox.setPadding(new Insets(20, 10, 10, 10));
 
+
         root.setTop(hbox);
         root.setCenter(middleButtons);
-        root.setLeft(scoresTitle);
+        root.setLeft(highScoreList);
         root.setRight(motd);
 
         this.setScene(new Scene(root, 600, 500));
@@ -117,16 +121,16 @@ public class MainMenu extends Stage {
 
     /**
      * Adds the high scores to the high score list.
-     * 
-     * @param name  the name of the player.
-     * @param score the score of the player.
      */
-    public void addHighScore(String name, int score) {
-        Text scoreText = new Text(name + ": " + score);
-        scoreText.setFont(Font.font("Arial", 12));
-        scoreText.setFill(Color.GRAY);
-        scoreText.setWrappingWidth(100);
-        highScoreList.getChildren().add(scoreText);
+    public void addHighScores() {
+        ArrayList<String> highScores = FileHandler.readPlayerScores();
+        for (String score : highScores) {
+            Text highScore = new Text(score);
+            highScore.setFont(Font.font("Arial", 12));
+            highScore.setFill(Color.GRAY);
+            highScore.setWrappingWidth(100);
+            highScoreList.getChildren().add(highScore);
+        }
     }
 
     /**

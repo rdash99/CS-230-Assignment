@@ -46,25 +46,27 @@ public class SmartThief extends NPC {
     // changed to move to overwrite move in character
     public void move(GraphicsContext gc, Board board) {
         Entity closestInteractable = findClosestInteractable(board);
+        int targetXCoord;
+        int targetYCoord;
         if (closestInteractable == null) {
-
+            targetXCoord = getDoor().getXCoord();
+            targetYCoord = getDoor().getYCoord();
         } else {
-            int targetXCoord = closestInteractable.getXCoord();
-            int targetYCoord = closestInteractable.getYCoord();
-
-            if (this.getYCoord() > targetYCoord) {
-                moveUp(board);
-                board.getTimer().boardUpdate(gc, board);
-            } else if (this.getXCoord() > targetXCoord) {
-                moveLeft(board);
-                board.getTimer().boardUpdate(gc, board);
-            } else if (this.getYCoord() < targetYCoord) {
-                moveDown(board);
-                board.getTimer().boardUpdate(gc, board);
-            } else if (this.getXCoord() < targetXCoord) {
-                moveRight(board);
-                board.getTimer().boardUpdate(gc, board);
-            }
+            targetXCoord = closestInteractable.getXCoord();
+            targetYCoord = closestInteractable.getYCoord();
+        }
+        if (this.getYCoord() > targetYCoord) {
+            moveUp(board);
+            board.getTimer().boardUpdate(gc, board);
+        } else if (this.getXCoord() > targetXCoord) {
+            moveLeft(board);
+            board.getTimer().boardUpdate(gc, board);
+        } else if (this.getYCoord() < targetYCoord) {
+            moveDown(board);
+            board.getTimer().boardUpdate(gc, board);
+        } else if (this.getXCoord() < targetXCoord) {
+            moveRight(board);
+            board.getTimer().boardUpdate(gc, board);
         }
     }
 
@@ -106,7 +108,7 @@ public class SmartThief extends NPC {
                                 .getColours()[colourPos])) {
                     board.getTile(super.coord[0], super.coord[1])
                             .removeEntity();
-                    // Interact for Smart Thief should go here
+                    this.interact(super.coord[0], i);
                     board.getTile(super.coord[0], i).setEntity(this);
                     super.coord[1] = i;
                     foundSquare = true;
@@ -130,7 +132,7 @@ public class SmartThief extends NPC {
                                 .getColours()[colourPos])) {
                     board.getTile(super.coord[0], super.coord[1])
                             .removeEntity();
-                    // Interact for Smart Thief should go here
+                    this.interact(i, super.coord[1]);
                     board.getTile(i, super.coord[1]).setEntity(this);
                     super.coord[0] = i;
                     foundSquare = true;
@@ -155,7 +157,7 @@ public class SmartThief extends NPC {
                                 .getColours()[colourPos])) {
                     board.getTile(super.coord[0], super.coord[1])
                             .removeEntity();
-                    // Interact for Smart Thief should go here
+                    this.interact(super.coord[0], i);
                     board.getTile(super.coord[0], i).setEntity(this);
                     super.coord[1] = i;
                     foundSquare = true;
@@ -179,7 +181,7 @@ public class SmartThief extends NPC {
                                 .getColours()[colourPos])) {
                     board.getTile(super.coord[0], super.coord[1])
                             .removeEntity();
-                    // Interact for Smart Thief should go here
+                    this.interact(i, super.coord[1]);
                     board.getTile(i, super.coord[1]).setEntity(this);
                     super.coord[0] = i;
                     foundSquare = true;
