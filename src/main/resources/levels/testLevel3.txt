@@ -1,0 +1,16 @@
+5 5
+BBBB YYYG RGGY GYYG GYYY
+YYYY YRYG RGGY GYYG GYYY
+BBBB BRYB RGGY BYYB GYYY
+YYYY GRYG RGGG GYYG GYYG
+YYYY GRYG RGGG GYYG GYYG
+2 0 ply
+0 0 items Soapy 10
+0 2 items Toothbrush 15
+2 2 items Socks 5
+2 3 dor
+3 1 fft Y 1 0
+3 2 fft G 1 0
+3 4 gte R
+3 3 key R
+500
