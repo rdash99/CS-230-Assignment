@@ -524,6 +524,9 @@ public class FileHandler {
      * @return The level
      */
     public static Board readLevelFile(String fileName, String playerName) {
+        File file = new File("src/main/resources/levels/" + fileName + ".txt");
+        return loadBoard(file, playerName);
+    }
 
     /**
      * Instansiates a new instance of board.
@@ -533,6 +536,10 @@ public class FileHandler {
      * @return The level
      */
     public static Board readSaveFile(String fileName, String playerName) {
+        File file = new File(
+                "src/main/resources/saves/" + playerName + fileName + ".txt");
+        return loadBoard(file, playerName);
+    }
 
     /**
      * Reads the level names from a file.
