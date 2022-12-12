@@ -33,11 +33,11 @@ public class GameGUI extends Stage {
     // The dimensions of the window
     private static final int ONE_SECOND_IN_MILLISECONDS = 1000;
     private static final int WINDOW_WIDTH = 800;
-    private static final int WINDOW_HEIGHT = 500;
+    private static final int WINDOW_HEIGHT = 800;
 
     // The dimensions of the canvas
-    private static final int CANVAS_WIDTH = 600;
-    private static final int CANVAS_HEIGHT = 400;
+    private static final int CANVAS_WIDTH = 1000;
+    private static final int CANVAS_HEIGHT = 1000;
 
     // The width and height (in pixels) of each cell that makes up the game.
     private static final int GRID_CELL_WIDTH = 50;
@@ -61,9 +61,9 @@ public class GameGUI extends Stage {
      * 
      * @param playerName The name of the player.
      */
-    public GameGUI(String playerName, String levelName) {
-        this.levelName = levelName;
-        createGame(playerName, levelName);
+    public GameGUI(String playerName, Board level) {
+        this.level = level;
+        createGame(playerName, level);
     }
 
     /**
@@ -103,8 +103,7 @@ public class GameGUI extends Stage {
     /**
      * @param playerName The name of the player.
      */
-    public void createGame(String playerName, String levelName) {
-        this.level = FileHandler.readLevelFile(levelName, playerName);
+    public void createGame(String playerName, Board level) {
         this.level.getDoor().setGameGUI(this);
 
         // Build the GUI
@@ -218,7 +217,7 @@ public class GameGUI extends Stage {
                 }
             }
             new LoseMenu(level.getPlayer().getPlayerName(), this,
-                    this.levelName);
+                    this.level);
         }
     }
 
