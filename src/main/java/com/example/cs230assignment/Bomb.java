@@ -27,7 +27,10 @@ public class Bomb extends Entity {
         this.xCoord = x;
         this.yCoord = y;
     }
-
+    
+    public void setBoard(Board currentBoard) {
+        this.currentBoard = currentBoard;
+    }
     /**
      * Starts the proccess of detonating the bomb Needs to access all the tiles
      * that sit on the x and y axis of the bomb. Then needs to decide whether
