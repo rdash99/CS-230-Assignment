@@ -21,11 +21,11 @@ class FloorFollowingThief extends NPC {
    * @param x                   the x coord the thief spawns on
    * @param y                   the y coord the thief spawns on
    */
-  public FloorFollowingThief(char allocatedColourPass, int x, int y) {
+  public FloorFollowingThief(char allocatedColourPass, int x, int y, int changeX, int changeY) {
     // Allocated a timer of 0.5 seconds for the thief
     super("Floor Following Thief", 500, x, y);
     this.allocatedColour = allocatedColourPass;
-    super.coordChange = new int[] { x, y };
+    super.coordChange = new int[] { changeX, changeY };
   }
 
   /**

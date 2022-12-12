@@ -3,9 +3,8 @@ rgby rrrg gggr bbbb
 yyyy rrrg rrrr gggg 
 rgby rrrg gggr bbbb 
 yyyy rrrg rrrr gggg 
-1 0 ply
-2 3 items diamond 10
-2 3 smt
-2 2 fla 0 -1
-2 1 fft r
-timer 279
+0 0 ply
+3 1 smt
+1 0 fft r
+2 1 fla 0 1
+timer 316
