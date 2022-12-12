@@ -89,7 +89,6 @@ public class MainMenu extends Stage {
         hbox.setAlignment(Pos.CENTER);
         hbox.setPadding(new Insets(20, 10, 10, 10));
 
-
         root.setTop(hbox);
         root.setCenter(middleButtons);
         root.setLeft(highScoreList);
@@ -99,14 +98,18 @@ public class MainMenu extends Stage {
         this.setTitle("The game menu");
         this.show();
 
-        // When the button is clicked, the game is once a name has been
+        // When the button is clicked, the game is instantiated once a name has been
         // provided.
         launchGameBtn.setOnAction(e -> {
             if ((nameField.getText() != null
                     && !nameField.getText().isEmpty())) {
-                GameGUI gameGUI = new GameGUI(nameField.getText());
-                Door door = gameGUI.getLevel().getDoor();
-                door.setGameGUI(gameGUI);
+                try {
+                    new LevelSelectMenu(nameField.getText());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
                 this.close();
             } else if (errorText.getText().isEmpty()) {
                 errorText.setText("Please enter your name");
@@ -114,7 +117,6 @@ public class MainMenu extends Stage {
                 middleButtons.getChildren().add(errorText);
 
             }
-
         });
 
     }
@@ -125,7 +127,7 @@ public class MainMenu extends Stage {
     public void addHighScores() {
         ArrayList<String> highScores = FileHandler.readPlayerScores();
         for (String score : highScores) {
-            Text highScore = new Text(score);
+            Text highScore = new Text(score.replace("[", "").replace("]", ""));
             highScore.setFont(Font.font("Arial", 12));
             highScore.setFill(Color.GRAY);
             highScore.setWrappingWidth(100);

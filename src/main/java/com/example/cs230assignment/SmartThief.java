@@ -144,7 +144,6 @@ public class SmartThief extends NPC {
     /**
      * Moves the entity down one square if possible.
      *
-     * @param gc    the graphics context
      * @param board the board
      */
     public void moveDown(Board board) {

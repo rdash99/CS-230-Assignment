@@ -54,18 +54,16 @@ public class GameGUI extends Stage {
     private Timeline tickTimeline;
     private Board level;
     private Label levelTimeLabel;
-
-    // X and Y coordinate of player on the grid.
-    private int playerX = 0;
-    private int playerY = 0;
+    private String levelName;
 
     /**
      * Create the game.
      * 
-     * @param playerName
+     * @param playerName The name of the player.
      */
-    public GameGUI(String playerName) {
-        createGame(playerName);
+    public GameGUI(String playerName, String levelName) {
+        this.levelName = levelName;
+        createGame(playerName, levelName);
     }
 
     /**
@@ -103,10 +101,11 @@ public class GameGUI extends Stage {
     }
 
     /**
-     * @param playerName
+     * @param playerName The name of the player.
      */
-    public void createGame(String playerName) {
-        this.level = FileHandler.readLevelFile("testLevel", playerName);
+    public void createGame(String playerName, String levelName) {
+        this.level = FileHandler.readLevelFile(levelName, playerName);
+        this.level.getDoor().setGameGUI(this);
 
         // Build the GUI
         Pane root = buildGUI(level);
@@ -131,22 +130,15 @@ public class GameGUI extends Stage {
             }
         });
 
-        // // for testing only
-        // this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-        // if (key.getCode() == KeyCode.L) {
-        // new LoseMenu(playerName, this);
-        // tickTimeline.stop();
-        // }
-        // });
-        //
-        // // for testing only
-        // this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-        // if (key.getCode() == KeyCode.M) {
-        // new WinMenu(playerName, this);
-        // tickTimeline.stop();
-        // }
-        // });
-
+        /*
+         * // for testing only this.addEventFilter(KeyEvent.KEY_PRESSED, key ->
+         * { if (key.getCode() == KeyCode.L) { new LoseMenu(playerName, this);
+         * tickTimeline.stop(); } });
+         * 
+         * // for testing only this.addEventFilter(KeyEvent.KEY_PRESSED, key ->
+         * { if (key.getCode() == KeyCode.M) { new WinMenu(playerName, this,
+         * 500); tickTimeline.stop(); } });
+         */
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -225,7 +217,8 @@ public class GameGUI extends Stage {
                     level.pauseFloorFollowingThief();
                 }
             }
-            new LoseMenu(level.getPlayer().getPlayerName(), this);
+            new LoseMenu(level.getPlayer().getPlayerName(), this,
+                    this.levelName);
         }
     }
 
