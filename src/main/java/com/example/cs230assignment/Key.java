@@ -1,5 +1,7 @@
 package com.example.cs230assignment;
 
+import java.util.ArrayList;
+
 /**
  * This class represents the key subclass
  * 
@@ -8,6 +10,7 @@ package com.example.cs230assignment;
  */
 public class Key extends Entity {
     private char keyColour;
+    private ArrayList<Gate> gates;
 
     /**
      * This is the constructor for the key class
@@ -16,8 +19,9 @@ public class Key extends Entity {
      * @param x             the x coordinate of the key
      * @param y             the y coordinate of the key
      */
-    public Key(char keyColourPass, int x, int y) {
+    public Key(char keyColourPass, int x, int y, ArrayList<Gate> gates) {
         super("Key", x, y);
+        this.gates = gates;
         this.keyColour = keyColourPass;
     }
 
@@ -32,6 +36,11 @@ public class Key extends Entity {
      * Open the gates
      */
     public void openGate() {
+        for (Gate gate : gates) {
+            if (gate.getGateColour() == keyColour) {
+                gate.setGateOpen(true);
+            }
+        }
     }
 
 }
