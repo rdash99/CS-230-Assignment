@@ -526,6 +526,19 @@ public class FileHandler {
         return loadBoard(file, playerName);
     }
 
+     /**
+     * Instansiates a new instance of board.
+     * 
+     * @param fileName   The name of the file to be read
+     * @param playerName The name of the player
+     * @return The level
+     */
+    public static Board readSaveFile(String fileName, String playerName) {
+        File file = new File("src/main/resources/saves/" + fileName + ".txt");
+        return loadBoard(file, playerName);
+    }
+
+
     /**
      * Reads the level names from a file.
      * 
