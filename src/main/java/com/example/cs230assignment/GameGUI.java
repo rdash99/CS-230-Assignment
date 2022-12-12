@@ -62,7 +62,7 @@ public class GameGUI extends Stage {
     /**
      * Create the game.
      * 
-     * @param playerName
+     * @param playerName The name of the player.
      */
     public GameGUI(String playerName) {
         createGame(playerName);
@@ -103,7 +103,7 @@ public class GameGUI extends Stage {
     }
 
     /**
-     * @param playerName
+     * @param playerName The name of the player.
      */
     public void createGame(String playerName) {
         this.level = FileHandler.readLevelFile("testLevel", playerName);
