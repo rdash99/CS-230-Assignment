@@ -57,7 +57,7 @@ class FloorFollowingThief extends NPC {
       this.coord[1] = this.coord[1] + this.coordChange[1];
       System.out.println("Coords: " + this.coord[0] + "" + this.coord[1]);
       Character.currentBoard.getTimer().boardUpdate(gc, Character.currentBoard);
-    }else {
+    } else {
       System.out.println(this.coordChange[0]);
       System.out.println(this.coordChange[1]);
     }
@@ -90,122 +90,162 @@ class FloorFollowingThief extends NPC {
       // checks to see if it has checked all directions else sets direction to
       // stay on square
       if (i != 4) {
-        if (super.coordChange[0] == 1 && super.coord[0] != Character.currentBoard.getWidth()-1){
-          if (Character.currentBoard.getTile(coord[1], coord[0] + 1).checkColour(this.allocatedColour)){
-            if (Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() != null){
-              if (Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() instanceof Gate){
-                if (((Gate)Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity()).getGateOpen()){
+        if (super.coordChange[0] == 1
+            && super.coord[0] != Character.currentBoard.getWidth() - 1) {
+          if (Character.currentBoard.getTile(coord[1], coord[0] + 1)
+              .checkColour(this.allocatedColour)) {
+            if (Character.currentBoard.getTile(coord[0] + 1, coord[1])
+                .getEntity() != null) {
+              if (Character.currentBoard.getTile(coord[0] + 1, coord[1])
+                  .getEntity() instanceof Gate) {
+                if (((Gate) Character.currentBoard
+                    .getTile(coord[0] + 1, coord[1]).getEntity())
+                    .getGateOpen()) {
                   return true;
-                }else {
+                } else {
                   coordChange[0] = 0;
-                  coordChange[1] = -1; 
+                  coordChange[1] = -1;
                 }
               }
-              if(Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() instanceof FloorFollowingThief 
-              ||Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() instanceof Player 
-              ||Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() instanceof FlyingAssassin 
-              ||Character.currentBoard.getTile(coord[0] + 1, coord[1]).getEntity() instanceof SmartThief){
+              if (Character.currentBoard.getTile(coord[0] + 1, coord[1])
+                  .getEntity() instanceof FloorFollowingThief
+                  || Character.currentBoard.getTile(coord[0] + 1, coord[1])
+                      .getEntity() instanceof Player
+                  || Character.currentBoard.getTile(coord[0] + 1, coord[1])
+                      .getEntity() instanceof FlyingAssassin
+                  || Character.currentBoard.getTile(coord[0] + 1, coord[1])
+                      .getEntity() instanceof SmartThief) {
                 return false;
-              }else{
+              } else {
                 return true;
               }
-            }else {
+            } else {
               return true;
             }
-          }else {
+          } else {
             coordChange[0] = 0;
-            coordChange[1] = -1; 
+            coordChange[1] = -1;
           }
-        }else if(super.coordChange[0] == 1 && super.coord[0] == Character.currentBoard.getWidth()-1) {
+        } else if (super.coordChange[0] == 1
+            && super.coord[0] == Character.currentBoard.getWidth() - 1) {
           coordChange[0] = 0;
-          coordChange[1] = -1; 
-        }else if (super.coordChange[0] == -1 && super.coord[0] != 0){
-          if (Character.currentBoard.getTile(coord[1], coord[0] - 1).checkColour(this.allocatedColour)){
-            if (Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() != null){
-              if (Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() instanceof Gate){
-                if (((Gate)Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity()).getGateOpen()){
+          coordChange[1] = -1;
+        } else if (super.coordChange[0] == -1 && super.coord[0] != 0) {
+          if (Character.currentBoard.getTile(coord[1], coord[0] - 1)
+              .checkColour(this.allocatedColour)) {
+            if (Character.currentBoard.getTile(coord[0] - 1, coord[1])
+                .getEntity() != null) {
+              if (Character.currentBoard.getTile(coord[0] - 1, coord[1])
+                  .getEntity() instanceof Gate) {
+                if (((Gate) Character.currentBoard
+                    .getTile(coord[0] - 1, coord[1]).getEntity())
+                    .getGateOpen()) {
                   return true;
-                }else {
+                } else {
                   coordChange[0] = 0;
-                  coordChange[1] = 1; 
+                  coordChange[1] = 1;
                 }
               }
-              if(Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() instanceof FloorFollowingThief 
-              ||Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() instanceof Player 
-              ||Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() instanceof FlyingAssassin 
-              ||Character.currentBoard.getTile(coord[0] - 1, coord[1]).getEntity() instanceof SmartThief){
+              if (Character.currentBoard.getTile(coord[0] - 1, coord[1])
+                  .getEntity() instanceof FloorFollowingThief
+                  || Character.currentBoard.getTile(coord[0] - 1, coord[1])
+                      .getEntity() instanceof Player
+                  || Character.currentBoard.getTile(coord[0] - 1, coord[1])
+                      .getEntity() instanceof FlyingAssassin
+                  || Character.currentBoard.getTile(coord[0] - 1, coord[1])
+                      .getEntity() instanceof SmartThief) {
                 return false;
-              }else{
+              } else {
                 return true;
               }
-            }else {
+            } else {
               return true;
             }
-          }else {
+          } else {
             coordChange[0] = 0;
-            coordChange[1] = 1; 
+            coordChange[1] = 1;
           }
-        }else if(super.coordChange[0] == -1 && super.coord[0] == 0) {
+        } else if (super.coordChange[0] == -1 && super.coord[0] == 0) {
           coordChange[0] = 0;
-          coordChange[1] = 1; 
-        }else if (super.coordChange[1] == 1 && super.coord[1] != Character.currentBoard.getHeight()-1){
-          if (Character.currentBoard.getTile(coord[1] + 1, coord[0]).checkColour(this.allocatedColour)){
-            if (Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() != null){
-              if (Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() instanceof Gate){
-                if (((Gate)Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity()).getGateOpen()){
+          coordChange[1] = 1;
+        } else if (super.coordChange[1] == 1
+            && super.coord[1] != Character.currentBoard.getHeight() - 1) {
+          if (Character.currentBoard.getTile(coord[1] + 1, coord[0])
+              .checkColour(this.allocatedColour)) {
+            if (Character.currentBoard.getTile(coord[0], coord[1] + 1)
+                .getEntity() != null) {
+              if (Character.currentBoard.getTile(coord[0], coord[1] + 1)
+                  .getEntity() instanceof Gate) {
+                if (((Gate) Character.currentBoard
+                    .getTile(coord[0], coord[1] + 1).getEntity())
+                    .getGateOpen()) {
                   return true;
-                }else {
+                } else {
                   coordChange[0] = 1;
-                  coordChange[1] = 0; 
+                  coordChange[1] = 0;
                 }
               }
-              if(Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() instanceof FloorFollowingThief 
-              ||Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() instanceof Player 
-              ||Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() instanceof FlyingAssassin 
-              ||Character.currentBoard.getTile(coord[0], coord[1] + 1).getEntity() instanceof SmartThief){
+              if (Character.currentBoard.getTile(coord[0], coord[1] + 1)
+                  .getEntity() instanceof FloorFollowingThief
+                  || Character.currentBoard.getTile(coord[0], coord[1] + 1)
+                      .getEntity() instanceof Player
+                  || Character.currentBoard.getTile(coord[0], coord[1] + 1)
+                      .getEntity() instanceof FlyingAssassin
+                  || Character.currentBoard.getTile(coord[0], coord[1] + 1)
+                      .getEntity() instanceof SmartThief) {
                 return false;
-              }else{
+              } else {
                 return true;
               }
-            }else {
+            } else {
               return true;
             }
-          }else {
+          } else {
             coordChange[0] = 1;
-            coordChange[1] = 0; 
+            coordChange[1] = 0;
           }
-        }else if(super.coordChange[1] == 1 && super.coord[1] == Character.currentBoard.getHeight()-1) {
+        } else if (super.coordChange[1] == 1
+            && super.coord[1] == Character.currentBoard.getHeight() - 1) {
           coordChange[0] = 1;
-          coordChange[1] = 0; 
-        }else if (super.coordChange[1] == -1 && super.coord[1] != 0){
-          if (Character.currentBoard.getTile(coord[1] - 1, coord[0]).checkColour(this.allocatedColour)){
-            if (Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() != null){
-              if (Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() instanceof Gate){
-                if (((Gate)Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity()).getGateOpen()){
+          coordChange[1] = 0;
+        } else if (super.coordChange[1] == -1 && super.coord[1] != 0) {
+          if (Character.currentBoard.getTile(coord[1] - 1, coord[0])
+              .checkColour(this.allocatedColour)) {
+            if (Character.currentBoard.getTile(coord[0], coord[1] - 1)
+                .getEntity() != null) {
+              if (Character.currentBoard.getTile(coord[0], coord[1] - 1)
+                  .getEntity() instanceof Gate) {
+                if (((Gate) Character.currentBoard
+                    .getTile(coord[0], coord[1] - 1).getEntity())
+                    .getGateOpen()) {
                   return true;
-                }else {
+                } else {
                   coordChange[0] = -1;
-                  coordChange[1] = 0; 
+                  coordChange[1] = 0;
                 }
               }
-              if(Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() instanceof FloorFollowingThief 
-              ||Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() instanceof Player 
-              ||Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() instanceof FlyingAssassin 
-              ||Character.currentBoard.getTile(coord[0], coord[1] - 1).getEntity() instanceof SmartThief){
+              if (Character.currentBoard.getTile(coord[0], coord[1] - 1)
+                  .getEntity() instanceof FloorFollowingThief
+                  || Character.currentBoard.getTile(coord[0], coord[1] - 1)
+                      .getEntity() instanceof Player
+                  || Character.currentBoard.getTile(coord[0], coord[1] - 1)
+                      .getEntity() instanceof FlyingAssassin
+                  || Character.currentBoard.getTile(coord[0], coord[1] - 1)
+                      .getEntity() instanceof SmartThief) {
                 return false;
-              }else{
+              } else {
                 return true;
               }
-            }else {
+            } else {
               return true;
             }
-          }else {
+          } else {
             coordChange[0] = -1;
-            coordChange[1] = 0; 
+            coordChange[1] = 0;
           }
-        }else if(super.coordChange[1] == -1 && super.coord[1] == 0) {
+        } else if (super.coordChange[1] == -1 && super.coord[1] == 0) {
           coordChange[0] = -1;
-          coordChange[1] = 0; 
+          coordChange[1] = 0;
         }
       } else {
         return false;

@@ -37,9 +37,9 @@ public class PauseMenu extends Stage {
     /**
      * Creates a new Pause Menu when this class is instantiated.
      * 
-     * @param board        the board of the games.
-     * @param levelName    what level the player is on.
-     * @param gameGUI      to have access to tickTimeLine.
+     * @param board     the board of the games.
+     * @param levelName what level the player is on.
+     * @param gameGUI   to have access to tickTimeLine.
      */
     public PauseMenu(Board board, String levelName, GameGUI gameGUI) {
         this.board = board;

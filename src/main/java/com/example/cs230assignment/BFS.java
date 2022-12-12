@@ -40,7 +40,7 @@ public class BFS {
                 queue.addAll(current.getNeighbours());
                 if (nextInteractable == null || current
                         .getDistanceFromSmartThief() < nextInteractable
-                        .getDistanceFromSmartThief()) {
+                                .getDistanceFromSmartThief()) {
                     nextInteractable = current;
                 }
             }

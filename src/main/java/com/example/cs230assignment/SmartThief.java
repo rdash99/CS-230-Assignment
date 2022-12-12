@@ -71,31 +71,29 @@ public class SmartThief extends NPC {
     /**
      * Move randomly.
      *
-     * @param gc    The graphics context to draw on
      * @param board The board to move on
      */
     public void randomMovement(Board board) {
         int directionChoice = randGen.nextInt(1, 5);
         switch (directionChoice) {
-            case (1):
-                moveUp(board);
-                break;
-            case (2):
-                moveLeft(board);
-                break;
-            case (3):
-                moveDown(board);
-                break;
-            case (4):
-                moveRight(board);
-                break;
+        case (1):
+            moveUp(board);
+            break;
+        case (2):
+            moveLeft(board);
+            break;
+        case (3):
+            moveDown(board);
+            break;
+        case (4):
+            moveRight(board);
+            break;
         }
     }
 
     /**
      * Method to move the smart thief up.
      *
-     * @param gc    The graphics context to draw on
      * @param board The board to move on
      */
     public void moveUp(Board board) {
@@ -120,7 +118,6 @@ public class SmartThief extends NPC {
     /**
      * Moves the entity left if possible.
      *
-     * @param gc    the graphics context
      * @param board the board
      */
     public void moveLeft(Board board) {
@@ -170,7 +167,6 @@ public class SmartThief extends NPC {
     /**
      * Moves the entity right one square if possible.
      *
-     * @param gc    the graphics context
      * @param board the board
      */
     public void moveRight(Board board) {
@@ -215,7 +211,7 @@ public class SmartThief extends NPC {
      * thief along the x axis.qq
      *
      * @return int the distance of an interactable entity from smart thief along
-     * the x axis.
+     *         the x axis.
      */
     private int getXDistanceFromInteractable() {
         int distanceFromX = 0;
@@ -230,7 +226,7 @@ public class SmartThief extends NPC {
      * thief along the y axis.
      *
      * @return int the distance of an interactable entity from smart thief *
-     * along the y axis.
+     *         along the y axis.
      */
     private int getYDistanceFromInteractable() {
         int distanceFromY = 0;
@@ -240,10 +236,20 @@ public class SmartThief extends NPC {
         return distanceFromY;
     }
 
+    /**
+     * Method to set the door.
+     *
+     * @param door the door
+     */
     public void setDoor(Door door) {
         this.door = door;
     }
 
+    /**
+     * Method to retrieve the door.
+     *
+     * @return Door the door
+     */
     public Door getDoor() {
         return door;
     }
