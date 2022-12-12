@@ -6,7 +6,7 @@ package com.example.cs230assignment;
  * 
  * @author Rowan Dash
  * @version 1.0
- * @deprecated
+ * @deprecated High Scores are now shown in the MainMenu class.
  */
 
 public class Scoreboard {
