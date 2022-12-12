@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
  * @version 1.0
  */
 public class FlyingAssassin extends NPC {
+    Entity tempEntity;
     /**
      * constructor to assign basic values upon creation of a flyingassassin
      * 
@@ -47,6 +48,11 @@ public class FlyingAssassin extends NPC {
                         this.coord[1] + this.coordChange[1]);
                 this.coord[0] = this.coord[0] + this.coordChange[0];
                 this.coord[1] = this.coord[1] + this.coordChange[1];
+                if (this.tempEntity != null){
+                     Character.currentBoard.getTile(this.coord[0] - this.coordChange[0]
+                     , this.coord[1] - this.coordChange[1]).setEntity(this.tempEntity);
+                     Character.currentBoard.addEntity(tempEntity);
+                }
                 board.getTimer().boardUpdate(gc, board);
             } else {
                 board.getTile(this.coord[0], this.coord[1]).removeEntity();
@@ -83,6 +89,12 @@ public class FlyingAssassin extends NPC {
                         Character.currentBoard.getTile(x, y).getEntity());
                 Character.currentBoard.getTile(x, y).removeEntity();
                 Character.currentBoard.removeEntity(this);
+                return true;
+            }else if(Character.currentBoard.getTile(x, y).getEntity() instanceof Item 
+            ||Character.currentBoard.getTile(x, y).getEntity() instanceof Key 
+            ||Character.currentBoard.getTile(x, y).getEntity() instanceof Clock){
+                this.tempEntity = Character.currentBoard.getTile(x, y).getEntity();
+                Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
                 return true;
             }
             for (int i = 1; i < 9; i++) {
