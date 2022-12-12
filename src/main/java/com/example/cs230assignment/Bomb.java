@@ -1,5 +1,9 @@
 package com.example.cs230assignment;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 import java.util.ArrayList;
 
 /**
@@ -38,11 +42,10 @@ public class Bomb extends Entity {
      * the entity needs to be deleted
      */
     public void explodeBomb() {
+        Timeline bombTimeline = new Timeline(new KeyFrame(Duration.millis(1000)));
+        bombTimeline.setCycleCount(3);
+        bombTimeline.playFromStart();
         Timer bombClock = new Timer(3);
-
-        while (bombClock.getLevelTime() > 0) {
-            bombClock.decrementTime();
-        }
         /**
          * This part of the method is going to check the x coord for items
          */
