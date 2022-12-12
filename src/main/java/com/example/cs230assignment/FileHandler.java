@@ -237,6 +237,9 @@ public class FileHandler {
                     || e instanceof FlyingAssassin) {
                 ((Character) e).setBoard(board);
             }
+            if (e instanceof Bomb) {
+                ((Bomb) e).setBoard(board);
+            }
         }
         player.setBoard(board);
         door.setBoard(board);
