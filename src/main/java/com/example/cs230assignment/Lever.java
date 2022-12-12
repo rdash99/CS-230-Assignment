@@ -18,6 +18,8 @@ public class Lever extends Entity {
     }
 
     /**
+     * This gets the colour of the lever
+     *
      * @return char
      */
     public char getleverColour() {
@@ -25,6 +27,8 @@ public class Lever extends Entity {
     }
 
     /**
+     * This sets the colour of the lever.
+     *
      * @param newColour the colour of the lever to be set
      */
     public void setleverColour(char newColour) {
