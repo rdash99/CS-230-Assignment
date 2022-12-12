@@ -21,13 +21,14 @@ import java.io.IOException;
  * game.
  * 
  * @author Fraser Clough
+ * @author Thomas McAuley
  * @version 1.0
  */
 
 public class WinMenu extends Stage {
     private BorderPane root = new BorderPane();
     private Label scoreLabel = new Label();
-    private Button retryBtn = new Button("Retry");
+    private Button contBtn = new Button("Continue");
     private Button quitBtn = new Button("Quit");
     private Text titleText = new Text("You Win!");
     private VBox vbox = new VBox();
@@ -56,7 +57,7 @@ public class WinMenu extends Stage {
         titleText.setFill(Color.YELLOW);
         scoreLabel.setText("" + this.score);
 
-        vbox.getChildren().add(retryBtn);
+        vbox.getChildren().add(contBtn);
         vbox.getChildren().add(scoreLabel);
         vbox.getChildren().add(quitBtn);
         vbox.setAlignment(Pos.CENTER);
@@ -73,7 +74,7 @@ public class WinMenu extends Stage {
         this.setTitle("You Win");
         this.show();
 
-        retryBtn.setOnAction(e -> {
+        contBtn.setOnAction(e -> {
             this.close();
             // Load next level
         });
