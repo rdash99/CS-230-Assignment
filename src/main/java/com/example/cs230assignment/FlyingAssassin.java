@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
  * @version 1.0
  */
 public class FlyingAssassin extends NPC {
+    //stores an entity that was currently on the tile the flyingassassin
     Entity tempEntity;
     /**
      * constructor to assign basic values upon creation of a flyingassassin
