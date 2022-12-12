@@ -250,6 +250,9 @@ public class Board extends DrawShape {
         this.entities.remove(x);
     }
 
+    /**
+     * @param x The entity to be added to the board
+     */
     public void addEntity(Entity x) {
         this.entities.add(x);
     }
