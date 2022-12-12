@@ -89,7 +89,6 @@ public class MainMenu extends Stage {
         hbox.setAlignment(Pos.CENTER);
         hbox.setPadding(new Insets(20, 10, 10, 10));
 
-
         root.setTop(hbox);
         root.setCenter(middleButtons);
         root.setLeft(highScoreList);
@@ -125,7 +124,7 @@ public class MainMenu extends Stage {
     public void addHighScores() {
         ArrayList<String> highScores = FileHandler.readPlayerScores();
         for (String score : highScores) {
-            Text highScore = new Text(score);
+            Text highScore = new Text(score.replace("[", "").replace("]", ""));
             highScore.setFont(Font.font("Arial", 12));
             highScore.setFill(Color.GRAY);
             highScore.setWrappingWidth(100);

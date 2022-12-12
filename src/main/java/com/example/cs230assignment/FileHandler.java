@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -528,6 +530,7 @@ public class FileHandler {
      * Reads the level names from a file.
      * 
      * @return String[]
+     * @deprecated
      */
     public static String[] readLevelNameStrings() {
         File file = new File("levels.txt");
@@ -564,8 +567,22 @@ public class FileHandler {
                 String playerName = fileName.substring(0,
                         fileName.length() - 4);
                 String playerScore = readPlayerScore(fileName);
+                playerScore = playerScore.replace("[", "");
+                if (playerScore.equals("")) {
+                    playerScore = "0";
+                }
+                System.out.println(playerName + " " + playerScore);
                 playerScores.add(playerName + " " + playerScore);
             }
+            // sort the arraylist by score
+            /*
+             * playerScores.sort(new Comparator<String>() {
+             * 
+             * @Override public int compare(String o1, String o2) { String[]
+             * o1Split = o1.split(" "); String[] o2Split = o2.split(" "); int
+             * o1Score = Integer.parseInt(o1Split[1]); int o2Score =
+             * Integer.parseInt(o2Split[1]); return o2Score - o1Score; } });
+             */
         }
         return playerScores;
     }
@@ -589,6 +606,13 @@ public class FileHandler {
         String[] lineArray = line.split(" ");
         in.close();
         String playerScore = lineArray[0];
+        playerScore = playerScore.replace("[", "");
+        playerScore = playerScore.replace("]", "");
+        if (lineArray.length < 1) {
+            return "0";
+        } else {
+            playerScore = lineArray[0];
+        }
         return playerScore;
     }
 

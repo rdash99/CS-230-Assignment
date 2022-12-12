@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  * This class is used to force all classes below it to implement the draw
  * method.
  * 
- * @author Rowan
+ * @author Rowan Dash
  * @version 1.0
  */
 
