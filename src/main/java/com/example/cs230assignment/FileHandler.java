@@ -370,6 +370,9 @@ public class FileHandler {
             colour = ((Key) entity).getKeyColour();
             extraData = " " + colour;
             break;
+        case "Bomb":
+            entityName = "bmb";
+            break;
         }
         String data = x + " " + y + " " + entityName + extraData + "\n";
         return data;
