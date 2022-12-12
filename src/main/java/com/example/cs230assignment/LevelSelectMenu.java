@@ -73,6 +73,7 @@ import java.util.ArrayList;
                 int finalI = i;
                 button.setOnAction(e -> {
                     new GameGUI(this.playerName, FileHandler.readLevelFile(FileHandler.readLevelFiles().get(finalI), this.playerName));
+                    this.close();
                 });
                 i++;
             }
