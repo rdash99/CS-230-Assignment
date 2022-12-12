@@ -30,9 +30,9 @@ public class Board extends DrawShape {
     private int width;
     private int height;
     private Timer timer;
-    private Timeline smartThiefTimeline;
-    private Timeline flyingAssassinTimeline;
-    private Timeline floorFollowingThiefTimeline;
+    private ArrayList<Timeline> smartThiefTimelines;
+    private ArrayList<Timeline> flyingAssassinTimelines;
+    private ArrayList<Timeline> floorFollowingThiefTimelines;
     private GraphicsContext gc;
 
     /**
@@ -46,7 +46,7 @@ public class Board extends DrawShape {
      * @param entities the entities to be drawn on the board
      */
     public Board(int width, int height, Tile[][] tiles,
-            ArrayList<Entity> entities, Player player, Timer timer) {
+                 ArrayList<Entity> entities, Player player, Timer timer) {
         this.width = width;
         this.height = height;
         this.tiles = tiles;
@@ -55,26 +55,44 @@ public class Board extends DrawShape {
         this.timer = timer;
         for (Entity elem : this.entities) {
             if (elem instanceof SmartThief) {
-                this.smartThiefTimeline = new Timeline(new KeyFrame(
-                        Duration.millis(((SmartThief) elem).getMovementTimer()),
+                this.smartThiefTimelines = new ArrayList<>();
+                Timeline smartThiefTimeline = new Timeline(new KeyFrame(
+                        Duration.millis(
+                                ((SmartThief) elem).getMovementTimer()),
                         event -> ((SmartThief) elem).move(gc, this)));
-                this.smartThiefTimeline.setCycleCount(Animation.INDEFINITE);
-                this.smartThiefTimeline.playFromStart();
+                this.smartThiefTimelines.add(smartThiefTimeline);
             } else if (elem instanceof FlyingAssassin) {
-                this.flyingAssassinTimeline = new Timeline(new KeyFrame(
+                this.flyingAssassinTimelines = new ArrayList<>();
+                Timeline flyingAssassinTimeline = new Timeline(new KeyFrame(
                         Duration.millis(
                                 ((FlyingAssassin) elem).getMovementTimer()),
                         event -> ((FlyingAssassin) elem).move(gc, this)));
-                this.flyingAssassinTimeline.setCycleCount(Animation.INDEFINITE);
-                this.flyingAssassinTimeline.playFromStart();
+                this.flyingAssassinTimelines.add(flyingAssassinTimeline);
             } else if (elem instanceof FloorFollowingThief) {
-                this.floorFollowingThiefTimeline = new Timeline(new KeyFrame(
+                this.floorFollowingThiefTimelines = new ArrayList<>();
+                Timeline floorFollowingThiefTimeline = new Timeline(new KeyFrame(
                         Duration.millis(((FloorFollowingThief) elem)
                                 .getMovementTimer()),
                         event -> ((FloorFollowingThief) elem).move(gc)));
-                this.floorFollowingThiefTimeline
-                        .setCycleCount(Animation.INDEFINITE);
-                this.floorFollowingThiefTimeline.playFromStart();
+                this.floorFollowingThiefTimelines.add(floorFollowingThiefTimeline);
+            }
+        }
+        for (Entity entity : this.entities) {
+            if (entity instanceof FlyingAssassin) {
+                for (Timeline timeline : this.flyingAssassinTimelines) {
+                    timeline.setCycleCount(Animation.INDEFINITE);
+                    timeline.playFromStart();
+                }
+            } else if (entity instanceof SmartThief) {
+                for (Timeline timeline : this.smartThiefTimelines) {
+                    timeline.setCycleCount(Animation.INDEFINITE);
+                    timeline.playFromStart();
+                }
+            } else if (entity instanceof FloorFollowingThief) {
+                for (Timeline timeline : this.floorFollowingThiefTimelines) {
+                    timeline.setCycleCount(Animation.INDEFINITE);
+                    timeline.playFromStart();
+                }
             }
         }
     }
@@ -218,7 +236,7 @@ public class Board extends DrawShape {
 
     /**
      * Set the entities on the board
-     * 
+     *
      * @param entities the entities to set
      */
     public void setEntities(ArrayList<Entity> entities) {
@@ -227,7 +245,7 @@ public class Board extends DrawShape {
 
     /**
      * Set the player on the board
-     * 
+     *
      * @param player the player to set
      */
     public void setPlayer(Player player) {
@@ -236,7 +254,7 @@ public class Board extends DrawShape {
 
     /**
      * Retrieve the entities list from the board
-     * 
+     *
      * @return ArrayList
      */
     public ArrayList<Entity> getEntities() {
@@ -289,47 +307,59 @@ public class Board extends DrawShape {
      * Pause the smart thief
      */
     public void pauseSmartThief() {
-        this.smartThiefTimeline.stop();
+        for (Timeline timeline : this.smartThiefTimelines) {
+            timeline.stop();
+        }
     }
 
     /**
      * Pause the flying assassin
      */
     public void pauseFlyingAssassin() {
-        this.flyingAssassinTimeline.stop();
+        for (Timeline timeline : this.flyingAssassinTimelines) {
+            timeline.stop();
+        }
     }
 
     /**
      * Pause the floor following thief
      */
     public void pauseFloorFollowingThief() {
-        this.floorFollowingThiefTimeline.stop();
+        for (Timeline timeline : this.floorFollowingThiefTimelines) {
+            timeline.stop();
+        }
     }
 
     /**
      * Resume the smart thief
      */
     public void resumeSmartThief() {
-        this.smartThiefTimeline.play();
+        for (Timeline timeline : this.smartThiefTimelines) {
+            timeline.play();
+        }
     }
 
     /**
      * Resume the flying assassin
      */
     public void resumeFlyingAssassin() {
-        this.flyingAssassinTimeline.play();
+        for (Timeline timeline : this.flyingAssassinTimelines) {
+            timeline.play();
+        }
     }
 
     /**
      * Resume the floor following thief
      */
     public void resumeFloorFollowingThief() {
-        this.floorFollowingThiefTimeline.play();
+        for (Timeline timeline : this.floorFollowingThiefTimelines) {
+            timeline.play();
+        }
     }
 
     /**
      * Set the graphics context
-     * 
+     *
      * @param gc GraphicsContext
      */
     public void setGraphicsContext(GraphicsContext gc) {
