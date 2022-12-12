@@ -36,10 +36,9 @@ public class Key extends Entity {
      * Open the gates
      */
     public void openGate() {
+        System.out.println("opengate");
         for (Gate gate : gates) {
-            if (gate.getGateColour() == keyColour) {
-                gate.setGateOpen(true);
-            }
+            gate.setGateOpen(true);
         }
     }
 
