@@ -105,6 +105,7 @@ public class GameGUI extends Stage {
      */
     public void createGame(String playerName, String levelName) {
         this.level = FileHandler.readLevelFile(levelName, playerName);
+        this.level.getDoor().setGameGUI(this);
 
         // Build the GUI
         Pane root = buildGUI(level);
