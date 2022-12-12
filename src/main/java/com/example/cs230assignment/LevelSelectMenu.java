@@ -65,7 +65,10 @@ import java.util.ArrayList;
             for (Node elem : levelButtons.getChildren()) {
                 Button button = (Button) elem;
                 int finalI = i;
-                button.setOnAction(e -> new GameGUI(this.playerName, FileHandler.readLevelFiles().get(finalI)));
+                button.setOnAction(e -> {
+                    new GameGUI(this.playerName, FileHandler.readLevelFiles().get(finalI));
+                    this.close();
+                });
                 i++;
             }
 
