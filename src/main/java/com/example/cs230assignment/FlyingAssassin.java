@@ -52,6 +52,7 @@ public class FlyingAssassin extends NPC {
                      Character.currentBoard.getTile(this.coord[0] - this.coordChange[0]
                      , this.coord[1] - this.coordChange[1]).setEntity(this.tempEntity);
                      Character.currentBoard.addEntity(tempEntity);
+                     tempEntity = null;
                 }
                 board.getTimer().boardUpdate(gc, board);
             } else {
@@ -74,6 +75,7 @@ public class FlyingAssassin extends NPC {
             // select the entities by type and perform the correct interactions
             if (Character.currentBoard.getTile(x, y)
                     .getEntity() instanceof Player) {
+                System.out.println("death");
                 ((Player) Character.currentBoard.getTile(x, y).getEntity())
                         .die();
             } else if (Character.currentBoard.getTile(x, y)
@@ -95,7 +97,7 @@ public class FlyingAssassin extends NPC {
             ||Character.currentBoard.getTile(x, y).getEntity() instanceof Clock){
                 this.tempEntity = Character.currentBoard.getTile(x, y).getEntity();
                 Character.currentBoard.removeEntity(Character.currentBoard.getTile(x, y).getEntity());
-                return true;
+                return false;
             }
             for (int i = 1; i < 9; i++) {
                 // the xcoord of an adjacent tile
