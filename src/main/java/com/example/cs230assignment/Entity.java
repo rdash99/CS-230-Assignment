@@ -73,8 +73,14 @@ public class Entity extends DrawShape {
         Image floorFollowingThiefImg = new Image("floorFollowingThief.png");
         Image smartThiefImg = new Image("smartThief.png");
         Image clockImg = new Image("clock.png");
-        Image gateImg = new Image("gate.png");
-        Image keyImg = new Image("key.png");
+        Image gateYImg = new Image("gateY.png");
+        Image gateRImg = new Image("gateR.png");
+        Image gateGImg = new Image("gateG.png");
+        Image gateBImg = new Image("gateB.png");
+        Image keyRImg = new Image("keyR.png");
+        Image keyGImg = new Image("keyG.png");
+        Image keyBImg = new Image("keyB.png");
+        Image keyYImg = new Image("keyY.png");
         Image bombImg = new Image("bomb.png");
         Image doorImg = new Image("door.png");
         Image itemImg = new Image("item.png");
@@ -165,8 +171,29 @@ public class Entity extends DrawShape {
             for (int i = 0; i < yCoord; i++) {
                 gateYDefaultOffset += 100;
             }
-            gc.drawImage(gateImg, xCoord + gateXDefaultOffset,
-                    yCoord + gateYDefaultOffset);
+            Gate gate = (Gate) this;
+            switch (gate.getGateColour()) {
+            case 'r':
+                gc.drawImage(gateRImg, xCoord + gateXDefaultOffset,
+                        yCoord + gateYDefaultOffset);
+                break;
+
+            case 'g':
+                gc.drawImage(gateGImg, xCoord + gateXDefaultOffset,
+                        yCoord + gateYDefaultOffset);
+                break;
+
+            case 'b':
+                gc.drawImage(gateBImg, xCoord + gateXDefaultOffset,
+                        yCoord + gateYDefaultOffset);
+                break;
+
+            default:
+                gc.drawImage(gateYImg, xCoord + gateXDefaultOffset,
+                        yCoord + gateYDefaultOffset);
+                break;
+            }
+
             break;
         case "Key":
             int keyXDefaultOffset = 25;
@@ -179,8 +206,28 @@ public class Entity extends DrawShape {
             for (int i = 0; i < yCoord; i++) {
                 keyYDefaultOffset += 100;
             }
-            gc.drawImage(keyImg, xCoord + keyXDefaultOffset,
-                    yCoord + keyYDefaultOffset);
+            Key key = (Key) this;
+            switch (key.getKeyColour()) {
+            case 'r':
+                gc.drawImage(keyRImg, xCoord + keyXDefaultOffset,
+                        yCoord + keyYDefaultOffset);
+                break;
+
+            case 'g':
+                gc.drawImage(keyGImg, xCoord + keyXDefaultOffset,
+                        yCoord + keyYDefaultOffset);
+                break;
+
+            case 'b':
+                gc.drawImage(keyBImg, xCoord + keyXDefaultOffset,
+                        yCoord + keyYDefaultOffset);
+                break;
+
+            default:
+                gc.drawImage(keyYImg, xCoord + keyXDefaultOffset,
+                        yCoord + keyYDefaultOffset);
+                break;
+            }
             break;
         case "Bomb":
             int bombXDefaultOffset = 25;
@@ -224,6 +271,7 @@ public class Entity extends DrawShape {
             gc.drawImage(itemImg, xCoord + itemXDefaultOffset,
                     yCoord + itemYDefaultOffset);
         }
+
     }
 
     /**
