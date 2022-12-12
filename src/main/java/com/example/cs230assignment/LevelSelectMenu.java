@@ -39,6 +39,8 @@ import java.util.ArrayList;
         private Text titleText = new Text("Level Select");
         private Text errorText = new Text();
         private VBox levelButtons = new VBox();
+        private VBox saveButtonArea = new VBox();
+        private Button loadSavesButton = new Button("Load Saves");
         private HBox hbox = new HBox();
         private String playerName;
 
@@ -57,6 +59,10 @@ import java.util.ArrayList;
             hbox.setAlignment(Pos.CENTER);
             hbox.setPadding(new Insets(20, 10, 10, 10));
 
+            saveButtonArea.getChildren().add(loadSavesButton);
+            saveButtonArea.setAlignment(Pos.CENTER);
+            root.setBottom(saveButtonArea);
+
             for (String level : FileHandler.readLevelFiles()) {
                 levelButtons.getChildren().add(new Button(level));
             }
@@ -66,11 +72,14 @@ import java.util.ArrayList;
                 Button button = (Button) elem;
                 int finalI = i;
                 button.setOnAction(e -> {
-                    new GameGUI(this.playerName, FileHandler.readLevelFiles().get(finalI));
-                    this.close();
+                    new GameGUI(this.playerName, FileHandler.readLevelFile(FileHandler.readLevelFiles().get(finalI), this.playerName));
                 });
                 i++;
             }
+
+            loadSavesButton.setOnAction(e -> {
+                new SaveSelectMenu(this.playerName);
+            });
 
             root.setTop(hbox);
             root.setCenter(levelButtons);
@@ -80,8 +89,5 @@ import java.util.ArrayList;
             this.setScene(new Scene(root, 600, 500));
             this.setTitle("The Level Select");
             this.show();
-
-
-
         }
 }

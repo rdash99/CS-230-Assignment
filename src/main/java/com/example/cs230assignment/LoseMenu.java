@@ -41,7 +41,7 @@ public class LoseMenu extends Stage {
      * @param playerName The name of the player.
      * @param gameGUI    The original window of the game.
      */
-    public LoseMenu(String playerName, GameGUI gameGUI, String levelName) {
+    public LoseMenu(String playerName, GameGUI gameGUI, Board level) {
         this.playerName = playerName;
         this.gameGUI = gameGUI;
         this.levelName = levelName;
@@ -70,7 +70,7 @@ public class LoseMenu extends Stage {
 
         retryBtn.setOnAction(e -> {
             this.close();
-            this.gameGUI.createGame(this.playerName, levelName);
+            this.gameGUI.createGame(this.playerName, level);
         });
 
         quitBtn.setOnAction(e -> {
