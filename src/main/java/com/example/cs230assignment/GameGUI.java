@@ -164,7 +164,7 @@ public class GameGUI extends Stage {
 
         // Display the scene on the stage
         this.setScene(scene);
-        this.setTitle("The game");
+        this.setTitle("BACKSTREET THIEVES");
         this.show();
         level.draw(gc);
         tickTimeline.playFromStart();
