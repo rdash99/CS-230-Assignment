@@ -117,6 +117,10 @@ public class FileHandler {
                         char colour = lineArray[i + 1].charAt(0);
                         entities.add(new Key(colour, xCoord, yCoord));
                     }
+                    // read in bomb
+                    if (lineArray[i].equals("bmb")) {
+                        entities.add(new Bomb(xCoord, yCoord));
+                    }
                     // read in doors
                     if (lineArray[i].equals("dor")) {
                         door = new Door(xCoord, yCoord);
