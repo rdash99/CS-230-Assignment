@@ -54,18 +54,16 @@ public class GameGUI extends Stage {
     private Timeline tickTimeline;
     private Board level;
     private Label levelTimeLabel;
-
-    // X and Y coordinate of player on the grid.
-    private int playerX = 0;
-    private int playerY = 0;
+    private String levelName;
 
     /**
      * Create the game.
      * 
      * @param playerName The name of the player.
      */
-    public GameGUI(String playerName) {
-        createGame(playerName);
+    public GameGUI(String playerName, String levelName) {
+        this.levelName = levelName;
+        createGame(playerName, levelName);
     }
 
     /**
@@ -105,8 +103,8 @@ public class GameGUI extends Stage {
     /**
      * @param playerName The name of the player.
      */
-    public void createGame(String playerName) {
-        this.level = FileHandler.readLevelFile("testLevel", playerName);
+    public void createGame(String playerName, String levelName) {
+        this.level = FileHandler.readLevelFile(levelName, playerName);
 
         // Build the GUI
         Pane root = buildGUI(level);
@@ -225,7 +223,7 @@ public class GameGUI extends Stage {
                     level.pauseFloorFollowingThief();
                 }
             }
-            new LoseMenu(level.getPlayer().getPlayerName(), this);
+            new LoseMenu(level.getPlayer().getPlayerName(), this, this.levelName);
         }
     }
 
