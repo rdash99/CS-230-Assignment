@@ -70,9 +70,15 @@ public class PauseMenu extends Stage {
         resumeBtn.setOnAction(e -> {
             this.close();
             gameGUI.resumeLevelTime();
-            board.resumeSmartThief();
-            board.resumeFlyingAssassin();
-            board.resumeFloorFollowingThief();
+            for (Entity elem : this.board.getEntities()) {
+                if (elem instanceof SmartThief) {
+                    this.board.resumeSmartThief();
+                } else if (elem instanceof FlyingAssassin) {
+                    this.board.resumeFlyingAssassin();
+                } else if (elem instanceof FloorFollowingThief) {
+                    this.board.resumeFloorFollowingThief();
+                }
+            }
         });
 
         exitBtn.setOnAction(e -> {

@@ -36,8 +36,8 @@ public class GameGUI extends Stage {
     private static final int WINDOW_HEIGHT = 800;
 
     // The dimensions of the canvas
-    private static final int CANVAS_WIDTH = 1000;
-    private static final int CANVAS_HEIGHT = 1000;
+    private static final int CANVAS_WIDTH = 700;
+    private static final int CANVAS_HEIGHT = 700;
 
     // The width and height (in pixels) of each cell that makes up the game.
     private static final int GRID_CELL_WIDTH = 50;
@@ -218,6 +218,7 @@ public class GameGUI extends Stage {
             }
             new LoseMenu(level.getPlayer().getPlayerName(), this,
                     this.level);
+            pauseLevelTime();
         }
     }
 
