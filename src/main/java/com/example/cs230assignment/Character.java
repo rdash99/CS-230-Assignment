@@ -59,6 +59,8 @@ public class Character extends Entity {
             } else if (currentBoard.getTile(x, y).getEntity() instanceof Key) {
                 Key key = (Key) currentBoard.getTile(x, y).getEntity();
                 key.openGate();
+                Character.currentBoard.removeEntity(
+                    Character.currentBoard.getTile(x, y).getEntity());
             } else if (currentBoard.getTile(x, y)
                     .getEntity() instanceof Clock) {
                 Character.currentBoard.getTile(x, y).removeEntity();

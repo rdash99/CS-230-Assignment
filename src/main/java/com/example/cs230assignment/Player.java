@@ -59,6 +59,7 @@ public class Player extends Character {
     protected void interact(int x, int y) {
         // checks to see if there is an item on the next square
         if (Character.currentBoard.getTile(x, y).getEntity() != null) {
+            System.out.println(entityName);
             // switch statement to find out what entity is on the next square
             if (Character.currentBoard.getTile(x, y)
                     .getEntity() instanceof Item) {
