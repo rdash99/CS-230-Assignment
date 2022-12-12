@@ -129,22 +129,15 @@ public class GameGUI extends Stage {
             }
         });
 
-        // for testing only
-        this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if (key.getCode() == KeyCode.L) {
-                new LoseMenu(playerName, this);
-                tickTimeline.stop();
-            }
-        });
-
-         // for testing only
-        this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if (key.getCode() == KeyCode.M) {
-                new WinMenu(playerName, this, 500);
-                tickTimeline.stop();
-            }
-        });
-
+        /*
+         * // for testing only this.addEventFilter(KeyEvent.KEY_PRESSED, key ->
+         * { if (key.getCode() == KeyCode.L) { new LoseMenu(playerName, this);
+         * tickTimeline.stop(); } });
+         * 
+         * // for testing only this.addEventFilter(KeyEvent.KEY_PRESSED, key ->
+         * { if (key.getCode() == KeyCode.M) { new WinMenu(playerName, this,
+         * 500); tickTimeline.stop(); } });
+         */
         // Create a scene from the GUI
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -223,7 +216,8 @@ public class GameGUI extends Stage {
                     level.pauseFloorFollowingThief();
                 }
             }
-            new LoseMenu(level.getPlayer().getPlayerName(), this, this.levelName);
+            new LoseMenu(level.getPlayer().getPlayerName(), this,
+                    this.levelName);
         }
     }
 
