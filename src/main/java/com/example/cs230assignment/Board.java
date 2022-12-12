@@ -282,7 +282,7 @@ public class Board extends DrawShape {
      * Should the player have died
      */
     public void missionFailed() {
-
+            this.timer.setLevelTime(1);
     }
 
     /**

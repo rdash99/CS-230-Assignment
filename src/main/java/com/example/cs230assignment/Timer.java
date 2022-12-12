@@ -74,5 +74,8 @@ public class Timer {
     public int getInitTime() {
         return this.initTime;
     }
+    public void setLevelTime(int x){
+        this.levelTime = x;
+    }
 
 }
