@@ -87,8 +87,8 @@ public class FileHandler {
                     // read in a floor following thief
                     if (lineArray[i].equals("fft")) {
                         char colour = lineArray[i + 1].charAt(0);
-                        // xCoord = Integer.parseInt(lineArray[i + 2]);
-                        // yCoord = Integer.parseInt(lineArray[i + 3]);
+                        xCoord = Integer.parseInt(lineArray[i + 2]);
+                        yCoord = Integer.parseInt(lineArray[i + 3]);
                         FloorFollowingThief fft = new FloorFollowingThief(
                                 colour, xCoord, yCoord);
                         entities.add(fft);
@@ -525,6 +525,19 @@ public class FileHandler {
         File file = new File("src/main/resources/levels/" + fileName + ".txt");
         return loadBoard(file, playerName);
     }
+
+     /**
+     * Instansiates a new instance of board.
+     * 
+     * @param fileName   The name of the file to be read
+     * @param playerName The name of the player
+     * @return The level
+     */
+    public static Board readSaveFile(String fileName, String playerName) {
+        File file = new File("src/main/resources/saves/" + fileName + ".txt");
+        return loadBoard(file, playerName);
+    }
+
 
     /**
      * Reads the level names from a file.
