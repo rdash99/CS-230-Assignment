@@ -118,7 +118,7 @@ public class FileHandler {
                         ArrayList<Gate> gates = new ArrayList<Gate>();
                         for (Entity e : entities) {
                             if (e instanceof Gate) {
-                                if (((Gate) e).getGateColour().equals(colour)) {
+                                if (((Gate) e).getGateColour() == colour) {
                                     gates.add((Gate) e);
                                 }
                             }
