@@ -98,7 +98,7 @@ public class MainMenu extends Stage {
         this.setTitle("The game menu");
         this.show();
 
-        // When the button is clicked, the game is once a name has been
+        // When the button is clicked, the game is instantiated once a name has been
         // provided.
         launchGameBtn.setOnAction(e -> {
             if ((nameField.getText() != null
