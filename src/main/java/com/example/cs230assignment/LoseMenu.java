@@ -33,6 +33,7 @@ public class LoseMenu extends Stage {
     private HBox hbox = new HBox();
     private String playerName;
     private GameGUI gameGUI;
+    private String levelName;
 
     /**
      * Creates a new Lose Menu when this class is instantiated.
@@ -40,9 +41,10 @@ public class LoseMenu extends Stage {
      * @param playerName The name of the player.
      * @param gameGUI    The original window of the game.
      */
-    public LoseMenu(String playerName, GameGUI gameGUI) {
+    public LoseMenu(String playerName, GameGUI gameGUI, String levelName) {
         this.playerName = playerName;
         this.gameGUI = gameGUI;
+        this.levelName = levelName;
         this.initStyle(StageStyle.UNDECORATED);
         root.setBackground(new Background(new BackgroundFill(Color.DARKRED,
                 CornerRadii.EMPTY, Insets.EMPTY)));
@@ -68,7 +70,7 @@ public class LoseMenu extends Stage {
 
         retryBtn.setOnAction(e -> {
             this.close();
-            this.gameGUI.createGame(this.playerName);
+            this.gameGUI.createGame(this.playerName, levelName);
         });
 
         quitBtn.setOnAction(e -> {
