@@ -46,6 +46,7 @@ public class Door extends Entity {
     }
 
     /**
+     * Checks to see if the level is complete
      * @return Boolean
      */
     public Boolean validEndMission() {

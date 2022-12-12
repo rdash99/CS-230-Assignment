@@ -27,8 +27,7 @@ import java.util.ArrayList;
 
     /**
      * The LevelSelectMenu class. It is used to display the level select which
-     * contains all unlocked levels in the game so far, the message of the day
-     * and allows the player to enter their name and start the game.
+     * contains all unlocked levels in the game so far
      *
      * @author Thomas McAuley
      * @version 1.0
@@ -44,12 +43,11 @@ import java.util.ArrayList;
         private String playerName;
 
         /**
-         * Creates a new Main Menu when this class is instantiated.
+         * Creates a new Level Selector when this class is instantiated.
          *
-         * @throws IOException          if the http request fails.
-         * @throws InterruptedException if the http request is interrupted.
+         * @param playerName the name of the player
          */
-        public LevelSelectMenu(String playerName) throws IOException, InterruptedException {
+        public LevelSelectMenu(String playerName) {
             this.playerName = playerName;
 
             titleText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
@@ -80,8 +78,6 @@ import java.util.ArrayList;
             this.setTitle("The Level Select");
             this.show();
 
-            // When the button is clicked, the game is once a name has been
-            // provided.
 
 
         }
