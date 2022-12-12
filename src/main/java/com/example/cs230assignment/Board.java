@@ -53,23 +53,23 @@ public class Board extends DrawShape {
         this.player = player;
         this.entities = entities;
         this.timer = timer;
+        this.smartThiefTimelines = new ArrayList<>();
+        this.flyingAssassinTimelines = new ArrayList<>();
+        this.floorFollowingThiefTimelines = new ArrayList<>();
         for (Entity elem : this.entities) {
             if (elem instanceof SmartThief) {
-                this.smartThiefTimelines = new ArrayList<>();
                 Timeline smartThiefTimeline = new Timeline(new KeyFrame(
                         Duration.millis(
                                 ((SmartThief) elem).getMovementTimer()),
                         event -> ((SmartThief) elem).move(gc, this)));
                 this.smartThiefTimelines.add(smartThiefTimeline);
             } else if (elem instanceof FlyingAssassin) {
-                this.flyingAssassinTimelines = new ArrayList<>();
                 Timeline flyingAssassinTimeline = new Timeline(new KeyFrame(
                         Duration.millis(
                                 ((FlyingAssassin) elem).getMovementTimer()),
                         event -> ((FlyingAssassin) elem).move(gc, this)));
                 this.flyingAssassinTimelines.add(flyingAssassinTimeline);
             } else if (elem instanceof FloorFollowingThief) {
-                this.floorFollowingThiefTimelines = new ArrayList<>();
                 Timeline floorFollowingThiefTimeline = new Timeline(new KeyFrame(
                         Duration.millis(((FloorFollowingThief) elem)
                                 .getMovementTimer()),
