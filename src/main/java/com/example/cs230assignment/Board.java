@@ -137,7 +137,7 @@ public class Board extends DrawShape {
         Image greenSquareImg = new Image("greenSquare.png");
         Image blueSquareImg = new Image("blueSquare.png");
         Image yellowSquareImg = new Image("yellowSquare.png");
-        Image doorImg = new Image("door.png");
+        Image doorImg = new Image("newdoor.png");
 
         // Draw all tiles on screen to make up the board
         for (int i = 0; i < this.tiles.length; i++) {
