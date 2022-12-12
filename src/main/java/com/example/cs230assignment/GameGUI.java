@@ -105,6 +105,7 @@ public class GameGUI extends Stage {
      */
     public void createGame(String playerName, String levelName) {
         this.level = FileHandler.readLevelFile(levelName, playerName);
+        this.level.getDoor().setGameGUI(this);
 
         // Build the GUI
         Pane root = buildGUI(level);
@@ -132,7 +133,7 @@ public class GameGUI extends Stage {
         // for testing only
         this.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.L) {
-                new LoseMenu(playerName, this);
+                new LoseMenu(playerName, this, this.levelName);
                 tickTimeline.stop();
             }
         });
