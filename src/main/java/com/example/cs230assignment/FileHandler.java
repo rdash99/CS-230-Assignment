@@ -115,7 +115,15 @@ public class FileHandler {
                     // read in a key
                     if (lineArray[i].equals("key")) {
                         char colour = lineArray[i + 1].charAt(0);
-                        entities.add(new Key(colour, xCoord, yCoord));
+                        ArrayList<Gate> gates = new ArrayList<Gate>();
+                        for (Entity e : entities) {
+                            if (e instanceof Gate) {
+                                if (((Gate) e).getGateColour() == colour) {
+                                    gates.add((Gate) e);
+                                }
+                            }
+                        }
+                        entities.add(new Key(colour, xCoord, yCoord, gates));
                     }
                     // read in bomb
                     if (lineArray[i].equals("bmb")) {
