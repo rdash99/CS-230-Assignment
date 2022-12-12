@@ -27,7 +27,7 @@ public class Bomb extends Entity {
         this.xCoord = x;
         this.yCoord = y;
     }
-    
+
     public void setBoard(Board currentBoard) {
         this.currentBoard = currentBoard;
     }
@@ -47,37 +47,44 @@ public class Bomb extends Entity {
          * This part of the method is going to check the x coord for items
          */
         for (int i = 0; i < currentBoard.getTiles().length; i++) {
-            if (currentBoard.getTile(xCoord, i).getEntity()
-                    .getEntityName() == "bomb") {
-                explodeBomb();
-            } else if (currentBoard.getTile(xCoord, i).getEntity() != null) {
-                if (currentBoard.getTile(xCoord, i).getEntity()
-                        .getEntityName() == "Gate") {
-                    i++;
-                } else {
+            if (this.currentBoard.getTile(xCoord, i).getEntity() != null){
+                if (this.currentBoard.getTile(xCoord, i).getEntity() instanceof Bomb && this.currentBoard.getTile(xCoord, i).getEntity() != this){
+                    ((Bomb)this.currentBoard.getTile(xCoord, i).getEntity()).explodeBomb();
+                }else if(this.currentBoard.getTile(xCoord, i).getEntity() instanceof Item){
+                    this.currentBoard.removeEntity(currentBoard.getTile(xCoord, i).getEntity());
+                    currentBoard.getTile(xCoord, i).removeEntity();
+                }else if(this.currentBoard.getTile(xCoord, i).getEntity() instanceof Player){
+                    this.currentBoard.getPlayer().die();
+                }else if(this.currentBoard.getTile(xCoord, i).getEntity() instanceof FloorFollowingThief 
+                || this.currentBoard.getTile(xCoord, i).getEntity() instanceof FlyingAssassin 
+                || this.currentBoard.getTile(xCoord, i).getEntity() instanceof SmartThief){
+                    this.currentBoard.removeEntity(currentBoard.getTile(xCoord, i).getEntity());
                     currentBoard.getTile(xCoord, i).removeEntity();
                 }
-            } else {
-                i++;
             }
-        }
         /*
          * This part of the method is going to check the y coord for items
          */
-        for (int i = 0; i < currentBoard.getTiles().length; i++) {
-            if (currentBoard.getTile(i, yCoord).getEntity()
-                    .getEntityName() == "bomb") {
-                explodeBomb();
-            } else if (currentBoard.getTile(i, yCoord).getEntity() != null) {
-                if (currentBoard.getTile(i, yCoord).getEntity()
-                        .getEntityName() == "Gate") {
-                    i++;
-                } else {
-                    currentBoard.getTile(i, yCoord).removeEntity();
+        for (int w = 0; w < currentBoard.getTiles().length; w++) {
+            if (this.currentBoard.getTile(yCoord, w).getEntity() != null){
+                if (this.currentBoard.getTile(yCoord, i).getEntity() instanceof Bomb && this.currentBoard.getTile(xCoord, i).getEntity() != this){
+                    ((Bomb)this.currentBoard.getTile(yCoord, w).getEntity()).explodeBomb();
+                }else if(this.currentBoard.getTile(yCoord, w).getEntity() instanceof Item){
+                    this.currentBoard.removeEntity(currentBoard.getTile(yCoord, w).getEntity());
+                    currentBoard.getTile(yCoord, w).removeEntity();
+                }else if(this.currentBoard.getTile(yCoord, w).getEntity() instanceof Player){
+                    this.currentBoard.getPlayer().die();
+                }else if(this.currentBoard.getTile(yCoord, w).getEntity() instanceof FloorFollowingThief 
+                || this.currentBoard.getTile(yCoord, w).getEntity() instanceof FlyingAssassin 
+                || this.currentBoard.getTile(yCoord, w).getEntity() instanceof SmartThief){
+                    this.currentBoard.removeEntity(currentBoard.getTile(yCoord, w).getEntity());
+                    currentBoard.getTile(yCoord, w).removeEntity();
                 }
-            } else {
-                i++;
             }
         }
+    }
+    this.currentBoard.removeEntity(this);
+    currentBoard.getTile(xCoord, yCoord).removeEntity();
+    System.out.println("bomb");
     }
 }
