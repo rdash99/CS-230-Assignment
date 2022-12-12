@@ -1,3 +1,8 @@
+/**
+ * This file is part of CS230Assignment. This is needed to run the program
+ * 
+ * @author intellij
+ */
 module com.example.cs230assignment {
     requires javafx.controls;
     requires javafx.fxml;
@@ -11,5 +16,6 @@ module com.example.cs230assignment {
     requires java.net.http;
 
     opens com.example.cs230assignment to javafx.fxml;
+
     exports com.example.cs230assignment;
 }
